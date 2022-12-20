@@ -80,7 +80,7 @@ module.exports = {
     'padded-blocks': ['error', 'never'],
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
-    'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['store', 'acc'] }],
+    'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['store', 'acc', 'state'] }],
     semi: 'off',
     '@typescript-eslint/semi': ['error', 'always'],
     'comma-dangle': 'off',
