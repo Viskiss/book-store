@@ -25,4 +25,23 @@ export default styled.section`
     border: none;
     background-color: initial;
   }
+
+  .label {
+    color: #0d1821;
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 40px;
+    padding-top: 10px;
+  }
+  .label-error {
+    color: red;
+    font-family: "Poppins";
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 40px;
+    padding-top: 10px;
+  }
 `;

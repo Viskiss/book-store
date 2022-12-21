@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Styles from './Header.styles';
 import Button from '../../Button/RoundButton';
 import logo from '../../images/logo/logoH.svg';
@@ -7,7 +8,10 @@ import like from '../../images/header/Heart.svg';
 import profile from '../../images/header/User.svg';
 
 const Header: React.FC = () => {
+  const [isLogin, setIsLogin] = useState(localStorage.getItem('token'));
+
   return (
+
     <Styles>
       <div className="header_container">
         <img className="logo" src={logo} alt="" />
@@ -20,15 +24,19 @@ const Header: React.FC = () => {
           </button>
           <input className="search-input" placeholder="Search" />
         </div>
-        <Button className="round-button">
-          <img src={cart} alt="" />
-        </Button>
-        <Button className="round-button">
-          <img src={like} alt="" />
-        </Button>
-        <Button className="round-button">
-          <img src={profile} alt="" />
-        </Button>
+        {isLogin
+          ? <Button>Log In/ Sing Up</Button>
+          : (<div>
+            <Button className="round-button">
+              <img src={cart} alt="" />
+            </Button>
+            <Button className="round-button">
+              <img src={like} alt="" />
+            </Button>
+            <Button className="round-button">
+              <img src={profile} alt="" />
+            </Button>
+             </div>)}
       </div>
     </Styles>
   );

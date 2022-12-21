@@ -6,7 +6,7 @@ flex-direction: column;
 position: relative;
 
 .block_text {
-  max-width: 230px
+  width: 200px;
 }
 
 .block-text_main {

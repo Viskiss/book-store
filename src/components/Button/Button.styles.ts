@@ -7,15 +7,24 @@ const Button = styled.button`
   border: none;
   background: #344966;
   cursor: pointer;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  color: #f0f4ef;
-  font-family: "Poppins";
   margin: 0;
+  color: #f0f4ef;
+  a {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #f0f4ef;
+    font-family: "Poppins";
+    text-decoration: none;
+
+    :hover {
+    color: #bfcc94;
+  }
+  }
 
   :hover {
     color: #bfcc94;
+    background: #0d1821;
   }
 `;
 

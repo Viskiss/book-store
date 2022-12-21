@@ -1,23 +1,26 @@
-// import { useState } from 'react';
-// import LogIn from './Auth/pages/LogIn';
-import SignUp from './Auth/pages/SignUp';
+// import { useAppSelector } from '../../redux/store';
+import Auth from './Auth';
 import Styles from './BookStore.styles';
-// import Invit from './Invit';
+import Invit from './Invit';
 
 const BookStore: React.FC = () => {
-  // if (!store.isAuth) {
+  // const error = useAppSelector((state) => state.bookData.error);
+  // const auth = useAppSelector((state) => state.bookData.isAuth);
+
+  // if (auth) {
   //   return (
-  //     <BookStoreStyles>
-  //   auth
-  //     </BookStoreStyles>
+  //     <Styles>
+  //       <LogIn />
+  //     </Styles>
   //   );
   // }
 
   return (
-  <Styles>
-    {/* <LogIn /> */}
-    <SignUp />
-  </Styles>
+    <Styles>
+      <Invit />
+      Books
+      <Auth />
+    </Styles>
   );
 };
 

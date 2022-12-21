@@ -10,8 +10,10 @@ const Invit: React.FC = () => {
         <TextBlock
         h1="Build your library with us"
         p="Buy two books and get one for free"
-        buttonText="Choose a book"
+        title="Choose a book"
         img={books}
+        link="/lll"
+
         />
        <img className="img_girl" src={girl} alt="" />
       </div>

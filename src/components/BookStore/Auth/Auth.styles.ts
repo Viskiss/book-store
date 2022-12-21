@@ -1,36 +1,42 @@
 import styled from 'styled-components';
 
 export default styled.section`
-  background: #0d1821;
-  width: 100%;
-  padding: 73px 20px;
+  background: #f0f4ef;
   font-family: "Poppins";
-  font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 30px;
   color: #f0f4ef;
   display: flex;
-  justify-content: center;
+  border-radius: 16px;
+  margin: 100px 0 150px 0;
 
-  p {
-    margin-bottom: 5px;
-    margin-top: 0;
-  }
-
-  .logo {
-    margin-bottom: 30px;
-  }
-
-  .footer_container {
+  .auth_container {
     width: 1280px;
     display: flex;
-    align-items: flex-start;
-    gap: 166px;
-    justify-content: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+
+    img:nth-child(2) {
+      right: 0;
+    }
+
+    .auth {
+      padding: 0 130px 90px 20px;
+    }
+
+    .auth-text {
+      width: 415px;
+    }
   }
 
-  .map_location {
-    padding-left: 149px;
+  .castle-block {
+    position: relative;
+  }
+
+  .img_castle {
+    padding: 0 108px;
+    position: absolute;
+    bottom: 0;
   }
 `;

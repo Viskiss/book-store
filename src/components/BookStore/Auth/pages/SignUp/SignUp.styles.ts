@@ -7,7 +7,6 @@ export default styled.section`
   font-weight: 500;
   font-size: 20px;
   line-height: 30px;
-  color: #f0f4ef;
   display: flex;
 
   .signup_container {
@@ -19,16 +18,6 @@ export default styled.section`
   .login-form {
     display: flex;
     flex-direction: column;
-  }
-
-  label {
-    color: #0d1821;
-    font-family: "Poppins";
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
-    margin-bottom: 40px;
-    padding-top: 10px;
   }
 
   h1 {

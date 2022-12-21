@@ -1,25 +1,21 @@
 import Styles from './Auth.styles';
-import logo from '../../images/logoF.svg';
-import map from '../../images/map.png';
+import fairy from '../../images/auth/fairy.svg';
+import castle from '../../images/auth/castle.svg';
+import TextBlock from '../TextBlock';
 
 const Auth: React.FC = () => {
   return (
     <Styles>
-      <div className="footer_container">
-        <div>
-          <img className="logo" src={logo} alt="" />
-          <p>tranthuy.nute@gmail.com</p>
-          <p>(480) 555-0103</p>
-        </div>
-        <div>
-          <p>Home Page</p>
-          <p>Catalog</p>
-          <p>My Account</p>
-          <p>Cart</p>
-        </div>
-        <div className="map_location">
-          <p>6391 Elgin St. Celina, Delaware 10299</p>
-          <img src={map} alt="" />
+      <div className="auth_container">
+        <TextBlock
+          h1="Authorize now"
+          p="Authorize now and discover the fabulous world of books"
+          title="Log In/ Sing Up"
+          img={fairy}
+          link="/signup"
+        />
+        <div className="castle-block">
+          <img className="img_castle" src={castle} alt="" />
         </div>
       </div>
     </Styles>
