@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-export default styled.section`
+export default styled.footer`
   background: #0d1821;
   width: 100%;
   padding: 73px 20px;
   font-family: "Poppins";
-  font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 30px;
@@ -32,5 +31,25 @@ export default styled.section`
 
   .map_location {
     padding-left: 149px;
+  }
+
+  @media (max-width: 834px) {
+    padding: 73px 0 79px 0;
+    font-size: 16px;
+    line-height: 24px;
+    justify-content: space-between;
+
+    .footer_container {
+      padding-left: 10px;
+      max-width: 804px;
+      gap: 50px;
+    }
+
+    .map_location {
+      padding-left: 0;
+      img {
+        width: 392px;
+      }
+    }
   }
 `;

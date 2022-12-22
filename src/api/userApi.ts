@@ -1,7 +1,9 @@
-import type { AutReqType } from '../models/UserType';
+import type { AutReqType } from '../types/UserType';
 import api from './api';
 
 const createUserPath = '/api/login/sing-up';
+const logInUserPath = '/api/login/sing-in';
+const currentUserPath = '/api/auth/user/me';
 
 // const fetchTodos = (filter = FilterTodoENUM.ACTIVE) => {
 //   return api.get<TodoType[]>(todosPath, { params: { filter } });
@@ -9,6 +11,14 @@ const createUserPath = '/api/login/sing-up';
 
 const createUser = (email: string, password: string) => {
   return api.post<AutReqType>(createUserPath, { email, password });
+};
+
+const logInUser = (email: string, password: string) => {
+  return api.post<AutReqType>(logInUserPath, { email, password });
+};
+
+const currentUser = () => {
+  return api.get<AutReqType>(currentUserPath);
 };
 
 // const updateTodo = (_id: number, fields: Omit<TodoType, '_id'>) => {
@@ -21,5 +31,5 @@ const createUser = (email: string, password: string) => {
 // };
 
 export default {
-  createUser,
+  createUser, logInUser, currentUser,
 };

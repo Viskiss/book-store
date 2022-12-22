@@ -1,40 +1,60 @@
-// import { useState } from 'react';
+import { useFormik } from 'formik';
 import Styles from './LogIn.styles';
-// import mail from '../../../../images/auth/Mail.svg';
-// import eye from '../../../../images/auth/Hide.svg';
-// import men from '../../../../images/auth/men.svg';
-// import Input from '../../../../Input/Input';
-// import Button from '../../../../Button/Button';
+import mail from '../../../../images/auth/Mail.svg';
+import eye from '../../../../images/auth/Hide.svg';
+import men from '../../../../images/auth/men.svg';
+import men2 from '../../../../images/auth/men2.svg';
+import Input from '../../../../auxiliaryComponents/Input/Input';
+import Button from '../../../../auxiliaryComponents/Button/Button.styles';
+import { useAppDispatch } from '../../../../../redux/store';
+import { logInUserThunk } from '../../../../../redux/bookStore/bookStoreThunks';
+import { logInSchema } from '../../../../../validation/schemasYup/schemas';
 
 const LogIn: React.FC = () => {
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
+  const dispatch = useAppDispatch();
 
-  // const formik = useFormik({
-  //   initialValues: {
-  //     email,
-  //     password,
-  //   },
-  //   onSubmit: (values) => {
-  //     const { email, password } = values;
-  //     dispatch(
-  //       createUserThunk({ email, password }),
-  //     );
-  //   },
-  // });
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: logInSchema,
+    onSubmit: async (values) => {
+      const { email, password } = values;
+      const req = await dispatch(logInUserThunk({ email, password }));
+      // eslint-disable-next-line no-console
+      console.log(req.payload);
+    },
+  });
+
   return (
     <Styles>
-      {/* <div className="login_container">
-        <form className="login-form">
+      <div className="login_container">
+        <form onSubmit={formik.handleSubmit} className="login-form">
           <h1>Log In</h1>
-          <Input name="email" value={email} img={mail} placeholder="Email" />
-          <label>Enter your email</label>
-          <Input value={password} img={eye} placeholder="Password" />
-          <label>Enter your password</label>
-          <Button>Log In</Button>
+          <Input
+            img={mail}
+            placeholder="Email"
+            label="Enter your email"
+            errors={formik.errors.email}
+            touched={formik.touched.email}
+            {...formik.getFieldProps('email')}
+          />
+          <Input
+            img={eye}
+            placeholder="Password"
+            label="Enter your password"
+            errors={formik.errors.password}
+            touched={formik.touched.password}
+            {...formik.getFieldProps('password')}
+          />
+          <Button type="submit">Log In</Button>
         </form>
-        <img src={men} alt="" />
-      </div> */}
+        <picture>
+          <source media="(max-width:834px)" srcSet={men2} />
+        <img className="men-pick" src={men} alt="" />
+        </picture>
+      </div>
     </Styles>
   );
 };

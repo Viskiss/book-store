@@ -1,35 +1,30 @@
 import { useFormik } from 'formik';
-import { useState } from 'react';
 import Styles from './SignUp.styles';
 import mail from '../../../../images/auth/Mail.svg';
 import eye from '../../../../images/auth/Hide.svg';
 import men from '../../../../images/auth/men.svg';
-import Input from '../../../../Input/Input';
-import Button from '../../../../Button/Button.styles';
+import men2 from '../../../../images/auth/men2.svg';
+import Input from '../../../../auxiliaryComponents/Input/Input';
+import Button from '../../../../auxiliaryComponents/Button/Button.styles';
 import { useAppDispatch } from '../../../../../redux/store';
 import { createUserThunk } from '../../../../../redux/bookStore/bookStoreThunks';
-import { singUpSchema } from '../../../../../validation/schemasYup/schemasAuth';
+import { singUpSchema } from '../../../../../validation/schemasYup/schemas';
 
 const SignUp: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setrepeatPassword] = useState('');
   const dispatch = useAppDispatch();
 
   const formik = useFormik({
     initialValues: {
-      email,
-      password,
-      repeatPassword,
+      email: '',
+      password: '',
+      repeatPassword: '',
     },
     validationSchema: singUpSchema,
     onSubmit: async (values) => {
       const { email, password } = values;
-      // eslint-disable-next-line no-console
-      console.log(values);
       const req = await dispatch(createUserThunk({ email, password }));
       // eslint-disable-next-line no-console
-      console.log(req);
+      console.log(req.payload);
     },
   });
 
@@ -64,7 +59,10 @@ const SignUp: React.FC = () => {
           />
           <Button type="submit">Sing Up</Button>
         </form>
-        <img src={men} alt="" />
+        <picture>
+          <source media="(max-width:834px)" srcSet={men2} />
+        <img className="men-pick" src={men} alt="" />
+        </picture>
       </div>
     </Styles>
   );

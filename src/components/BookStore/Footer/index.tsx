@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
   return (
     <Styles>
       <div className="footer_container">
-        <div>
+        <div className="logo-box">
           <img className="logo" src={logo} alt="" />
           <p>tranthuy.nute@gmail.com</p>
           <p>(480) 555-0103</p>

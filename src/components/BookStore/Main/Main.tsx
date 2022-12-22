@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from '../Footer';
-import Header from '../Header/HeaderAfterAuth';
+import Header from '../Header/Header';
 
 interface IProps {
   children: React.ReactNode;

@@ -44,4 +44,11 @@ export default styled.section`
     margin-bottom: 40px;
     padding-top: 10px;
   }
+
+  @media (max-width: 834px) {
+    padding-right: 15px;
+    .search-input {
+    padding: 20px 13px 20px 64px;
+  }
+  }
 `;

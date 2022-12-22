@@ -34,4 +34,28 @@ export default styled.section`
     margin-right: 316px;
   }
 
+  @media (max-width: 834px) {
+    padding: 60px 0 150px 0;
+
+  .signup_container {
+    width: 804px;
+
+  }
+  button {
+    margin-right: 246px;
+    letter-spacing: 0.75px;
+    font-size: 16px;
+line-height: 24px;
+  }
+
+  input {
+    padding-right: 20px;
+  }
+
+  .men-pick {
+   padding-top: 110px;
+  }
+
+}
+
 `;

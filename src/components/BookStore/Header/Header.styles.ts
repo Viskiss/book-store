@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.section`
+export default styled.header`
   padding: 24px 20px 40px 20px;
 
   .header_container {
@@ -56,7 +56,35 @@ export default styled.section`
   }
 
   .round-button {
+    margin-left: 25px;
     padding: 10px 12px 8px 12px;
     border-radius: 50px;
+  }
+
+  @media (max-width: 834px) {
+    padding: 24px 15px 40px 15px;
+    .header_container {
+      max-width: 804px;
+      gap: 51px;
+    }
+    .logo {
+      padding-right: 0;
+    }
+    .catalog-link {
+      margin-right: 22px;
+    }
+
+    .search-input {
+      padding: 20px 0 20px 64px;
+      max-width: 183px;
+    }
+
+    .search-input::placeholder {
+      max-width: 100px;
+      letter-spacing: 0.75px;
+    }
+    .search {
+      padding-right: 0;
+    }
   }
 `;

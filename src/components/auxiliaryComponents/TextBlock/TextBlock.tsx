@@ -5,6 +5,8 @@ interface IProps {
   h1: string;
   p: string;
   img: string;
+  img2: string;
+  img3: string;
   link: string;
   title: string;
 }
@@ -19,7 +21,11 @@ const TextBlock: React.FC<IProps> = (props: IProps) => {
           </div>
         <ButtonLink link={props.link} title={props.title} />
     </div>
-       <img src={props.img} alt="" />
+    <picture>
+          <source media="(max-width:834px)" srcSet={props.img2} />
+          <source media="(min-width:320pxpx)" srcSet={props.img3} />
+       <img className="img-back-invite img-back-auth" src={props.img} alt="" />
+    </picture>
   </Styles>
   );
 };
