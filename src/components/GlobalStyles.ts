@@ -9,6 +9,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: white;
 }
+body, html {
+  overflow-x: hidden
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

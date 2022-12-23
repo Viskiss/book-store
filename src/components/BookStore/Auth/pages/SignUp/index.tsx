@@ -8,7 +8,7 @@ import Input from '../../../../auxiliaryComponents/Input/Input';
 import Button from '../../../../auxiliaryComponents/Button/Button.styles';
 import { useAppDispatch } from '../../../../../redux/store';
 import { createUserThunk } from '../../../../../redux/bookStore/bookStoreThunks';
-import { singUpSchema } from '../../../../../validation/schemasYup/schemas';
+import { singUpSchema } from '../../../../../validation/schemas';
 
 const SignUp: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -57,7 +57,7 @@ const SignUp: React.FC = () => {
             touched={formik.touched.repeatPassword}
             {...formik.getFieldProps('repeatPassword')}
           />
-          <Button type="submit">Sing Up</Button>
+          <Button className="simple-button" type="submit">Sing Up</Button>
         </form>
         <picture>
           <source media="(max-width:834px)" srcSet={men2} />

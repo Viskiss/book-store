@@ -21,6 +21,10 @@ export default styled.section`
       right: 0;
     }
 
+   .auth-button {
+      margin-right: 20px;
+    }
+
     .auth {
       padding: 0 130px 90px 20px;
     }
@@ -28,6 +32,7 @@ export default styled.section`
     .auth-text {
       width: 415px;
     }
+
   }
 
   .img-back-auth {

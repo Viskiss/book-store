@@ -7,9 +7,11 @@ interface IProps {
   placeholder: string;
   value: string;
   name: string;
-  label: string;
+  label?: string;
   errors: string | undefined;
   touched: boolean | undefined;
+  type?: string;
+  disabled?: boolean;
 }
 
 const Input: React.FC<IProps> = (props: IProps) => {
@@ -19,6 +21,8 @@ const Input: React.FC<IProps> = (props: IProps) => {
         <img src={props.img} alt="" />
       </button>
       <input
+        disabled={props.disabled}
+        type={props.type}
         name={props.name}
         onChange={props.onChange}
         value={props.value}

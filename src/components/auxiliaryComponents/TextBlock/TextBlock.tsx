@@ -4,11 +4,12 @@ import ButtonLink from '../Button/ButtonLink';
 interface IProps {
   h1: string;
   p: string;
-  img: string;
-  img2: string;
-  img3: string;
+  img?: string;
+  img2?: string;
+  img3?: string;
   link: string;
   title: string;
+  className: string;
 }
 
 const TextBlock: React.FC<IProps> = (props: IProps) => {
@@ -19,7 +20,11 @@ const TextBlock: React.FC<IProps> = (props: IProps) => {
           <div className="block_text auth-text">
             <p>{props.p}</p>
           </div>
-        <ButtonLink link={props.link} title={props.title} />
+          {props.className === 'auth-button'
+            ? (<><ButtonLink className="auth-button" link="/logIn" title="Log In" />
+            <ButtonLink className="auth-button" link="/signUp" title="Sign Up" />
+               </>)
+            : (<ButtonLink className={props.className} link={props.link} title={props.title} />)}
     </div>
     <picture>
           <source media="(max-width:834px)" srcSet={props.img2} />

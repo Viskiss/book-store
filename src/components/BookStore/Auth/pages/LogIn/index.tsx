@@ -8,7 +8,7 @@ import Input from '../../../../auxiliaryComponents/Input/Input';
 import Button from '../../../../auxiliaryComponents/Button/Button.styles';
 import { useAppDispatch } from '../../../../../redux/store';
 import { logInUserThunk } from '../../../../../redux/bookStore/bookStoreThunks';
-import { logInSchema } from '../../../../../validation/schemasYup/schemas';
+import { logInSchema } from '../../../../../validation/schemas';
 
 const LogIn: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -48,7 +48,7 @@ const LogIn: React.FC = () => {
             touched={formik.touched.password}
             {...formik.getFieldProps('password')}
           />
-          <Button type="submit">Log In</Button>
+          <Button className="simple-button" type="submit">Log In</Button>
         </form>
         <picture>
           <source media="(max-width:834px)" srcSet={men2} />

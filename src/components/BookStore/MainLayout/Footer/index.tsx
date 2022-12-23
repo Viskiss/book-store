@@ -1,6 +1,6 @@
+import logo from '../images/logoF.svg';
+import map from '../images/map.png';
 import Styles from './Footer.styles';
-import logo from '../../images/logo/logoF.svg';
-import map from '../../images/map.png';
 
 const Footer: React.FC = () => {
   return (

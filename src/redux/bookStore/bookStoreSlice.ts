@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
-import type { UserType } from '../../types/UserType';
-import { createUserThunk, currentUserThunk, logInUserThunk } from './bookStoreThunks';
+import type { CartType, UserType } from '../../types/UserType';
+import { changeUserThunk, createUserThunk, currentUserThunk, logInUserThunk } from './bookStoreThunks';
 
 const initialState = () => ({
   user: {} as UserType,
+  cart: [] as CartType[],
 });
 
 const bookStoreSlice = createSlice({
@@ -28,11 +29,12 @@ const bookStoreSlice = createSlice({
       }
     });
 
+    builder.addCase(changeUserThunk.fulfilled, (state, action) => {
+      state.user.fullName = action.payload.user.fullName;
+    });
+
     builder.addCase(currentUserThunk.fulfilled, (state, action) => {
       state.user = action.payload.user;
-      if (action.payload.token) {
-        Cookies.set('token', action.payload.token);
-      }
     });
   },
 

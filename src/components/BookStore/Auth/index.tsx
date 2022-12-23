@@ -17,6 +17,7 @@ const Auth: React.FC = () => {
           img2={fairy2}
           img3={fairy3}
           link="/logIn"
+          className="auth-button"
         />
         <div className="castle-block">
           <img className="img_castle" src={castle} alt="" />

@@ -1,17 +1,31 @@
 export type UserType = {
-  id: string | number;
-  fullName: string | null;
+  id: string;
+  fullName: string;
   email: string;
   password: string;
-  dob: string | Date | null;
-};
-
-export type AutReqType = {
-  token: string;
-  user: UserType;
 };
 
 export type UserCreateType = {
-  email: string;
-  password: string;
+  email: UserType['email'];
+  password: UserType['password'];
+};
+
+export type ChangeUserType = {
+  email: UserType['email'];
+  fullName: UserType['fullName'];
+  id: UserType['id'];
+};
+
+export type ChangePasswordType = {
+  password: UserType['password'];
+  id: UserType['id'];
+};
+
+export type CartType = {
+  id: string;
+};
+
+export type AutReqType = {
+  token?: string;
+  user: UserType;
 };

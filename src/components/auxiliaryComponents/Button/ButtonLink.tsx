@@ -4,11 +4,12 @@ import Styles from './Button.styles';
 interface IProps {
   link: string;
   title: string;
+  className: string;
 }
 
 const ButtonLink: React.FC<IProps> = (props: IProps) => {
   return (
-    <Styles>
+    <Styles className={props.className}>
       <Link to={props.link}>{props.title}</Link>
     </Styles>
   );

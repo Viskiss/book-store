@@ -1,0 +1,98 @@
+import { useEffect, useState } from 'react';
+import { useFormik } from 'formik';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import imgUser from './images/User.svg';
+import mail from './images/Mail.svg';
+import camera from './images/Camera.svg';
+import defaultPhoto from './images/User photo.svg';
+import Styles from './UserProfile.styles';
+import Input from '../../auxiliaryComponents/Input/Input';
+import PasswordProfile from './component';
+import { changeUserSchema } from '../../../validation/schemas';
+import { changeUserThunk } from '../../../redux/bookStore/bookStoreThunks';
+import Button from '../../auxiliaryComponents/Button/RoundButton.styles';
+
+const UserProfile: React.FC = () => {
+  const [activeInput, setActiveInput] = useState(true);
+  const [email, setEmail] = useState('');
+  const [fullName, setFullName] = useState('');
+
+  const user = useAppSelector((store) => store.bookData.user);
+
+  const changeDataHandler = (
+    type: string,
+    e: React.MouseEvent<HTMLElement>,
+  ) => {
+    e.preventDefault();
+    if (type === 'userData') {
+      setActiveInput(false);
+    }
+  };
+
+  const dispatch = useAppDispatch();
+
+  const dataUser = useFormik({
+    initialValues: {
+      fullName,
+      email,
+    },
+    validationSchema: changeUserSchema,
+    onSubmit: async (values) => {
+      const { fullName, email } = values;
+      await dispatch(changeUserThunk({ fullName, email, id: user.id }));
+    },
+  });
+
+  useEffect(() => {
+    setEmail(user.email); setFullName(user.fullName);
+  }, [user]);
+
+  return (
+    <Styles>
+      <div className="img-profile_box">
+        <div className="img-profile">
+          <img className="user-photo" src={defaultPhoto} alt="" />
+          <Button>
+            <img src={camera} alt="" />
+          </Button>
+        </div>
+      </div>
+      <div>
+        <form className="form-user-data" onSubmit={dataUser.handleSubmit}>
+          <div className="user-change_preview">
+            <h3>Personal information</h3>
+            <a onClick={(e) => changeDataHandler('userData', e)} href="">
+              Change information
+            </a>
+          </div>
+          <div className="data-box">
+            <label>Your name</label>
+            <Input
+              disabled={activeInput}
+              img={imgUser}
+              placeholder="Name"
+              errors={dataUser.errors.fullName}
+              touched={dataUser.touched.fullName}
+              {...dataUser.getFieldProps('fullName')}
+            />
+          </div>
+          <div className="data-box">
+            <label>Your email</label>
+            <Input
+              disabled={activeInput}
+              img={mail}
+              type="email"
+              placeholder="Email"
+              errors={dataUser.errors.email}
+              touched={dataUser.touched.email}
+              {...dataUser.getFieldProps('email')}
+            />
+          </div>
+        </form>
+        <PasswordProfile />
+      </div>
+    </Styles>
+  );
+};
+
+export default UserProfile;

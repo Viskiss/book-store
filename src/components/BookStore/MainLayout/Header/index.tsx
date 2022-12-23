@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Styles from './Header.styles';
-import Button from '../../auxiliaryComponents/Button/RoundButton';
-import logo from '../../images/logo/logoH.svg';
-import loupe from '../../images/Search.svg';
-import cart from '../../images/header/Cart.svg';
-import like from '../../images/header/Heart.svg';
-import profile from '../../images/header/User.svg';
-import { useAppSelector } from '../../../redux/store';
+import Button from '../../../auxiliaryComponents/Button/RoundButtonLink';
+import logo from '../images/logoH.svg';
+import loupe from '../images/Search.svg';
+import cart from '../images/Cart.svg';
+import like from '../images/Heart.svg';
+import profile from '../images/User.svg';
+import { useAppSelector } from '../../../../redux/store';
+import ButtonLink from '../../../auxiliaryComponents/Button/ButtonLink';
 
 const Header: React.FC = () => {
   const [isAuth, setIsAuth] = useState(false);
 
   const auth = useAppSelector((store) => store.bookData.user.email);
-  // eslint-disable-next-line no-console
-  console.log(auth);
   useEffect(() => {
     if (auth) {
       setIsAuth(true);
@@ -24,10 +24,12 @@ const Header: React.FC = () => {
 
     <Styles>
       <div className="header_container">
+        <Link to="/">
         <img className="logo" src={logo} alt="" />
-        <a className="catalog-link" href="">
+        </Link>
+        <Link className="catalog-link" to="/">
           Catalog
-        </a>
+        </Link>
         <div className="search">
           <button className="search-input_button">
             <img src={loupe} alt="" />
@@ -35,15 +37,17 @@ const Header: React.FC = () => {
           <input className="search-input" placeholder="Search" />
         </div>
         {!isAuth
-          ? <Button>Log In/ Sing Up</Button>
+          ? (<><ButtonLink className="auth-button" link="/logIn" title="Log In" />
+            <ButtonLink className="auth-button" link="/signUp" title="Sign Up" />
+             </>)
           : (<div>
-            <Button className="round-button">
+            <Button link="/cart">
               <img src={cart} alt="" />
             </Button>
-            <Button className="round-button">
+            <Button link="likes">
               <img src={like} alt="" />
             </Button>
-            <Button className="round-button">
+            <Button link="profile">
               <img src={profile} alt="" />
             </Button>
              </div>)}

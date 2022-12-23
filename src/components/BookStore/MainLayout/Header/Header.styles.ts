@@ -12,7 +12,7 @@ export default styled.header`
   }
 
   .logo {
-    padding-right: 85px;
+    margin-right: 84px;
   }
 
   .catalog-link {
@@ -50,6 +50,7 @@ export default styled.header`
 
   .search-input_button {
     padding: 22px 20px;
+    cursor: pointer;
     position: absolute;
     border: none;
     background-color: initial;
@@ -65,10 +66,10 @@ export default styled.header`
     padding: 24px 15px 40px 15px;
     .header_container {
       max-width: 804px;
-      gap: 51px;
+      gap: 40px;
     }
     .logo {
-      padding-right: 0;
+      margin-right: 0;
     }
     .catalog-link {
       margin-right: 22px;

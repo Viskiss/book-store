@@ -17,6 +17,7 @@ const Invit: React.FC = () => {
           img2={books2}
           img3={books2}
           link="/lll"
+          className="simple-button"
         />
         <picture>
           <source media="(max-width:834px)" srcSet={girl2} />

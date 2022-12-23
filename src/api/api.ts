@@ -16,8 +16,6 @@ api.interceptors.request.use((request) => {
       authorization: `Bearer ${token}`,
     };
   }
-  // eslint-disable-next-line no-console
-  console.log(token);
   return request;
 });
 export default api;
