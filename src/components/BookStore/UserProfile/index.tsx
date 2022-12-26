@@ -11,11 +11,12 @@ import PasswordProfile from './component';
 import { changeUserSchema } from '../../../validation/schemas';
 import { changeUserThunk } from '../../../redux/bookStore/bookStoreThunks';
 import Button from '../../auxiliaryComponents/Button/RoundButton.styles';
+import ButtonSimple from '../../auxiliaryComponents/Button/Button.styles';
 
 const UserProfile: React.FC = () => {
   const [activeInput, setActiveInput] = useState(true);
-  const [email, setEmail] = useState('');
-  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('****@mail.com');
+  const [fullName, setFullName] = useState('Add Name');
 
   const user = useAppSelector((store) => store.bookData.user);
 
@@ -32,9 +33,10 @@ const UserProfile: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const dataUser = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      fullName,
-      email,
+      fullName: fullName || 'Add Name',
+      email: email || 'Ex:****@mail.com',
     },
     validationSchema: changeUserSchema,
     onSubmit: async (values) => {
@@ -88,6 +90,9 @@ const UserProfile: React.FC = () => {
               {...dataUser.getFieldProps('email')}
             />
           </div>
+        <ButtonSimple className="simple-button" type="submit">
+          Confirm
+        </ButtonSimple>
         </form>
         <PasswordProfile />
       </div>

@@ -1,8 +1,8 @@
 import Styles from './Invit.styles';
-import books from '../../images/invite/books.svg';
-import books2 from '../../images/invite/books2.svg';
-import girl from '../../images/invite/girl.svg';
-import girl2 from '../../images/invite/girl2.svg';
+import books from './images/books.svg';
+import books2 from './images/books2.svg';
+import girl from './images/girl.svg';
+import girl2 from './images/girl2.svg';
 import TextBlock from '../../auxiliaryComponents/TextBlock/TextBlock';
 
 const Invit: React.FC = () => {
@@ -16,11 +16,11 @@ const Invit: React.FC = () => {
           img={books}
           img2={books2}
           img3={books2}
-          link="/lll"
+          link="/catalog"
           className="simple-button"
         />
         <picture>
-          <source media="(max-width:834px)" srcSet={girl2} />
+          <source media="(max-width:1024px)" srcSet={girl2} />
           <img className="img_girl" src={girl} alt="" />
         </picture>
       </div>

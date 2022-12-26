@@ -28,19 +28,24 @@ const PasswordProfile: React.FC = () => {
 
   const dataPassword = useFormik({
     initialValues: {
-      password: '',
+      password: user.password || '',
+      newPassword: '',
       repeatPassword: '',
     },
     validationSchema: changePasswordSchema,
     onSubmit: async (values) => {
-      const { password } = values;
-      await dispatch(changePasswordThunk({ password, id: user.id }));
+      const { password, newPassword } = values;
+      await dispatch(changePasswordThunk({
+        password,
+        id: user.id,
+        newPassword,
+      }));
     },
   });
 
   return (
     <Styles>
-      <form className="user-password" onChange={dataPassword.handleSubmit}>
+      <form className="user-password" onSubmit={dataPassword.handleSubmit}>
         <div className="user-change_preview">
           <h3>Password</h3>
           <a onClick={(e) => changeDataHandler('password', e)} href="">
@@ -51,51 +56,50 @@ const PasswordProfile: React.FC = () => {
           <div className="data-box">
             <label>Old password</label>
             <Input
-          disabled={disabledInput}
-            img={eye}
-            type="password"
-            placeholder="***********"
-            errors={dataPassword.errors.password}
-            touched={dataPassword.touched.password}
-            {...dataPassword.getFieldProps('password')}
-          />
-          </div>
-        ) : (
-          <>
-           <div className="data-box">
-            <label>Old password</label>
-            <Input
-            disabled={disabledInput}
+              disabled={disabledInput}
               img={eye}
               type="password"
               placeholder="***********"
-              label="Old password"
-              errors={dataPassword.errors.password}
-              touched={dataPassword.touched.password}
               {...dataPassword.getFieldProps('password')}
             />
-           </div>
-            <Input
-              img={eye}
-              placeholder="New password"
-              label="Enter your password"
-              errors={dataPassword.errors.password}
-              touched={dataPassword.touched.password}
-              {...dataPassword.getFieldProps('newPassword')}
-            />
-            <Input
-              img={eye}
-              placeholder="Password replay"
-              label="Repeat your password without errors"
-              errors={dataPassword.errors.repeatPassword}
-              touched={dataPassword.touched.repeatPassword}
-              {...dataPassword.getFieldProps('repeatPassword')}
-            />
+          </div>
+        ) : (
+          <>
+            <>
+              <div className="data-box">
+                <label>Old password</label>
+                <Input
+                  img={eye}
+                  type="password"
+                  placeholder="***********"
+                  label="Old password"
+                  {...dataPassword.getFieldProps('password')}
+                />
+              </div>
+              <Input
+                img={eye}
+                placeholder="New password"
+                label="Enter your password"
+                type="password"
+                errors={dataPassword.errors.password}
+                touched={dataPassword.touched.password}
+                {...dataPassword.getFieldProps('newPassword')}
+              />
+              <Input
+                img={eye}
+                placeholder="Password replay"
+                label="Repeat your password without errors"
+                type="password"
+                errors={dataPassword.errors.repeatPassword}
+                touched={dataPassword.touched.repeatPassword}
+                {...dataPassword.getFieldProps('repeatPassword')}
+              />
+            </>
+            <Button className="simple-button" type="submit">
+              Confirm
+            </Button>
           </>
         )}
-        <Button className="simple-button" type="submit">
-          Confirm
-        </Button>
       </form>
     </Styles>
   );

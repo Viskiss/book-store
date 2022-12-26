@@ -37,7 +37,7 @@ export default styled.section`
     bottom: 0;
   }
 
-  @media (max-width: 834px) {
+  @media (max-width: 1024px) {
     .block-text_main {
       padding: 0 0 56px 40px;
       z-index: 1000;

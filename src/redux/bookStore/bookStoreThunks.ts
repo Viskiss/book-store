@@ -43,11 +43,11 @@ export const changeUserThunk = createAsyncThunk(
 );
 
 export const changePasswordThunk = createAsyncThunk(
-  'user/createUser',
+  'user/changePassword',
   async (userData: ChangePasswordType, { rejectWithValue }) => {
-    const { password, id } = userData;
+    const { password, newPassword, id } = userData;
     try {
-      const user = await userApi.changePasword(password, id);
+      const user = await userApi.changePasword(password, newPassword, id);
       return user.data;
     } catch (err) {
       const error = err as AxiosError;

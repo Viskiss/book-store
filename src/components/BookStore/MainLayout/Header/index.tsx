@@ -21,11 +21,10 @@ const Header: React.FC = () => {
   }, [auth]);
 
   return (
-
     <Styles>
       <div className="header_container">
         <Link to="/">
-        <img className="logo" src={logo} alt="" />
+          <img className="logo" src={logo} alt="" />
         </Link>
         <Link className="catalog-link" to="/">
           Catalog
@@ -36,11 +35,17 @@ const Header: React.FC = () => {
           </button>
           <input className="search-input" placeholder="Search" />
         </div>
-        {!isAuth
-          ? (<><ButtonLink className="auth-button" link="/logIn" title="Log In" />
-            <ButtonLink className="auth-button" link="/signUp" title="Sign Up" />
-             </>)
-          : (<div>
+        {!isAuth ? (
+          <>
+            <ButtonLink className="auth-button" link="/logIn" title="Log In" />
+            <ButtonLink
+              className="auth-button"
+              link="/signUp"
+              title="Sign Up"
+            />
+          </>
+        ) : (
+          <div>
             <Button link="/cart">
               <img src={cart} alt="" />
             </Button>
@@ -50,8 +55,51 @@ const Header: React.FC = () => {
             <Button link="profile">
               <img src={profile} alt="" />
             </Button>
-             </div>)}
+          </div>
+        )}
+
       </div>
+        <div className="small-width">
+          <Link to="/">
+            <img className="logo" src={logo} alt="" />
+          </Link>
+          <Link className="catalog-link" to="/">
+            Catalog
+          </Link>
+          {!isAuth ? (
+            <>
+              <ButtonLink
+                className="auth-button__small"
+                link="/logIn"
+                title="Log In"
+              />
+              <ButtonLink
+                className="auth-button__small"
+                link="/signUp"
+                title="Sign Up"
+              />
+            </>
+          ) : (
+            <div>
+              <Button link="/cart">
+                <img src={cart} alt="" />
+              </Button>
+              <Button link="likes">
+                <img src={like} alt="" />
+              </Button>
+              <Button link="profile">
+                <img src={profile} alt="" />
+              </Button>
+            </div>
+          )}
+          <div className="search">
+            <button className="search-input_button">
+              <img src={loupe} alt="" />
+            </button>
+            <input className="search-input" placeholder="Search" />
+          </div>
+        </div>
+
     </Styles>
   );
 };

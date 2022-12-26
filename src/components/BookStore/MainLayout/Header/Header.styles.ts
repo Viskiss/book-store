@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export default styled.header`
   padding: 24px 20px 40px 20px;
+  .small-width {
+    display: none;
+  }
 
   .header_container {
     width: 1280px;
@@ -62,7 +65,7 @@ export default styled.header`
     border-radius: 50px;
   }
 
-  @media (max-width: 834px) {
+  @media (max-width: 1024px) {
     padding: 24px 15px 40px 15px;
     .header_container {
       max-width: 804px;
@@ -86,6 +89,60 @@ export default styled.header`
     }
     .search {
       padding-right: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header_container {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 425px) {
+    .header_container {
+      display: none;
+    }
+
+    .small-width {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      max-width: 290px;
+      gap: 17px;
+    }
+
+    .logo {
+      width: 62px;
+      height: 31px;
+    }
+
+    .catalog-link {
+      font-size: 14px;
+      line-height: 21px;
+      margin: 0;
+    }
+
+    .search-input {
+      padding: 13px 40px 13px 64px;
+    }
+    .search-input_button {
+      padding: 15px 20px;
+    }
+
+    .search-input::placeholder {
+      font-size: 12px;
+      line-height: 28px;
+    }
+
+    .auth-button__small {
+      padding: 5px;
+      a {
+        font-size: 12px;
+        line-height: 18px;
+        letter-spacing: 0.75px;
+      }
     }
   }
 `;

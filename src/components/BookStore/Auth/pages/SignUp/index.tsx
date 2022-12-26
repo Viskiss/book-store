@@ -1,9 +1,9 @@
 import { useFormik } from 'formik';
 import Styles from './SignUp.styles';
-import mail from '../../../../images/auth/Mail.svg';
-import eye from '../../../../images/auth/Hide.svg';
-import men from '../../../../images/auth/men.svg';
-import men2 from '../../../../images/auth/men2.svg';
+import mail from '../../images/Mail.svg';
+import eye from '../../images/Hide.svg';
+import men from '../../images/men.svg';
+import men2 from '../../images/men2.svg';
 import Input from '../../../../auxiliaryComponents/Input/Input';
 import Button from '../../../../auxiliaryComponents/Button/Button.styles';
 import { useAppDispatch } from '../../../../../redux/store';
@@ -22,9 +22,7 @@ const SignUp: React.FC = () => {
     validationSchema: singUpSchema,
     onSubmit: async (values) => {
       const { email, password } = values;
-      const req = await dispatch(createUserThunk({ email, password }));
-      // eslint-disable-next-line no-console
-      console.log(req.payload);
+      await dispatch(createUserThunk({ email, password }));
     },
   });
 
@@ -37,6 +35,7 @@ const SignUp: React.FC = () => {
             img={mail}
             placeholder="Email"
             label="Enter your email"
+            type="email"
             errors={formik.errors.email}
             touched={formik.touched.email}
             {...formik.getFieldProps('email')}
@@ -45,6 +44,7 @@ const SignUp: React.FC = () => {
             img={eye}
             placeholder="Password"
             label="Enter your password"
+            type="password"
             errors={formik.errors.password}
             touched={formik.touched.password}
             {...formik.getFieldProps('password')}
@@ -53,6 +53,7 @@ const SignUp: React.FC = () => {
             img={eye}
             placeholder="Password replay"
             label="Repeat your password"
+            type="password"
             errors={formik.errors.repeatPassword}
             touched={formik.touched.repeatPassword}
             {...formik.getFieldProps('repeatPassword')}

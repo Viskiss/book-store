@@ -18,6 +18,7 @@ export type ChangeUserType = {
 
 export type ChangePasswordType = {
   password: UserType['password'];
+  newPassword: string;
   id: UserType['id'];
 };
 

@@ -33,7 +33,17 @@ export default styled.footer`
     padding-left: 149px;
   }
 
-  @media (max-width: 834px) {
+  @media (max-width: 1024px) {
+    .footer_container {
+      gap: 20px;
+    }
+
+    .map_location {
+      padding-left: 100px;
+    }
+  }
+
+  @media (max-width: 768px) {
     padding: 73px 0 79px 0;
     font-size: 16px;
     line-height: 24px;
@@ -42,7 +52,6 @@ export default styled.footer`
     .footer_container {
       padding-left: 10px;
       max-width: 804px;
-      gap: 50px;
     }
 
     .map_location {
@@ -50,6 +59,20 @@ export default styled.footer`
       img {
         width: 392px;
       }
+    }
+  }
+
+  @media (max-width: 425px) {
+    padding: 73px 5px 30px 15px;
+    .footer_container {
+      max-width: 290px;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .map_location img {
+      width: 290px;
+      height: 160px;
     }
   }
 `;

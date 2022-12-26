@@ -27,8 +27,8 @@ const TextBlock: React.FC<IProps> = (props: IProps) => {
             : (<ButtonLink className={props.className} link={props.link} title={props.title} />)}
     </div>
     <picture>
-          <source media="(max-width:834px)" srcSet={props.img2} />
-          <source media="(min-width:320pxpx)" srcSet={props.img3} />
+          <source media="(max-width: 425px)" srcSet={props.img3} />
+          <source media="(max-width: 1024px)" srcSet={props.img2} />
        <img className="img-back-invite img-back-auth" src={props.img} alt="" />
     </picture>
   </Styles>

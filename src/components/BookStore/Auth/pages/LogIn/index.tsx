@@ -1,9 +1,9 @@
 import { useFormik } from 'formik';
 import Styles from './LogIn.styles';
-import mail from '../../../../images/auth/Mail.svg';
-import eye from '../../../../images/auth/Hide.svg';
-import men from '../../../../images/auth/men.svg';
-import men2 from '../../../../images/auth/men2.svg';
+import mail from '../../images/Mail.svg';
+import eye from '../../images/Hide.svg';
+import men from '../../images/men.svg';
+import men2 from '../../images/men2.svg';
 import Input from '../../../../auxiliaryComponents/Input/Input';
 import Button from '../../../../auxiliaryComponents/Button/Button.styles';
 import { useAppDispatch } from '../../../../../redux/store';
@@ -21,9 +21,7 @@ const LogIn: React.FC = () => {
     validationSchema: logInSchema,
     onSubmit: async (values) => {
       const { email, password } = values;
-      const req = await dispatch(logInUserThunk({ email, password }));
-      // eslint-disable-next-line no-console
-      console.log(req.payload);
+      await dispatch(logInUserThunk({ email, password }));
     },
   });
 
@@ -35,6 +33,7 @@ const LogIn: React.FC = () => {
           <Input
             img={mail}
             placeholder="Email"
+            type="email"
             label="Enter your email"
             errors={formik.errors.email}
             touched={formik.touched.email}
@@ -44,15 +43,18 @@ const LogIn: React.FC = () => {
             img={eye}
             placeholder="Password"
             label="Enter your password"
+            type="password"
             errors={formik.errors.password}
             touched={formik.touched.password}
             {...formik.getFieldProps('password')}
           />
-          <Button className="simple-button" type="submit">Log In</Button>
+          <Button className="simple-button" type="submit">
+            Log In
+          </Button>
         </form>
         <picture>
           <source media="(max-width:834px)" srcSet={men2} />
-        <img className="men-pick" src={men} alt="" />
+          <img className="men-pick" src={men} alt="" />
         </picture>
       </div>
     </Styles>
