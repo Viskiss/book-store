@@ -4,18 +4,29 @@ export default styled.footer`
   background: #0d1821;
   width: 100%;
   padding: 73px 20px;
-  font-family: "Poppins";
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
-  color: #f0f4ef;
   display: flex;
   justify-content: center;
 
   p {
     margin-bottom: 5px;
     margin-top: 0;
+    color: #f0f4ef;
   }
+
+  .footer__router-link {
+    display: flex;
+    flex-direction: column;
+
+    a {
+    text-decoration: none;
+    margin-bottom: 10px;
+    margin-top: 0;
+    font-size: 20px;
+    line-height: 30px;
+    color: #f0f4ef;
+  }
+  }
+  
 
   .logo {
     margin-bottom: 30px;
@@ -56,6 +67,7 @@ export default styled.footer`
 
     .map_location {
       padding-left: 0;
+
       img {
         width: 392px;
       }
@@ -64,6 +76,7 @@ export default styled.footer`
 
   @media (max-width: 425px) {
     padding: 73px 5px 30px 15px;
+
     .footer_container {
       max-width: 290px;
       flex-direction: column;

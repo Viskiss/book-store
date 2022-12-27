@@ -1,22 +1,30 @@
-import type { ChangeEventHandler } from 'react';
+import type { FormikTouched } from 'formik';
+import type { MouseEventHandler } from 'react';
 import { useState } from 'react';
+// import close from './images/Close.svg';
 import Styles from './Input.styles';
 
 interface IProps {
-  onChange: ChangeEventHandler<HTMLInputElement> | undefined;
+  onChange:(e: React.ChangeEvent<HTMLInputElement>) => void;
+  classStyles?: string;
   img: string;
   placeholder: string;
   value: string;
   name: string;
   label?: string;
   errors?: string | undefined;
-  touched?: boolean | undefined;
+  touched?: FormikTouched<unknown>;
   type?: string;
   disabled?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 const Input: React.FC<IProps> = (props: IProps) => {
   const [typeInput, setTypeInput] = useState(props.type);
+
+  // const clearInputHandler = (e: React.MouseEvent<HTMLElement>) => {
+  //   e.preventDefault();
+  // };
 
   const changeTypeHandler = (
     type: string,
@@ -30,6 +38,7 @@ const Input: React.FC<IProps> = (props: IProps) => {
       setTypeInput(props.type);
     }
   };
+
   return (
     <Styles>
       <button onClick={(e) => changeTypeHandler('', e)} type="button" className="search-input_button">
@@ -41,9 +50,12 @@ const Input: React.FC<IProps> = (props: IProps) => {
         name={props.name}
         onChange={props.onChange}
         value={props.value}
-        className="search-input"
+        className={props.classStyles}
         placeholder={props.placeholder}
       />
+      {/* <button onClick={props.onClick}
+      className="search-input_button--close" type="button"><img src={close} alt="" />
+      </button> */}
       {props.touched && props.errors ? (
         <div className="label-error">{props.errors}</div>
       ) : (

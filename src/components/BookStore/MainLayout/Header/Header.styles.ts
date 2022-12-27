@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export default styled.header`
   padding: 24px 20px 40px 20px;
+
   .small-width {
     display: none;
   }
@@ -67,6 +68,7 @@ export default styled.header`
 
   @media (max-width: 1024px) {
     padding: 24px 15px 40px 15px;
+
     .header_container {
       max-width: 804px;
       gap: 40px;
@@ -127,6 +129,7 @@ export default styled.header`
     .search-input {
       padding: 13px 40px 13px 64px;
     }
+
     .search-input_button {
       padding: 15px 20px;
     }
@@ -138,6 +141,7 @@ export default styled.header`
 
     .auth-button__small {
       padding: 5px;
+
       a {
         font-size: 12px;
         line-height: 18px;

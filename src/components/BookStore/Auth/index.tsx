@@ -3,7 +3,7 @@ import fairy from './images/fairy.svg';
 import fairy2 from './images/fairy2.svg';
 import fairy3 from './images/fairy3.svg';
 import castle from './images/castle.svg';
-import TextBlock from '../../auxiliaryComponents/TextBlock/TextBlock';
+import TextBlock from '../../auxiliaryComponents/TextBlock';
 
 const Auth: React.FC = () => {
   return (

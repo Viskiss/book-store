@@ -1,0 +1,85 @@
+import { useFormik } from 'formik';
+import classNames from 'classnames';
+import { toast } from 'react-toastify';
+import Styles from './LogIn.styles';
+import mail from '../images/Mail.svg';
+import eye from '../images/Hide.svg';
+import men from '../images/men.svg';
+import men2 from '../images/men2.svg';
+import Input from '../../../auxiliaryComponents/Input';
+import Button from '../../../auxiliaryComponents/Button/Button.styles';
+import { useAppDispatch, useAppSelector } from '../../../../redux/store';
+import { logInUserThunk } from '../../../../redux/userStore/userThunks';
+import { logInSchema } from '../../../../validation/schemas';
+
+const LogIn: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const success = useAppSelector((store) => store.bookData.success);
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: logInSchema,
+    onSubmit: async (values, { resetForm }) => {
+      const { email, password } = values;
+      await dispatch(logInUserThunk({ email, password }))
+        .unwrap()
+        .catch((error) => toast.error(error.message));
+      resetForm();
+    },
+  });
+
+  const stylesInputEmail = classNames({
+    'search-input': true,
+    'error-input': formik.errors.email?.length,
+    'success-input': success,
+  });
+
+  const stylesInputPassword = classNames({
+    'search-input': true,
+    'error-input': formik.errors.password?.length,
+    'success-input': success,
+  });
+
+  return (
+    <Styles>
+      <div className="login_container">
+        <form onSubmit={formik.handleSubmit} className="login-form">
+          <h1>Log In</h1>
+
+          <Input
+            img={mail}
+            classStyles={stylesInputEmail}
+            placeholder="Email"
+            type="email"
+            label="Enter your email"
+            errors={formik.errors.email}
+            touched={`${formik.touched.email}` || ''}
+            {...formik.getFieldProps('email')}
+          />
+          <Input
+            img={eye}
+            classStyles={stylesInputPassword}
+            placeholder="Password"
+            label="Enter your password"
+            type="password"
+            errors={formik.errors.password}
+            touched={`${formik.touched.password}` || ''}
+            {...formik.getFieldProps('password')}
+          />
+          <Button className="simple-button" type="submit">
+            Log In
+          </Button>
+        </form>
+        <picture>
+          <source media="(max-width:834px)" srcSet={men2} />
+          <img className="men-pick" src={men} alt="" />
+        </picture>
+      </div>
+    </Styles>
+  );
+};
+
+export default LogIn;

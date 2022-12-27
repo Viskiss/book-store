@@ -22,6 +22,7 @@ h1 {
   font-weight: 700;
   font-size: 40px;
   line-height: 60px;
+  color:  #0D1821;
 }
 
 p {
@@ -30,22 +31,28 @@ p {
   font-size: 20px;
   line-height: 30px;
   line-height: 30px;
+  color: #344966;
 }
 
-@media (max-width: 834px) {
-  
+@media (max-width: 1024px) {
   h1 {
-  /* font-family: 'Poppins';
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 60px; */
-}
-
-p {
-  font-size: 16px;
-line-height: 24px;
-}
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 48px;
+    color:  #0D1821;
   }
+
+  p {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #344966;
+  }
+}
 
 `;
 

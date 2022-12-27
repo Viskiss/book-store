@@ -13,6 +13,15 @@ export default styled.section`
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
+    position: relative;
+  }
+
+  .error-input {
+    border: 2px solid #ED2E7E;
+  }
+
+  .success-input {
+    border: 2px solid #00BA88;
   }
 
   .search-input::placeholder {
@@ -24,6 +33,15 @@ export default styled.section`
     position: absolute;
     border: none;
     background-color: initial;
+    z-index: 100;
+  }
+
+  .search-input_button--close {
+    padding: 22px 20px;
+    position: absolute;
+    border: none;
+    background-color: initial;
+    right: -255px
   }
 
   .label {
@@ -35,6 +53,7 @@ export default styled.section`
     margin-bottom: 40px;
     padding-top: 10px;
   }
+
   .label-error {
     color: red;
     font-family: "Poppins";

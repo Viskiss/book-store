@@ -1,4 +1,3 @@
-// import { useAppSelector } from '../../redux/store';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../redux/store';
 import Auth from './Auth';
@@ -6,21 +5,20 @@ import Styles from './BookStore.styles';
 import Invit from './Invit';
 
 const BookStore: React.FC = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuthLayout, setIsAuth] = useState(false);
+  const isAuth = useAppSelector((store) => store.bookData.user.email);
 
-  const auth = useAppSelector((store) => store.bookData.user.email);
   useEffect(() => {
-    if (auth) {
+    if (isAuth) {
       setIsAuth(true);
     }
-  }, [auth]);
+  }, [isAuth]);
 
   return (
     <Styles>
       <Invit />
       Books
-      {!isAuth
-        ? (<Auth />) : (<>Auth true</>)}
+      {!isAuthLayout && <Auth />}
     </Styles>
   );
 };

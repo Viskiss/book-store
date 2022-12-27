@@ -1,9 +1,9 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
-import { changePasswordThunk } from '../../../../redux/bookStore/bookStoreThunks';
+import { changePasswordThunk } from '../../../../redux/userStore/userThunks';
 import { useAppDispatch, useAppSelector } from '../../../../redux/store';
 import { changePasswordSchema } from '../../../../validation/schemas';
-import Input from '../../../auxiliaryComponents/Input/Input';
+import Input from '../../../auxiliaryComponents/Input';
 import Styles from './PasswordProfile.styles';
 import eye from '../images/Hide.svg';
 import Button from '../../../auxiliaryComponents/Button/Button.styles';
@@ -58,6 +58,7 @@ const PasswordProfile: React.FC = () => {
             <Input
               disabled={disabledInput}
               img={eye}
+              classStyles="search-input"
               type="password"
               placeholder="***********"
               {...dataPassword.getFieldProps('password')}
@@ -70,6 +71,7 @@ const PasswordProfile: React.FC = () => {
                 <label>Old password</label>
                 <Input
                   img={eye}
+                  classStyles="search-input"
                   type="password"
                   placeholder="***********"
                   label="Old password"
@@ -78,6 +80,7 @@ const PasswordProfile: React.FC = () => {
               </div>
               <Input
                 img={eye}
+                classStyles="search-input"
                 placeholder="New password"
                 label="Enter your password"
                 type="password"
@@ -86,6 +89,7 @@ const PasswordProfile: React.FC = () => {
                 {...dataPassword.getFieldProps('newPassword')}
               />
               <Input
+              classStyles="search-input"
                 img={eye}
                 placeholder="Password replay"
                 label="Repeat your password without errors"

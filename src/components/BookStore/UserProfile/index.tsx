@@ -6,10 +6,10 @@ import mail from './images/Mail.svg';
 import camera from './images/Camera.svg';
 import defaultPhoto from './images/User photo.svg';
 import Styles from './UserProfile.styles';
-import Input from '../../auxiliaryComponents/Input/Input';
+import Input from '../../auxiliaryComponents/Input';
 import PasswordProfile from './component';
 import { changeUserSchema } from '../../../validation/schemas';
-import { changeUserThunk } from '../../../redux/bookStore/bookStoreThunks';
+import { changeUserThunk } from '../../../redux/userStore/userThunks';
 import Button from '../../auxiliaryComponents/Button/RoundButton.styles';
 import ButtonSimple from '../../auxiliaryComponents/Button/Button.styles';
 
@@ -32,7 +32,7 @@ const UserProfile: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const dataUser = useFormik({
+  const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
       fullName: fullName || 'Add Name',
@@ -60,7 +60,7 @@ const UserProfile: React.FC = () => {
         </div>
       </div>
       <div>
-        <form className="form-user-data" onSubmit={dataUser.handleSubmit}>
+        <form className="form-user-data" onSubmit={formik.handleSubmit}>
           <div className="user-change_preview">
             <h3>Personal information</h3>
             <a onClick={(e) => changeDataHandler('userData', e)} href="">
@@ -71,23 +71,25 @@ const UserProfile: React.FC = () => {
             <label>Your name</label>
             <Input
               disabled={activeInput}
+              classStyles="search-input"
               img={imgUser}
               placeholder="Name"
-              errors={dataUser.errors.fullName}
-              touched={dataUser.touched.fullName}
-              {...dataUser.getFieldProps('fullName')}
+              errors={formik.errors.fullName}
+              touched={formik.touched.fullName}
+              {...formik.getFieldProps('fullName')}
             />
           </div>
           <div className="data-box">
             <label>Your email</label>
             <Input
+            classStyles="search-input"
               disabled={activeInput}
               img={mail}
               type="email"
               placeholder="Email"
-              errors={dataUser.errors.email}
-              touched={dataUser.touched.email}
-              {...dataUser.getFieldProps('email')}
+              errors={formik.errors.email}
+              touched={formik.touched.email}
+              {...formik.getFieldProps('email')}
             />
           </div>
         <ButtonSimple className="simple-button" type="submit">

@@ -6,7 +6,7 @@ import type {
   ChangePasswordType,
   UserCreateType,
   ChangeUserType,
-} from '../../types/UserType';
+} from '../../types';
 
 export const createUserThunk = createAsyncThunk(
   'user/createUser',

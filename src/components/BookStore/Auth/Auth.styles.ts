@@ -2,11 +2,6 @@ import styled from 'styled-components';
 
 export default styled.section`
   background: #f0f4ef;
-  font-family: "Poppins";
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
-  color: #f0f4ef;
   display: flex;
   border-radius: 16px;
   margin-bottom: 150px;
@@ -63,7 +58,6 @@ export default styled.section`
       }
     }
 
-    
     .castle-block {
       padding-top: 55px;
       position: static;
@@ -96,6 +90,7 @@ export default styled.section`
       max-width: 290px;
       flex-direction: column;
       height: 500px;
+
       .auth {
         padding: 90px 0 100px 0;
       }
@@ -107,23 +102,23 @@ export default styled.section`
       }
     }
 
-
     .auth {
       h1 {
         font-size: 18px;
         line-height: 27px;
         margin-top: -50px;
       }
+
       p {
         font-size: 14px;
         line-height: 21px;
       }
     }
+
     .img-back-auth {
       top: 0;
       left: 95px;
     }
-
 
     .img_castle {
       width: 290px;

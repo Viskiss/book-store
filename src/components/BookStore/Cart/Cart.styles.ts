@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export default styled.section`
-
   .cart_container {
     display: flex;
     justify-content: space-between;
@@ -15,16 +14,15 @@ export default styled.section`
 
   @media (max-width: 834px) {
     .invite_container {
-    width: 804px;
-    position: relative;
-  }
+      width: 804px;
+      position: relative;
+    }
 
-  .img_girl {
-    padding: 0 14px;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-  }
-  
+    .img_girl {
+      padding: 0 14px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
   }
 `;

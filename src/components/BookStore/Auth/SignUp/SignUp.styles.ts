@@ -2,14 +2,9 @@ import styled from 'styled-components';
 
 export default styled.section`
   padding: 60px 20px 150px 20px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
   display: flex;
 
-  .login_container {
+  .signup_container {
     width: 1280px;
     display: flex;
     justify-content: space-between;
@@ -21,11 +16,6 @@ export default styled.section`
   }
 
   h1 {
-    font-family: "Poppins";
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 60px;
-    color: #0d1821;
     margin-bottom: 60px;
     margin-top: 0;
   }
@@ -34,10 +24,10 @@ export default styled.section`
     margin-right: 316px;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 834px) {
     padding: 60px 0 150px 0;
 
-    .login_container {
+    .signup_container {
       width: 804px;
     }
 
@@ -53,7 +43,7 @@ export default styled.section`
     }
 
     .men-pick {
-      padding-top: 20px;
+      padding-top: 110px;
     }
   }
 `;
