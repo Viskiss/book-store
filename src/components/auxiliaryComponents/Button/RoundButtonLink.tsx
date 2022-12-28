@@ -1,15 +1,14 @@
-import { Link } from 'react-router-dom';
 import Styles from './RoundButton.styles';
 
 interface IProps {
-  link: string;
   children: React.ReactNode;
+  className?: string;
 }
 
 const RoundButtonLink: React.FC<IProps> = (props: IProps) => {
   return (
-    <Styles>
-      <Link to={props.link}>{props.children}</Link>
+    <Styles className={props.className}>
+      {props.children}
     </Styles>
   );
 };

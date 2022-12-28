@@ -6,7 +6,7 @@ const Button = styled.button<{ className: string }>`
     border-radius: 16px;
     font-weight: bold;
     border: none;
-    background-color: ${(props) => (props.className === 'simple-button' ? '#344966;' : '#BFCC94')};
+    background-color: #344966;
     cursor: pointer;
     margin: 0;
     color: #f0f4ef;

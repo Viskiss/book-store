@@ -1,7 +1,7 @@
 import type { FormikTouched } from 'formik';
 import type { MouseEventHandler } from 'react';
 import { useState } from 'react';
-// import close from './images/Close.svg';
+
 import Styles from './Input.styles';
 
 interface IProps {
@@ -22,10 +22,6 @@ interface IProps {
 const Input: React.FC<IProps> = (props: IProps) => {
   const [typeInput, setTypeInput] = useState(props.type);
 
-  // const clearInputHandler = (e: React.MouseEvent<HTMLElement>) => {
-  //   e.preventDefault();
-  // };
-
   const changeTypeHandler = (
     type: string,
     e: React.MouseEvent<HTMLElement>,
@@ -40,8 +36,8 @@ const Input: React.FC<IProps> = (props: IProps) => {
   };
 
   return (
-    <Styles>
-      <button onClick={(e) => changeTypeHandler('', e)} type="button" className="search-input_button">
+    <Styles className="input-section">
+      <button onClick={(e) => changeTypeHandler('', e)} type="button" className="form-input_button">
         <img src={props.img} alt="" />
       </button>
       <input
@@ -53,9 +49,6 @@ const Input: React.FC<IProps> = (props: IProps) => {
         className={props.classStyles}
         placeholder={props.placeholder}
       />
-      {/* <button onClick={props.onClick}
-      className="search-input_button--close" type="button"><img src={close} alt="" />
-      </button> */}
       {props.touched && props.errors ? (
         <div className="label-error">{props.errors}</div>
       ) : (

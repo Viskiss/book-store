@@ -1,18 +1,29 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
+
+import Styles from './PasswordProfile.styles';
+
 import { changePasswordThunk } from '../../../../redux/userStore/userThunks';
 import { useAppDispatch, useAppSelector } from '../../../../redux/store';
 import { changePasswordSchema } from '../../../../validation/schemas';
+
 import Input from '../../../auxiliaryComponents/Input';
-import Styles from './PasswordProfile.styles';
-import eye from '../images/Hide.svg';
 import Button from '../../../auxiliaryComponents/Button/Button.styles';
+
+import eye from '../images/Hide.svg';
 
 const PasswordProfile: React.FC = () => {
   const [changePassword, setChangePassword] = useState(false);
   const disabledInput = true;
+  let userId = 0;
+  let userPassword = '';
 
-  const user = useAppSelector((store) => store.bookData.user);
+  const user = useAppSelector((store) => store.userRoot.user);
+
+  if (user) {
+    userId = user.id;
+    userPassword = user.password;
+  }
 
   const dispatch = useAppDispatch();
 
@@ -28,7 +39,7 @@ const PasswordProfile: React.FC = () => {
 
   const dataPassword = useFormik({
     initialValues: {
-      password: user.password || '',
+      password: userPassword || '',
       newPassword: '',
       repeatPassword: '',
     },
@@ -37,7 +48,7 @@ const PasswordProfile: React.FC = () => {
       const { password, newPassword } = values;
       await dispatch(changePasswordThunk({
         password,
-        id: user.id,
+        id: userId,
         newPassword,
       }));
     },

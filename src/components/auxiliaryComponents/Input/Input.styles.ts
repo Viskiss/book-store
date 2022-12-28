@@ -4,7 +4,7 @@ export default styled.section`
   position: relative;
   padding-right: 54px;
 
-  .search-input {
+  .form-input {
     padding: 20px 34px 20px 64px;
     background: #f0f4ef;
     border-radius: 16px;
@@ -24,24 +24,16 @@ export default styled.section`
     border: 2px solid #00BA88;
   }
 
-  .search-input::placeholder {
+  .form-input::placeholder {
     color: #b9bac4;
   }
 
-  .search-input_button {
+  .form-input_button {
     padding: 22px 20px;
     position: absolute;
     border: none;
     background-color: initial;
     z-index: 100;
-  }
-
-  .search-input_button--close {
-    padding: 22px 20px;
-    position: absolute;
-    border: none;
-    background-color: initial;
-    right: -255px
   }
 
   .label {

@@ -1,4 +1,7 @@
+import { Link } from 'react-router-dom';
+
 import Styles from './TextBlock.styles';
+
 import ButtonLink from '../Button/ButtonLink';
 
 interface IProps {
@@ -20,13 +23,20 @@ const TextBlock: React.FC<IProps> = (props: IProps) => {
         <div className="block_text auth-text">
           <p>{props.p}</p>
         </div>
-        {props.className === 'auth-button'
-          ? (
-            <>
-              <ButtonLink className="auth-button" link="/logIn" title="Log In" />
-              <ButtonLink className="auth-button" link="/signUp" title="Sign Up" />
-            </>
-          ) : (<ButtonLink className={props.className} link={props.link} title={props.title} />)}
+        {props.className === 'auth-button' ? (
+          <>
+            <ButtonLink className="auth-button">
+              <Link to="/log-in">Log In</Link>
+            </ButtonLink>
+            <ButtonLink className="auth-button">
+              <Link to="/sign-up">Sign Up</Link>
+            </ButtonLink>
+          </>
+        ) : (
+          <ButtonLink className={props.className}>
+            <Link to={props.link}>{props.title}</Link>
+          </ButtonLink>
+        )}
       </div>
       <picture>
         <source media="(max-width: 425px)" srcSet={props.img3} />

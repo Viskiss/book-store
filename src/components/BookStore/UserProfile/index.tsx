@@ -17,8 +17,16 @@ const UserProfile: React.FC = () => {
   const [activeInput, setActiveInput] = useState(true);
   const [email, setEmail] = useState('****@mail.com');
   const [fullName, setFullName] = useState('Add Name');
+  let userId = 0;
+  let userEmail = '';
+  let userFullName = '';
 
-  const user = useAppSelector((store) => store.bookData.user);
+  const user = useAppSelector((store) => store.userRoot.user);
+  if (user) {
+    userId = user.id;
+    userEmail = user.email;
+    userFullName = user.fullName;
+  }
 
   const changeDataHandler = (
     type: string,
@@ -41,13 +49,13 @@ const UserProfile: React.FC = () => {
     validationSchema: changeUserSchema,
     onSubmit: async (values) => {
       const { fullName, email } = values;
-      await dispatch(changeUserThunk({ fullName, email, id: user.id }));
+      await dispatch(changeUserThunk({ fullName, email, id: userId }));
     },
   });
 
   useEffect(() => {
-    setEmail(user.email); setFullName(user.fullName);
-  }, [user]);
+    setEmail(userEmail); setFullName(userFullName);
+  }, [user, userEmail, userFullName]);
 
   return (
     <Styles>

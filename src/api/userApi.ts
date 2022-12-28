@@ -9,11 +9,11 @@ const createUser = (email: string, password: string) => {
   return api.post<AutReqType>(createUserPath, { email, password });
 };
 
-const changePasword = (password: string, newPassword: string, id: string) => {
+const changePasword = (password: string, newPassword: string, id: number) => {
   return api.patch<AutReqType>(`/api/auth/user/${id}/password`, { password, newPassword });
 };
 
-const changeUser = (email: string, fullName: string, id: string) => {
+const changeUser = (email: string, fullName: string, id: number) => {
   return api.patch<AutReqType>(`/api/auth/user/${id}`, { email, fullName });
 };
 const logInUser = (email: string, password: string) => {

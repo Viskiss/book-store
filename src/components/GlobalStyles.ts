@@ -35,6 +35,7 @@ p {
 }
 
 @media (max-width: 1024px) {
+
   h1 {
     font-family: 'Poppins';
     font-style: normal;

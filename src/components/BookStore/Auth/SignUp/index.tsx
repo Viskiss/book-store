@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import classNames from 'classnames';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import Styles from './SignUp.styles';
 import mail from '../images/Mail.svg';
 import eye from '../images/Hide.svg';
@@ -14,7 +14,7 @@ import { singUpSchema } from '../../../../validation/schemas';
 
 const SignUp: React.FC = () => {
   const dispatch = useAppDispatch();
-  const success = useAppSelector((store) => store.bookData.success);
+  const success = useAppSelector((store) => store.userRoot.success);
 
   const formik = useFormik({
     initialValues: {
@@ -23,12 +23,13 @@ const SignUp: React.FC = () => {
       repeatPassword: '',
     },
     validationSchema: singUpSchema,
-    onSubmit: async (values, { resetForm }) => {
+    onSubmit: async (values) => {
       const { email, password } = values;
       await dispatch(createUserThunk({ email, password }))
         .unwrap()
-        .catch((error) => toast.error(error.message));
-      resetForm();
+        // eslint-disable-next-line no-console
+        .catch((error) => console.log(error));
+      // .catch((error) => toast.error(error.message));
     },
   });
 

@@ -2,51 +2,51 @@ import styled from 'styled-components';
 
 export default styled.footer`
   background: #0d1821;
-  width: 100%;
-  padding: 73px 20px;
+  background-size: 100%;
+  padding: 73px 80px;
+  padding-left: 0 inherit;
   display: flex;
   justify-content: center;
 
-  p {
-    margin-bottom: 5px;
-    margin-top: 0;
-    color: #f0f4ef;
-  }
-
-  .footer__router-link {
-    display: flex;
-    flex-direction: column;
-
-    a {
-    text-decoration: none;
-    margin-bottom: 10px;
-    margin-top: 0;
-    font-size: 20px;
-    line-height: 30px;
-    color: #f0f4ef;
-  }
-  }
-  
-
-  .logo {
-    margin-bottom: 30px;
-  }
-
   .footer_container {
-    width: 1280px;
+    max-width: 1280px;
     display: flex;
     align-items: flex-start;
     gap: 166px;
     justify-content: center;
   }
 
+  .text {
+    margin-bottom: 5px;
+    margin-top: 0;
+    color: #f0f4ef;
+  }
+
+  .footer__router-links {
+    display: flex;
+    flex-direction: column;
+
+    .footer__router-link {
+      text-decoration: none;
+      margin-bottom: 10px;
+      margin-top: 0;
+      font-size: 20px;
+      line-height: 30px;
+      color: #f0f4ef;
+    }
+  }
+
+  .logo {
+    margin-bottom: 30px;
+  }
+
   .map_location {
     padding-left: 149px;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1280px) {
     .footer_container {
-      gap: 20px;
+      gap: 40px;
     }
 
     .map_location {
@@ -54,28 +54,32 @@ export default styled.footer`
     }
   }
 
-  @media (max-width: 768px) {
-    padding: 73px 0 79px 0;
+  @media (max-width: 834px) {
+    padding: 73px 15px 79px 15px;
     font-size: 16px;
     line-height: 24px;
-    justify-content: space-between;
 
     .footer_container {
-      padding-left: 10px;
-      max-width: 804px;
+      max-width: 803px;
     }
 
     .map_location {
       padding-left: 0;
 
-      img {
-        width: 392px;
+      .map_location-img {
+        width: 300px;
       }
     }
   }
 
-  @media (max-width: 425px) {
-    padding: 73px 5px 30px 15px;
+  @media (max-width: 804px) {
+    .footer_container {
+      gap: 30px;
+    }
+  }
+
+  @media (max-width: 730px) {
+    padding: 73px 15px 30px 15px;
 
     .footer_container {
       max-width: 290px;
@@ -83,9 +87,15 @@ export default styled.footer`
       gap: 40px;
     }
 
-    .map_location img {
-      width: 290px;
-      height: 160px;
+    .map_location {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .map_location-img {
+        width: 280px;
+        height: 160px;
+      }
     }
   }
 `;

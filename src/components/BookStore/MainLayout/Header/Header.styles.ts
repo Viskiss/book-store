@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 
 export default styled.header`
-  padding: 24px 20px 40px 20px;
+  display: flex;
+  justify-content: center;
+  padding: 24px 80px 40px 80px;
 
   .small-width {
     display: none;
   }
 
   .header_container {
-    width: 1280px;
+    max-width: 1280px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,7 +18,7 @@ export default styled.header`
   }
 
   .logo {
-    margin-right: 84px;
+    padding-right: 84px;
   }
 
   .catalog-link {
@@ -60,47 +62,162 @@ export default styled.header`
     background-color: initial;
   }
 
-  .round-button {
-    margin-left: 25px;
-    padding: 10px 12px 8px 12px;
-    border-radius: 50px;
+  .round-buttons {
+    padding-left: 25px;
   }
 
-  @media (max-width: 1024px) {
-    padding: 24px 15px 40px 15px;
+  .round-button2 {
+    margin: 0 27px;
+  }
 
+  @media (max-width: 1439px) {
+    .round-button2 {
+    margin: 0 20px;
+  }
+  .round-buttons {
+    padding-left: 20px;
+  }
+  }
+
+
+  @media (max-width: 1422px) {
     .header_container {
-      max-width: 804px;
-      gap: 40px;
+      gap: 35px;
+    }
+    .search-input {
+      padding: 20px 180px 20px 64px;
     }
     .logo {
-      margin-right: 0;
+      padding-right: 50px;
     }
-    .catalog-link {
-      margin-right: 22px;
-    }
+  }
 
+  @media (max-width: 1291px) {
+    .round-buttons {
+    padding-left: 17px;
+  }
+  }
+
+  @media (max-width: 1285px) {
+    .header_container {
+      gap: 30px;
+    }
+    .logo {
+      padding-right: 50px;
+    }
     .search-input {
-      padding: 20px 0 20px 64px;
-      max-width: 183px;
+      padding: 20px 160px 20px 64px;
     }
 
-    .search-input::placeholder {
-      max-width: 100px;
-      letter-spacing: 0.75px;
+    
+  }
+
+  @media (max-width: 1255px) {
+    .logo {
+      padding-right: 30px;
+    }
+    .search-input {
+      padding: 20px 130px 20px 64px;
     }
     .search {
       padding-right: 0;
     }
   }
 
-  @media (max-width: 768px) {
-    .header_container {
-      justify-content: center;
+  @media (max-width: 1152px) {
+    .round-button2 {
+    margin: 0 13px;
+  }
+  .round-buttons {
+    padding-left: 16px;
+  }
+  }
+
+  @media (max-width: 1141px) {
+    .logo {
+      padding-right: 20px;
+    }
+    .search-input {
+      padding: 20px 60px 20px 64px;
     }
   }
 
-  @media (max-width: 425px) {
+  @media (max-width: 1061px) {
+    .search-input {
+      width: 260px;
+    }
+  }
+
+  @media (max-width: 1001px) {
+    .search-input {
+      width: 200px;
+    }
+  }
+
+  @media (max-width: 946px) {
+    .search-input {
+      width: 88px;
+    }
+  }
+
+  @media (max-width: 834px) {
+    padding: 20px 15px 45px 15px;
+
+    .search {
+      padding-right: 20px;
+    }
+
+    .search-input {
+      width: 123px;
+    }
+
+    .catalog-link {
+      padding-right: 43px;
+    }
+  }
+
+  @media (max-width: 802px) {
+    .header_container {
+      gap: 20px;
+    }
+
+    .search {
+      padding-right: 0;
+    }
+
+    .catalog-link {
+      padding-right: 0;
+    }
+
+    .logo {
+      padding-right: 0;
+    }
+  }
+
+  @media (max-width: 679px) {
+    .search-input {
+      padding: 20px 14px 20px 64px;
+    }
+
+    .auth-button {
+      padding: 7px;
+    }
+  }
+
+  @media (max-width: 636px) {
+    .round-button2 {
+    margin: 0 7px;
+  }
+
+  .round-button {
+    padding: 9px 10px 6px 9px;
+  }
+  .round-buttons {
+    padding-left: 0;
+  }
+  }
+
+  @media (max-width: 601px) {
     .header_container {
       display: none;
     }
@@ -111,7 +228,7 @@ export default styled.header`
       flex-wrap: wrap;
       justify-content: space-around;
       align-items: center;
-      max-width: 290px;
+      max-width: 450px;
       gap: 17px;
     }
 
@@ -140,7 +257,7 @@ export default styled.header`
     }
 
     .auth-button__small {
-      padding: 5px;
+      padding: 10px;
 
       a {
         font-size: 12px;
@@ -149,4 +266,14 @@ export default styled.header`
       }
     }
   }
+
+  @media (max-width: 375px) {
+    .auth-button__small {
+      padding: 7px;
+    }
+
+    .round-button {
+    padding: 7px 8px 4px 7px;
+  }
+}
 `;

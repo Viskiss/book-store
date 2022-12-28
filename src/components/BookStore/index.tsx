@@ -6,7 +6,7 @@ import Invit from './Invit';
 
 const BookStore: React.FC = () => {
   const [isAuthLayout, setIsAuth] = useState(false);
-  const isAuth = useAppSelector((store) => store.bookData.user.email);
+  const isAuth = useAppSelector((store) => store.userRoot.user?.email);
 
   useEffect(() => {
     if (isAuth) {

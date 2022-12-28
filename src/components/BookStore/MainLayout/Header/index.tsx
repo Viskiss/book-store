@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Styles from './Header.styles';
+
+import { useAppSelector } from '../../../../redux/store';
+
 import Button from '../../../auxiliaryComponents/Button/RoundButtonLink';
+import ButtonLink from '../../../auxiliaryComponents/Button/ButtonLink';
+
 import logo from '../images/logoH.svg';
 import loupe from '../images/Search.svg';
 import cart from '../images/Cart.svg';
 import like from '../images/Heart.svg';
 import profile from '../images/User.svg';
-import { useAppSelector } from '../../../../redux/store';
-import ButtonLink from '../../../auxiliaryComponents/Button/ButtonLink';
+
+import Styles from './Header.styles';
 
 const Header: React.FC = () => {
   const [isAuth, setIsAuth] = useState(false);
 
-  const auth = useAppSelector((store) => store.bookData.user.email);
+  const auth = useAppSelector((store) => store.userRoot.user?.email);
   useEffect(() => {
     if (auth) {
       setIsAuth(true);
@@ -37,69 +41,76 @@ const Header: React.FC = () => {
         </div>
         {!isAuth ? (
           <>
-            <ButtonLink className="auth-button" link="/logIn" title="Log In" />
-            <ButtonLink
-              className="auth-button"
-              link="/signUp"
-              title="Sign Up"
-            />
+            <ButtonLink className="auth-button">
+              <Link to="/log-in">Log In</Link>
+            </ButtonLink>
+            <ButtonLink className="auth-button">
+              <Link to="/sign-up">Sign Up</Link>
+            </ButtonLink>
           </>
         ) : (
-          <div>
-            <Button link="/cart">
-              <img src={cart} alt="" />
+          <div className="round-buttons">
+            <Button className="round-button">
+              <Link to="/cart">
+                <img src={cart} alt="" />
+              </Link>
             </Button>
-            <Button link="likes">
-              <img src={like} alt="" />
+            <Button className="round-button2 round-button">
+              <Link to="likes">
+                <img src={like} alt="" />
+              </Link>
             </Button>
-            <Button link="profile">
-              <img src={profile} alt="" />
+            <Button className="round-button">
+              <Link to="profile">
+                <img src={profile} alt="" />
+              </Link>
             </Button>
           </div>
         )}
-
       </div>
-        <div className="small-width">
-          <Link to="/">
-            <img className="logo" src={logo} alt="" />
-          </Link>
-          <Link className="catalog-link" to="/">
-            Catalog
-          </Link>
-          {!isAuth ? (
-            <>
-              <ButtonLink
-                className="auth-button__small"
-                link="/logIn"
-                title="Log In"
-              />
-              <ButtonLink
-                className="auth-button__small"
-                link="/signUp"
-                title="Sign Up"
-              />
-            </>
-          ) : (
-            <div>
-              <Button link="/cart">
+      <div className="small-width">
+        <Link to="/">
+          <img className="logo" src={logo} alt="" />
+        </Link>
+        <Link className="catalog-link" to="/">
+          Catalog
+        </Link>
+        {!isAuth ? (
+          <>
+            <ButtonLink className="auth-button__small">
+              <Link to="/log-in">Log In</Link>
+            </ButtonLink>
+            <ButtonLink className="auth-button__small">
+              <Link to="/sign-up" />
+              Sign Up
+            </ButtonLink>
+          </>
+        ) : (
+          <div>
+            <Button>
+              <Link to="/cart">
                 <img src={cart} alt="" />
-              </Button>
-              <Button link="likes">
+              </Link>
+            </Button>
+            <Button>
+              <Link to="likes">
                 <img src={like} alt="" />
-              </Button>
-              <Button link="profile">
+              </Link>
+            </Button>
+            <Button>
+              <Link to="profile">
                 <img src={profile} alt="" />
-              </Button>
-            </div>
-          )}
-          <div className="search">
-            <button className="search-input_button">
-              <img src={loupe} alt="" />
-            </button>
-            <input className="search-input" placeholder="Search" />
+              </Link>
+            </Button>
           </div>
+        )}
+        <div className="search">
+          <button className="search-input_button">
+            <img src={loupe} alt="" />
+          </button>
+          <input className="search-input" placeholder="Search" />
         </div>
-
+      </div>
     </Styles>
   );
 };

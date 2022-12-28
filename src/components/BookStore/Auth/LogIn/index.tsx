@@ -1,20 +1,24 @@
 import { useFormik } from 'formik';
 import classNames from 'classnames';
 import { toast } from 'react-toastify';
-import Styles from './LogIn.styles';
+
+import Input from '../../../auxiliaryComponents/Input';
+import Button from '../../../auxiliaryComponents/Button/Button.styles';
+
+import { useAppDispatch, useAppSelector } from '../../../../redux/store';
+import { logInUserThunk } from '../../../../redux/userStore/userThunks';
+
 import mail from '../images/Mail.svg';
 import eye from '../images/Hide.svg';
 import men from '../images/men.svg';
 import men2 from '../images/men2.svg';
-import Input from '../../../auxiliaryComponents/Input';
-import Button from '../../../auxiliaryComponents/Button/Button.styles';
-import { useAppDispatch, useAppSelector } from '../../../../redux/store';
-import { logInUserThunk } from '../../../../redux/userStore/userThunks';
 import { logInSchema } from '../../../../validation/schemas';
+
+import Styles from './LogIn.styles';
 
 const LogIn: React.FC = () => {
   const dispatch = useAppDispatch();
-  const success = useAppSelector((store) => store.bookData.success);
+  const success = useAppSelector((store) => store.userRoot.success);
 
   const formik = useFormik({
     initialValues: {
@@ -22,23 +26,22 @@ const LogIn: React.FC = () => {
       password: '',
     },
     validationSchema: logInSchema,
-    onSubmit: async (values, { resetForm }) => {
+    onSubmit: async (values) => {
       const { email, password } = values;
       await dispatch(logInUserThunk({ email, password }))
         .unwrap()
         .catch((error) => toast.error(error.message));
-      resetForm();
     },
   });
 
   const stylesInputEmail = classNames({
-    'search-input': true,
+    'form-input': true,
     'error-input': formik.errors.email?.length,
     'success-input': success,
   });
 
   const stylesInputPassword = classNames({
-    'search-input': true,
+    'form-input': true,
     'error-input': formik.errors.password?.length,
     'success-input': success,
   });
@@ -47,7 +50,7 @@ const LogIn: React.FC = () => {
     <Styles>
       <div className="login_container">
         <form onSubmit={formik.handleSubmit} className="login-form">
-          <h1>Log In</h1>
+          <h1 className="title">Log In</h1>
 
           <Input
             img={mail}
@@ -69,9 +72,11 @@ const LogIn: React.FC = () => {
             touched={`${formik.touched.password}` || ''}
             {...formik.getFieldProps('password')}
           />
+
           <Button className="simple-button" type="submit">
             Log In
           </Button>
+
         </form>
         <picture>
           <source media="(max-width:834px)" srcSet={men2} />

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.section`
-  padding: 60px 20px 150px 20px;
+  padding: 60px 0 150px 0;
   display: flex;
 
   .signup_container {

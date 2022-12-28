@@ -1,16 +1,14 @@
-import { Link } from 'react-router-dom';
 import Styles from './Button.styles';
 
 interface IProps {
-  link: string;
-  title: string;
   className: string;
+  children: React.ReactNode;
 }
 
 const ButtonLink: React.FC<IProps> = (props: IProps) => {
   return (
     <Styles className={props.className}>
-      <Link to={props.link}>{props.title}</Link>
+     {props.children}
     </Styles>
   );
 };
