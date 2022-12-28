@@ -3,11 +3,17 @@ import styled from 'styled-components';
 export default styled.section`
   padding: 60px 0 150px 0;
   display: flex;
+  justify-content: center;
 
   .signup_container {
-    width: 1280px;
+    max-width: 1280px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
+  }
+
+  .form-input {
+    padding: 20px 148px 20px 64px;
   }
 
   .login-form {
@@ -15,21 +21,39 @@ export default styled.section`
     flex-direction: column;
   }
 
-  h1 {
+  .title {
+    color: #0d1821;
     margin-bottom: 60px;
     margin-top: 0;
   }
 
-  button {
-    margin-right: 316px;
+  .image-box {
+    position: relative;
   }
 
-  @media (max-width: 834px) {
-    padding: 60px 0 150px 0;
+  .men-pick {
+    width: 100%;
+    height: auto;
+  }
 
-    .signup_container {
-      width: 804px;
+  .simple-button {
+    margin-top: 20px;
+    width: max-content;
+  }
+
+  @media (max-width: 1100px) {
+    .input-section {
+      padding: 0;
     }
+
+    .form-input {
+      padding: 20px 10px 20px 64px;
+    }
+
+  }
+
+  @media (max-width: 900px) {
+    padding: 60px 0 150px 0;
 
     button {
       margin-right: 246px;
@@ -43,7 +67,34 @@ export default styled.section`
     }
 
     .men-pick {
-      padding-top: 110px;
+      height: 333px;
+      width: 390px;
+      padding-top: 20px;
+    }
+  }
+
+  @media (max-width: 834px) {
+
+    .form-input input {
+      padding: 20px 127px 20px 64px;
+    }
+
+    .men-pick {
+      padding-top: 20px;
+    }
+  }
+
+  @media (max-width: 680px) {
+    padding: 60px 0 70px 0;
+
+    .signup_container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .men-pick {
+      margin-top: 40px;
+      height: auto;
     }
   }
 `;

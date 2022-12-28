@@ -49,7 +49,8 @@ const LogIn: React.FC = () => {
   return (
     <Styles>
       <div className="login_container">
-        <form onSubmit={formik.handleSubmit} className="login-form">
+        <div>
+           <form onSubmit={formik.handleSubmit} className="login-form">
           <h1 className="title">Log In</h1>
 
           <Input
@@ -76,12 +77,14 @@ const LogIn: React.FC = () => {
           <Button className="simple-button" type="submit">
             Log In
           </Button>
-
-        </form>
-        <picture>
+           </form>
+        </div>
+        <div className="image-box">
+          <picture>
           <source media="(max-width:834px)" srcSet={men2} />
-          <img className="men-pick" src={men} alt="" />
-        </picture>
+          <img className="men-pick" src={men} alt="" height={522} />
+          </picture>
+        </div>
       </div>
     </Styles>
   );

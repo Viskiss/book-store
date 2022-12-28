@@ -36,11 +36,11 @@ export default styled.header`
 
   .search {
     position: relative;
-    padding-right: 54px;
+    padding-right: 71px;
   }
 
   .search-input {
-    padding: 20px 251px 20px 64px;
+    padding: 20px 365px 20px 64px;
     background: #f0f4ef;
     border-radius: 16px;
     border: none;
@@ -160,7 +160,7 @@ export default styled.header`
     }
   }
 
-  @media (max-width: 834px) {
+  @media (max-width: 835px) {
     padding: 20px 15px 45px 15px;
 
     .search {

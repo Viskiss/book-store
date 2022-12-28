@@ -46,7 +46,7 @@ export default styled.footer`
 
   @media (max-width: 1280px) {
     .footer_container {
-      gap: 40px;
+      gap: 70px;
     }
 
     .map_location {
@@ -54,7 +54,7 @@ export default styled.footer`
     }
   }
 
-  @media (max-width: 834px) {
+  @media (max-width: 990px) {
     padding: 73px 15px 79px 15px;
     font-size: 16px;
     line-height: 24px;

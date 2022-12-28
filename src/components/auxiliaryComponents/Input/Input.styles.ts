@@ -37,12 +37,14 @@ export default styled.section`
   }
 
   .label {
+    width: fit-content;
     color: #0d1821;
     font-family: "Poppins";
     font-weight: 500;
     font-size: 14px;
     line-height: 24px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    margin-right: 0;
     padding-top: 10px;
   }
 
@@ -54,12 +56,5 @@ export default styled.section`
     line-height: 24px;
     margin-bottom: 40px;
     padding-top: 10px;
-  }
-
-  @media (max-width: 834px) {
-    padding-right: 15px;
-    .search-input {
-    padding: 20px 13px 20px 64px;
-  }
   }
 `;
