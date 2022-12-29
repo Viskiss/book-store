@@ -36,11 +36,11 @@ export default styled.header`
 
   .search {
     position: relative;
-    padding-right: 71px;
+    padding-right: 58px;
   }
 
   .search-input {
-    padding: 20px 365px 20px 64px;
+    padding: 20px 265px 20px 64px;
     background: #f0f4ef;
     border-radius: 16px;
     border: none;
@@ -63,22 +63,18 @@ export default styled.header`
   }
 
   .round-buttons {
-    padding-left: 25px;
+    padding-left: 7px;
   }
 
   .round-button2 {
     margin: 0 27px;
   }
 
-  @media (max-width: 1439px) {
+  @media (max-width: 1438px) {
     .round-button2 {
-    margin: 0 20px;
-  }
-  .round-buttons {
-    padding-left: 20px;
+    margin: 0 10px;
   }
   }
-
 
   @media (max-width: 1422px) {
     .header_container {
@@ -90,12 +86,6 @@ export default styled.header`
     .logo {
       padding-right: 50px;
     }
-  }
-
-  @media (max-width: 1291px) {
-    .round-buttons {
-    padding-left: 17px;
-  }
   }
 
   @media (max-width: 1285px) {

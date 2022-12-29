@@ -1,18 +1,25 @@
 import { useFormik } from 'formik';
 import classNames from 'classnames';
-// import { toast } from 'react-toastify';
-import Styles from './SignUp.styles';
-import mail from '../images/Mail.svg';
-import eye from '../images/Hide.svg';
-import men from '../images/men.svg';
-import men2 from '../images/men2.svg';
-import Input from '../../../auxiliaryComponents/Input';
-import Button from '../../../auxiliaryComponents/Button/Button.styles';
+import { toast } from 'react-toastify';
+import * as Yup from 'yup';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import Input from '../../../outherComponents/Input';
+import Button from '../../../outherComponents/Button/Button.styles';
+
 import { useAppDispatch, useAppSelector } from '../../../../redux/store';
 import { createUserThunk } from '../../../../redux/userStore/userThunks';
-import { singUpSchema } from '../../../../validation/schemas';
+
+import mailIcon from '../images/Mail.svg';
+import eyeIcon from '../images/Hide.svg';
+import menPicture from '../images/men.svg';
+
+import Styles from './SignUp.styles';
 
 const SignUp: React.FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
   const success = useAppSelector((store) => store.userRoot.success);
 
@@ -22,26 +29,38 @@ const SignUp: React.FC = () => {
       password: '',
       repeatPassword: '',
     },
-    validationSchema: singUpSchema,
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email('Email must be a valid email')
+        .min(10, 'Min 10 length, Ex: 123@mail.ru')
+        .required(),
+      password: Yup.string()
+        .lowercase()
+        .min(5, 'The password is too short(min 5)')
+        .trim()
+        .required('Password required'),
+      repeatPassword: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Passwords must match')
+        .required('Please retype your password.'),
+    }),
     onSubmit: async (values) => {
       const { email, password } = values;
       await dispatch(createUserThunk({ email, password }))
         .unwrap()
-        // eslint-disable-next-line no-console
-        .catch((error) => console.log(error));
-      // .catch((error) => toast.error(error.message));
+        .catch((error) => toast.error(error.message));
+      navigate(`${!location.state}` ? '/' : `${location.state.from.pathname}`);
     },
   });
 
   const stylesInputEmail = classNames({
     'form-input': true,
-    'error-input': formik.errors.email?.length,
+    'error-input': formik.touched.email ? formik.errors.email : undefined,
     'success-input': success,
   });
 
   const stylesInputPassword = classNames({
     'form-input': true,
-    'error-input': formik.errors.password?.length,
+    'error-input': formik.touched.password ? formik.errors.password : undefined,
     'success-input': success,
   });
 
@@ -53,32 +72,32 @@ const SignUp: React.FC = () => {
             <h1 className="title">Sign Up</h1>
 
             <Input
-              img={mail}
+              img={mailIcon}
               classStyles={stylesInputEmail}
               placeholder="Email"
               label="Enter your email"
               type="email"
-              errors={formik.errors.email}
+              errors={formik.touched.email ? formik.errors.email : undefined}
               touched={`${formik.touched.email}` || ''}
               {...formik.getFieldProps('email')}
             />
             <Input
-              img={eye}
+              img={eyeIcon}
               classStyles={stylesInputPassword}
               placeholder="Password"
               label="Enter your password"
               type="password"
-              errors={formik.errors.password}
+              errors={formik.touched.password ? formik.errors.password : undefined}
               touched={`${formik.touched.password}` || ''}
               {...formik.getFieldProps('password')}
             />
             <Input
-              img={eye}
+              img={eyeIcon}
               classStyles={stylesInputPassword}
               placeholder="Password replay"
               label="Repeat your password"
               type="password"
-              errors={formik.errors.repeatPassword}
+              errors={formik.touched.repeatPassword ? formik.errors.repeatPassword : undefined}
               touched={`${formik.touched.repeatPassword}` || ''}
               {...formik.getFieldProps('repeatPassword')}
             />
@@ -89,7 +108,7 @@ const SignUp: React.FC = () => {
           </form>
         </div>
         <div className="image-box">
-          <img className="men-pick" src={men} alt="" height={522} />
+          <img className="men-pick" src={menPicture} alt="" height={522} />
         </div>
       </div>
     </Styles>

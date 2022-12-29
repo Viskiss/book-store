@@ -3,7 +3,7 @@ import fairy2 from './images/fairy2.svg';
 import fairy3 from './images/fairy3.svg';
 import castle from './images/castle.svg';
 
-import TextBlock from '../../auxiliaryComponents/TextBlock';
+import TextBlock from '../../outherComponents/TextBlock';
 
 import Styles from './Auth.styles';
 

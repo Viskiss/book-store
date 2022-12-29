@@ -71,29 +71,65 @@ export default styled.section`
   .user-change_preview {
     display: flex;
     align-items: center;
-    justify-content:space-between;
+    justify-content: space-between;
     margin-bottom: 10px;
   }
 
-  @media (max-width: 834px) {
-  padding: 20px 10px 104px 0;
-  .img-profile {
-    width: 255px;
-    height: 255px;
-    margin-right: 20px;
-    position: relative;
-
-    .user-photo{
-      width: 255px;
-      height: 255px;
-    }
-
-    button {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      margin: 15px;
+  @media (max-width: 1004px) {
+    padding: 20px 0 104px 0;
+    .img-profile {
+      margin-right: 50px;
     }
   }
+
+  @media (max-width: 900px) {
+    .img-profile {
+      width: 255px;
+      height: 255px;
+      margin-right: 20px;
+      position: relative;
+
+      .user-photo {
+        width: 255px;
+        height: 255px;
+      }
+
+      button {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 15px;
+      }
+    }
+  }
+
+  @media (max-width: 720px) {
+    .form-input {
+      width: 60%;
+    }
+  }
+
+  @media (max-width: 550px) {
+    flex-direction: column;
+    align-items: center;
+    .form-input {
+      width: 65%;
+    }
+
+    .img-profile_box {
+      width: 100%;
+      height: 100%;
+      .img-profile {
+        width: 100%;
+        height: 100%;
+        .user-photo {
+          width: inherit;
+          height: auto;
+        }
+        button {
+          margin: 20px;
+        }
+      }
+    }
   }
 `;

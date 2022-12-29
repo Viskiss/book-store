@@ -3,7 +3,7 @@ import books from './images/books.svg';
 import books2 from './images/books2.svg';
 import girl from './images/girl.svg';
 import girl2 from './images/girl2.svg';
-import TextBlock from '../../auxiliaryComponents/TextBlock';
+import TextBlock from '../../outherComponents/TextBlock';
 
 const Invit: React.FC = () => {
   return (

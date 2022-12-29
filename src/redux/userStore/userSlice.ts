@@ -12,6 +12,8 @@ import {
 const initialState = () => ({
   user: null as UserType | null,
   success: false,
+  changeUserSuccess: false,
+  isAuthenticated: false,
   error: {},
 });
 
@@ -25,11 +27,14 @@ const bookStoreSlice = createSlice({
       if (action.payload.token) {
         Cookies.set('token', action.payload.token);
         state.success = true;
+        state.isAuthenticated = true;
       }
     });
 
     builder.addCase(createUserThunk.rejected, (state, action) => {
       state.error = action.error;
+      // eslint-disable-next-line no-console
+      console.log(action);
     });
 
     builder.addCase(logInUserThunk.fulfilled, (state, action) => {
@@ -37,12 +42,13 @@ const bookStoreSlice = createSlice({
       if (action.payload.token) {
         Cookies.set('token', action.payload.token);
         state.success = true;
+        state.isAuthenticated = true;
       }
     });
 
     builder.addCase(changeUserThunk.fulfilled, (state, action) => {
       if (action.payload) {
-        state.success = true;
+        state.changeUserSuccess = true;
       }
     });
 

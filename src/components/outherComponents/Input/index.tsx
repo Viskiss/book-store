@@ -1,11 +1,12 @@
 import type { FormikTouched } from 'formik';
 import type { MouseEventHandler } from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import Styles from './Input.styles';
 
 interface IProps {
   onChange:(e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   classStyles?: string;
   img: string;
   placeholder: string;
@@ -48,6 +49,7 @@ const Input: React.FC<IProps> = (props: IProps) => {
         value={props.value}
         className={props.classStyles}
         placeholder={props.placeholder}
+        onBlur={props.onBlur}
       />
       {props.touched && props.errors ? (
         <div className="label-error">{props.errors}</div>

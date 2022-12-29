@@ -1,31 +1,37 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import classNames from 'classnames';
 import { useFormik } from 'formik';
+import { toast } from 'react-toastify';
+import * as Yup from 'yup';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { changeUserThunk } from '../../../redux/userStore/userThunks';
+
+import Input from '../../outherComponents/Input';
+import PasswordProfile from './component';
+import Button from '../../outherComponents/Button/RoundButton.styles';
+import ButtonSimple from '../../outherComponents/Button/Button.styles';
+
+import defaultPhoto from './images/User photo.svg';
 import imgUser from './images/User.svg';
 import mail from './images/Mail.svg';
 import camera from './images/Camera.svg';
-import defaultPhoto from './images/User photo.svg';
+
 import Styles from './UserProfile.styles';
-import Input from '../../auxiliaryComponents/Input';
-import PasswordProfile from './component';
-import { changeUserSchema } from '../../../validation/schemas';
-import { changeUserThunk } from '../../../redux/userStore/userThunks';
-import Button from '../../auxiliaryComponents/Button/RoundButton.styles';
-import ButtonSimple from '../../auxiliaryComponents/Button/Button.styles';
 
 const UserProfile: React.FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [activeInput, setActiveInput] = useState(true);
-  const [email, setEmail] = useState('****@mail.com');
-  const [fullName, setFullName] = useState('Add Name');
-  let userId = 0;
-  let userEmail = '';
-  let userFullName = '';
 
+  const success = useAppSelector((store) => store.userRoot.changeUserSuccess);
   const user = useAppSelector((store) => store.userRoot.user);
+
+  let userId = 0;
+
   if (user) {
     userId = user.id;
-    userEmail = user.email;
-    userFullName = user.fullName;
   }
 
   const changeDataHandler = (
@@ -43,19 +49,37 @@ const UserProfile: React.FC = () => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      fullName: fullName || 'Add Name',
-      email: email || 'Ex:****@mail.com',
+      fullName: user?.fullName || '',
+      email: user?.email || '',
     },
-    validationSchema: changeUserSchema,
+    validationSchema: Yup.object({
+      fullName: Yup.string().trim().min(5, 'The fullName is too short(min 5)'),
+      email: Yup.string()
+        .email('Email must be a valid email')
+        .min(10, 'Min 10 length, Ex: 123@mail.ru')
+        .required(),
+    }),
     onSubmit: async (values) => {
       const { fullName, email } = values;
-      await dispatch(changeUserThunk({ fullName, email, id: userId }));
+      await dispatch(changeUserThunk({ fullName, email, id: userId }))
+        .unwrap()
+        .catch((error) => toast.error(error.message));
+      // eslint-disable-next-line no-console
+      console.log(location);
     },
   });
 
-  useEffect(() => {
-    setEmail(userEmail); setFullName(userFullName);
-  }, [user, userEmail, userFullName]);
+  const stylesInputEmail = classNames({
+    'form-input': true,
+    'error-input': formik.touched.email ? formik.errors.email : undefined,
+    'success-input': success && !formik.errors.email,
+  });
+
+  const stylesInputFullname = classNames({
+    'form-input': true,
+    'error-input': formik.touched.fullName ? formik.errors.fullName : undefined,
+    'success-input': success && !formik.errors.fullName,
+  });
 
   return (
     <Styles>
@@ -79,7 +103,7 @@ const UserProfile: React.FC = () => {
             <label>Your name</label>
             <Input
               disabled={activeInput}
-              classStyles="search-input"
+              classStyles={stylesInputFullname}
               img={imgUser}
               placeholder="Name"
               errors={formik.errors.fullName}
@@ -90,7 +114,7 @@ const UserProfile: React.FC = () => {
           <div className="data-box">
             <label>Your email</label>
             <Input
-            classStyles="search-input"
+              classStyles={stylesInputEmail}
               disabled={activeInput}
               img={mail}
               type="email"
@@ -100,9 +124,11 @@ const UserProfile: React.FC = () => {
               {...formik.getFieldProps('email')}
             />
           </div>
-        <ButtonSimple className="simple-button" type="submit">
-          Confirm
-        </ButtonSimple>
+          {!activeInput ? (
+            <ButtonSimple className="simple-button" type="submit">
+              Confirm
+            </ButtonSimple>
+          ) : null}
         </form>
         <PasswordProfile />
       </div>

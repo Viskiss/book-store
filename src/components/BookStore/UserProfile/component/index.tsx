@@ -1,19 +1,22 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
+import * as Yup from 'yup';
+import classNames from 'classnames';
 
 import Styles from './PasswordProfile.styles';
 
 import { changePasswordThunk } from '../../../../redux/userStore/userThunks';
 import { useAppDispatch, useAppSelector } from '../../../../redux/store';
-import { changePasswordSchema } from '../../../../validation/schemas';
 
-import Input from '../../../auxiliaryComponents/Input';
-import Button from '../../../auxiliaryComponents/Button/Button.styles';
+import Input from '../../../outherComponents/Input';
+import Button from '../../../outherComponents/Button/Button.styles';
 
 import eye from '../images/Hide.svg';
 
 const PasswordProfile: React.FC = () => {
   const [changePassword, setChangePassword] = useState(false);
+  // const success = useAppSelector((store) => store.userRoot.success);
+
   const disabledInput = true;
   let userId = 0;
   let userPassword = '';
@@ -37,13 +40,19 @@ const PasswordProfile: React.FC = () => {
     }
   };
 
-  const dataPassword = useFormik({
+  const formik = useFormik({
     initialValues: {
       password: userPassword || '',
       newPassword: '',
       repeatPassword: '',
     },
-    validationSchema: changePasswordSchema,
+    validationSchema: Yup.object({
+      password: Yup.string()
+        .lowercase()
+        .min(5, 'The password is too short(min 5)')
+        .trim()
+        .required('Password required'),
+    }),
     onSubmit: async (values) => {
       const { password, newPassword } = values;
       await dispatch(changePasswordThunk({
@@ -54,9 +63,15 @@ const PasswordProfile: React.FC = () => {
     },
   });
 
+  const stylesInputPassword = classNames({
+    'form-input': true,
+    'error-input': formik.touched.password ? formik.errors.password : undefined,
+    // 'success-input': success,
+  });
+
   return (
     <Styles>
-      <form className="user-password" onSubmit={dataPassword.handleSubmit}>
+      <form className="user-password" onSubmit={formik.handleSubmit}>
         <div className="user-change_preview">
           <h3>Password</h3>
           <a onClick={(e) => changeDataHandler('password', e)} href="">
@@ -69,10 +84,10 @@ const PasswordProfile: React.FC = () => {
             <Input
               disabled={disabledInput}
               img={eye}
-              classStyles="search-input"
+              classStyles={stylesInputPassword}
               type="password"
               placeholder="***********"
-              {...dataPassword.getFieldProps('password')}
+              {...formik.getFieldProps('password')}
             />
           </div>
         ) : (
@@ -86,7 +101,11 @@ const PasswordProfile: React.FC = () => {
                   type="password"
                   placeholder="***********"
                   label="Old password"
-                  {...dataPassword.getFieldProps('password')}
+                  errors={
+                    formik.touched.password ? formik.errors.password : undefined
+                  }
+                  touched={formik.touched.password}
+                  {...formik.getFieldProps('password')}
                 />
               </div>
               <Input
@@ -95,9 +114,11 @@ const PasswordProfile: React.FC = () => {
                 placeholder="New password"
                 label="Enter your password"
                 type="password"
-                errors={dataPassword.errors.password}
-                touched={dataPassword.touched.password}
-                {...dataPassword.getFieldProps('newPassword')}
+                errors={
+                  formik.touched.password ? formik.errors.password : undefined
+                }
+                touched={formik.touched.password}
+                {...formik.getFieldProps('newPassword')}
               />
               <Input
               classStyles="search-input"
@@ -105,9 +126,11 @@ const PasswordProfile: React.FC = () => {
                 placeholder="Password replay"
                 label="Repeat your password without errors"
                 type="password"
-                errors={dataPassword.errors.repeatPassword}
-                touched={dataPassword.touched.repeatPassword}
-                {...dataPassword.getFieldProps('repeatPassword')}
+                errors={
+                  formik.touched.repeatPassword ? formik.errors.repeatPassword : undefined
+                }
+                touched={formik.touched.repeatPassword}
+                {...formik.getFieldProps('repeatPassword')}
               />
             </>
             <Button className="simple-button" type="submit">
