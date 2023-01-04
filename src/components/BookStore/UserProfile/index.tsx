@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
-import { changeUserThunk } from '../../../redux/userStore/userThunks';
+import { changeUserThunk, uploadAvatarUserThunk } from '../../../redux/userStore/userThunks';
 
 import Input from '../../outherComponents/Input';
 import PasswordProfile from './component';
@@ -19,10 +19,10 @@ import mail from './images/Mail.svg';
 import camera from './images/Camera.svg';
 
 import Styles from './UserProfile.styles';
+import MyDropzone from './component/ImageUpload';
 
 const UserProfile: React.FC = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const [activeInput, setActiveInput] = useState(true);
 
   const success = useAppSelector((store) => store.userRoot.changeUserSuccess);
@@ -81,16 +81,23 @@ const UserProfile: React.FC = () => {
     'success-input': success && !formik.errors.fullName,
   });
 
+  const uploadFiles = (file: File) => {
+    dispatch(uploadAvatarUserThunk(file));
+  };
+
+  console.log('user :>> ', user);
+
   return (
     <Styles>
-      <div className="img-profile_box">
         <div className="img-profile">
-          <img className="user-photo" src={defaultPhoto} alt="" />
-          <Button>
+          <img className="user-photo" src={user?.avatar || defaultPhoto} alt="" />
+          <div className="load-avatar">
+          <MyDropzone ovsdlkgfs={uploadFiles} name="avatar" />
+            <Button>
             <img src={camera} alt="" />
-          </Button>
+            </Button>
+          </div>
         </div>
-      </div>
       <div>
         <form className="form-user-data" onSubmit={formik.handleSubmit}>
           <div className="user-change_preview">

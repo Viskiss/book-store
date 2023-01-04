@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
-
-import userApi from '../../api/userApi';
-import type {
+import type { AvatarUserType,
   ChangePasswordType,
   UserCreateType,
   ChangeUserType,
 } from '../../types';
+
+import userApi from '../../api/userApi';
 
 export const createUserThunk = createAsyncThunk(
   'user/createUser',
@@ -31,6 +31,26 @@ export const changeUserThunk = createAsyncThunk(
     const { email, fullName, id } = userData;
     try {
       const user = await userApi.changeUser(email, fullName, id);
+      return user.data;
+    } catch (err) {
+      const error = err as AxiosError;
+      if (!error.response) {
+        throw err;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const uploadAvatarUserThunk = createAsyncThunk(
+  'user/avatarUser',
+  async (userData: File, { rejectWithValue }) => {
+    const formData = new FormData();
+
+    formData.append('avatar', userData);
+
+    try {
+      const user = await userApi.uploadAvatar(formData);
       return user.data;
     } catch (err) {
       const error = err as AxiosError;

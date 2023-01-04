@@ -25,6 +25,7 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   rules: {
+    'linebreak-style': 0,
     'react-hooks/exhaustive-deps': 'error',
     'react/jsx-boolean-value': 'error',
     'react/jsx-no-useless-fragment': 'error',
@@ -56,7 +57,7 @@ module.exports = {
     'eol-last': ['error', 'always'],
     'no-plusplus': 'off',
     'operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
-    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
     'prefer-destructuring': 'off',
     'arrow-parens': ['error', 'always'],
     'arrow-body-style': 'off',

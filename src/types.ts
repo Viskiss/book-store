@@ -3,6 +3,7 @@ export type UserType = {
   fullName: string;
   email: string;
   password: string;
+  avatar: string;
 };
 
 export type UserCreateType = {
@@ -14,6 +15,10 @@ export type ChangeUserType = {
   email: UserType['email'];
   fullName: UserType['fullName'];
   id: UserType['id'];
+};
+
+export type AvatarUserType = {
+  avatar: File;
 };
 
 export type ChangePasswordType = {

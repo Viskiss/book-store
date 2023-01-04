@@ -7,6 +7,7 @@ import {
   createUserThunk,
   currentUserThunk,
   logInUserThunk,
+  uploadAvatarUserThunk,
 } from './userThunks';
 
 const initialState = () => ({
@@ -50,6 +51,10 @@ const bookStoreSlice = createSlice({
       if (action.payload) {
         state.changeUserSuccess = true;
       }
+    });
+
+    builder.addCase(uploadAvatarUserThunk.fulfilled, (state, action) => {
+      state.user = action.payload.user;
     });
 
     builder.addCase(currentUserThunk.fulfilled, (state, action) => {

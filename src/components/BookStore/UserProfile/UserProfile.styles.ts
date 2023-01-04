@@ -11,6 +11,12 @@ export default styled.section`
     padding-right: 143px;
   }
 
+  .user-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .img-profile {
     width: 305px;
     height: 305px;
@@ -22,6 +28,26 @@ export default styled.section`
       bottom: 0;
       right: 0;
       margin: 20px;
+    }
+  }
+
+  .load-avatar {
+    input {
+      width: 100%;
+      height: 100%;
+    }
+
+    .drop-box {
+      width: 100%;
+      height: 100%;
+      border-radius: 50px;
+      height: 50px;
+      width: 50px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin: 20px;
+      z-index: 1000;
     }
   }
 
