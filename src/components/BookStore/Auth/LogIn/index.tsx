@@ -42,8 +42,28 @@ const LogIn: React.FC = () => {
       const { email, password } = values;
       await dispatch(logInUserThunk({ email, password }))
         .unwrap()
-        .catch((error) => toast.error(error.message));
-      navigate(`${!location.state}` ? '/' : `${location.state.from.pathname}`);
+        .then(
+          () => {
+            navigate(`${!location.state}` ? '/log-in' : `${location.state.from.pathname}`);
+          },
+        )
+        .catch(
+          (error: {
+            error: Array<{ key: string; path: string; message: string }>;
+            message: string;
+          }) => {
+            if (error?.error && error.message === 'ValidationError') {
+              const errors = error.error.reduce((acc: {[key: string]: string}, curr) => {
+                acc[curr.key] = curr.message;
+                return acc;
+              }, {});
+
+              formik.setErrors(errors);
+            } else {
+              toast.error(error.message);
+            }
+          },
+        );
     },
   });
 
@@ -70,7 +90,7 @@ const LogIn: React.FC = () => {
               placeholder="Email"
               type="email"
               label="Enter your email"
-              errors={formik.touched.email ? formik.errors.email : undefined}
+              errors={formik.errors.email || ''}
               touched={`${formik.touched.email}` || undefined}
               {...formik.getFieldProps('email')}
             />
@@ -80,9 +100,7 @@ const LogIn: React.FC = () => {
               placeholder="Password"
               label="Enter your password"
               type="password"
-              errors={
-                formik.touched.password ? formik.errors.password : undefined
-              }
+              errors={formik.errors.password || ''}
               touched={`${formik.touched.password}` || undefined}
               {...formik.getFieldProps('password')}
             />
