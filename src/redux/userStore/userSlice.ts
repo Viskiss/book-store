@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 
-import type { UserType } from '../../types';
+import type { UserType } from '../../typesUser';
 import {
   changeUserThunk,
   createUserThunk,
@@ -18,8 +18,8 @@ const initialState = () => ({
   error: {},
 });
 
-const bookStoreSlice = createSlice({
-  name: 'todos',
+const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -34,8 +34,6 @@ const bookStoreSlice = createSlice({
 
     builder.addCase(createUserThunk.rejected, (state, action) => {
       state.error = action.error;
-      // eslint-disable-next-line no-console
-      console.log(action);
     });
 
     builder.addCase(logInUserThunk.fulfilled, (state, action) => {
@@ -63,6 +61,6 @@ const bookStoreSlice = createSlice({
   },
 });
 
-export const storeSliceActions = bookStoreSlice.actions;
+export const storeSliceActions = userSlice.actions;
 
-export default bookStoreSlice.reducer;
+export default userSlice.reducer;

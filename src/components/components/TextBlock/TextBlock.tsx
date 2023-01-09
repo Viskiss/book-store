@@ -19,9 +19,9 @@ const TextBlock: React.FC<IProps> = (props: IProps) => {
   return (
     <Styles>
       <div className="block-text_main auth">
-        <h1>{props.h1}</h1>
+        <h1 className="title">{props.h1}</h1>
         <div className="block_text auth-text">
-          <p>{props.p}</p>
+          <p className="text">{props.p}</p>
         </div>
         {props.className === 'auth-button' ? (
           <>

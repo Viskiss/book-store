@@ -57,7 +57,7 @@ module.exports = {
     'eol-last': ['error', 'always'],
     'no-plusplus': 'off',
     'operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'no-console': ['error', { allow: ['warn', 'error'] }],
     'prefer-destructuring': 'off',
     'arrow-parens': ['error', 'always'],
     'arrow-body-style': 'off',

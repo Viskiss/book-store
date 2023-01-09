@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../../../../redux/store';
 
-import Button from '../../../outherComponents/Button/RoundButtonLink';
-import ButtonLink from '../../../outherComponents/Button/ButtonLink';
+import Button from '../../../components/Button/RoundButtonLink';
+import ButtonLink from '../../../components/Button/ButtonLink';
 
 import logo from '../images/logoH.svg';
 import loupe from '../images/Search.svg';

@@ -5,16 +5,15 @@ export default styled.section`
   flex-direction: column;
   position: relative;
 
-  .block_text {
-    width: 200px;
-  }
-
   .block-text_main {
     padding-left: 108px;
     z-index: 1000;
+    .block_text {
+      width: 200px;
+    }
   }
 
-  h1 {
+  .title {
     font-family: "Poppins";
     font-weight: 700;
     font-size: 40px;
@@ -23,7 +22,7 @@ export default styled.section`
     margin-bottom: 10px;
   }
 
-  p {
+  .text {
     font-family: "Poppins";
     font-weight: 500;
     font-size: 20px;
@@ -42,13 +41,13 @@ export default styled.section`
       padding: 0 0 56px 40px;
       z-index: 1000;
     }
-    h1 {
+    .title {
       font-size: 32px;
       line-height: 48px;
       margin-bottom: 0;
     }
 
-    p {
+    .text {
       font-size: 16px;
       line-height: 24px;
       margin-bottom: 40px;

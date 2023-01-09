@@ -1,11 +1,11 @@
-import Styles from './Invit.styles';
+import Styles from './InvitBaner.styles';
 import books from './images/books.svg';
 import books2 from './images/books2.svg';
 import girl from './images/girl.svg';
 import girl2 from './images/girl2.svg';
-import TextBlock from '../../outherComponents/TextBlock';
+import TextBlock from '../../components/TextBlock/TextBlock';
 
-const Invit: React.FC = () => {
+const InvitBaner: React.FC = () => {
   return (
     <Styles>
       <div className="invite_container">
@@ -28,4 +28,4 @@ const Invit: React.FC = () => {
   );
 };
 
-export default Invit;
+export default InvitBaner;

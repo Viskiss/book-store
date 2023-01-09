@@ -11,8 +11,12 @@ export default styled.section`
     padding-right: 143px;
   }
 
+  .form-input {
+    padding: 20px 143px 20px 64px
+  }
+
   .user-photo {
-    width: 100%;
+    width: 305px;
     height: 100%;
     object-fit: cover;
   }
@@ -99,6 +103,12 @@ export default styled.section`
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
+  }
+
+  @media (max-width: 1142px) {
+    .form-input {
+    padding: 20px 10px 20px 64px
+  }
   }
 
   @media (max-width: 1004px) {

@@ -1,4 +1,4 @@
-import type { AutReqType } from '../types';
+import type { AutReqType } from '../typesUser';
 import api from './api';
 
 const createUserPath = '/api/login/sing-up';

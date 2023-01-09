@@ -4,8 +4,8 @@ import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import Input from '../../../outherComponents/Input';
-import Button from '../../../outherComponents/Button/Button.styles';
+import Input from '../../../components/Input/Input';
+import Button from '../../../components/Button/Button.styles';
 
 import { useAppDispatch, useAppSelector } from '../../../../redux/store';
 import { createUserThunk } from '../../../../redux/userStore/userThunks';
@@ -15,6 +15,7 @@ import eyeIcon from '../images/Hide.svg';
 import menPicture from '../images/men.svg';
 
 import Styles from './SignUp.styles';
+import { handleApiValidationError } from '../../../../utils/apiValidationError';
 
 const SignUp: React.FC = () => {
   const location = useLocation();
@@ -47,8 +48,21 @@ const SignUp: React.FC = () => {
       const { email, password } = values;
       await dispatch(createUserThunk({ email, password }))
         .unwrap()
-        .catch((error) => toast.error(error.message));
-      navigate(`${!location.state}` ? '/' : `${location.state.from.pathname}`);
+        .then(() => {
+          navigate(`${success}` ? '/' : `${location.state.from.pathname}`);
+        })
+        .catch(
+          (error: {
+            error: Array<{ key: string; path: string; message: string }>;
+            message: string;
+          }) => {
+            if (error?.error && error.message === 'ValidationError') {
+              handleApiValidationError(error.error, formik.setErrors);
+            } else {
+              toast.error(error.message);
+            }
+          },
+        );
     },
   });
 
@@ -76,7 +90,6 @@ const SignUp: React.FC = () => {
               classStyles={stylesInputEmail}
               placeholder="Email"
               label="Enter your email"
-              type="email"
               errors={formik.touched.email ? formik.errors.email : undefined}
               touched={`${formik.touched.email}` || ''}
               {...formik.getFieldProps('email')}
@@ -87,7 +100,9 @@ const SignUp: React.FC = () => {
               placeholder="Password"
               label="Enter your password"
               type="password"
-              errors={formik.touched.password ? formik.errors.password : undefined}
+              errors={
+                formik.touched.password ? formik.errors.password : undefined
+              }
               touched={`${formik.touched.password}` || ''}
               {...formik.getFieldProps('password')}
             />
@@ -97,7 +112,11 @@ const SignUp: React.FC = () => {
               placeholder="Password replay"
               label="Repeat your password"
               type="password"
-              errors={formik.touched.repeatPassword ? formik.errors.repeatPassword : undefined}
+              errors={
+                formik.touched.repeatPassword
+                  ? formik.errors.repeatPassword
+                  : undefined
+              }
               touched={`${formik.touched.repeatPassword}` || ''}
               {...formik.getFieldProps('repeatPassword')}
             />

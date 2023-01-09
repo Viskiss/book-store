@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../redux/store';
-import Auth from './Auth';
+import Auth from './Auth/Auth';
 import Styles from './BookStore.styles';
-import Invit from './Invit';
+import Invit from './Invit/InviteBaner';
 
 const BookStore: React.FC = () => {
   const [isAuthLayout, setIsAuth] = useState(false);
@@ -17,7 +17,7 @@ const BookStore: React.FC = () => {
   return (
     <Styles>
       <Invit />
-      Books
+      {/* <Catalog /> */}
       {!isAuthLayout && <Auth />}
     </Styles>
   );

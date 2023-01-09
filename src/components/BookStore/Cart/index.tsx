@@ -1,28 +1,28 @@
-// import { useEffect, useState } from 'react';
-// import { useAppSelector } from '../../../redux/store';
-// import TextBlock from '../../auxiliaryComponents/TextBlock';
-// import books from './images/books.svg';
+import { useEffect, useState } from 'react';
+import { useAppSelector } from '../../../redux/store';
+import TextBlock from '../../components/TextBlock';
+import books from './images/books.svg';
 import Styles from './Cart.styles';
 
 const Cart: React.FC = () => {
-  // const [emptyCart, setEmptyCart] = useState(false);
+  const [emptyCart, setEmptyCart] = useState(false);
 
-  // const cart = useAppSelector((store) => store.bookData.cart.length);
+  const cart = useAppSelector((store) => store.userRoot.success);
 
-  // useEffect(() => {
-  //   if (cart) {
-  //     setEmptyCart(true);
-  //   }
-  // }, [cart]);
+  useEffect(() => {
+    if (cart) {
+      setEmptyCart(true);
+    }
+  }, [cart]);
 
   return (
     <Styles>
       <div className="cart_container">
-        {/* {emptyCart ? (
+        {emptyCart ? (
           <>j</>
         ) : (
           <>
-          <img className="img_book" src={books} alt="" />
+            <img className="img_book" src={books} alt="" />
 
             <TextBlock
               h1="Your cart is empty"
@@ -32,7 +32,7 @@ const Cart: React.FC = () => {
               className="simple-button"
             />
           </>
-        )} */}
+        )}
       </div>
     </Styles>
   );

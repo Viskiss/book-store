@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
-import type { AvatarUserType,
+import type {
   ChangePasswordType,
   UserCreateType,
   ChangeUserType,
-} from '../../types';
+} from '../../typesUser';
 
 import userApi from '../../api/userApi';
 

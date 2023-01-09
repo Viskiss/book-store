@@ -4,21 +4,24 @@ import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import Input from '../../../outherComponents/Input';
-import Button from '../../../outherComponents/Button/Button.styles';
+import Input from '../../../components/Input/Input';
+import Button from '../../../components/Button/Button.styles';
 
-import { useAppDispatch } from '../../../../redux/store';
+import { useAppDispatch, useAppSelector } from '../../../../redux/store';
 import { logInUserThunk } from '../../../../redux/userStore/userThunks';
 
 import mailIcon from '../images/Mail.svg';
 import eyeIcon from '../images/Hide.svg';
 import menPicture from '../images/men.svg';
 
-import Styles from './LogIn.styles';
+import Styles from './Login.styles';
+import { handleApiValidationError } from '../../../../utils/apiValidationError';
 
-const LogIn: React.FC = () => {
+const Login: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const success = useAppSelector((store) => store.userRoot.success);
 
   const dispatch = useAppDispatch();
 
@@ -42,23 +45,16 @@ const LogIn: React.FC = () => {
       const { email, password } = values;
       await dispatch(logInUserThunk({ email, password }))
         .unwrap()
-        .then(
-          () => {
-            navigate(`${!location.state}` ? '/log-in' : `${location.state.from.pathname}`);
-          },
-        )
+        .then(() => {
+          navigate(`${success}` ? '/' : `${location.state.from.pathname}`);
+        })
         .catch(
           (error: {
             error: Array<{ key: string; path: string; message: string }>;
             message: string;
           }) => {
             if (error?.error && error.message === 'ValidationError') {
-              const errors = error.error.reduce((acc: {[key: string]: string}, curr) => {
-                acc[curr.key] = curr.message;
-                return acc;
-              }, {});
-
-              formik.setErrors(errors);
+              handleApiValidationError(error.error, formik.setErrors);
             } else {
               toast.error(error.message);
             }
@@ -88,7 +84,6 @@ const LogIn: React.FC = () => {
               img={mailIcon}
               classStyles={stylesInputEmail}
               placeholder="Email"
-              type="email"
               label="Enter your email"
               errors={formik.errors.email || ''}
               touched={`${formik.touched.email}` || undefined}
@@ -118,4 +113,4 @@ const LogIn: React.FC = () => {
   );
 };
 
-export default LogIn;
+export default Login;

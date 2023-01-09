@@ -8,14 +8,14 @@ import Styles from './PasswordProfile.styles';
 import { changePasswordThunk } from '../../../../redux/userStore/userThunks';
 import { useAppDispatch, useAppSelector } from '../../../../redux/store';
 
-import Input from '../../../outherComponents/Input';
-import Button from '../../../outherComponents/Button/Button.styles';
+import Input from '../../../components/Input/Input';
+import Button from '../../../components/Button/Button.styles';
 
 import eye from '../images/Hide.svg';
 
 const PasswordProfile: React.FC = () => {
   const [changePassword, setChangePassword] = useState(false);
-  // const success = useAppSelector((store) => store.userRoot.success);
+  const success = useAppSelector((store) => store.userRoot.success);
 
   const disabledInput = true;
   let userId = 0;
@@ -52,21 +52,31 @@ const PasswordProfile: React.FC = () => {
         .min(5, 'The password is too short(min 5)')
         .trim()
         .required('Password required'),
+      newPassword: Yup.string()
+        .lowercase()
+        .min(5, 'The password is too short(min 5)')
+        .trim()
+        .required('Password required'),
+      repeatPassword: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Passwords must match')
+        .required('Please retype your password.'),
     }),
     onSubmit: async (values) => {
       const { password, newPassword } = values;
-      await dispatch(changePasswordThunk({
-        password,
-        id: userId,
-        newPassword,
-      }));
+      await dispatch(
+        changePasswordThunk({
+          password,
+          id: userId,
+          newPassword,
+        }),
+      );
     },
   });
 
   const stylesInputPassword = classNames({
     'form-input': true,
     'error-input': formik.touched.password ? formik.errors.password : undefined,
-    // 'success-input': success,
+    'success-input': success,
   });
 
   return (
@@ -97,39 +107,43 @@ const PasswordProfile: React.FC = () => {
                 <label>Old password</label>
                 <Input
                   img={eye}
-                  classStyles="search-input"
+                  classStyles={stylesInputPassword}
                   type="password"
                   placeholder="***********"
                   label="Old password"
                   errors={
                     formik.touched.password ? formik.errors.password : undefined
                   }
-                  touched={formik.touched.password}
+                  touched={`${formik.touched.password}` || ''}
                   {...formik.getFieldProps('password')}
                 />
               </div>
               <Input
                 img={eye}
-                classStyles="search-input"
+                classStyles={stylesInputPassword}
                 placeholder="New password"
                 label="Enter your password"
                 type="password"
                 errors={
-                  formik.touched.password ? formik.errors.password : undefined
+                  formik.touched.newPassword
+                    ? formik.errors.newPassword
+                    : undefined
                 }
-                touched={formik.touched.password}
+                touched={`${formik.touched.newPassword}` || ''}
                 {...formik.getFieldProps('newPassword')}
               />
               <Input
-              classStyles="search-input"
+                classStyles={stylesInputPassword}
                 img={eye}
                 placeholder="Password replay"
                 label="Repeat your password without errors"
                 type="password"
                 errors={
-                  formik.touched.repeatPassword ? formik.errors.repeatPassword : undefined
+                  formik.touched.repeatPassword
+                    ? formik.errors.repeatPassword
+                    : undefined
                 }
-                touched={formik.touched.repeatPassword}
+                touched={`${formik.touched.repeatPassword}` || ''}
                 {...formik.getFieldProps('repeatPassword')}
               />
             </>

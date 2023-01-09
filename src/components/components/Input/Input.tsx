@@ -1,6 +1,7 @@
 import type { FormikTouched } from 'formik';
 import type { MouseEventHandler } from 'react';
 import React, { useState } from 'react';
+import view from './images/View.svg';
 
 import Styles from './Input.styles';
 
@@ -22,24 +23,35 @@ interface IProps {
 
 const Input: React.FC<IProps> = (props: IProps) => {
   const [typeInput, setTypeInput] = useState(props.type);
+  const [typeImg, setTypeImg] = useState(props.img);
+
+  let fieldName = 'password';
+  if (props.name === 'newPassword') {
+    fieldName = props.name;
+  }
+  if (props.name === 'repeatPassword') {
+    fieldName = props.name;
+  }
 
   const changeTypeHandler = (
     type: string,
     e: React.MouseEvent<HTMLElement>,
   ) => {
     e.preventDefault();
-    if (type === '') {
+    if (type === '' && props.name === fieldName) {
       setTypeInput('');
+      setTypeImg(view);
     }
-    if (typeInput === '') {
+    if (typeInput === '' && props.name === fieldName) {
       setTypeInput(props.type);
+      setTypeImg(props.img);
     }
   };
 
   return (
     <Styles className="input-section">
       <button onClick={(e) => changeTypeHandler('', e)} type="button" className="form-input_button">
-        <img src={props.img} alt="" />
+        <img src={typeImg} alt="" />
       </button>
       <input
         disabled={props.disabled}

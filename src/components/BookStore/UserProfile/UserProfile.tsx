@@ -3,15 +3,17 @@ import classNames from 'classnames';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
-import { useLocation } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
-import { changeUserThunk, uploadAvatarUserThunk } from '../../../redux/userStore/userThunks';
+import {
+  changeUserThunk,
+  uploadAvatarUserThunk,
+} from '../../../redux/userStore/userThunks';
 
-import Input from '../../outherComponents/Input';
-import PasswordProfile from './component';
-import Button from '../../outherComponents/Button/RoundButton.styles';
-import ButtonSimple from '../../outherComponents/Button/Button.styles';
+import Input from '../../components/Input/Input';
+import PasswordProfile from './component/PasswordProfile';
+import Button from '../../components/Button/RoundButton.styles';
+import ButtonSimple from '../../components/Button/Button.styles';
 
 import defaultPhoto from './images/User photo.svg';
 import imgUser from './images/User.svg';
@@ -20,9 +22,9 @@ import camera from './images/Camera.svg';
 
 import Styles from './UserProfile.styles';
 import MyDropzone from './component/ImageUpload';
+import { handleApiValidationError } from '../../../utils/apiValidationError';
 
 const UserProfile: React.FC = () => {
-  const location = useLocation();
   const [activeInput, setActiveInput] = useState(true);
 
   const success = useAppSelector((store) => store.userRoot.changeUserSuccess);
@@ -63,9 +65,18 @@ const UserProfile: React.FC = () => {
       const { fullName, email } = values;
       await dispatch(changeUserThunk({ fullName, email, id: userId }))
         .unwrap()
-        .catch((error) => toast.error(error.message));
-      // eslint-disable-next-line no-console
-      console.log(location);
+        .catch(
+          (error: {
+            error: Array<{ key: string; path: string; message: string }>;
+            message: string;
+          }) => {
+            if (error?.error && error.message === 'ValidationError') {
+              handleApiValidationError(error.error, formik.setErrors);
+            } else {
+              toast.error(error.message);
+            }
+          },
+        );
     },
   });
 
@@ -85,19 +96,17 @@ const UserProfile: React.FC = () => {
     dispatch(uploadAvatarUserThunk(file));
   };
 
-  console.log('user :>> ', user);
-
   return (
     <Styles>
-        <div className="img-profile">
-          <img className="user-photo" src={user?.avatar || defaultPhoto} alt="" />
-          <div className="load-avatar">
+      <div className="img-profile">
+        <img className="user-photo" src={user?.avatar || defaultPhoto} alt="" />
+        <div className="load-avatar">
           <MyDropzone ovsdlkgfs={uploadFiles} name="avatar" />
-            <Button>
+          <Button>
             <img src={camera} alt="" />
-            </Button>
-          </div>
+          </Button>
         </div>
+      </div>
       <div>
         <form className="form-user-data" onSubmit={formik.handleSubmit}>
           <div className="user-change_preview">
@@ -113,8 +122,10 @@ const UserProfile: React.FC = () => {
               classStyles={stylesInputFullname}
               img={imgUser}
               placeholder="Name"
-              errors={formik.errors.fullName}
-              touched={formik.touched.fullName}
+              errors={
+                formik.touched.fullName ? formik.errors.fullName : undefined
+              }
+              touched={`${formik.touched.fullName}` || ''}
               {...formik.getFieldProps('fullName')}
             />
           </div>
@@ -124,10 +135,9 @@ const UserProfile: React.FC = () => {
               classStyles={stylesInputEmail}
               disabled={activeInput}
               img={mail}
-              type="email"
               placeholder="Email"
-              errors={formik.errors.email}
-              touched={formik.touched.email}
+              errors={formik.touched.email ? formik.errors.email : undefined}
+              touched={`${formik.touched.email}` || ''}
               {...formik.getFieldProps('email')}
             />
           </div>
