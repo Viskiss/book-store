@@ -1,3 +1,4 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 
@@ -21,7 +22,13 @@ const initialState = () => ({
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    exitUser: (state, { payload }: PayloadAction<number>) => {
+      if (payload) {
+        state.user = null;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(createUserThunk.fulfilled, (state, action) => {
       state.user = action.payload.user;
@@ -52,6 +59,9 @@ const userSlice = createSlice({
     });
 
     builder.addCase(uploadAvatarUserThunk.fulfilled, (state, action) => {
+      const images = action.payload.user.avatar;
+      // eslint-disable-next-line no-console
+      console.log(images);
       state.user = action.payload.user;
     });
 
@@ -61,6 +71,6 @@ const userSlice = createSlice({
   },
 });
 
-export const storeSliceActions = userSlice.actions;
+export const userSliceActions = userSlice.actions;
 
 export default userSlice.reducer;

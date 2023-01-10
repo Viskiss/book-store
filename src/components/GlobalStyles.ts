@@ -17,6 +17,15 @@ code {
     monospace;
 }
 
+html, body, #root {
+  height: 100%;
+}
+
+#root {
+ display: flex;
+ flex-direction: column;
+}
+
 h1 {
   font-family: 'Poppins';
   font-weight: 700;

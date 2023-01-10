@@ -18,7 +18,7 @@ export type ChangeUserType = {
 };
 
 export type AvatarUserType = {
-  avatar: File;
+  avatar: string;
 };
 
 export type ChangePasswordType = {

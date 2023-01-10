@@ -7,6 +7,7 @@ export default styled.footer`
   padding-left: 0 inherit;
   display: flex;
   justify-content: center;
+  margin-top: auto;
 
   .footer_container {
     max-width: 1280px;

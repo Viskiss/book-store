@@ -85,8 +85,8 @@ const Login: React.FC = () => {
               classStyles={stylesInputEmail}
               placeholder="Email"
               label="Enter your email"
-              errors={formik.errors.email || ''}
-              touched={`${formik.touched.email}` || undefined}
+              errors={formik.touched.email ? formik.errors.email : undefined}
+              touched={`${formik.touched.email}` || ''}
               {...formik.getFieldProps('email')}
             />
             <Input
@@ -95,8 +95,8 @@ const Login: React.FC = () => {
               placeholder="Password"
               label="Enter your password"
               type="password"
-              errors={formik.errors.password || ''}
-              touched={`${formik.touched.password}` || undefined}
+              errors={formik.touched.password ? formik.errors.password : undefined}
+              touched={`${formik.touched.password}` || ''}
               {...formik.getFieldProps('password')}
             />
 

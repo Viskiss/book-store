@@ -25,16 +25,8 @@ const logInUser = (email: string, password: string) => {
   return api.post<AutReqType>(logInUserPath, { email, password });
 };
 
-const uploadAvatar = (avatar: FormData) => {
-  return api.post<AutReqType>(
-    uploadAvatarUserPath,
-    avatar,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    },
-  );
+const uploadAvatar = (avatar: string | ArrayBuffer | null) => {
+  return api.post<AutReqType>(uploadAvatarUserPath, { avatar });
 };
 
 const currentUser = () => {

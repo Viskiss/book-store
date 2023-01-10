@@ -44,13 +44,9 @@ export const changeUserThunk = createAsyncThunk(
 
 export const uploadAvatarUserThunk = createAsyncThunk(
   'user/avatarUser',
-  async (userData: File, { rejectWithValue }) => {
-    const formData = new FormData();
-
-    formData.append('avatar', userData);
-
+  async (userData: string | ArrayBuffer | null, { rejectWithValue }) => {
     try {
-      const user = await userApi.uploadAvatar(formData);
+      const user = await userApi.uploadAvatar(userData);
       return user.data;
     } catch (err) {
       const error = err as AxiosError;

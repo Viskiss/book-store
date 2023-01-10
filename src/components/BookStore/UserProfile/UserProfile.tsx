@@ -1,3 +1,4 @@
+import type { MouseEvent, MouseEventHandler } from 'react';
 import { useState } from 'react';
 import classNames from 'classnames';
 import { useFormik } from 'formik';
@@ -21,14 +22,15 @@ import mail from './images/Mail.svg';
 import camera from './images/Camera.svg';
 
 import Styles from './UserProfile.styles';
-import MyDropzone from './component/ImageUpload';
 import { handleApiValidationError } from '../../../utils/apiValidationError';
+import { userSliceActions } from '../../../redux/userStore/userSlice';
 
 const UserProfile: React.FC = () => {
-  const [activeInput, setActiveInput] = useState(true);
+  const [changeUser, setChangeUser] = useState(false);
 
   const success = useAppSelector((store) => store.userRoot.changeUserSuccess);
   const user = useAppSelector((store) => store.userRoot.user);
+  const dispatch = useAppDispatch();
 
   let userId = 0;
 
@@ -42,11 +44,12 @@ const UserProfile: React.FC = () => {
   ) => {
     e.preventDefault();
     if (type === 'userData') {
-      setActiveInput(false);
+      setChangeUser(true);
+    }
+    if (changeUser === true) {
+      setChangeUser(false);
     }
   };
-
-  const dispatch = useAppDispatch();
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -92,20 +95,42 @@ const UserProfile: React.FC = () => {
     'success-input': success && !formik.errors.fullName,
   });
 
-  const uploadFiles = (file: File) => {
-    dispatch(uploadAvatarUserThunk(file));
+  const uploadPhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files;
+    if (selectedFile) {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(selectedFile[0]);
+      fileReader.onload = async () => {
+        try {
+          await dispatch(
+            uploadAvatarUserThunk(fileReader.result),
+          );
+        } catch (err) {
+          const error = err as Error;
+          return toast.error(error.message);
+        }
+      };
+    }
   };
+
+  // const exitUser = (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  //   e.preventDefault();
+  //   dispatch(userSliceActions(exitUser(e)));
+  // };
 
   return (
     <Styles>
       <div className="img-profile">
         <img className="user-photo" src={user?.avatar || defaultPhoto} alt="" />
         <div className="load-avatar">
-          <MyDropzone ovsdlkgfs={uploadFiles} name="avatar" />
-          <Button>
+        <div className="drop-box">
+      <input type="file" onChange={(e) => uploadPhoto(e)} />
+        </div>
+          <Button className="add-avatar">
             <img src={camera} alt="" />
           </Button>
         </div>
+        {/* <div className="exit-box"><button onClick={(e) =>}>Exit</button></div> */}
       </div>
       <div>
         <form className="form-user-data" onSubmit={formik.handleSubmit}>
@@ -118,7 +143,7 @@ const UserProfile: React.FC = () => {
           <div className="data-box">
             <label>Your name</label>
             <Input
-              disabled={activeInput}
+              disabled={changeUser}
               classStyles={stylesInputFullname}
               img={imgUser}
               placeholder="Name"
@@ -133,7 +158,7 @@ const UserProfile: React.FC = () => {
             <label>Your email</label>
             <Input
               classStyles={stylesInputEmail}
-              disabled={activeInput}
+              disabled={changeUser}
               img={mail}
               placeholder="Email"
               errors={formik.touched.email ? formik.errors.email : undefined}
@@ -141,7 +166,7 @@ const UserProfile: React.FC = () => {
               {...formik.getFieldProps('email')}
             />
           </div>
-          {!activeInput ? (
+          {changeUser ? (
             <ButtonSimple className="simple-button" type="submit">
               Confirm
             </ButtonSimple>

@@ -38,6 +38,9 @@ const PasswordProfile: React.FC = () => {
     if (type === 'password') {
       setChangePassword(true);
     }
+    if (changePassword === true) {
+      setChangePassword(false);
+    }
   };
 
   const formik = useFormik({
@@ -76,7 +79,7 @@ const PasswordProfile: React.FC = () => {
   const stylesInputPassword = classNames({
     'form-input': true,
     'error-input': formik.touched.password ? formik.errors.password : undefined,
-    'success-input': success,
+    'success-input': success && !formik.errors.password,
   });
 
   return (
@@ -94,7 +97,7 @@ const PasswordProfile: React.FC = () => {
             <Input
               disabled={disabledInput}
               img={eye}
-              classStyles={stylesInputPassword}
+              classStyles="form-input"
               type="password"
               placeholder="***********"
               {...formik.getFieldProps('password')}
