@@ -26,7 +26,7 @@ const TextBlock: React.FC<IProps> = (props: IProps) => {
         {props.className === 'auth-button' ? (
           <>
             <ButtonLink className="auth-button">
-              <Link to="/log-in">Log In</Link>
+              <Link to="/login">Log In</Link>
             </ButtonLink>
             <ButtonLink className="auth-button">
               <Link to="/sign-up">Sign Up</Link>

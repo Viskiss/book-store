@@ -9,11 +9,9 @@ interface IProps {
 const ProtectedRoute: React.FC<IProps> = ({ children }): React.ReactElement => {
   const location = useLocation();
   const isAuth = useAppSelector((state) => state.userRoot.user?.email);
-  // eslint-disable-next-line no-console
-  console.log(isAuth);
 
   if (!isAuth) {
-    return <Navigate to="/log-in" state={{ from: location }} />;
+    return <Navigate to="/login" state={{ from: location }} />;
   }
 
   return children;

@@ -4,6 +4,7 @@ export default styled.div`
 display: flex;
 flex-direction: column;
 position: relative;
+align-items: center;
 
 .lds-ellipsis {
   display: inline-block;
@@ -23,7 +24,7 @@ position: relative;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 .lds-ellipsis div:nth-child(1) {
-  background-color: black;
+  background-color: pink;
   left: 8px;
   animation: lds-ellipsis1 0.6s infinite;
 }
@@ -33,12 +34,12 @@ position: relative;
   animation: lds-ellipsis2 0.6s infinite;
 }
 .lds-ellipsis div:nth-child(3) {
-  background-color: black;
+  background-color: #8d9f4f;
   left: 32px;
   animation: lds-ellipsis2 0.6s infinite;
 }
 .lds-ellipsis div:nth-child(4) {
-  background-color: black;
+  background-color: #344966;
   left: 56px;
   animation: lds-ellipsis3 0.6s infinite;
 }

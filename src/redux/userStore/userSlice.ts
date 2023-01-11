@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 
 import type { UserType } from '../../typesUser';
+
 import {
   changeUserThunk,
   createUserThunk,
@@ -23,12 +24,17 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    exitUser: (state, { payload }: PayloadAction<number>) => {
+
+    exitUser: (state, { payload }: PayloadAction<string>) => {
       if (payload) {
         state.user = null;
+        state.isAuthenticated = false;
+        Cookies.remove('token');
       }
     },
+
   },
+
   extraReducers: (builder) => {
     builder.addCase(createUserThunk.fulfilled, (state, action) => {
       state.user = action.payload.user;
@@ -37,10 +43,6 @@ const userSlice = createSlice({
         state.success = true;
         state.isAuthenticated = true;
       }
-    });
-
-    builder.addCase(createUserThunk.rejected, (state, action) => {
-      state.error = action.error;
     });
 
     builder.addCase(logInUserThunk.fulfilled, (state, action) => {
@@ -59,9 +61,6 @@ const userSlice = createSlice({
     });
 
     builder.addCase(uploadAvatarUserThunk.fulfilled, (state, action) => {
-      const images = action.payload.user.avatar;
-      // eslint-disable-next-line no-console
-      console.log(images);
       state.user = action.payload.user;
     });
 

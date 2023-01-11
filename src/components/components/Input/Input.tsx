@@ -1,12 +1,13 @@
 import type { FormikTouched } from 'formik';
 import type { MouseEventHandler } from 'react';
 import React, { useState } from 'react';
+
 import view from './images/View.svg';
 
 import Styles from './Input.styles';
 
 interface IProps {
-  onChange:(e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   classStyles?: string;
   img: string;
@@ -50,7 +51,11 @@ const Input: React.FC<IProps> = (props: IProps) => {
 
   return (
     <Styles className="input-section">
-      <button onClick={(e) => changeTypeHandler('', e)} type="button" className="form-input_button">
+      <button
+        onClick={(e) => changeTypeHandler('', e)}
+        type="button"
+        className="form-input_button"
+        >
         <img src={typeImg} alt="" />
       </button>
       <input

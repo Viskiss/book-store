@@ -18,15 +18,14 @@ const Button = styled.button<{ className: string }>`
       color: #f0f4ef;
       font-family: "Poppins";
       text-decoration: none;
+    }
 
-      :hover {
-        color: #bfcc94;
-      }
+    :focus {
+      border: 8px solid rgba(214, 219, 231, 1);
     }
 
     :hover {
-      color: #bfcc94;
-      background: #0d1821;
+      background: #0D1821;;
     }
    
 

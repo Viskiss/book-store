@@ -1,4 +1,4 @@
-import type { MouseEvent, MouseEventHandler } from 'react';
+import type { MouseEvent } from 'react';
 import { useState } from 'react';
 import classNames from 'classnames';
 import { useFormik } from 'formik';
@@ -113,10 +113,10 @@ const UserProfile: React.FC = () => {
     }
   };
 
-  // const exitUser = (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
-  //   e.preventDefault();
-  //   dispatch(userSliceActions(exitUser(e)));
-  // };
+  const exitUserHandler = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+    e.preventDefault();
+    dispatch(userSliceActions.exitUser('exit'));
+  };
 
   return (
     <Styles>
@@ -130,7 +130,7 @@ const UserProfile: React.FC = () => {
             <img src={camera} alt="" />
           </Button>
         </div>
-        {/* <div className="exit-box"><button onClick={(e) =>}>Exit</button></div> */}
+        <div className="exit-box"><button onClick={(e) => (exitUserHandler(e))}>Exit</button></div>
       </div>
       <div>
         <form className="form-user-data" onSubmit={formik.handleSubmit}>

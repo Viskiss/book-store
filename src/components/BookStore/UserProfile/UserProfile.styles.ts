@@ -128,14 +128,22 @@ export default styled.section`
     margin-bottom: 10px;
   }
 
-  @media (max-width: 1142px) {
+  @media (max-width: 1350px) {
+    .img-profile {
+    margin-right: 40px;
+    }
+
     .form-input {
       padding: 20px 10px 20px 64px;
     }
+  
+  }
+
+  @media (max-width: 1140px) {
+    padding: 20px 0 104px 0;
   }
 
   @media (max-width: 1004px) {
-    padding: 20px 0 104px 0;
     .img-profile {
       margin-right: 50px;
     }

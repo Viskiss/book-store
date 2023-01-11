@@ -36,11 +36,11 @@ export default styled.header`
 
   .search {
     position: relative;
-    padding-right: 58px;
+    padding-right: 72px;
   }
 
   .search-input {
-    padding: 20px 265px 20px 64px;
+    padding: 20px 251px 20px 64px;
     background: #f0f4ef;
     border-radius: 16px;
     border: none;

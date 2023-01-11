@@ -75,7 +75,7 @@ export const changePasswordThunk = createAsyncThunk(
 );
 
 export const logInUserThunk = createAsyncThunk(
-  'user/logInUser',
+  'user/loginUser',
   async (userData: UserCreateType, { rejectWithValue }) => {
     const { email, password } = userData;
     try {

@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../../../../redux/store';
@@ -15,14 +14,7 @@ import profile from '../images/User.svg';
 import Styles from './Header.styles';
 
 const Header: React.FC = () => {
-  const [isAuth, setIsAuth] = useState(false);
-
   const auth = useAppSelector((store) => store.userRoot.user?.email);
-  useEffect(() => {
-    if (auth) {
-      setIsAuth(true);
-    }
-  }, [auth]);
 
   return (
     <Styles>
@@ -39,10 +31,10 @@ const Header: React.FC = () => {
           </button>
           <input className="search-input" placeholder="Search" />
         </div>
-        {!isAuth ? (
+        {!auth ? (
           <>
             <ButtonLink className="auth-button">
-              <Link to="/log-in">Log In</Link>
+              <Link to="/login">Log In</Link>
             </ButtonLink>
             <ButtonLink className="auth-button">
               <Link to="/sign-up">Sign Up</Link>
@@ -75,10 +67,10 @@ const Header: React.FC = () => {
         <Link className="catalog-link" to="/">
           Catalog
         </Link>
-        {!isAuth ? (
+        {!auth ? (
           <>
             <ButtonLink className="auth-button__small">
-              <Link to="/log-in">Log In</Link>
+              <Link to="/login">Log In</Link>
             </ButtonLink>
             <ButtonLink className="auth-button__small">
               <Link to="/sign-up" />

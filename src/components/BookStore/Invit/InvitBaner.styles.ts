@@ -4,6 +4,7 @@ export default styled.section`
   background: #f0f4ef;
   color: #f0f4ef;
   display: flex;
+  justify-content: center;
   border-radius: 16px;
   margin-bottom: 120px;
 
@@ -31,11 +32,7 @@ export default styled.section`
     }
   }
 
-  @media (max-width: 768px) {
-
-   }
-
-  @media (max-width: 425px) {
+  @media (max-width: 600px) {
     .invite_container {
       max-width: 290px;
       flex-direction: column;
