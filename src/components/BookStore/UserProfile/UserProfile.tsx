@@ -26,7 +26,7 @@ import { handleApiValidationError } from '../../../utils/apiValidationError';
 import { userSliceActions } from '../../../redux/userStore/userSlice';
 
 const UserProfile: React.FC = () => {
-  const [changeUser, setChangeUser] = useState(false);
+  const [changeUser, setChangeUser] = useState(true);
 
   const success = useAppSelector((store) => store.userRoot.changeUserSuccess);
   const user = useAppSelector((store) => store.userRoot.user);
