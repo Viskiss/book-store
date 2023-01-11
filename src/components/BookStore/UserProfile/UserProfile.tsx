@@ -28,7 +28,6 @@ import { userSliceActions } from '../../../redux/userStore/userSlice';
 const UserProfile: React.FC = () => {
   const [changeUser, setChangeUser] = useState(true);
 
-  const success = useAppSelector((store) => store.userRoot.changeUserSuccess);
   const user = useAppSelector((store) => store.userRoot.user);
   const dispatch = useAppDispatch();
 
@@ -86,13 +85,11 @@ const UserProfile: React.FC = () => {
   const stylesInputEmail = classNames({
     'form-input': true,
     'error-input': formik.touched.email ? formik.errors.email : undefined,
-    'success-input': success && !formik.errors.email,
   });
 
   const stylesInputFullname = classNames({
     'form-input': true,
     'error-input': formik.touched.fullName ? formik.errors.fullName : undefined,
-    'success-input': success && !formik.errors.fullName,
   });
 
   const uploadPhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -166,7 +163,7 @@ const UserProfile: React.FC = () => {
               {...formik.getFieldProps('email')}
             />
           </div>
-          {changeUser ? (
+          {!changeUser ? (
             <ButtonSimple className="simple-button" type="submit">
               Confirm
             </ButtonSimple>

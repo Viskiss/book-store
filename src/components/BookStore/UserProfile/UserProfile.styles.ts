@@ -18,8 +18,9 @@ export default styled.section`
 
   .user-photo {
     width: 305px;
-    height: 100%;
-    object-fit: cover;
+    height: 305px;
+    object-fit: contain;
+    background-color: rgb(165 165 165 / 18%);
   }
 
   .img-profile {
