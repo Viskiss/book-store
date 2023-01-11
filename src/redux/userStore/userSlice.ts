@@ -3,14 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 
 import type { UserType } from '../../typesUser';
-
 import {
-  changeUserThunk,
   createUserThunk,
   currentUserThunk,
   logInUserThunk,
-  uploadAvatarUserThunk,
-} from './userThunks';
+} from './thunks/authUser';
+
+import { changeUserThunk, uploadAvatarUserThunk } from './thunks/updateUser';
 
 const initialState = () => ({
   user: null as UserType | null,
@@ -24,7 +23,6 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-
     exitUser: (state, { payload }: PayloadAction<string>) => {
       if (payload) {
         state.user = null;
@@ -32,7 +30,6 @@ const userSlice = createSlice({
         Cookies.remove('token');
       }
     },
-
   },
 
   extraReducers: (builder) => {

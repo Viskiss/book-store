@@ -4,12 +4,12 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 import App from './App';
+import GlobalStyles from './ui/containers/GlobalStyles';
 
 import store from './redux/store';
-
-import GlobalStyles from './components/GlobalStyles';
-import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
