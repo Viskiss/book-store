@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 
-import bookApi from '../../api/Book/booksApi';
+import bookApi from '../../api/book/booksApi';
 
 export const getAllBooksThunk = createAsyncThunk(
   'books/allBooks',

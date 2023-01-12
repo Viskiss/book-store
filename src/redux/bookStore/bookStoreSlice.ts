@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { BookType } from '../../typesBooks';
+import type { BookType } from '../../types/book/typesBooks';
 import { getAllBooksThunk } from './bookStoreThunks';
 
 const initialState = () => ({

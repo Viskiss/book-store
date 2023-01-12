@@ -1,4 +1,4 @@
-import type { AutReqType } from '../../typesUser';
+import type { AutReqType } from '../../types/user/auth';
 import api from '../api';
 
 const USER_PATH_PREFIX = '/user';

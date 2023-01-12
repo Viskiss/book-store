@@ -2,7 +2,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 
-import type { UserType } from '../../typesUser';
+import type { UserType } from '../../types/user/update';
 import {
   createUserThunk,
   currentUserThunk,
@@ -33,36 +33,36 @@ const userSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addCase(createUserThunk.fulfilled, (state, action) => {
-      state.user = action.payload.user;
-      if (action.payload.token) {
-        Cookies.set('token', action.payload.token);
+    builder.addCase(createUserThunk.fulfilled, (state, { payload }) => {
+      state.user = payload.user;
+      if (payload.token) {
+        Cookies.set('token', payload.token);
         state.success = true;
         state.isAuthenticated = true;
       }
     });
 
-    builder.addCase(logInUserThunk.fulfilled, (state, action) => {
-      state.user = action.payload.user;
-      if (action.payload.token) {
-        Cookies.set('token', action.payload.token);
+    builder.addCase(logInUserThunk.fulfilled, (state, { payload }) => {
+      state.user = payload.user;
+      if (payload.token) {
+        Cookies.set('token', payload.token);
         state.success = true;
         state.isAuthenticated = true;
       }
     });
 
-    builder.addCase(changeUserThunk.fulfilled, (state, action) => {
-      if (action.payload) {
+    builder.addCase(changeUserThunk.fulfilled, (state, { payload }) => {
+      if (payload) {
         state.changeUserSuccess = true;
       }
     });
 
-    builder.addCase(uploadAvatarUserThunk.fulfilled, (state, action) => {
-      state.user = action.payload.user;
+    builder.addCase(uploadAvatarUserThunk.fulfilled, (state, { payload }) => {
+      state.user = payload.user;
     });
 
-    builder.addCase(currentUserThunk.fulfilled, (state, action) => {
-      state.user = action.payload.user;
+    builder.addCase(currentUserThunk.fulfilled, (state, { payload }) => {
+      state.user = payload.user;
     });
   },
 });

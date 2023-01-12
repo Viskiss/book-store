@@ -3,9 +3,9 @@ import type { AxiosError } from 'axios';
 import type {
   ChangePasswordType,
   ChangeUserType,
-} from '../../../typesUser';
+} from '../../../types/user/update';
 
-import userApi from '../../../api/User/updateUser';
+import userApi from '../../../api/user/update';
 
 export const changeUserThunk = createAsyncThunk(
   'user/changeUser',

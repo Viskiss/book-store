@@ -2,9 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 import type {
   UserCreateType,
-} from '../../../typesUser';
+} from '../../../types/user/auth';
 
-import userApi from '../../../api/User/authUser';
+import userApi from '../../../api/user/auth';
 
 export const createUserThunk = createAsyncThunk(
   'user/createUser',

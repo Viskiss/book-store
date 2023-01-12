@@ -1,4 +1,4 @@
-import type { AutReqType } from '../../typesBooks';
+import type { AutReqType } from '../../types/book/typesBooks';
 import api from '../api';
 
 const getAllBooksPath = '/api/book-store/books';
