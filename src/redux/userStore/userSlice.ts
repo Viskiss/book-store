@@ -16,7 +16,7 @@ const initialState = () => ({
   success: false,
   changeUserSuccess: false,
   isAuthenticated: false,
-  error: {},
+  error: '',
 });
 
 const userSlice = createSlice({
@@ -63,6 +63,14 @@ const userSlice = createSlice({
 
     builder.addCase(currentUserThunk.fulfilled, (state, { payload }) => {
       state.user = payload.user;
+    });
+
+    builder.addCase(currentUserThunk.rejected, (state, { payload }) => {
+      if (payload) {
+        Cookies.remove('token');
+      }
+      // eslint-disable-next-line no-console
+      console.log(state.error);
     });
   },
 });

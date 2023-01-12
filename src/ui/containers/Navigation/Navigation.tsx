@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router';
 import { lazy, Suspense, useEffect } from 'react';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { currentUserThunk } from '../../../redux/userStore/thunks/authUser';
@@ -18,9 +18,14 @@ const UserProfile = lazy(() => import('../../pages/UserProfile'));
 const Navigation: React.FC = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.userRoot.user);
+  const isUnauth = useAppSelector((state) => state.userRoot.error);
   const isAuthenticated = useAppSelector(
     (state) => state.userRoot.isAuthenticated,
   );
+
+  if (isUnauth) {
+    toast.error(isUnauth);
+  }
 
   useEffect(() => {
     (async () => {

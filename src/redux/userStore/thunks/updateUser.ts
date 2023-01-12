@@ -5,7 +5,7 @@ import type {
   ChangeUserType,
 } from '../../../types/user/update';
 
-import userApi from '../../../api/user/update';
+import userApi from '../../../api/userApi';
 
 export const changeUserThunk = createAsyncThunk(
   'user/changeUser',

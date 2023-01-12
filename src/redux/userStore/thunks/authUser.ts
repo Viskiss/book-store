@@ -4,14 +4,14 @@ import type {
   UserCreateType,
 } from '../../../types/user/auth';
 
-import userApi from '../../../api/user/auth';
+import userApi from '../../../api/authApi';
 
 export const createUserThunk = createAsyncThunk(
   'user/createUser',
   async (userData: UserCreateType, { rejectWithValue }) => {
     const { email, password } = userData;
     try {
-      const user = await userApi.createUser({ email, password });
+      const user = await userApi.signUpUser({ email, password });
       return user.data;
     } catch (err) {
       const error = err as AxiosError;
@@ -44,14 +44,16 @@ export const currentUserThunk = createAsyncThunk(
   'user/currentUser',
   async (_, { rejectWithValue }) => {
     try {
-      const user = await userApi.currentUser();
+      const user = await userApi.getMe();
       return user.data;
     } catch (err) {
       const error = err as AxiosError;
       if (!error.response) {
         throw err;
       }
-      return rejectWithValue(error.response.data);
+      // eslint-disable-next-line no-console
+      console.log(error.response);
+      return rejectWithValue(error.response);
     }
   },
 );

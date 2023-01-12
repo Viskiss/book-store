@@ -8,4 +8,5 @@ export type UserCreateType = {
 export type AutReqType = {
   token?: string;
   user: UserType;
+  message?: string;
 };

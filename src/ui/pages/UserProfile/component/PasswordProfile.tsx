@@ -3,6 +3,7 @@ import { useState } from 'react';
 import * as Yup from 'yup';
 import classNames from 'classnames';
 
+import { toast } from 'react-toastify';
 import Styles from './PasswordProfile.styles';
 
 import { changePasswordThunk } from '../../../../redux/userStore/thunks/updateUser';
@@ -12,6 +13,7 @@ import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button.styles';
 
 import eye from '../images/Hide.svg';
+import { handleApiValidationError } from '../../../../utils/apiValidationError';
 
 const PasswordProfile: React.FC = () => {
   const [changePassword, setChangePassword] = useState(false);
@@ -71,7 +73,23 @@ const PasswordProfile: React.FC = () => {
           id: userId,
           newPassword,
         }),
-      );
+      )
+        .unwrap()
+        .then(() => {
+          toast.success('Password changed');
+        })
+        .catch(
+          (error: {
+            error: Array<{ key: string; path: string; message: string }>;
+            message: string;
+          }) => {
+            if (error?.error && error.message === 'ValidationError') {
+              handleApiValidationError(error.error, formik.setErrors);
+            } else {
+              toast.error(error.message);
+            }
+          },
+        );
     },
   });
 

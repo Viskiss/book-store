@@ -69,6 +69,9 @@ const UserProfile: React.FC = () => {
       const { fullName, email } = values;
       await dispatch(changeUserThunk({ fullName, email, id: userId }))
         .unwrap()
+        .then(() => {
+          toast.success('User changed');
+        })
         .catch(
           (error: {
             error: Array<{ key: string; path: string; message: string }>;
