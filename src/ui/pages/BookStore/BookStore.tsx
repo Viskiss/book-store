@@ -26,7 +26,8 @@ const BookStore: React.FC = () => {
     <StyledBookStore>
       <BookBaner />
       <div className="filter-books">
-        <h2>Catalog</h2>
+        <h2 className="title-catalog">Catalog</h2>
+      </div>
         <div className="books-catalog">
           {!books ? (
         <Loading />
@@ -45,8 +46,6 @@ const BookStore: React.FC = () => {
         </div>
           )}
         </div>
-      </div>
-
       {!isAuth && <AuthBanner />}
     </StyledBookStore>
   );
