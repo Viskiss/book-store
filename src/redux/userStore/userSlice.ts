@@ -65,13 +65,13 @@ const userSlice = createSlice({
       state.user = payload.user;
     });
 
-    builder.addCase(currentUserThunk.rejected, (state, { payload }) => {
-      if (payload) {
-        Cookies.remove('token');
-      }
-      // eslint-disable-next-line no-console
-      console.log(state.error);
-    });
+    // builder.addCase(currentUserThunk.rejected, (state, { payload }) => {
+    //   if (payload) {
+    //     Cookies.remove('token');
+    //   }
+    //   // eslint-disable-next-line no-console
+    //   console.log(state.error);
+    // });
   },
 });
 

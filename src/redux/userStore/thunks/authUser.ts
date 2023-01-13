@@ -51,9 +51,7 @@ export const currentUserThunk = createAsyncThunk(
       if (!error.response) {
         throw err;
       }
-      // eslint-disable-next-line no-console
-      console.log(error.response);
-      return rejectWithValue(error.response);
+      return rejectWithValue(error.response.status);
     }
   },
 );

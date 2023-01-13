@@ -2,12 +2,15 @@ export type BookType = {
   id: number;
   title: string;
   author: string;
+  price : string;
   text: string;
   rate: number;
-  img: string;
-  price : string;
+  cover: string;
+  date: Date;
+  status: string;
+  genre: string;
 };
 
 export type AutReqType = {
-  book: BookType[];
+  books: BookType[];
 };
