@@ -1,5 +1,5 @@
+import type { SelectBookReqType, AutReqType } from '../../../../../types/book/typesBooks';
 import api from '../../../../../api/api';
-import type { AutReqType } from '../../../../../types/book/typesBooks';
 
 const AUTH_PATH_PREFIX = '/book';
 
@@ -7,6 +7,11 @@ const getAllBooks = () => {
   return api.get<AutReqType>(`${AUTH_PATH_PREFIX}/books`);
 };
 
+const getSelectBook = (bookId: number) => {
+  return api.get<SelectBookReqType>(`${AUTH_PATH_PREFIX}/${bookId}`);
+};
+
 export default {
   getAllBooks,
+  getSelectBook,
 };

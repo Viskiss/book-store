@@ -14,3 +14,11 @@ export type BookType = {
 export type AutReqType = {
   books: BookType[];
 };
+
+export type BookIdType = {
+  id: BookType['id'];
+};
+
+export type SelectBookReqType = {
+  book: BookType;
+};

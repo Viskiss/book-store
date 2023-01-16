@@ -18,3 +18,19 @@ export const getAllBooksThunk = createAsyncThunk(
     }
   },
 );
+
+export const getSelectBookThunk = createAsyncThunk(
+  'book/selectBook',
+  async (id: number, { rejectWithValue }) => {
+    try {
+      const user = await bookApi.getSelectBook(id);
+      return user.data;
+    } catch (err) {
+      const error = err as AxiosError;
+      if (!error.response) {
+        throw err;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  },
+);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useAppSelector } from '../../../redux/store';
-import TextBlock from '../../components/TextBlock';
+import { useAppSelector } from '../../../../redux/store';
+import TextBlock from '../../../components/TextBlock/TextBlock';
 import books from './images/books.svg';
 import Styles from './Cart.styles';
 

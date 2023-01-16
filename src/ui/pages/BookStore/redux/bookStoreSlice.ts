@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { BookType } from '../../../../types/book/typesBooks';
-import { getAllBooksThunk } from './bookStoreThunks';
+import { getAllBooksThunk, getSelectBookThunk } from './bookStoreThunks';
 
 const initialState = () => ({
   books: [] as BookType[],
+  book: {} as BookType,
+  genre: [] as string[],
+  authors: [] as string[],
 });
 
 const bookStoreSlice = createSlice({
@@ -12,9 +15,11 @@ const bookStoreSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getAllBooksThunk.fulfilled, (state, { payload }) => {
-      // eslint-disable-next-line no-console
-      console.log(payload.books);
       state.books = payload.books;
+    });
+
+    builder.addCase(getSelectBookThunk.fulfilled, (state, { payload }) => {
+      state.book = payload.book;
     });
   },
 });

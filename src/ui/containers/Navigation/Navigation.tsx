@@ -8,10 +8,11 @@ import { currentUserThunk } from '../../../redux/userStore/thunks/authUser';
 import Loading from './components/Loading';
 
 import MainLayoutStyles from '../MainLayout.styles';
+import SelectBook from '../../pages/BookStore/SelectBookPage/SelectBookPage';
 
 const BookStore = lazy(() => import('../../pages/BookStore'));
 const SignUp = lazy(() => import('../../pages/Auth/SignUp'));
-const Cart = lazy(() => import('../../pages/Cart'));
+const Cart = lazy(() => import('../../pages/BookStore/Cart/Cart'));
 const LogIn = lazy(() => import('../../pages/Auth/LogIn'));
 const UserProfile = lazy(() => import('../../pages/UserProfile'));
 
@@ -43,6 +44,7 @@ const Navigation: React.FC = () => {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<BookStore />} />
+          <Route path="/book/:bookId" element={<SelectBook />} />
 
           {!isAuth && (
             <>

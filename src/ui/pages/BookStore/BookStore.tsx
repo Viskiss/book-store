@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
-import Loading from '../../containers/Navigation/components/Loading/Loading';
 
 import AuthBanner from './Banners/AuthBanner';
 import BookBaner from './Banners/BookBanner';
 
 import StyledBookStore from './BookStore.styles';
-import ItemBook from './ItemBook/ItemBook';
+import Catalog from './Catalog/Catalog';
 import { getAllBooksThunk } from './redux/bookStoreThunks';
 
 const BookStore: React.FC = () => {
@@ -25,27 +24,7 @@ const BookStore: React.FC = () => {
   return (
     <StyledBookStore>
       <BookBaner />
-      <div className="filter-books">
-        <h2 className="title-catalog">Catalog</h2>
-      </div>
-        <div className="books-catalog">
-          {!books ? (
-        <Loading />
-          ) : (
-        <div className="books-catalog__items">
-          {books.map((el) => (
-            <ItemBook
-              price={el.price}
-              cover={el.cover}
-              author={el.author}
-              rate={el.rate}
-              title={el.title}
-              key={el.id}
-            />
-          ))}
-        </div>
-          )}
-        </div>
+      <Catalog />
       {!isAuth && <AuthBanner />}
     </StyledBookStore>
   );
