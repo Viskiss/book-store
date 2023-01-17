@@ -11,12 +11,21 @@ export type BookType = {
   genre: string;
 };
 
+export type GenreType = {
+  id: number;
+  name: string;
+};
+
 export type AutReqType = {
   books: BookType[];
 };
 
 export type BookIdType = {
   id: BookType['id'];
+};
+
+export type GenresType = {
+  genres: GenreType[];
 };
 
 export type SelectBookReqType = {

@@ -20,12 +20,13 @@ const Button = styled.button<{ className: string }>`
       text-decoration: none;
     }
 
-    :focus {
-      border: 8px solid rgba(214, 219, 231, 1);
-    }
-
     :hover {
       background: #0D1821;;
+    }
+
+    .disabled-button {
+      background: #B9BAC4;
+      color: #F0F4EF;
     }
    
 

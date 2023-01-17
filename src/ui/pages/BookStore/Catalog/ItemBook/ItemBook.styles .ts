@@ -51,6 +51,23 @@ export default styled.div`
 
   .rate {
     position: absolute;
-    bottom: 80px;
+    bottom: 60px;
+  }
+  .fill {
+    color: #bfcc94;
+  }
+  .star-svg {
+    margin-right: 15px;
+  }
+
+  .books-rate {
+    .rate-number {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      font-size: 16px;
+      line-height: 24px;
+      color: #b9bac4;
+    }
   }
 `;

@@ -7,8 +7,8 @@ import Footer from './ui/containers/Footer/Footer';
 const App: React.FC = () => {
   return (
     <>
-    <ToastContainer />
-    <Header />
+      <ToastContainer />
+      <Header />
       <Navigation />
       <Footer />
     </>

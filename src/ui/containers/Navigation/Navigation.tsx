@@ -30,13 +30,13 @@ const Navigation: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      await dispatch(currentUserThunk());
+      await dispatch(currentUserThunk()).catch((error: { message: string }) => {
+        if (error.message) {
+          toast.error(error.message);
+        }
+      });
     })();
   }, [isAuthenticated, dispatch]);
-
-  // if (!isAuthenticated) {
-  //   return <Loading />;
-  // }
 
   return (
     <MainLayoutStyles>

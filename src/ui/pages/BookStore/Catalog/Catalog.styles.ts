@@ -1,69 +1,24 @@
 import styled from 'styled-components';
 
 export default styled.section`
-  .cart_container {
+  display: flex;
+  flex-direction: column;
+
+  .books-catalog__items {
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding-bottom: 150px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
-  .img_book {
-    height: 261px;
+  .title-catalog {
+    font-size: 40px;
+    line-height: 60px;
+    color: #0d1821;
+    margin: 0;
   }
 
-  @media (max-width: 834px) {
-    .cart_container {
-      justify-content: flex-start;
-    }
-
-    .img_book {
-      height: 212px;
-      padding-right: 62px;
-    }
-
-    .block-text_main {
-      padding: 0;
-
-      .title {
-        font-size: 18px;
-        line-height: 27px;
-      }
-
-      .text {
-        font-size: 12px;
-        line-height: 18px;
-      }
-
-      .block_text {
-        width: 310px;
-      }
-    }
-  }
-
-  @media (max-width: 750px) {
-    .cart_container {
-      flex-direction: column-reverse;
-      align-items: center;
-      padding-bottom: 100px;
-    }
-
-    .img_book {
-      height: 176px;
-      padding-right: 0;
-      margin-top: 40px;
-    }
-
-    .block-text_main {
-      .block_text {
-        width: 233px;
-      }
-
-      button {
-        font-size: 12px;
-        line-height: 18px;
-        padding: 8px 90px;
-      }
-    }
+  .filter-books {
+    margin-bottom: 50px;
   }
 `;
