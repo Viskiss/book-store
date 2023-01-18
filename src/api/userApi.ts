@@ -1,21 +1,21 @@
-import type { AutReqType } from '../types/user/auth';
+import type { UserType } from '../types/user/update';
 import api from './api';
 
 const USER_PATH_PREFIX = '/user';
 
 const updateUser = (userId: number, data: { email: string; fullName: string }) => {
-  return api.patch<AutReqType>(`${USER_PATH_PREFIX}/${userId}`, data);
+  return api.patch<{ user: UserType }>(`${USER_PATH_PREFIX}/${userId}`, data);
 };
 
 const changePasword = (password: string, newPassword: string, id: number) => {
-  return api.patch<AutReqType>(`${USER_PATH_PREFIX}/${id}/password`, {
+  return api.patch<{ user: UserType }>(`${USER_PATH_PREFIX}/${id}/password`, {
     password,
     newPassword,
   });
 };
 
-const uploadAvatar = (avatar: string | ArrayBuffer | null) => {
-  return api.post<AutReqType>(`${USER_PATH_PREFIX}/upload`, { avatar });
+const uploadAvatar = (avatar: string) => {
+  return api.post<{ user: UserType }>(`${USER_PATH_PREFIX}/upload`, { avatar });
 };
 
 export default {

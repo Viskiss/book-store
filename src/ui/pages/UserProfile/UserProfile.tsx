@@ -23,14 +23,15 @@ import mail from './images/Mail.svg';
 import camera from './images/Camera.svg';
 
 import Styles from './UserProfile.styles';
-import { handleApiValidationError } from '../../../utils/apiValidationError';
+
 import { userSliceActions } from '../../../redux/userStore/userSlice';
+import handleApiValidationError from '../../../utils/handleApiValidationError';
 
 const UserProfile: React.FC = () => {
   const [changeUser, setChangeUser] = useState(true);
   const navigate = useNavigate();
 
-  const user = useAppSelector((store) => store.userRoot.user);
+  const user = useAppSelector((store) => store.userStore.user);
   const dispatch = useAppDispatch();
 
   let userId = 0;
@@ -105,7 +106,7 @@ const UserProfile: React.FC = () => {
       fileReader.onload = async () => {
         try {
           await dispatch(
-            uploadAvatarUserThunk(fileReader.result),
+            uploadAvatarUserThunk(fileReader.result as string),
           );
         } catch (err) {
           const error = err as Error;

@@ -5,16 +5,16 @@ import { useAppSelector } from '../../../redux/store';
 import Button from '../../components/Button/RoundButtonLink';
 import ButtonLink from '../../components/Button/ButtonLink';
 
-import logo from '../images/logoH.svg';
-import loupe from '../images/Search.svg';
-import cart from '../images/Cart.svg';
-import like from '../images/Heart.svg';
-import profile from '../images/User.svg';
+import logo from './images/logoH.svg';
+import loupe from './images/Search.svg';
+import cart from './images/Cart.svg';
+import like from './images/Heart.svg';
+import profile from './images/User.svg';
 
 import Styles from './Header.styles';
 
 const Header: React.FC = () => {
-  const auth = useAppSelector((store) => store.userRoot.user?.email);
+  const user = useAppSelector((store) => store.userStore.user);
 
   return (
     <Styles>
@@ -31,7 +31,7 @@ const Header: React.FC = () => {
           </button>
           <input className="search-input" placeholder="Search" />
         </div>
-        {!auth ? (
+        {!user ? (
           <>
             <ButtonLink className="auth-button">
               <Link to="/login">Log In</Link>
@@ -67,7 +67,7 @@ const Header: React.FC = () => {
         <Link className="catalog-link" to="/">
           Catalog
         </Link>
-        {!auth ? (
+        {!user ? (
           <>
             <ButtonLink className="auth-button__small">
               <Link to="/login">Log In</Link>

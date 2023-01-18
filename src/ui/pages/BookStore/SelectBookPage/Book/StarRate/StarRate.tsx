@@ -8,7 +8,7 @@ import StyledBook from './StarRate.styles';
 import { useAppSelector } from '../../../../../../redux/store';
 
 const StarRate: React.FC = () => {
-  const [initRate, setInitRate] = useState(0);
+  const [initRate] = useState(0);
   const book = useAppSelector((store) => store.bookStore.book);
 
   return (

@@ -26,7 +26,7 @@ export const changeUserThunk = createAsyncThunk(
 
 export const uploadAvatarUserThunk = createAsyncThunk(
   'user/avatarUser',
-  async (userData: string | ArrayBuffer | null, { rejectWithValue }) => {
+  async (userData: string, { rejectWithValue }) => {
     try {
       const user = await userApi.uploadAvatar(userData);
       return user.data;

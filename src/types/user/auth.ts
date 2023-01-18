@@ -4,9 +4,3 @@ export type UserCreateType = {
   email: UserType['email'];
   password: UserType['password'];
 };
-
-export type AutReqType = {
-  token?: string;
-  user: UserType;
-  message?: string;
-};

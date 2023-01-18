@@ -8,7 +8,7 @@ import bookReduser from '../ui/pages/BookStore/redux/bookStoreSlice';
 const store = configureStore({
   devTools: true,
   reducer: {
-    userRoot: userReduser,
+    userStore: userReduser,
     bookStore: bookReduser,
   },
 });

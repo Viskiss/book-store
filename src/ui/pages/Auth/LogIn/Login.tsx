@@ -9,19 +9,20 @@ import Button from '../../../components/Button/Button.styles';
 
 import { useAppDispatch, useAppSelector } from '../../../../redux/store';
 import { logInUserThunk } from '../../../../redux/userStore/thunks/authUser';
+import handleApiValidationError from '../../../../utils/handleApiValidationError';
 
 import mailIcon from '../images/Mail.svg';
 import eyeIcon from '../images/Hide.svg';
 import menPicture from '../images/men.svg';
 
 import Styles from './Login.styles';
-import { handleApiValidationError } from '../../../../utils/apiValidationError';
+import { validFields } from '../../../../utils/yupValid';
 
 const Login: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const success = useAppSelector((store) => store.userRoot.success);
+  const success = useAppSelector((store) => store.userStore.user);
 
   const dispatch = useAppDispatch();
 
@@ -31,15 +32,8 @@ const Login: React.FC = () => {
       password: '',
     },
     validationSchema: Yup.object({
-      email: Yup.string()
-        .email('Email must be a valid email')
-        .min(10, 'Min 10 length, Ex: 123@mail.ru')
-        .required(),
-      password: Yup.string()
-        .lowercase()
-        .min(5, 'The password is too short(min 5)')
-        .trim()
-        .required('Password required'),
+      email: validFields.email,
+      password: validFields.password,
     }),
     onSubmit: async (values) => {
       const { email, password } = values;

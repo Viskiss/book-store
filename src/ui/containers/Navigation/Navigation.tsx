@@ -1,14 +1,17 @@
 import { Route, Routes } from 'react-router';
 import { lazy, Suspense, useEffect } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+// import { toast } from 'react-toastify';
+
+import Loading from './components/Loading';
+import SelectBook from '../../pages/BookStore/SelectBookPage/SelectBookPage';
 
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { currentUserThunk } from '../../../redux/userStore/thunks/authUser';
 
-import Loading from './components/Loading';
+import constants from '../../../utils/constants';
 
-import MainLayoutStyles from '../MainLayout.styles';
-import SelectBook from '../../pages/BookStore/SelectBookPage/SelectBookPage';
+import MainLayoutStyled from '../MainLayout.styles';
+import tokenHelper from '../../../utils/tokenHelper';
 
 const BookStore = lazy(() => import('../../pages/BookStore'));
 const SignUp = lazy(() => import('../../pages/Auth/SignUp'));
@@ -17,52 +20,52 @@ const LogIn = lazy(() => import('../../pages/Auth/LogIn'));
 const UserProfile = lazy(() => import('../../pages/UserProfile'));
 
 const Navigation: React.FC = () => {
+  const { routesLink } = constants;
+
   const dispatch = useAppDispatch();
-  const isAuth = useAppSelector((state) => state.userRoot.user);
-  const isUnauth = useAppSelector((state) => state.userRoot.error);
+
+  const user = useAppSelector((state) => state.userStore.user);
   const isAuthenticated = useAppSelector(
-    (state) => state.userRoot.isAuthenticated,
+    (state) => state.userStore.isAuthenticated,
   );
 
-  if (isUnauth) {
-    toast.error(isUnauth);
-  }
+  // eslint-disable-next-line no-console
+  console.log(tokenHelper.token.get());
 
   useEffect(() => {
     (async () => {
-      await dispatch(currentUserThunk()).catch((error: { message: string }) => {
-        if (error.message) {
-          toast.error(error.message);
-        }
-      });
+      // eslint-disable-next-line no-constant-condition
+      // if (!) {
+      //   return;
+      // }
+      await dispatch(currentUserThunk());
     })();
   }, [isAuthenticated, dispatch]);
 
   return (
-    <MainLayoutStyles>
-      <ToastContainer />
+    <MainLayoutStyled>
       <Suspense fallback={<Loading />}>
         <Routes>
-          <Route path="/" element={<BookStore />} />
-          <Route path="/book/:bookId" element={<SelectBook />} />
+          <Route path={routesLink.home} element={<BookStore />} />
+          <Route path={routesLink.bookId} element={<SelectBook />} />
 
-          {!isAuth && (
+          {!user && (
             <>
-              <Route path="/sign-up" element={<SignUp />} />
-              <Route path="/login" element={<LogIn />} />
+              <Route path={routesLink.signUp} element={<SignUp />} />
+              <Route path={routesLink.login} element={<LogIn />} />
             </>
           )}
 
-          {isAuth && (
+          {user && (
             <>
-              <Route path="/cart" element={<Cart />} />
+              <Route path={routesLink.cart} element={<Cart />} />
 
-              <Route path="/profile" element={<UserProfile />} />
+              <Route path={routesLink.profile} element={<UserProfile />} />
             </>
           )}
         </Routes>
       </Suspense>
-    </MainLayoutStyles>
+    </MainLayoutStyled>
   );
 };
 

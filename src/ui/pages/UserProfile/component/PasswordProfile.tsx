@@ -13,7 +13,7 @@ import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button.styles';
 
 import eye from '../images/Hide.svg';
-import { handleApiValidationError } from '../../../../utils/apiValidationError';
+import handleApiValidationError from '../../../../utils/handleApiValidationError';
 
 const PasswordProfile: React.FC = () => {
   const [changePassword, setChangePassword] = useState(false);
@@ -22,7 +22,7 @@ const PasswordProfile: React.FC = () => {
   let userId = 0;
   let userPassword = '';
 
-  const user = useAppSelector((store) => store.userRoot.user);
+  const user = useAppSelector((store) => store.userStore.user);
 
   if (user) {
     userId = user.id;

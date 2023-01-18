@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import type { SelectChangeEvent } from '@mui/material/Select';
 import Select from '@mui/material/Select';
 
@@ -8,35 +9,38 @@ import InputLabel from '@mui/material/InputLabel';
 
 import { useAppDispatch, useAppSelector } from '../../../../../../redux/store';
 import {
-  getAllGenresThunk,
+  // getAllGenresThunk,
   getFilterBooksThunk,
 } from '../../../redux/bookStoreThunks';
-import { booksSliceActions } from '../../../redux/bookStoreSlice';
-
-import uncheck from '../images/Unchecked.svg';
-import check from '../images/Checked.svg';
 
 const Genre: React.FC = () => {
-  const filterBooks = useAppSelector((store) => store.bookStore.filter);
-  const [filter, setFilter] = useState(filterBooks);
-  const [butonImg, setButtonImg] = useState(uncheck);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [filter, setFilter] = useState<string[]>([]);
 
   const dispatch = useAppDispatch();
   const genres = useAppSelector((store) => store.bookStore.genres);
 
   useEffect(() => {
-    if (genres.length === 0) {
-      dispatch(getAllGenresThunk());
-    }
     dispatch(getFilterBooksThunk(filter));
-  }, [dispatch, filter, genres.length]);
+  }, [dispatch, filter]);
+
+  useEffect(() => {
+    searchParams.set('genres', filter.join());
+    if (!filter.length) {
+      searchParams.delete('genres');
+    }
+    setSearchParams(searchParams);
+  }, [filter, searchParams, setSearchParams]);
 
   const handleChangeGenre = (event: SelectChangeEvent) => {
-    // useseartchparams
-    dispatch(getFilterBooksThunk(event.target.value));
-    dispatch(booksSliceActions.filterBooks(event.target.value));
-    setFilter(event.target.value);
-    setButtonImg(check);
+    event.preventDefault();
+
+    const {
+      target: { value },
+    } = event;
+    setFilter(
+      typeof value === 'string' ? value.split(',') : value,
+    );
   };
 
   return (
@@ -44,24 +48,25 @@ const Genre: React.FC = () => {
       <InputLabel className="select-input">Gerne</InputLabel>
       <Select
         className="select-input-box"
-        value={filter}
+        multiple
+        value={ filter as unknown as string }
         label="Gerne"
         onChange={handleChangeGenre}
       >
         {genres.map((genre) => (
           <MenuItem className="select-item" value={genre.name} key={genre.id}>
-            <span
+            {/* <span
                   className="button-check"
                   onClick={() => setButtonImg(check)}
                 >
                   <img src={butonImg} alt="" />
-            </span>
+            </span> */}
             {genre.name}
           </MenuItem>
         ))}
-        <MenuItem className="select-item" value="All">
+        {/* <MenuItem className="select-item" value="''">
           All
-        </MenuItem>
+        </MenuItem> */}
       </Select>
     </FormControl>
   );

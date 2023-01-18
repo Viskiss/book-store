@@ -7,7 +7,7 @@ import Styles from './Cart.styles';
 const Cart: React.FC = () => {
   const [emptyCart, setEmptyCart] = useState(false);
 
-  const cart = useAppSelector((store) => store.userRoot.success);
+  const cart = useAppSelector((store) => store.userStore.user);
 
   useEffect(() => {
     if (cart) {

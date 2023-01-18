@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { SelectChangeEvent } from '@mui/material/Select';
 import Select from '@mui/material/Select';
@@ -7,25 +7,34 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 
-import { useAppDispatch } from '../../../../../redux/store';
+import { useAppDispatch, useAppSelector } from '../../../../../redux/store';
+
+import { getAllGenresThunk } from '../../redux/bookStoreThunks';
+import Genre from './Gerne/Genre';
+import SortByPrice from './SortByPrice';
+import Loading from '../../../../containers/Navigation/components/Loading/Loading';
 
 import StyledFilters from './Filters.styles';
-
-import Genre from './Gerne/Gerne';
-import SortByPrice from './SortBy/SortByPrice';
-import SortByName from './SortBy/SortByName';
-import SortByAuthorName from './SortBy/SortByAuthorName';
 
 const sortList = ['Price', 'Name', 'Author name', 'Rating', 'Date of issue'];
 
 const Filters: React.FC = () => {
   const [filter, setFilter] = useState('Price');
+  const genres = useAppSelector((store) => store.bookStore.genres);
 
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    if (genres.length === 0) {
+      dispatch(getAllGenresThunk());
+    }
+  }, [dispatch, genres.length]);
+
+  if (!genres.length) {
+    return <Loading />;
+  }
+
   const hangleChangeSort = (e: SelectChangeEvent<string>) => {
-    // eslint-disable-next-line no-console
-    console.log(e.target.value);
     setFilter(e.target.value);
   };
 
@@ -35,11 +44,9 @@ const Filters: React.FC = () => {
         <h2 className="title-catalog">Catalog</h2>
       </div>
       <div>
-        <Genre />
 
-        {filter === 'Price' && <SortByPrice />}
-        {filter === 'Name' && <SortByName />}
-        {filter === 'Author name' && <SortByAuthorName />}
+        <Genre />
+        <SortByPrice />
 
         <FormControl className="select">
           <InputLabel className="select-input">Sort by {filter}</InputLabel>

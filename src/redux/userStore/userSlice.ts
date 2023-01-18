@@ -13,8 +13,6 @@ import { changeUserThunk, uploadAvatarUserThunk } from './thunks/updateUser';
 
 const initialState = () => ({
   user: null as UserType | null,
-  success: false,
-  changeUserSuccess: false,
   isAuthenticated: false,
   error: '',
 });
@@ -23,11 +21,9 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    exitUser: (state, { payload }: PayloadAction<string>) => {
+    exitUser: (state, { payload }) => {
       if (payload) {
         state.user = null;
-        state.isAuthenticated = false;
-        Cookies.remove('token');
       }
     },
   },
@@ -35,26 +31,20 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(createUserThunk.fulfilled, (state, { payload }) => {
       state.user = payload.user;
-      if (payload.token) {
-        Cookies.set('token', payload.token);
-        state.success = true;
-        state.isAuthenticated = true;
-      }
+
+      Cookies.set('token', payload.token);
+      state.isAuthenticated = true;
     });
 
     builder.addCase(logInUserThunk.fulfilled, (state, { payload }) => {
       state.user = payload.user;
-      if (payload.token) {
-        Cookies.set('token', payload.token);
-        state.success = true;
-        state.isAuthenticated = true;
-      }
+
+      Cookies.set('token', payload.token);
+      state.isAuthenticated = true;
     });
 
     builder.addCase(changeUserThunk.fulfilled, (state, { payload }) => {
-      if (payload) {
-        state.changeUserSuccess = true;
-      }
+      state.user = payload.user;
     });
 
     builder.addCase(uploadAvatarUserThunk.fulfilled, (state, { payload }) => {
@@ -62,16 +52,9 @@ const userSlice = createSlice({
     });
 
     builder.addCase(currentUserThunk.fulfilled, (state, { payload }) => {
+      state.isAuthenticated = true;
       state.user = payload.user;
     });
-
-    // builder.addCase(currentUserThunk.rejected, (state, { payload }) => {
-    //   if (payload) {
-    //     Cookies.remove('token');
-    //   }
-    //   // eslint-disable-next-line no-console
-    //   console.log(state.error);
-    // });
   },
 });
 

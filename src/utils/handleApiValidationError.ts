@@ -1,6 +1,6 @@
 import type { FormikErrors } from 'formik';
 
-export const handleApiValidationError = <E extends object>(
+const handleApiValidationError = <E extends object>(
   apiErrors: Array<{ key: string; path: string; message: string }>,
   setErrors: (errors: FormikErrors<E>) => void,
 ) => {
@@ -11,3 +11,5 @@ export const handleApiValidationError = <E extends object>(
 
   setErrors(errors as FormikErrors<E>);
 };
+
+export default handleApiValidationError;

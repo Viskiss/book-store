@@ -9,20 +9,21 @@ import Button from '../../../components/Button/Button.styles';
 
 import { useAppDispatch, useAppSelector } from '../../../../redux/store';
 import { createUserThunk } from '../../../../redux/userStore/thunks/authUser';
+import handleApiValidationError from '../../../../utils/handleApiValidationError';
 
 import mailIcon from '../images/Mail.svg';
 import eyeIcon from '../images/Hide.svg';
 import menPicture from '../images/men.svg';
 
 import Styles from './SignUp.styles';
-import { handleApiValidationError } from '../../../../utils/apiValidationError';
+import { validFields } from '../../../../utils/yupValid';
 
 const SignUp: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
-  const success = useAppSelector((store) => store.userRoot.success);
+  const success = useAppSelector((store) => store.userStore.user);
 
   const formik = useFormik({
     initialValues: {
@@ -31,18 +32,9 @@ const SignUp: React.FC = () => {
       repeatPassword: '',
     },
     validationSchema: Yup.object({
-      email: Yup.string()
-        .email('Email must be a valid email')
-        .min(10, 'Min 10 length, Ex: 123@mail.ru')
-        .required(),
-      password: Yup.string()
-        .lowercase()
-        .min(5, 'The password is too short(min 5)')
-        .trim()
-        .required('Password required'),
-      repeatPassword: Yup.string()
-        .oneOf([Yup.ref('password'), null], 'Passwords must match')
-        .required('Please retype your password.'),
+      email: validFields.email,
+      password: validFields.password,
+      repeatPassword: validFields.repeatPassword,
     }),
     onSubmit: async (values) => {
       const { email, password } = values;

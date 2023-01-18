@@ -10,7 +10,7 @@ export default styled.div`
 
   .book-info {
     position: relative;
-    height: 284px;
+    height: 270px;
     max-width: 305px;
     margin-top: 30px;
   }

@@ -1,22 +1,20 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
-const API_URL = 'http://localhost:4000/api';
+import constants from '../utils/constants';
+import tokenHelper from '../utils/tokenHelper';
 
-const api = axios.create({
-  baseURL: API_URL,
+const getAuthHeader = (token = tokenHelper.token.get()) => `Bearer ${token}`;
+
+export const axiosInstance = axios.create({
+  baseURL: constants.api,
+  headers: {
+    authorization: getAuthHeader(),
+  },
 });
 
-api.interceptors.request.use((request) => {
-  const token = Cookies.get('token');
-  if (token) {
-    // eslint-disable-next-line no-param-reassign
-    request.headers = {
-      ...request.headers,
-      authorization: `Bearer ${token}`,
-    };
-  }
-  return request;
-});
+export const setApiToken = (token: string) => {
+  tokenHelper.token.set(token);
+  axiosInstance.defaults.headers.authorization = getAuthHeader();
+};
 
-export default api;
+export default axiosInstance;
