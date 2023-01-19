@@ -1,21 +1,22 @@
 import { Route, Routes } from 'react-router';
 import { lazy, Suspense, useEffect } from 'react';
-// import { toast } from 'react-toastify';
+import Lottie from 'lottie-react';
 
-import Loading from './components/Loading';
-import SelectBook from '../../pages/BookStore/SelectBookPage/SelectBookPage';
+import options from 'utils/lottieOptions';
+import constants from 'utils/constants';
+import loader from 'ui/assets/lottieFiles/9329-loading.json';
 
-import { useAppDispatch, useAppSelector } from '../../../redux/store';
-import { currentUserThunk } from '../../../redux/userStore/thunks/authUser';
+import SelectBook from 'ui/pages/BookStore/SelectBookPage';
 
-import constants from '../../../utils/constants';
+import { useAppDispatch, useAppSelector } from 'redux/store';
+import { currentUserThunk } from 'redux/userStore/thunks/authUser';
 
 import MainLayoutStyled from '../MainLayout.styles';
-import tokenHelper from '../../../utils/tokenHelper';
 
 const BookStore = lazy(() => import('../../pages/BookStore'));
 const SignUp = lazy(() => import('../../pages/Auth/SignUp'));
-const Cart = lazy(() => import('../../pages/BookStore/Cart/Cart'));
+const Cart = lazy(() => import('../../pages/BookStore/Cart'));
+const LokesBooks = lazy(() => import('../../pages/BookStore/LikesBooks'));
 const LogIn = lazy(() => import('../../pages/Auth/LogIn'));
 const UserProfile = lazy(() => import('../../pages/UserProfile'));
 
@@ -29,22 +30,24 @@ const Navigation: React.FC = () => {
     (state) => state.userStore.isAuthenticated,
   );
 
-  // eslint-disable-next-line no-console
-  console.log(tokenHelper.token.get());
-
   useEffect(() => {
     (async () => {
-      // eslint-disable-next-line no-constant-condition
-      // if (!) {
-      //   return;
-      // }
+      if (!isAuthenticated) {
+        return;
+      }
       await dispatch(currentUserThunk());
     })();
   }, [isAuthenticated, dispatch]);
 
+  if (isAuthenticated && !user) {
+    return <Lottie style={options.loadingStyles} animationData={loader} />;
+  }
+
   return (
     <MainLayoutStyled>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={
+      <Lottie style={options.loadingStyles} animationData={loader} />}
+>
         <Routes>
           <Route path={routesLink.home} element={<BookStore />} />
           <Route path={routesLink.bookId} element={<SelectBook />} />
@@ -59,7 +62,7 @@ const Navigation: React.FC = () => {
           {user && (
             <>
               <Route path={routesLink.cart} element={<Cart />} />
-
+              <Route path={routesLink.likes} element={<LokesBooks />} />
               <Route path={routesLink.profile} element={<UserProfile />} />
             </>
           )}

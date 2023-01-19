@@ -1,11 +1,13 @@
-import TextBlock from '../../../../components/TextBlock/TextBlock';
+import constants from 'utils/constants';
 
-import StyledAuthBanner from './AuthBanner.styles';
+import TextBlock from 'ui/components/TextBlock/TextBlock';
 
 import fairy from './images/fairy.svg';
 import fairy2 from './images/fairy2.svg';
 import fairy3 from './images/fairy3.svg';
 import castle from './images/castle.svg';
+
+import StyledAuthBanner from './AuthBanner.styles';
 
 const AuthBanner: React.FC = () => {
   return (
@@ -18,7 +20,7 @@ const AuthBanner: React.FC = () => {
           img={fairy}
           img2={fairy2}
           img3={fairy3}
-          link="/logIn"
+          link={constants.routesLink.home}
           className="auth-button"
         />
         <div className="castle-block">

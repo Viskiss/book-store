@@ -3,7 +3,7 @@ import type { AxiosError } from 'axios';
 import type {
   ChangePasswordType,
   ChangeUserType,
-} from '../../../types/user/update';
+} from '../../../types/updateUser';
 
 import userApi from '../../../api/userApi';
 

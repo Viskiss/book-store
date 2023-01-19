@@ -1,25 +1,29 @@
+import type { SetStateAction } from 'react';
 import { useEffect, useState } from 'react';
+import Lottie from 'lottie-react';
+import type { PropsValue, SingleValue } from 'react-select';
+import Select from 'react-select';
 
-import type { SelectChangeEvent } from '@mui/material/Select';
-import Select from '@mui/material/Select';
+import loader from 'ui/assets/lottieFiles/9329-loading.json';
 
-import FormControl from '@mui/material/FormControl';
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
+import options from 'utils/lottieOptions';
+import constants from 'utils/constants';
 
-import { useAppDispatch, useAppSelector } from '../../../../../redux/store';
-
+import { useAppDispatch, useAppSelector } from 'redux/store';
 import { getAllGenresThunk } from '../../redux/bookStoreThunks';
-import Genre from './Gerne/Genre';
+
+import Genre from './Genre';
 import SortByPrice from './SortByPrice';
-import Loading from '../../../../containers/Navigation/components/Loading/Loading';
 
 import StyledFilters from './Filters.styles';
 
-const sortList = ['Price', 'Name', 'Author name', 'Rating', 'Date of issue'];
+type SortType = {
+  id: number;
+  name: string;
+};
 
 const Filters: React.FC = () => {
-  const [filter, setFilter] = useState('Price');
+  const [filter, setFilter] = useState<string>('');
   const genres = useAppSelector((store) => store.bookStore.genres);
 
   const dispatch = useAppDispatch();
@@ -31,11 +35,11 @@ const Filters: React.FC = () => {
   }, [dispatch, genres.length]);
 
   if (!genres.length) {
-    return <Loading />;
+    return <Lottie style={options.loadingStyles} animationData={loader} />;
   }
 
-  const hangleChangeSort = (e: SelectChangeEvent<string>) => {
-    setFilter(e.target.value);
+  const handleChangeSort = (e: SingleValue<SortType>) => {
+    setFilter(e as unknown as SetStateAction<string>);
   };
 
   return (
@@ -48,24 +52,15 @@ const Filters: React.FC = () => {
         <Genre />
         <SortByPrice />
 
-        <FormControl className="select">
-          <InputLabel className="select-input">Sort by {filter}</InputLabel>
-          <Select
-            className="select-input-box"
-            value={filter}
-            label="Sort"
-            onChange={hangleChangeSort}
-          >
-            {sortList.map((sort) => (
-              <MenuItem className="select-item" value={sort} key={sort}>
-                {sort}
-              </MenuItem>
-            ))}
-            <MenuItem className="select-item" value="All">
-              All
-            </MenuItem>
-          </Select>
-        </FormControl>
+        <Select
+    className="select"
+    closeMenuOnSelect={false}
+    value={filter as unknown as PropsValue<SortType> | undefined}
+    getOptionLabel={(sort: SortType) => sort.name}
+    getOptionValue={(sort: SortType) => sort.name}
+    options={constants.sort}
+    onChange={(e) => handleChangeSort(e)}
+  />
       </div>
     </StyledFilters>
   );

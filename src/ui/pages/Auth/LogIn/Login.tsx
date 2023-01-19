@@ -4,27 +4,25 @@ import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import Input from '../../../components/Input/Input';
-import Button from '../../../components/Button/Button.styles';
+import Input from 'ui/components/Input';
+import Button from 'ui/components/Button/Button.styles';
 
-import { useAppDispatch, useAppSelector } from '../../../../redux/store';
-import { logInUserThunk } from '../../../../redux/userStore/thunks/authUser';
-import handleApiValidationError from '../../../../utils/handleApiValidationError';
+import { useAppDispatch, useAppSelector } from 'redux/store';
+import { logInUserThunk } from 'redux/userStore/thunks/authUser';
+import handleApiValidationError from 'utils/handleApiValidationError';
+import { validFields } from 'utils/yupValid';
 
-import mailIcon from '../images/Mail.svg';
-import eyeIcon from '../images/Hide.svg';
-import menPicture from '../images/men.svg';
+import mailIcon from 'ui/assets/images/Mail.svg';
+import eyeIcon from 'ui/assets/images/Hide.svg';
+import menPicture from 'ui/assets/images/men.svg';
 
-import Styles from './Login.styles';
-import { validFields } from '../../../../utils/yupValid';
+import StyledLogin from './Login.styles';
 
 const Login: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
-  const success = useAppSelector((store) => store.userStore.user);
-
   const dispatch = useAppDispatch();
+  const success = useAppSelector((store) => store.userStore.user);
 
   const formik = useFormik({
     initialValues: {
@@ -68,7 +66,7 @@ const Login: React.FC = () => {
   });
 
   return (
-    <Styles>
+    <StyledLogin>
       <div className="login_container">
         <div>
           <form onSubmit={formik.handleSubmit} className="login-form">
@@ -103,7 +101,7 @@ const Login: React.FC = () => {
           <img className="men-pick" src={menPicture} alt="" height={522} />
         </div>
       </div>
-    </Styles>
+    </StyledLogin>
   );
 };
 

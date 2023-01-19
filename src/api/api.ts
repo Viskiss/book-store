@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-import constants from '../utils/constants';
+import config from '../utils/config';
 import tokenHelper from '../utils/tokenHelper';
 
 const getAuthHeader = (token = tokenHelper.token.get()) => `Bearer ${token}`;
 
 export const axiosInstance = axios.create({
-  baseURL: constants.api,
+  baseURL: config.apiBaseUrl,
   headers: {
-    authorization: getAuthHeader(),
+    Authorization: getAuthHeader(),
   },
 });
 

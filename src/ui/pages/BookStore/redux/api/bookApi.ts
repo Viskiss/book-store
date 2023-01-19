@@ -15,7 +15,7 @@ const getSelectBook = (bookId: number) => {
   return api.get<{book: BookType}>(`${AUTH_PATH_PREFIX}/${bookId}`);
 };
 
-const getFilterBooks = (gerne: string[]) => {
+const getFilterBooks = (gerne: string) => {
   return api.get<{books: BookType[]}>(`${AUTH_PATH_PREFIX}/books/${gerne}`);
 };
 

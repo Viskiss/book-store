@@ -2,11 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 import type {
   UserCreateType,
-} from '../../../types/user/auth';
+} from '../../../types/authUser';
 
 import userApi from '../../../api/authApi';
 
-export const createUserThunk = createAsyncThunk(
+export const signUpThunk = createAsyncThunk(
   'user/createUser',
   async (userData: UserCreateType, { rejectWithValue }) => {
     const { email, password } = userData;

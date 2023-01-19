@@ -1,3 +1,3 @@
-export type { UserCreateType } from './user/auth';
-export type { AvatarUserType, ChangePasswordType, ChangeUserType, UserType } from './user/update';
+export type { UserCreateType } from './authUser';
+export type { AvatarUserType, ChangePasswordType, ChangeUserType, UserType } from './updateUser';
 export type { BookType, GenreType } from './typesBooks';

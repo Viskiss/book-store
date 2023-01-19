@@ -8,11 +8,12 @@ export default styled.section`
   .block-text_main {
     padding-left: 108px;
     z-index: 1000;
-    .block_text {
-      width: 200px;
-    }
   }
-
+  
+  .block_text {
+    width: 200px;
+  }
+  
   .title {
     font-family: "Poppins";
     font-weight: 700;

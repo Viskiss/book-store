@@ -23,6 +23,7 @@ const bookStoreSlice = createSlice({
     });
 
     builder.addCase(getAllGenresThunk.fulfilled, (state, { payload }) => {
+      const genres = payload.genres.map((name) => name.name);
       state.genres = payload.genres;
     });
 

@@ -3,16 +3,14 @@ import Lottie from 'lottie-react';
 import options from 'utils/lottieOptions';
 import develop from 'ui/assets/lottieFiles/web-address-registration.json';
 
-import StyledCart from './Cart.styles';
+import StyledLikesBooks from './LikesBooks.styles';
 
-const Cart: React.FC = () => {
+const LikesBooks: React.FC = () => {
   return (
-    <StyledCart>
-      <div className="cart_container">
+    <StyledLikesBooks>
       <Lottie style={options.loadingStyles} animationData={develop} />
-      </div>
-    </StyledCart>
+    </StyledLikesBooks>
   );
 };
 
-export default Cart;
+export default LikesBooks;

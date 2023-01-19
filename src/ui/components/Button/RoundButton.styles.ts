@@ -13,10 +13,6 @@ const Button = styled.button`
   :hover {
     background: #0d1821;
   }
-
-  svg:hover {
-  fill: #bfcc94;
-}
 `;
 
 export default Button;

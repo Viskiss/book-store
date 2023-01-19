@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import Styles from './TextBlock.styles';
-
 import ButtonLink from '../Button/ButtonLink';
+
+import Styles from './TextBlock.styles';
 
 interface IProps {
   h1: string;

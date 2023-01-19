@@ -21,7 +21,7 @@ export const getAllBooksThunk = createAsyncThunk(
 
 export const getFilterBooksThunk = createAsyncThunk(
   'book/getFilterBooks',
-  async (gerne: string[], { rejectWithValue }) => {
+  async (gerne: string, { rejectWithValue }) => {
     try {
       const books = await bookApi.getFilterBooks(gerne);
       return books.data;

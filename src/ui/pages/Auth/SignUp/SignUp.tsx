@@ -4,24 +4,23 @@ import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import Input from '../../../components/Input/Input';
-import Button from '../../../components/Button/Button.styles';
+import Input from 'ui/components/Input/Input';
+import Button from 'ui/components/Button/Button.styles';
 
-import { useAppDispatch, useAppSelector } from '../../../../redux/store';
-import { createUserThunk } from '../../../../redux/userStore/thunks/authUser';
-import handleApiValidationError from '../../../../utils/handleApiValidationError';
+import { useAppDispatch, useAppSelector } from 'redux/store';
+import { signUpThunk } from 'redux/userStore/thunks/authUser';
+import handleApiValidationError from 'utils/handleApiValidationError';
+import { validFields } from 'utils/yupValid';
 
-import mailIcon from '../images/Mail.svg';
-import eyeIcon from '../images/Hide.svg';
-import menPicture from '../images/men.svg';
+import mailIcon from 'ui/assets/images/Mail.svg';
+import eyeIcon from 'ui/assets/images/Hide.svg';
+import menPicture from 'ui/assets/images/men.svg';
 
-import Styles from './SignUp.styles';
-import { validFields } from '../../../../utils/yupValid';
+import StyledSignUp from './SignUp.styles';
 
 const SignUp: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
   const success = useAppSelector((store) => store.userStore.user);
 
@@ -38,7 +37,7 @@ const SignUp: React.FC = () => {
     }),
     onSubmit: async (values) => {
       const { email, password } = values;
-      await dispatch(createUserThunk({ email, password }))
+      await dispatch(signUpThunk({ email, password }))
         .unwrap()
         .then(() => {
           navigate(`${success}` ? '/' : `${location.state.from.pathname}`);
@@ -69,7 +68,7 @@ const SignUp: React.FC = () => {
   });
 
   return (
-    <Styles>
+    <StyledSignUp>
       <div className="signup_container">
         <div>
           <form onSubmit={formik.handleSubmit} className="login-form">
@@ -120,7 +119,7 @@ const SignUp: React.FC = () => {
           <img className="men-pick" src={menPicture} alt="" height={522} />
         </div>
       </div>
-    </Styles>
+    </StyledSignUp>
   );
 };
 

@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import logo from './images/logoF.svg';
 import map from './images/map.png';
 
-import Styles from './Footer.styles';
+import StyledFooter from './Footer.styles';
 
 const Footer: React.FC = () => {
   return (
-    <Styles>
+    <StyledFooter>
       <div className="footer_container">
         <div className="logo-box">
           <img className="logo" src={logo} alt="" />
@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
           <img className="map_location-img" src={map} alt="" />
         </div>
       </div>
-    </Styles>
+    </StyledFooter>
   );
 };
 

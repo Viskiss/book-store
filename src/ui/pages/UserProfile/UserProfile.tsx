@@ -6,33 +6,35 @@ import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import Input from 'ui/components/Input/Input';
+import Button from 'ui/components/Button/RoundButton.styles';
+import ButtonSimple from 'ui/components/Button/Button.styles';
+
+import { useAppDispatch, useAppSelector } from 'redux/store';
+import { userSliceActions } from 'redux/userStore/userSlice';
 import {
   changeUserThunk,
   uploadAvatarUserThunk,
-} from '../../../redux/userStore/thunks/updateUser';
+} from 'redux/userStore/thunks/updateUser';
+import { validFields } from 'utils/yupValid';
+import handleApiValidationError from 'utils/handleApiValidationError';
+import tokenHelper from 'utils/tokenHelper';
 
-import Input from '../../components/Input/Input';
+import mail from 'ui/assets/images/Mail.svg';
+import camera from 'ui/assets/images/Camera.svg';
+import imgUser from 'ui/assets/images/User.svg';
+
 import PasswordProfile from './component/PasswordProfile';
-import Button from '../../components/Button/RoundButton.styles';
-import ButtonSimple from '../../components/Button/Button.styles';
 
-import defaultPhoto from './images/User photo.svg';
-import imgUser from './images/User.svg';
-import mail from './images/Mail.svg';
-import camera from './images/Camera.svg';
+import defaultPhoto from './images/UserPhoto.svg';
 
-import Styles from './UserProfile.styles';
-
-import { userSliceActions } from '../../../redux/userStore/userSlice';
-import handleApiValidationError from '../../../utils/handleApiValidationError';
+import StyledUserProfile from './UserProfile.styles';
 
 const UserProfile: React.FC = () => {
   const [changeUser, setChangeUser] = useState(true);
   const navigate = useNavigate();
-
-  const user = useAppSelector((store) => store.userStore.user);
   const dispatch = useAppDispatch();
+  const user = useAppSelector((store) => store.userStore.user);
 
   let userId = 0;
 
@@ -60,11 +62,8 @@ const UserProfile: React.FC = () => {
       email: user?.email || '',
     },
     validationSchema: Yup.object({
-      fullName: Yup.string().trim().min(5, 'The fullName is too short(min 5)'),
-      email: Yup.string()
-        .email('Email must be a valid email')
-        .min(10, 'Min 10 length, Ex: 123@mail.ru')
-        .required(),
+      email: validFields.email,
+      fullName: validFields.fullName,
     }),
     onSubmit: async (values) => {
       const { fullName, email } = values;
@@ -105,9 +104,7 @@ const UserProfile: React.FC = () => {
       fileReader.readAsDataURL(selectedFile[0]);
       fileReader.onload = async () => {
         try {
-          await dispatch(
-            uploadAvatarUserThunk(fileReader.result as string),
-          );
+          await dispatch(uploadAvatarUserThunk(fileReader.result as string));
         } catch (err) {
           const error = err as Error;
           return toast.error(error.message);
@@ -116,28 +113,34 @@ const UserProfile: React.FC = () => {
     }
   };
 
-  const exitUserHandler = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+  const exitUserHandler = (
+    e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
+  ) => {
     e.preventDefault();
     if (user) {
-      dispatch(userSliceActions.exitUser('exit'));
+      tokenHelper.token.remove();
+      dispatch(userSliceActions.exitUser(1));
       navigate('/');
     }
   };
 
   return (
-    <Styles>
+    <StyledUserProfile>
       <div className="img-profile">
         <img className="user-photo" src={user?.avatar || defaultPhoto} alt="" />
         <div className="load-avatar">
-        <div className="drop-box">
-      <input type="file" onChange={(e) => uploadPhoto(e)} />
-        </div>
+          <div className="drop-box">
+            <input type="file" onChange={(e) => uploadPhoto(e)} />
+          </div>
           <Button className="add-avatar">
             <img src={camera} alt="" />
           </Button>
         </div>
-        <div className="exit-box"><button onClick={(e) => (exitUserHandler(e))}>Exit</button></div>
+        <div className="exit-box">
+          <button onClick={(e) => exitUserHandler(e)}>Exit</button>
+        </div>
       </div>
+
       <div>
         <form className="form-user-data" onSubmit={formik.handleSubmit}>
           <div className="user-change_preview">
@@ -146,6 +149,7 @@ const UserProfile: React.FC = () => {
               Change information
             </a>
           </div>
+
           <div className="data-box">
             <label>Your name</label>
             <Input
@@ -160,6 +164,7 @@ const UserProfile: React.FC = () => {
               {...formik.getFieldProps('fullName')}
             />
           </div>
+
           <div className="data-box">
             <label>Your email</label>
             <Input
@@ -172,6 +177,7 @@ const UserProfile: React.FC = () => {
               {...formik.getFieldProps('email')}
             />
           </div>
+
           {!changeUser ? (
             <ButtonSimple className="simple-button" type="submit">
               Confirm
@@ -180,7 +186,7 @@ const UserProfile: React.FC = () => {
         </form>
         <PasswordProfile />
       </div>
-    </Styles>
+    </StyledUserProfile>
   );
 };
 

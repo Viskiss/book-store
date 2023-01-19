@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating';
-import { useAppDispatch } from '../../../../../redux/store';
-import Button from '../../../../components/Button/Button.styles';
+
+import Button from 'ui/components/Button/Button.styles';
+
+import { useAppDispatch } from 'redux/store';
 import { getSelectBookThunk } from '../../redux/bookStoreThunks';
+
 import StyledItemBook from './ItemBook.styles ';
 
 interface IProps {

@@ -1,19 +1,21 @@
-import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import Cookies from 'js-cookie';
 
-import type { UserType } from '../../types/user/update';
+import { setApiToken } from '../../api/api';
+
+import type { UserType } from '../../types';
+import tokenHelper from '../../utils/tokenHelper';
+
 import {
-  createUserThunk,
   currentUserThunk,
   logInUserThunk,
+  signUpThunk,
 } from './thunks/authUser';
 
 import { changeUserThunk, uploadAvatarUserThunk } from './thunks/updateUser';
 
 const initialState = () => ({
   user: null as UserType | null,
-  isAuthenticated: false,
+  isAuthenticated: tokenHelper.token.get() ?? false,
   error: '',
 });
 
@@ -24,22 +26,23 @@ const userSlice = createSlice({
     exitUser: (state, { payload }) => {
       if (payload) {
         state.user = null;
+        state.isAuthenticated = false;
       }
     },
   },
 
   extraReducers: (builder) => {
-    builder.addCase(createUserThunk.fulfilled, (state, { payload }) => {
+    builder.addCase(signUpThunk.fulfilled, (state, { payload }) => {
       state.user = payload.user;
 
-      Cookies.set('token', payload.token);
+      setApiToken(payload.token);
       state.isAuthenticated = true;
     });
 
     builder.addCase(logInUserThunk.fulfilled, (state, { payload }) => {
       state.user = payload.user;
 
-      Cookies.set('token', payload.token);
+      setApiToken(payload.token);
       state.isAuthenticated = true;
     });
 

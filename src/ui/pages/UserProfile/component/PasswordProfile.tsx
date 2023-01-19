@@ -2,18 +2,19 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
 import classNames from 'classnames';
-
 import { toast } from 'react-toastify';
-import Styles from './PasswordProfile.styles';
-
-import { changePasswordThunk } from '../../../../redux/userStore/thunks/updateUser';
-import { useAppDispatch, useAppSelector } from '../../../../redux/store';
 
 import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button.styles';
 
-import eye from '../images/Hide.svg';
+import { changePasswordThunk } from '../../../../redux/userStore/thunks/updateUser';
+import { useAppDispatch, useAppSelector } from '../../../../redux/store';
+import { validFields } from '../../../../utils/yupValid';
 import handleApiValidationError from '../../../../utils/handleApiValidationError';
+
+import eye from '../images/Hide.svg';
+
+import Styles from './PasswordProfile.styles';
 
 const PasswordProfile: React.FC = () => {
   const [changePassword, setChangePassword] = useState(false);
@@ -51,19 +52,9 @@ const PasswordProfile: React.FC = () => {
       repeatPassword: '',
     },
     validationSchema: Yup.object({
-      password: Yup.string()
-        .lowercase()
-        .min(5, 'The password is too short(min 5)')
-        .trim()
-        .required('Password required'),
-      newPassword: Yup.string()
-        .lowercase()
-        .min(5, 'The password is too short(min 5)')
-        .trim()
-        .required('Password required'),
-      repeatPassword: Yup.string()
-        .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
-        .required('Please retype your password.'),
+      password: validFields.password,
+      newPassword: validFields.newPassword,
+      repeatPassword: validFields.repeatPasswordProfile,
     }),
     onSubmit: async (values) => {
       const { password, newPassword } = values;

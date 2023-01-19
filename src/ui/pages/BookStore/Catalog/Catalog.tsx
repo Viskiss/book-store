@@ -1,6 +1,10 @@
-import { useAppSelector } from '../../../../redux/store';
+import Lottie from 'lottie-react';
 
-import Loading from '../../../containers/Navigation/components/Loading/Loading';
+import options from 'utils/lottieOptions';
+import loader from 'ui/assets/lottieFiles/9329-loading.json';
+
+import { useAppSelector } from 'redux/store';
+
 import Filters from './Filters/Filters';
 import ItemBook from './ItemBook/ItemBook';
 
@@ -15,7 +19,7 @@ const Catalog: React.FC = () => {
         <Filters />
         <div className="books-catalog">
           {!books ? (
-            <Loading />
+             <Lottie style={options.loadingStyles} animationData={loader} />
           ) : (
             <div className="books-catalog__items">
               {books.map((el) => (

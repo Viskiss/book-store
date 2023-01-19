@@ -5,11 +5,18 @@ const routes = {
   cart: '/cart',
   profile: '/profile',
   bookId: '/book/:bookId',
+  likes: '/likes-book',
 };
 
-const API_URL = 'http://localhost:4000/api';
+const sortList = [
+  { id: 1, name: 'Price' },
+  { id: 2, name: 'Name' },
+  { id: 3, name: 'Author name' },
+  { id: 4, name: 'Rating' },
+  { id: 5, name: 'Date of issue' },
+];
 
 export default {
+  sort: sortList,
   routesLink: routes,
-  api: API_URL,
 };

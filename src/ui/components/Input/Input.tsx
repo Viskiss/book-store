@@ -2,9 +2,9 @@ import type { FormikTouched } from 'formik';
 import type { MouseEventHandler } from 'react';
 import React, { useState } from 'react';
 
-import view from './images/View.svg';
+import view from 'ui/assets/images/View.svg';
 
-import Styles from './Input.styles';
+import StyledInput from './Input.styles';
 
 interface IProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -50,7 +50,7 @@ const Input: React.FC<IProps> = (props: IProps) => {
   };
 
   return (
-    <Styles className="input-section">
+    <StyledInput className="input-section">
       <button
         onClick={(e) => changeTypeHandler('', e)}
         type="button"
@@ -73,7 +73,7 @@ const Input: React.FC<IProps> = (props: IProps) => {
       ) : (
         <div className="label">{props.label}</div>
       )}
-    </Styles>
+    </StyledInput>
   );
 };
 
