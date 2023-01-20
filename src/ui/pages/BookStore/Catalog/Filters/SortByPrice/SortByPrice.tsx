@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import ReactSlider from 'react-slider';
 
 const SortByPrice: React.FC = () => {
-  const [price, setPrice] = useState<number[]>([20, 37]);
+  // const [price, setPrice] = useState<number[]>([20, 37]);
 
   // const selectPrice = 0;
 

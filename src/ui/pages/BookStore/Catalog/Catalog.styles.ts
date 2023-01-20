@@ -18,7 +18,7 @@ export default styled.section`
     margin: 0;
   }
 
-  .filter-books {
+  /* .filter-books {
     margin-bottom: 50px;
-  }
+  } */
 `;

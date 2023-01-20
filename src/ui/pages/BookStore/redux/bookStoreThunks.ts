@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
+import type { FilterType } from 'types/typesBooks';
 
 import bookApi from './api/bookApi';
 
@@ -21,9 +22,9 @@ export const getAllBooksThunk = createAsyncThunk(
 
 export const getFilterBooksThunk = createAsyncThunk(
   'book/getFilterBooks',
-  async (gerne: string, { rejectWithValue }) => {
+  async (filterData: FilterType, { rejectWithValue }) => {
     try {
-      const books = await bookApi.getFilterBooks(gerne);
+      const books = await bookApi.getFilterBooks(filterData);
       return books.data;
     } catch (err) {
       const error = err as AxiosError;

@@ -35,4 +35,8 @@ export default styled.div`
   .select-input-box {
     color: #344966;
   }
+
+  .filter-books {
+    display: flex;
+  }
 `;

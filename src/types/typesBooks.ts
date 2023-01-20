@@ -2,7 +2,7 @@ export type BookType = {
   id: number;
   title: string;
   author: string;
-  price : string;
+  price: string;
   text: string;
   rate: number;
   cover: string;
@@ -14,4 +14,13 @@ export type BookType = {
 export type GenreType = {
   id: number;
   name: string;
+};
+
+export type FilterType = {
+  genre?: string | null;
+  select?: string | null;
+  search?: string;
+  page?: number;
+  minPrice?: number;
+  maxPrice?: number;
 };
