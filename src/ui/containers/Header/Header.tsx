@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
+import type { ChangeEvent } from 'react';
+import { useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import ButtonLink from 'ui/components/Button/ButtonLink';
-import AuthUserLinks from './AuthUserLinks';
 
-import { useAppSelector } from '../../../redux/store';
-import constants from '../../../utils/constants';
+import { useAppSelector } from 'redux/store';
+import constants from 'utils/constants';
+import AuthUserLinks from './AuthUserLinks';
 
 import logo from './images/logoH.svg';
 import loupe from './images/Search.svg';
@@ -13,7 +15,21 @@ import StyledHeader from './Header.styles';
 
 const Header: React.FC = () => {
   const { routesLink } = constants;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [filter, setFilter] = useState<string>('');
   const user = useAppSelector((store) => store.userStore.user);
+
+  useEffect(() => {
+    searchParams.set('search', filter as string);
+    if (!filter) {
+      searchParams.delete('search');
+    }
+    setSearchParams(searchParams);
+  }, [filter, searchParams, setSearchParams]);
+
+  const handleChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setFilter(e.target.value);
+  };
 
   return (
     <StyledHeader>
@@ -28,7 +44,7 @@ const Header: React.FC = () => {
           <button className="search-input_button">
             <img src={loupe} alt="" />
           </button>
-          <input className="search-input" placeholder="Search" />
+          <input onChange={(e) => handleChangeSearch(e)} value={filter} className="search-input" placeholder="Search" />
         </div>
         {!user ? (
           <>

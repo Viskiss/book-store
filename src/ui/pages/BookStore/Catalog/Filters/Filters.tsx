@@ -27,9 +27,10 @@ const Filters: React.FC = () => {
   }, [dispatch, genres.length]);
 
   useEffect(() => {
-    const genre = searchParams.get('genres') || 'All';
-    const select = searchParams.get('select');
-    dispatch(getFilterBooksThunk({ genre, select }));
+    const genre = searchParams.get('genres') || '';
+    const select = searchParams.get('select') || 'Name';
+    const search = searchParams.get('search') || '';
+    dispatch(getFilterBooksThunk({ genre, select, search }));
   }, [dispatch, searchParams]);
 
   if (!genres.length) {
