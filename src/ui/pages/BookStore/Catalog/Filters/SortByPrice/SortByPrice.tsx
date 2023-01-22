@@ -1,46 +1,53 @@
-// import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import ReactSlider from 'react-slider';
 
+import StyledSortByPrice from './SortByPrice.styles';
+
 const SortByPrice: React.FC = () => {
-  // const [price, setPrice] = useState<number[]>([20, 37]);
+  const minStartPrice = 7.39;
+  const maxStartPrice = 70.99;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [value, setValue] = useState([minStartPrice, maxStartPrice]);
 
-  // const selectPrice = 0;
+  useEffect(() => {
+    const minValue = Number(searchParams.get('minPrice') || minStartPrice);
+    const maxValue = Number(searchParams.get('maxPrice') || maxStartPrice);
+    setValue([minValue, maxValue]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  // // const dispatch = useAppDispatch();
+  const selectionPriceHandler = (value: number[]) => {
+    searchParams.set('minPrice', value[0].toString());
+    searchParams.set('maxPrice', value[1].toString());
+    if (value[0] === minStartPrice && value[1] === maxStartPrice) {
+      searchParams.delete('minPrice');
+      searchParams.delete('maxPrice');
+    }
+    setSearchParams(searchParams);
+  };
 
-  // const handleChangePrice = (
-  //   event: Event,
-  //   newValue: number | number[],
-  //   activeThumb: number,
-  // ) => {
-  //   if (!Array.isArray(newValue)) {
-  //     return;
-  //   }
-
-  //   if (activeThumb === 0) {
-  //     setPrice([Math.min(newValue[0], price[1] - 10), price[1]]);
-  //   } else {
-  //     setPrice([price[0], Math.max(newValue[1], price[0] + 10)]);
-  //   }
-  // };
-
-  // const hangleSearchPrice = (e: SelectChangeEvent<number>) => {
-  //   // eslint-disable-next-line no-console
-  //   console.log(e.target.value);
-  // };
+  const changeHandler = (value: number[]) => {
+    setValue(value);
+  };
 
   return (
-    <ReactSlider
-    className="horizontal-slider"
-    thumbClassName="example-thumb"
-    trackClassName="example-track"
-    defaultValue={[0, 100]}
-    ariaLabelledby={['first-slider-label', 'second-slider-label']}
-    ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-    renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
-    pearling
-    minDistance={10}
-/>
+    <StyledSortByPrice>
+      <ReactSlider
+          value={value}
+          min={minStartPrice}
+          max={maxStartPrice}
+          onChange={(value) => changeHandler(value)}
+          onAfterChange={(value) => selectionPriceHandler(value)}
+          thumbClassName="example-thumb"
+          trackClassName="example-track"
+          renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
+      />
+      <div className="prise-info">
+        <p>$ {value[0]}</p>
+        <p>$ {value[1]}</p>
+      </div>
+    </StyledSortByPrice>
   );
 };
 

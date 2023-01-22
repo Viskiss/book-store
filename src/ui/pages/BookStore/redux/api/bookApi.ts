@@ -6,6 +6,12 @@ import api from 'api/api';
 
 const AUTH_PATH_PREFIX = '/book';
 
+type GetFilteredBooksType = {
+  books: BookType[];
+  count: number;
+  pages: number;
+};
+
 const getAllBooks = () => {
   return api.get<{books: BookType[]}>(`${AUTH_PATH_PREFIX}/books`);
 };
@@ -19,7 +25,7 @@ const getSelectBook = (bookId: number) => {
 };
 
 const getFilterBooks = (filters: FilterType) => {
-  return api.get<{books: BookType[]}>(`${AUTH_PATH_PREFIX}/filter`, { params: { filters } }as AxiosRequestConfig);
+  return api.get<GetFilteredBooksType>(`${AUTH_PATH_PREFIX}/filter`, { params: { ...filters } }as AxiosRequestConfig);
 };
 
 export default {

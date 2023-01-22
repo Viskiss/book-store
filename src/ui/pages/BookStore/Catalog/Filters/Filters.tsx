@@ -13,6 +13,7 @@ import Genre from './Genres/Genre';
 
 import StyledFilters from './Filters.styles';
 import FilterSelect from './FilterSelect/FilterSelect';
+import SortByPrice from './SortByPrice/SortByPrice';
 
 const Filters: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -30,7 +31,10 @@ const Filters: React.FC = () => {
     const genre = searchParams.get('genres') || '';
     const select = searchParams.get('select') || 'Name';
     const search = searchParams.get('search') || '';
-    dispatch(getFilterBooksThunk({ genre, select, search }));
+    const page = (Number(searchParams.get('page') || 1));
+    const minPrice = Number(searchParams.get('minPrice') || '7.39');
+    const maxPrice = Number(searchParams.get('maxPrice') || '70.99');
+    dispatch(getFilterBooksThunk({ genre, select, search, page, maxPrice, minPrice }));
   }, [dispatch, searchParams]);
 
   if (!genres.length) {
@@ -44,7 +48,7 @@ const Filters: React.FC = () => {
       </div>
       <div className="filter-books">
         <Genre />
-        {/* <SortByPrice /> */}
+        <SortByPrice />
         <FilterSelect />
       </div>
     </StyledFilters>

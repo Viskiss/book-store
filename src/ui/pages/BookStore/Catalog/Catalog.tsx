@@ -9,6 +9,7 @@ import Filters from './Filters/Filters';
 import ItemBook from './ItemBook/ItemBook';
 
 import StyledCatalog from './Catalog.styles';
+import Pagination from '../Pagintion/Pagenation';
 
 const Catalog: React.FC = () => {
   const books = useAppSelector((store) => store.bookStore.books);
@@ -36,6 +37,7 @@ const Catalog: React.FC = () => {
             </div>
           )}
         </div>
+        <Pagination />
       </div>
     </StyledCatalog>
   );
