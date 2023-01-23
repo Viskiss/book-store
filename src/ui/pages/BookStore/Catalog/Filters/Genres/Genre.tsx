@@ -17,12 +17,19 @@ const Genre: React.FC = () => {
   const genres = useAppSelector((store) => store.bookStore.genres);
 
   const changeFilterState = (newFilter: string) => {
-    const index = filter.indexOf(newFilter);
-    if (index !== -1) {
-      const arr = filter.splice(index, 1);
-      setFilter(arr);
-    }
-    setFilter([...filter, newFilter]);
+    // const index = filter.indexOf(newFilter);
+    // if (index !== -1) {
+    //   const arr = filter.splice(index, 1);
+    //   setFilter(arr);
+    // }
+
+    setFilter((prevFilter) => {
+      if (prevFilter.includes(newFilter)) {
+        return prevFilter.filter((searchFilter) => searchFilter !== newFilter);
+      }
+
+      return [...prevFilter, newFilter];
+    });
   };
 
   useEffect(() => {
