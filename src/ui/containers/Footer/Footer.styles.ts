@@ -8,6 +8,7 @@ export default styled.footer`
   display: flex;
   justify-content: center;
   margin-top: auto;
+  margin-top: 150px;
 
   .footer_container {
     max-width: 1280px;

@@ -127,7 +127,7 @@ const UserProfile: React.FC = () => {
   return (
     <StyledUserProfile>
       <div className="img-profile">
-        <img className="user-photo" src={user?.avatar || defaultPhoto} alt="" />
+        <img className="user-photo" src={user?.avatar ? user?.avatar : defaultPhoto } alt="" />
         <div className="load-avatar">
           <div className="drop-box">
             <input type="file" onChange={(e) => uploadPhoto(e)} />

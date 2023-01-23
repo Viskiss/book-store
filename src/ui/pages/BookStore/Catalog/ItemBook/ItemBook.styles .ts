@@ -70,4 +70,16 @@ export default styled.div`
       color: #b9bac4;
     }
   }
+
+  .cart-button {
+    position: absolute;
+    padding: 10px 50px;
+    width: 100%;
+    bottom: 0;
+    font-size: 20px;
+    line-height: 28px;
+    border: 2px solid #0d1821;
+    color: #0d1821;
+    background-color: white;
+  }
 `;

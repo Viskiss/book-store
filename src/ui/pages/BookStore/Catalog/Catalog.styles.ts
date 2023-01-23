@@ -6,9 +6,8 @@ export default styled.section`
 
   .books-catalog__items {
     display: flex;
-    flex-direction: row;
+  gap: 20px;
     flex-wrap: wrap;
-    justify-content: space-between;
   }
 
   .title-catalog {
@@ -18,7 +17,7 @@ export default styled.section`
     margin: 0;
   }
 
-  /* .filter-books {
-    margin-bottom: 50px;
-  } */
+  .books-catalog {
+    margin-bottom: 80px;
+  }
 `;

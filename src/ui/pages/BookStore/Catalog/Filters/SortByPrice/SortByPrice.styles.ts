@@ -1,11 +1,65 @@
 import styled from 'styled-components';
 
-export default styled.div`
-  padding: 40px 15px;
-  top: 0;
-  min-width: 413px;
-  text-align: start;
-  z-index: 1;
+export default styled.div<{ drop: boolean }>`
+  position: relative;
+  background: #F0F4EF;
+  height: 40px;
+  border-radius: 16px;
+  margin-left: 20px;
+
+  .select-box--items {
+    display: ${(props) => (props.drop ? 'flex' : 'none')};
+    position: absolute;
+    z-index: 1000;
+    z-index: 1000;
+    flex-direction: column;
+    width: 413px;
+    height: 151px;
+    border-radius: 16px;
+    background: #f0f4ef;
+  }
+  .select-box--item {
+    border-radius: 16px;
+    font-size: 16px;
+    line-height: 28px;
+    color: #344966;
+    background: #f0f4ef;
+  }
+
+  .select-box--text {
+    margin: 12px 0 12px 15px;
+  }
+
+  .select-box--input {
+    border: none;
+    font-weight: 700;
+    font-size: 18px;
+    color: #0d1821;
+    line-height: 27px;
+    padding: 10px 0 10px 17px;
+    width: 179px;
+  }
+
+  .select-box--button {
+    position: absolute;
+    border: none;
+    top: 15px;
+    right: 20px;
+  }
+
+  .select-box--arrow {
+    transform: ${(props) => (props.drop ? 'rotate(90deg)' : '')};
+  }
+
+  .select-box--slider {
+    margin-top: 50px;
+    margin-left: 18px;
+    padding: 10px 15px;
+    top: 0;
+    width: 349px;
+    text-align: start;
+    z-index: 1;
+  }
 
   .polygon {
     position: absolute;
@@ -14,14 +68,17 @@ export default styled.div`
   }
   .prise-info {
     display: flex;
+    padding: 0 10px;
     justify-content: space-between;
-    margin-top: 37px;
-    font-weight: 400;
     font-size: 16px;
     line-height: 34px;
     letter-spacing: 0.75px;
+    color: #344966;
   }
-  .example-thumb{
+
+  .example-thumb {
+    position: absolute;
+    top: 0;
     height: 32px;
     width: 32px;
     color: #fff;
@@ -29,24 +86,24 @@ export default styled.div`
     cursor: grab;
     font-size: 0;
     background-color: white;
-    border: solid 2px #BFCC94;
-    :focus{
+    border: solid 2px #bfcc94;
+    :focus {
       outline: none;
     }
   }
-  
-  .example-track{
+
+  .example-track {
     top: 8px;
     height: 12px;
     border-radius: 40px;
   }
   .example-track-1 {
-    background: #BFCC94; 
+    background: #bfcc94;
   }
   .example-track-0 {
-     background: #D6D8E7; 
-  } 
-  .example-track-2{ 
-    background: #D6D8E7; 
+    background: #d6d8e7;
+  }
+  .example-track-2 {
+    background: #d6d8e7;
   }
 `;

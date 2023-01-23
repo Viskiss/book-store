@@ -7,7 +7,7 @@ import options from 'utils/lottieOptions';
 
 import { useAppDispatch, useAppSelector } from 'redux/store';
 import { useSearchParams } from 'react-router-dom';
-import { getAllGenresThunk, getFilterBooksThunk } from '../../redux/bookStoreThunks';
+import { getAllGenresThunk, getFilterBooksThunk } from '../../redux/thunks/bookStoreThunks';
 
 import Genre from './Genres/Genre';
 

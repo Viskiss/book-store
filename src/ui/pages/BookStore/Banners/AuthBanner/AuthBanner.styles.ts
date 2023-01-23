@@ -4,7 +4,7 @@ export default styled.section`
   background: #f0f4ef;
   display: flex;
   border-radius: 16px;
-  margin-bottom: 150px;
+  margin-top: 100px;
 
   .auth_container {
     width: 1280px;

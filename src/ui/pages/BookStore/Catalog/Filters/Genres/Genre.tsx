@@ -1,50 +1,76 @@
-import type { SetStateAction } from 'react';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import type { MultiValue, PropsValue } from 'react-select';
-import Select from 'react-select';
-import type { GenreType } from 'types';
 
 import { useAppDispatch, useAppSelector } from 'redux/store';
 
-import StyledGenresSelect from './Genre.styles';
+import arrow from 'ui/assets/images/arrowRight.svg';
+
+import StyledSelect from './Genre.styles';
+import ItemGenre from './ItemGenre';
 
 const Genre: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [dropSelect, setDropSelect] = useState(false);
   const [filter, setFilter] = useState<string[]>([]);
-  const [isInputValue, setInputValue] = useState<GenreType[]>([]);
 
   const dispatch = useAppDispatch();
   const genres = useAppSelector((store) => store.bookStore.genres);
 
+  const changeFilterState = (newFilter: string) => {
+    const index = filter.indexOf(newFilter);
+    if (index !== -1) {
+      const arr = filter.splice(index, 1);
+      setFilter(arr);
+    }
+    setFilter([...filter, newFilter]);
+  };
+
   useEffect(() => {
     searchParams.set('genres', filter.join());
-    if (!isInputValue.length) {
+    if (!filter.length) {
       searchParams.delete('genres');
     }
     setSearchParams(searchParams);
-  }, [dispatch, filter, isInputValue.length, searchParams, setSearchParams]);
+  }, [dispatch, filter, searchParams, setSearchParams]);
 
-  const handleChangeGenre = (e: MultiValue<GenreType>) => {
-    e.forEach((item) => {
-      setFilter([...filter, item.name]);
-    });
-    setInputValue(e as SetStateAction<GenreType[]>);
+  const handleDropSelect = () => {
+    if (dropSelect) {
+      setDropSelect(false);
+    }
+    if (!dropSelect) {
+      setDropSelect(true);
+    }
   };
 
   return (
-    <StyledGenresSelect>
-      <Select
-        className="select"
-        closeMenuOnSelect={false}
-        value={isInputValue as PropsValue<GenreType> | undefined}
-        isMulti
-        getOptionLabel={(genre: GenreType) => genre.name}
-        getOptionValue={(genre: GenreType) => genre.name}
-        options={genres}
-        onChange={(e) => handleChangeGenre(e)}
-      />
-    </StyledGenresSelect>
+    <StyledSelect drop={dropSelect}>
+      <div className="select-box">
+        <input
+          value="Genre"
+          className="select-box--input"
+          type="text"
+          disabled
+        />
+        <button
+          onClick={() => handleDropSelect()}
+          className="select-box--button"
+        >
+          <img className="select-box--arrow" src={arrow} alt="" />
+        </button>
+      </div>
+
+      <div className="select-box--items">
+        {genres.map((item) => (
+          <ItemGenre
+            key={item.id}
+            filter={filter}
+            setFilter={changeFilterState}
+            name={item.name}
+            id={item.id}
+          />
+        ))}
+      </div>
+    </StyledSelect>
   );
 };
 

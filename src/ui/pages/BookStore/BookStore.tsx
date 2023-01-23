@@ -7,7 +7,7 @@ import BookBaner from './Banners/BookBanner';
 
 import StyledBookStore from './BookStore.styles';
 import Catalog from './Catalog/Catalog';
-import { getAllBooksThunk } from './redux/bookStoreThunks';
+import { getAllBooksThunk } from './redux/thunks/bookStoreThunks';
 
 const BookStore: React.FC = () => {
   const dispatch = useAppDispatch();

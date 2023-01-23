@@ -4,10 +4,11 @@ import { Rating } from 'react-simple-star-rating';
 
 import Button from 'ui/components/Button/Button.styles';
 
-import { useAppDispatch } from 'redux/store';
-import { getSelectBookThunk } from '../../redux/bookStoreThunks';
+import { useAppDispatch, useAppSelector } from 'redux/store';
+import { getSelectBookThunk } from '../../redux/thunks/bookStoreThunks';
 
 import StyledItemBook from './ItemBook.styles ';
+import { AddBookThunk } from '../../redux/thunks/cartThunks';
 
 interface IProps {
   cover: string;
@@ -20,6 +21,8 @@ interface IProps {
 
 const ItemBook: React.FC<IProps> = (props: IProps) => {
   const [rating] = useState(props.rate);
+  const [addedToCart, setAddedToCart] = useState('simple-button');
+  const user = useAppSelector((store) => store.userStore.user);
 
   const navigate = useNavigate();
 
@@ -29,6 +32,15 @@ const ItemBook: React.FC<IProps> = (props: IProps) => {
     e.preventDefault();
     dispatch(getSelectBookThunk(id));
     navigate(`/book/${id}`);
+  };
+
+  const handlerAddToCart = (
+    e: React.MouseEvent<HTMLElement>,
+    bookId: number,
+  ) => {
+    e.preventDefault();
+    setAddedToCart('cart-button');
+    dispatch(AddBookThunk({ userId: user?.id || 0, bookId }));
   };
 
   return (
@@ -54,7 +66,13 @@ const ItemBook: React.FC<IProps> = (props: IProps) => {
           />
           <span className="rate-number">{props.rate}.0</span>
         </div>
-        <Button className="simple-button">$ {props.price} USD</Button>
+        <Button
+          onClick={(e) => handlerAddToCart(e, props.id)}
+          className={addedToCart}
+        >
+          {addedToCart === 'simple-button' ? `${props.price} USD` : 'Added to cart'}
+
+        </Button>
       </div>
     </StyledItemBook>
   );

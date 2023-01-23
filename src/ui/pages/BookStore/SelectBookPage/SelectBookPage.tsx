@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '../../../../redux/store';
-import { getSelectBookThunk } from '../redux/bookStoreThunks';
+import { getSelectBookThunk } from '../redux/thunks/bookStoreThunks';
 
 import Book from './Book/Book';
 // import Comments from './Comments/Comments';

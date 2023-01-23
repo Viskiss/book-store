@@ -6,11 +6,24 @@ export default styled.section`
     justify-content: center;
     align-items: flex-end;
     padding-bottom: 150px;
+    margin-top: 80px;
   }
-
+  
   .img_book {
     height: 261px;
   }
+
+  .block-text_main {
+      .block_text {
+        width: 465px;
+      }
+    }
+  
+  .cart-button {
+      border: 2px solid #0D1821;
+      color: #0D1821;
+    background-color: white;
+    }
 
   @media (max-width: 834px) {
     .cart_container {
@@ -66,4 +79,5 @@ export default styled.section`
       }
     }
   }
+
 `;
