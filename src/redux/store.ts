@@ -8,16 +8,17 @@ import bookReduser from '../ui/pages/BookStore/redux/bookStoreSlice';
 import { isDev } from '../utils/config';
 
 // const logger = createLogger({
-//   // ...options https://github.com/LogRocket/redux-logger
+//   collapsed: true,
+//   // predicate: (getState, action) => action.type.includes('book'),
 // });
 
 const store = configureStore({
-  devTools: isDev,
-  // applyMiddleware(logger)
   reducer: {
     userStore: userReduser,
     bookStore: bookReduser,
   },
+  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  devTools: isDev,
 });
 
 type AppDispatchType = typeof store.dispatch;

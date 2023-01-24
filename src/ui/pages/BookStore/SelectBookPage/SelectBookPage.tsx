@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { useAppDispatch, useAppSelector } from '../../../../redux/store';
+import { useAppDispatch } from 'src/redux/store';
+import constants from 'src/utils/constants';
 import { getSelectBookThunk } from '../redux/thunks/bookStoreThunks';
 
 import Book from './Book/Book';
@@ -27,7 +28,7 @@ const SelectBook: React.FC = () => {
           message: string;
         }) => {
           if (error.message) {
-            navigate('/');
+            navigate(`${constants.routesLink.home}`);
             toast.error(error.message);
           }
         },

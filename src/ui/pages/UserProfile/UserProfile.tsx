@@ -6,23 +6,24 @@ import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
-import Input from 'ui/components/Input/Input';
-import Button from 'ui/components/Button/RoundButton.styles';
-import ButtonSimple from 'ui/components/Button/Button.styles';
+import Input from 'src/ui/components/Input/Input';
+import Button from 'src/ui/components/Button';
 
-import { useAppDispatch, useAppSelector } from 'redux/store';
-import { userSliceActions } from 'redux/userStore/userSlice';
+import { useAppDispatch, useAppSelector } from 'src/redux/store';
+import { userSliceActions } from 'src/redux/userStore/userSlice';
 import {
   changeUserThunk,
   uploadAvatarUserThunk,
-} from 'redux/userStore/thunks/updateUser';
-import { validFields } from 'utils/yupValid';
-import handleApiValidationError from 'utils/handleApiValidationError';
-import tokenHelper from 'utils/tokenHelper';
+} from 'src/redux/userStore/thunks/updateUser';
+import { fieldsValidation } from 'src/utils/validationFields';
+import { handleApiValidationError } from 'src/utils/handleApiValidationError';
+import tokenHelper from 'src/utils/tokenHelper';
 
-import mail from 'ui/assets/images/Mail.svg';
-import camera from 'ui/assets/images/Camera.svg';
-import imgUser from 'ui/assets/images/User.svg';
+import constants from 'src/utils/constants';
+
+import mail from 'src/ui/assets/images/Mail.svg';
+import camera from 'src/ui/assets/images/Camera.svg';
+import imgUser from 'src/ui/assets/images/User.svg';
 
 import PasswordProfile from './component/PasswordProfile';
 
@@ -62,8 +63,8 @@ const UserProfile: React.FC = () => {
       email: user?.email || '',
     },
     validationSchema: Yup.object({
-      email: validFields.email,
-      fullName: validFields.fullName,
+      email: fieldsValidation.email,
+      fullName: fieldsValidation.fullName,
     }),
     onSubmit: async (values) => {
       const { fullName, email } = values;
@@ -120,7 +121,7 @@ const UserProfile: React.FC = () => {
     if (user) {
       tokenHelper.token.remove();
       dispatch(userSliceActions.exitUser(1));
-      navigate('/');
+      navigate(`${constants.routesLink.home}`);
     }
   };
 
@@ -160,7 +161,7 @@ const UserProfile: React.FC = () => {
               errors={
                 formik.touched.fullName ? formik.errors.fullName : undefined
               }
-              touched={`${formik.touched.fullName}` || ''}
+              touched={ formik.touched.fullName || ''}
               {...formik.getFieldProps('fullName')}
             />
           </div>
@@ -173,15 +174,15 @@ const UserProfile: React.FC = () => {
               img={mail}
               placeholder="Email"
               errors={formik.touched.email ? formik.errors.email : undefined}
-              touched={`${formik.touched.email}` || ''}
+              touched={ formik.touched.email || ''}
               {...formik.getFieldProps('email')}
             />
           </div>
 
           {!changeUser ? (
-            <ButtonSimple className="simple-button" type="submit">
+            <Button className="simple-button" type="submit">
               Confirm
-            </ButtonSimple>
+            </Button>
           ) : null}
         </form>
         <PasswordProfile />

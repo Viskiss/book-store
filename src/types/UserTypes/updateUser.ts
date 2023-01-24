@@ -21,3 +21,5 @@ export type ChangePasswordType = {
   newPassword: string;
   id: UserType['id'];
 };
+
+export type ErrorType = Array<{ key: string; path: string; message: string }>;

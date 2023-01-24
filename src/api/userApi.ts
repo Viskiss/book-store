@@ -1,4 +1,4 @@
-import type { UserType } from '../types/updateUser';
+import type { UserType } from '../types/UserTypes/updateUser';
 import api from './api';
 
 const USER_PATH_PREFIX = '/user';
@@ -8,7 +8,7 @@ const updateUser = (userId: number, data: { email: string; fullName: string }) =
 };
 
 const changePasword = (password: string, newPassword: string, id: number) => {
-  return api.patch<{ user: UserType }>(`${USER_PATH_PREFIX}/${id}/password`, {
+  return api.patch(`${USER_PATH_PREFIX}/${id}/password`, {
     password,
     newPassword,
   });

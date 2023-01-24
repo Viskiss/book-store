@@ -5,38 +5,14 @@ export default styled.div`
   justify-content: space-between;
   margin-bottom: 50px;
 
-  .button-check {
-    background-color: inherit;
-    border: none;
-    margin-right: 10px;
+  .filters--title {
+    font-size: 40px;
+    line-height: 60px;
+    margin: 0;
   }
 
-  .select-item {
-    button {
-      background-color: inherit;
-      border: none;
-    }
-  }
-
-  fieldset {
-    border: none;
-  }
-
-  .select {
-    width: 196px;
-    height: 48px;
-    background-color: #f0f4ef;
-    border-radius: 16px;
-    align-items: stretch;
-    justify-content: center;
-    margin-left: 20px;
-  }
-
-  .select-input-box {
-    color: #344966;
-  }
-
-  .filter-books {
+  .filters--book-filter {
     display: flex;
+    gap: 20px;
   }
 `;

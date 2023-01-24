@@ -5,12 +5,10 @@ export default styled.div<{ drop: boolean }>`
   background: #F0F4EF;
   height: 40px;
   border-radius: 16px;
-  margin-left: 20px;
 
   .select-box--items {
     display: ${(props) => (props.drop ? 'flex' : 'none')};
     position: absolute;
-    z-index: 1000;
     z-index: 1000;
     flex-direction: column;
     width: 413px;
@@ -24,27 +22,6 @@ export default styled.div<{ drop: boolean }>`
     line-height: 28px;
     color: #344966;
     background: #f0f4ef;
-  }
-
-  .select-box--text {
-    margin: 12px 0 12px 15px;
-  }
-
-  .select-box--input {
-    border: none;
-    font-weight: 700;
-    font-size: 18px;
-    color: #0d1821;
-    line-height: 27px;
-    padding: 10px 0 10px 17px;
-    width: 179px;
-  }
-
-  .select-box--button {
-    position: absolute;
-    border: none;
-    top: 15px;
-    right: 20px;
   }
 
   .select-box--arrow {
@@ -66,7 +43,7 @@ export default styled.div<{ drop: boolean }>`
     top: -13px;
     left: 15px;
   }
-  .prise-info {
+  .price {
     display: flex;
     padding: 0 10px;
     justify-content: space-between;

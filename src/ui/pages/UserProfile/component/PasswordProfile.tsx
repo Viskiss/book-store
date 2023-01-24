@@ -5,12 +5,12 @@ import classNames from 'classnames';
 import { toast } from 'react-toastify';
 
 import Input from '../../../components/Input/Input';
-import Button from '../../../components/Button/Button.styles';
+import Button from '../../../components/Button/Button';
 
 import { changePasswordThunk } from '../../../../redux/userStore/thunks/updateUser';
 import { useAppDispatch, useAppSelector } from '../../../../redux/store';
-import { validFields } from '../../../../utils/yupValid';
-import handleApiValidationError from '../../../../utils/handleApiValidationError';
+import { fieldsValidation } from '../../../../utils/validationFields';
+import { handleApiValidationError } from '../../../../utils/handleApiValidationError';
 
 import eye from '../images/Hide.svg';
 
@@ -52,9 +52,9 @@ const PasswordProfile: React.FC = () => {
       repeatPassword: '',
     },
     validationSchema: Yup.object({
-      password: validFields.password,
-      newPassword: validFields.newPassword,
-      repeatPassword: validFields.repeatPasswordProfile,
+      password: fieldsValidation.password,
+      newPassword: fieldsValidation.newPassword,
+      repeatPassword: fieldsValidation.repeatPasswordProfile,
     }),
     onSubmit: async (values) => {
       const { password, newPassword } = values;
@@ -124,7 +124,7 @@ const PasswordProfile: React.FC = () => {
                   errors={
                     formik.touched.password ? formik.errors.password : undefined
                   }
-                  touched={`${formik.touched.password}` || ''}
+                  touched={ formik.touched.password || ''}
                   {...formik.getFieldProps('password')}
                 />
               </div>
@@ -139,7 +139,7 @@ const PasswordProfile: React.FC = () => {
                     ? formik.errors.newPassword
                     : undefined
                 }
-                touched={`${formik.touched.newPassword}` || ''}
+                touched={ formik.touched.newPassword || ''}
                 {...formik.getFieldProps('newPassword')}
               />
               <Input
@@ -153,7 +153,7 @@ const PasswordProfile: React.FC = () => {
                     ? formik.errors.repeatPassword
                     : undefined
                 }
-                touched={`${formik.touched.repeatPassword}` || ''}
+                touched={ formik.touched.repeatPassword || ''}
                 {...formik.getFieldProps('repeatPassword')}
               />
             </>

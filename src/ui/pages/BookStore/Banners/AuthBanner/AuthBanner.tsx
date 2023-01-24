@@ -1,6 +1,6 @@
-import constants from 'utils/constants';
+import constants from 'src/utils/constants';
 
-import TextBlock from 'ui/components/TextBlock/TextBlock';
+import TextBlock from 'src/ui/components/TextBlock/TextBlock';
 
 import fairy from './images/fairy.svg';
 import fairy2 from './images/fairy2.svg';

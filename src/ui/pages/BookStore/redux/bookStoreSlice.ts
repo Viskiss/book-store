@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { BookType, GenreType } from '../../../../types/typesBooks';
-import type { CartType } from './api/cartApi';
+import type { BookType, CartType, GenreType } from 'src/types';
+
 import { getAllGenresThunk, getFilterBooksThunk, getSelectBookThunk } from './thunks/bookStoreThunks';
 import { getCartBooks } from './thunks/cartThunks';
 
@@ -19,10 +19,6 @@ const bookStoreSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // builder.addCase(AddBookThunk.fulfilled, (state, { payload }) => {
-    //   state.cart = payload.book;
-    // });
-
     builder.addCase(getCartBooks.fulfilled, (state, { payload }) => {
       state.cart = payload.books;
     });

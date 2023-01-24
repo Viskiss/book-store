@@ -1,15 +1,15 @@
 import Lottie from 'lottie-react';
 
-import options from 'utils/lottieOptions';
-import loader from 'ui/assets/lottieFiles/9329-loading.json';
+import options from 'src/utils/lottieOptions';
+import loader from 'src/ui/assets/lottieFiles/loading.json';
 
-import { useAppSelector } from 'redux/store';
+import { useAppSelector } from 'src/redux/store';
 
 import Filters from './Filters/Filters';
 import ItemBook from './ItemBook/ItemBook';
 
 import StyledCatalog from './Catalog.styles';
-import Pagination from '../Pagintion/Pagenation';
+import Pagination from '../../../components/Pagintion/Pagenation';
 
 const Catalog: React.FC = () => {
   const books = useAppSelector((store) => store.bookStore.books);

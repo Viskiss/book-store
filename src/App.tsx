@@ -1,8 +1,8 @@
 import { ToastContainer } from 'react-toastify';
 
-import Header from 'ui/containers/Header';
-import Navigation from 'ui/containers/Navigation';
-import Footer from 'ui/containers/Footer/Footer';
+import Header from 'src/ui/containers/Header';
+import Navigation from 'src/ui/containers/Navigation';
+import Footer from 'src/ui/containers/Footer/Footer';
 
 const App: React.FC = () => {
   return (

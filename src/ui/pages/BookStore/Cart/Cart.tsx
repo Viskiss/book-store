@@ -1,7 +1,7 @@
-import { useAppDispatch, useAppSelector } from 'redux/store';
+import { useAppDispatch, useAppSelector } from 'src/redux/store';
 
-import Button from 'ui/components/Button/Button.styles';
-import TextBlock from 'ui/components/TextBlock/TextBlock';
+import Button from 'src/ui/components/Button';
+import TextBlock from 'src/ui/components/TextBlock/TextBlock';
 import { useEffect } from 'react';
 
 import booksImg from './images/books.svg';
@@ -16,9 +16,6 @@ const Cart: React.FC = () => {
   const isAuthenticated = useAppSelector(
     (state) => state.userStore.isAuthenticated,
   );
-
-  // eslint-disable-next-line no-console
-  console.log(cart);
 
   const dispatch = useAppDispatch();
 
@@ -39,6 +36,7 @@ const Cart: React.FC = () => {
             {cart.map((item) => (
               <ItemCart
               author={item.author}
+              quantityOfGoods={item.quantityOfGoods}
               title={item.title}
               bookId={item.id}
               cover={item.cover}

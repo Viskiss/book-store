@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from 'redux/store';
+import { useAppDispatch, useAppSelector } from 'src/redux/store';
 
 import AuthBanner from './Banners/AuthBanner';
 import BookBaner from './Banners/BookBanner';

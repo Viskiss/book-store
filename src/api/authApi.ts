@@ -1,12 +1,7 @@
-import type { UserType } from '../types/updateUser';
+import type { AuthResponseType, UserType } from 'src/types';
 import api from './api';
 
 const AUTH_PATH_PREFIX = '/auth';
-
-export type AuthResponseType = {
-  token: string;
-  user: UserType;
-};
 
 const logInUser = (email: string, password: string) => {
   return api.post<AuthResponseType>(`${AUTH_PATH_PREFIX}/sign-in`, {

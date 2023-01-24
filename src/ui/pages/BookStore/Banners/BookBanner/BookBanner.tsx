@@ -1,4 +1,4 @@
-import TextBlock from 'ui/components/TextBlock/TextBlock';
+import TextBlock from 'src/ui/components/TextBlock/TextBlock';
 
 import StyledBookBanner from './BookBaner.styles';
 

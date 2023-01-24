@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { setApiToken } from '../../api/api';
+import { setApiToken } from 'src/api/api';
 
-import type { UserType } from '../../types';
-import tokenHelper from '../../utils/tokenHelper';
+import type { UserType } from 'src/types';
+import tokenHelper from 'src/utils/tokenHelper';
 
 import {
   currentUserThunk,
@@ -16,7 +16,6 @@ import { changeUserThunk, uploadAvatarUserThunk } from './thunks/updateUser';
 const initialState = () => ({
   user: null as UserType | null,
   isAuthenticated: tokenHelper.token.get() ?? false,
-  error: '',
 });
 
 const userSlice = createSlice({
@@ -56,7 +55,9 @@ const userSlice = createSlice({
 
     builder.addCase(currentUserThunk.fulfilled, (state, { payload }) => {
       state.isAuthenticated = true;
-      state.user = payload.user;
+      if (payload) {
+        state.user = payload.user;
+      }
     });
   },
 });

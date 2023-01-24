@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import ButtonLink from '../Button/ButtonLink';
+import Button from 'src/ui/components/Button';
 
 import Styles from './TextBlock.styles';
 
@@ -25,17 +25,17 @@ const TextBlock: React.FC<IProps> = (props: IProps) => {
         </div>
         {props.className === 'auth-button' ? (
           <>
-            <ButtonLink className="auth-button">
+            <Button className="auth-button">
               <Link to="/login">Log In</Link>
-            </ButtonLink>
-            <ButtonLink className="auth-button">
+            </Button>
+            <Button className="auth-button">
               <Link to="/sign-up">Sign Up</Link>
-            </ButtonLink>
+            </Button>
           </>
         ) : (
-          <ButtonLink className={props.className}>
+          <Button className={props.className}>
             <Link to={props.link}>{props.title}</Link>
-          </ButtonLink>
+          </Button>
         )}
       </div>
       <picture>

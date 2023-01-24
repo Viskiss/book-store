@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating';
 
-import Button from 'ui/components/Button/Button.styles';
+import Button from 'src/ui/components/Button';
 
-import { useAppDispatch, useAppSelector } from 'redux/store';
+import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { getSelectBookThunk } from '../../redux/thunks/bookStoreThunks';
 
 import StyledItemBook from './ItemBook.styles ';

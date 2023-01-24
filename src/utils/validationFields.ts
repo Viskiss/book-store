@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const validFields = {
+export const fieldsValidation = {
   email: Yup.string()
     .email('Email must be a valid email')
     .min(10, 'Min 10 length, Ex: 123@mail.ru')

@@ -1,16 +1,13 @@
-import { useState } from 'react';
-
 interface IProps {
   bookId: number;
   price: string;
   cover: string;
   title: string;
   author: string;
+  quantityOfGoods: number;
 }
 
-const ItemCart: React.FC<IProps> = ({ price, cover, title, author }) => {
-  const [counter, setcounter] = useState(false);
-
+const ItemCart: React.FC<IProps> = ({ price, cover, title, author, quantityOfGoods }) => {
   return (
     <div className="item-cart--box">
       <div>
@@ -22,7 +19,7 @@ const ItemCart: React.FC<IProps> = ({ price, cover, title, author }) => {
         <div>
           <div>
             <button className="item-cart--box-button">+</button>
-            {counter}
+            {quantityOfGoods}
             <button className="item-cart--box-button">-</button>
           </div>
           <img className="item-cart--box-trash" src="" alt="" />

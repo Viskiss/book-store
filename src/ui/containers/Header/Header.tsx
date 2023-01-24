@@ -2,10 +2,10 @@ import type { ChangeEvent } from 'react';
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
-import ButtonLink from 'ui/components/Button/ButtonLink';
+import Button from 'src/ui/components/Button';
 
-import { useAppSelector } from 'redux/store';
-import constants from 'utils/constants';
+import { useAppSelector } from 'src/redux/store';
+import constants from 'src/utils/constants';
 import AuthUserLinks from './AuthUserLinks';
 
 import logo from './images/logoH.svg';
@@ -48,12 +48,12 @@ const Header: React.FC = () => {
         </div>
         {!user ? (
           <>
-            <ButtonLink className="auth-button">
-              <Link to={routesLink.login}>Log In</Link>
-            </ButtonLink>
-            <ButtonLink className="auth-button">
+            <Button className="auth-button">
+              <Link to={routesLink.login}>Sign In</Link>
+            </Button>
+            <Button className="auth-button">
               <Link to={routesLink.signUp}>Sign Up</Link>
-            </ButtonLink>
+            </Button>
           </>
         ) : (
           <AuthUserLinks />
@@ -68,13 +68,13 @@ const Header: React.FC = () => {
         </Link>
         {!user ? (
           <>
-            <ButtonLink className="auth-button__small">
+            <Button className="auth-button__small">
               <Link to={routesLink.login}>Log In</Link>
-            </ButtonLink>
-            <ButtonLink className="auth-button__small">
+            </Button>
+            <Button className="auth-button__small">
               <Link to={routesLink.signUp} />
               Sign Up
-            </ButtonLink>
+            </Button>
           </>
         ) : (
           <AuthUserLinks />

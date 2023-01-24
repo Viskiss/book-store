@@ -1,12 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 
-import cartApi from '../api/cartApi';
+import type { AddBookType } from 'src/types';
 
-type AddBookType = {
-  userId: number;
-  bookId: number;
-};
+import cartApi from '../api/cartApi';
 
 export const AddBookThunk = createAsyncThunk(
   'cart/addBook',

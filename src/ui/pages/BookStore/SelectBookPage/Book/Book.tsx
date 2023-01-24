@@ -1,6 +1,6 @@
-import { useAppSelector } from '../../../../../redux/store';
+import { useAppSelector } from 'src/redux/store';
 
-import Button from '../../../../components/Button/Button.styles';
+import Button from 'src/ui/components/Button';
 
 import StyledBook from './Book.styles';
 import StarRate from './StarRate/StarRate';

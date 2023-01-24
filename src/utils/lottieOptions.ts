@@ -1,5 +1,5 @@
-import loading from '../ui/assets/lottieFiles/9329-loading.json';
-import develop from '../ui/assets/lottieFiles/web-address-registration.json';
+import loading from 'src/ui/assets/lottieFiles/loading.json';
+import develop from 'src/ui/assets/lottieFiles/process.json';
 
 const defaultOptionsLoading = {
   loop: true,

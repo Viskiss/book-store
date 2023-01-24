@@ -1,11 +1,12 @@
 import { Rating } from 'react-simple-star-rating';
 import { useState } from 'react';
 
+import { useAppSelector } from 'src/redux/store';
+
 import star from '../images/Star.svg';
 import arrow from '../images/arrow.svg';
 
 import StyledBook from './StarRate.styles';
-import { useAppSelector } from '../../../../../../redux/store';
 
 const StarRate: React.FC = () => {
   const [initRate] = useState(0);

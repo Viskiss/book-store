@@ -1,7 +1,7 @@
 import Lottie from 'lottie-react';
 
-import options from 'utils/lottieOptions';
-import develop from 'ui/assets/lottieFiles/web-address-registration.json';
+import options from 'src/utils/lottieOptions';
+import develop from 'src/ui/assets/lottieFiles/process.json';
 
 import StyledLikesBooks from './LikesBooks.styles';
 

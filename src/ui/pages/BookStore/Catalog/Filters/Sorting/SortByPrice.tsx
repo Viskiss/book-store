@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ReactSlider from 'react-slider';
 
-import arrow from 'ui/assets/images/arrowRight.svg';
+import SelectDropBox from '../components/SelectDropBox';
 
 import StyledSortByPrice from './SortByPrice.styles';
 
@@ -42,23 +42,9 @@ const SortByPrice: React.FC = () => {
       setDropSelect(true);
     }
   };
-
   return (
-    <StyledSortByPrice drop={dropSelect}>
-      <div className="select-box">
-        <input
-          value="Price"
-          className="select-box--input"
-          type="text"
-          disabled
-        />
-        <button
-          onClick={() => handleDropSelect()}
-          className="select-box--button"
-        >
-          <img className="select-box--arrow" src={arrow} alt="" />
-        </button>
-      </div>
+    <StyledSortByPrice onMouseLeave={() => setDropSelect(false)} drop={dropSelect}>
+      <SelectDropBox handler={handleDropSelect} title="Price" />
       <div className="select-box--items">
         <ReactSlider
           className="select-box--slider"
@@ -71,7 +57,7 @@ const SortByPrice: React.FC = () => {
           trackClassName="example-track"
           renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
         />
-        <div className="prise-info">
+        <div className="price">
           <p>$ {value[0]}</p>
           <p>$ {value[1]}</p>
         </div>

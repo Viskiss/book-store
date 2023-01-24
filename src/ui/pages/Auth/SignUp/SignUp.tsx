@@ -4,17 +4,20 @@ import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import Input from 'ui/components/Input/Input';
-import Button from 'ui/components/Button/Button.styles';
+import Input from 'src/ui/components/Input/Input';
+import Button from 'src/ui/components/Button';
 
-import { useAppDispatch, useAppSelector } from 'redux/store';
-import { signUpThunk } from 'redux/userStore/thunks/authUser';
-import handleApiValidationError from 'utils/handleApiValidationError';
-import { validFields } from 'utils/yupValid';
+import { useAppDispatch, useAppSelector } from 'src/redux/store';
+import { signUpThunk } from 'src/redux/userStore/thunks/authUser';
 
-import mailIcon from 'ui/assets/images/Mail.svg';
-import eyeIcon from 'ui/assets/images/Hide.svg';
-import menPicture from 'ui/assets/images/men.svg';
+import { fieldsValidation } from 'src/utils/validationFields';
+import { handleApiValidationError } from 'src/utils/handleApiValidationError';
+
+import constants from 'src/utils/constants';
+
+import mailIcon from 'src/ui/assets/images/Mail.svg';
+import eyeIcon from 'src/ui/assets/images/Hide.svg';
+import menPicture from 'src/ui/assets/images/men.svg';
 
 import StyledSignUp from './SignUp.styles';
 
@@ -31,16 +34,16 @@ const SignUp: React.FC = () => {
       repeatPassword: '',
     },
     validationSchema: Yup.object({
-      email: validFields.email,
-      password: validFields.password,
-      repeatPassword: validFields.repeatPassword,
+      email: fieldsValidation.email,
+      password: fieldsValidation.password,
+      repeatPassword: fieldsValidation.repeatPassword,
     }),
     onSubmit: async (values) => {
       const { email, password } = values;
       await dispatch(signUpThunk({ email, password }))
         .unwrap()
         .then(() => {
-          navigate(`${success}` ? '/' : `${location.state.from.pathname}`);
+          navigate(`${success}` ? `${constants.routesLink.home}` : `${location.state.from.pathname}`);
         })
         .catch(
           (error: {
@@ -80,7 +83,7 @@ const SignUp: React.FC = () => {
               placeholder="Email"
               label="Enter your email"
               errors={formik.touched.email ? formik.errors.email : undefined}
-              touched={`${formik.touched.email}` || ''}
+              touched={ formik.touched.email || ''}
               {...formik.getFieldProps('email')}
             />
             <Input
@@ -92,7 +95,7 @@ const SignUp: React.FC = () => {
               errors={
                 formik.touched.password ? formik.errors.password : undefined
               }
-              touched={`${formik.touched.password}` || ''}
+              touched={ formik.touched.password || ''}
               {...formik.getFieldProps('password')}
             />
             <Input
@@ -106,7 +109,7 @@ const SignUp: React.FC = () => {
                   ? formik.errors.repeatPassword
                   : undefined
               }
-              touched={`${formik.touched.repeatPassword}` || ''}
+              touched={ formik.touched.repeatPassword || ''}
               {...formik.getFieldProps('repeatPassword')}
             />
 
@@ -116,7 +119,7 @@ const SignUp: React.FC = () => {
           </form>
         </div>
         <div className="image-box">
-          <img className="men-pick" src={menPicture} alt="" height={522} />
+          <img className="men-pick" src={menPicture} alt="" />
         </div>
       </div>
     </StyledSignUp>

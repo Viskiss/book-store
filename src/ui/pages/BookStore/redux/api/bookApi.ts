@@ -1,8 +1,7 @@
-import type { FilterType } from 'types/typesBooks';
-import type { GenreType, BookType } from 'types';
+import type { GenreType, BookType, FilterType } from 'src/types';
 import type { AxiosRequestConfig } from 'axios';
 
-import api from 'api/api';
+import api from 'src/api/api';
 
 const BOOK_PATH_PREFIX = '/book';
 

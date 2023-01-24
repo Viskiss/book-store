@@ -24,3 +24,19 @@ export type FilterType = {
   minPrice?: number;
   maxPrice?: number;
 };
+
+export type AddBookType = {
+  userId: number;
+  bookId: number;
+};
+
+export type CartType = {
+  cover: string;
+  bookId: number;
+  id: number;
+  price: string;
+  title: string;
+  author: string;
+  quantityOfGoods: number;
+  userId: number;
+};

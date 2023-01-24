@@ -1,6 +1,7 @@
 import type { FormikErrors } from 'formik';
+import type { ErrorType } from 'src/types';
 
-const handleApiValidationError = <E extends object>(
+export const handleApiValidationError = <E extends object>(
   apiErrors: Array<{ key: string; path: string; message: string }>,
   setErrors: (errors: FormikErrors<E>) => void,
 ) => {
@@ -12,4 +13,9 @@ const handleApiValidationError = <E extends object>(
   setErrors(errors as FormikErrors<E>);
 };
 
-export default handleApiValidationError;
+export const validationError = (error: unknown) => {
+  if (error as {errror: ErrorType; message: 'ValidationError'}) {
+    return true;
+  }
+  return false;
+};

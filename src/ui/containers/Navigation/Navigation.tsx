@@ -2,14 +2,14 @@ import { Route, Routes } from 'react-router';
 import { lazy, Suspense, useEffect } from 'react';
 import Lottie from 'lottie-react';
 
-import options from 'utils/lottieOptions';
-import constants from 'utils/constants';
-import loader from 'ui/assets/lottieFiles/9329-loading.json';
+import options from 'src/utils/lottieOptions';
+import constants from 'src/utils/constants';
+import loader from 'src/ui/assets/lottieFiles/loading.json';
 
-import SelectBook from 'ui/pages/BookStore/SelectBookPage';
+import SelectBook from 'src/ui/pages/BookStore/SelectBookPage';
 
-import { useAppDispatch, useAppSelector } from 'redux/store';
-import { currentUserThunk } from 'redux/userStore/thunks/authUser';
+import { useAppDispatch, useAppSelector } from 'src/redux/store';
+import { currentUserThunk } from 'src/redux/userStore/thunks/authUser';
 
 import MainLayoutStyled from '../MainLayout.styles';
 
@@ -17,7 +17,7 @@ const BookStore = lazy(() => import('../../pages/BookStore'));
 const SignUp = lazy(() => import('../../pages/Auth/SignUp'));
 const Cart = lazy(() => import('../../pages/BookStore/Cart'));
 const LokesBooks = lazy(() => import('../../pages/BookStore/LikesBooks'));
-const LogIn = lazy(() => import('../../pages/Auth/LogIn'));
+const LogIn = lazy(() => import('../../pages/Auth/SignIn/SignIn'));
 const UserProfile = lazy(() => import('../../pages/UserProfile'));
 
 const Navigation: React.FC = () => {

@@ -2,7 +2,7 @@ import type { FormikTouched } from 'formik';
 import type { MouseEventHandler } from 'react';
 import React, { useState } from 'react';
 
-import view from 'ui/assets/images/View.svg';
+import view from 'src/ui/assets/images/View.svg';
 
 import StyledInput from './Input.styles';
 

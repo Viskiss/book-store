@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import classNames from 'classnames';
 
-import leftArrow from 'ui/assets/images/leftArrow.svg';
-import arrowRight from 'ui/assets/images/arrowRight.svg';
+import leftArrow from 'src/ui/assets/images/leftArrow.svg';
+import arrowRight from 'src/ui/assets/images/arrowRight.svg';
 
-import { useAppSelector } from 'redux/store';
+import { useAppSelector } from 'src/redux/store';
 import StyledPaginationBooks from './Pagination.styles';
 
 const Pagination: React.FC = () => {

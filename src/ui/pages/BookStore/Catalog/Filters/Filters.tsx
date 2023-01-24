@@ -1,19 +1,19 @@
 import { useEffect } from 'react';
 import Lottie from 'lottie-react';
 
-import loader from 'ui/assets/lottieFiles/9329-loading.json';
+import loader from 'src/ui/assets/lottieFiles/loading.json';
 
-import options from 'utils/lottieOptions';
+import options from 'src/utils/lottieOptions';
 
-import { useAppDispatch, useAppSelector } from 'redux/store';
+import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { useSearchParams } from 'react-router-dom';
 import { getAllGenresThunk, getFilterBooksThunk } from '../../redux/thunks/bookStoreThunks';
 
-import Genre from './Genres/Genre';
+import Genre from './Sorting/SortByGenre';
 
 import StyledFilters from './Filters.styles';
-import FilterSelect from './FilterSelect/FilterSelect';
-import SortByPrice from './SortByPrice/SortByPrice';
+import FilterSelect from './Sorting/FilterSelect';
+import SortByPrice from './Sorting/SortByPrice';
 
 const Filters: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -43,10 +43,10 @@ const Filters: React.FC = () => {
 
   return (
     <StyledFilters>
-      <div className="">
-        <h2 className="title-catalog">Catalog</h2>
+      <div>
+        <h2 className="filters--title">Catalog</h2>
       </div>
-      <div className="filter-books">
+      <div className="filters--book-filter">
         <Genre />
         <SortByPrice />
         <FilterSelect />

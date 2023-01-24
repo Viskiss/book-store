@@ -1,11 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
+
+import userApi from 'src/api/userApi';
+
 import type {
   ChangePasswordType,
   ChangeUserType,
-} from '../../../types/updateUser';
-
-import userApi from '../../../api/userApi';
+} from 'src/types';
 
 export const changeUserThunk = createAsyncThunk(
   'user/changeUser',

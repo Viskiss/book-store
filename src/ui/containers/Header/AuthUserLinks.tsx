@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import Button from 'ui/components/Button/RoundButtonLink';
+import Button from 'src/ui/components/Button';
 
-import constants from 'utils/constants';
+import constants from 'src/utils/constants';
 
 import cart from './images/Cart.svg';
 import like from './images/Heart.svg';
@@ -15,17 +15,17 @@ const AuthUserLinks: React.FC = () => {
     <div className="round-buttons">
           <Button className="round-button">
             <Link to={routesLink.cart}>
-              <img src={cart} alt="" />
+              <img src={cart} alt="Cart" />
             </Link>
           </Button>
           <Button className="round-button2 round-button">
             <Link to={routesLink.likes}>
-              <img src={like} alt="" />
+              <img src={like} alt="Heart" />
             </Link>
           </Button>
           <Button className="round-button">
             <Link to={routesLink.profile}>
-              <img src={profile} alt="" />
+              <img src={profile} alt="Profile" />
             </Link>
           </Button>
     </div>
