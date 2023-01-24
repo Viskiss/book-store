@@ -13,8 +13,8 @@ export const handleApiValidationError = <E extends object>(
   setErrors(errors as FormikErrors<E>);
 };
 
-export const validationError = (error: unknown) => {
-  if (error as {errror: ErrorType; message: 'ValidationError'}) {
+export const validationError = (error: {error: ErrorType[]; message: string}) => {
+  if (error?.error && error.message === 'ValidationError') {
     return true;
   }
   return false;

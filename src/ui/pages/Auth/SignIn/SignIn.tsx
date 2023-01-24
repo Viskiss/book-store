@@ -35,10 +35,10 @@ const SignIn: React.FC = () => {
       email: '',
       password: '',
     },
-    validationSchema: Yup.object({
-      email: fieldsValidation.email,
-      password: fieldsValidation.password,
-    }),
+    // validationSchema: Yup.object({
+    //   email: fieldsValidation.email,
+    //   password: fieldsValidation.password,
+    // }),
     onSubmit: async (values) => {
       try {
         const { email, password } = values;
@@ -50,11 +50,11 @@ const SignIn: React.FC = () => {
       } catch (error) {
         if (validationError(error)) {
           handleApiValidationError(
-            error as { key: string; path: string; message: string }[],
+            error.error,
             formik.setErrors,
           );
+          toast.error(error.message as ToastContent<unknown>);
         }
-        toast.error(error as ToastContent<unknown>);
       }
     },
   });
