@@ -21,9 +21,9 @@ import tokenHelper from 'src/utils/tokenHelper';
 
 import constants from 'src/utils/constants';
 
-import mail from 'src/ui/assets/images/Mail.svg';
-import camera from 'src/ui/assets/images/Camera.svg';
-import imgUser from 'src/ui/assets/images/User.svg';
+import mail from 'src/ui/assets/images/icon/Mail.svg';
+import camera from 'src/ui/assets/images/icon/Camera.svg';
+import imgUser from 'src/ui/assets/images/icon/User.svg';
 
 import PasswordProfile from './component/PasswordProfile';
 
@@ -155,7 +155,7 @@ const UserProfile: React.FC = () => {
             <label>Your name</label>
             <Input
               disabled={changeUser}
-              classStyles={stylesInputFullname}
+              className={stylesInputFullname}
               img={imgUser}
               placeholder="Name"
               errors={
@@ -169,7 +169,7 @@ const UserProfile: React.FC = () => {
           <div className="data-box">
             <label>Your email</label>
             <Input
-              classStyles={stylesInputEmail}
+              className={stylesInputEmail}
               disabled={changeUser}
               img={mail}
               placeholder="Email"

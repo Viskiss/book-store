@@ -4,25 +4,19 @@ export default styled.section`
   background: #f0f4ef;
   color: #f0f4ef;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   border-radius: 16px;
   margin-bottom: 120px;
-
-  .invite_container {
-    width: 1280px;
-    display: flex;
-    justify-content: space-between;
-  }
+  max-height: 400px;
+  width: 100%;
 
   .img_girl {
     padding: 0 98px;
   }
 
   @media (max-width: 1024px) {
-    .invite_container {
-      width: 804px;
-      position: relative;
-    }
+    width: 804px;
+    position: relative;
 
     .img_girl {
       padding: 0 14px;
@@ -32,41 +26,22 @@ export default styled.section`
     }
   }
 
+  @media (max-width: 820px) {
+    width: 590px;
+    position: relative;
+  }
+
   @media (max-width: 600px) {
-    .invite_container {
-      max-width: 290px;
-      flex-direction: column;
-    }
+    max-width: 290px;
+    max-height: 505px;
+    flex-direction: column;
+    align-items: center;
 
     .img_girl {
       position: static;
       width: 253px;
-      margin-bottom: -7px;
+      margin-top: 56px;
     }
 
-    .img-back-invite {
-      height: 140px;
-      width: 232px;
-      right: 0;
-      top: 17px;
-    }
-    .block-text_main {
-      padding: 0 0 54px 20px;
-      font-size: 14px;
-      line-height: 21px;
-
-      h1 {
-        margin-top: 20px;
-        font-size: 18px;
-        line-height: 27px;
-      }
-      p {
-        margin-bottom: 20px;
-      }
-
-      .block_text {
-        width: fit-content;
-      }
-    }
   }
 `;

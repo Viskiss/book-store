@@ -43,10 +43,8 @@ const Filters: React.FC = () => {
 
   return (
     <StyledFilters>
-      <div>
-        <h2 className="filters--title">Catalog</h2>
-      </div>
-      <div className="filters--book-filter">
+        <h2 className="filters__title">Catalog</h2>
+      <div className="filters__book-filter">
         <Genre />
         <SortByPrice />
         <FilterSelect />

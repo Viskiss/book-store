@@ -26,11 +26,11 @@ const ItemGenre: React.FC<IProps> = ({ name, id, filter, setState, title }) => {
   return (
     <div
       onClick={() => handleChangeGenre(name)}
-      className="select-box--item"
+      className="select-box__item"
       key={id}
-    > {title === 'Genre' && <img className="select-box--img" src={checkedImg} alt="" />}
+    > {title === 'Genre' && <img className="select-box__img" src={checkedImg} alt="" />}
 
-      <p className="select-box--text">{name}</p>
+      <p className="select-box__text">{name}</p>
     </div>
   );
 };

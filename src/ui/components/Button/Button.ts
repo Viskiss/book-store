@@ -6,7 +6,8 @@ type ButtonProps = {
 };
 
 const Button = styled.button<ButtonProps>`
-  padding: ${(props) => (props.className === 'simple-button' ? '10px 50px' : '10px 15px')};;
+  /* padding: ${(props) => (props.className === 'simple-button' ? '10px 50px' : '10px 15px')}; */
+  padding: 10px 50px;
   margin: 8px;
   border-radius: 16px;
   font-weight: bold;

@@ -45,9 +45,9 @@ const SortByPrice: React.FC = () => {
   return (
     <StyledSortByPrice onMouseLeave={() => setDropSelect(false)} drop={dropSelect}>
       <SelectDropBox handler={handleDropSelect} title="Price" />
-      <div className="select-box--items">
+      <div className="select-box__items">
         <ReactSlider
-          className="select-box--slider"
+          className="select-box__slider"
           value={value}
           min={minStartPrice}
           max={maxStartPrice}

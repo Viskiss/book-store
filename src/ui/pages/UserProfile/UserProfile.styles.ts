@@ -34,6 +34,8 @@ export default styled.section`
       bottom: 0;
       right: 0;
       margin: 20px;
+      padding: 10px 10px;
+      border-radius: 100%;
     }
   }
 

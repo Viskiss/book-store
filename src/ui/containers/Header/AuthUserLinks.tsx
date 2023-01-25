@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useAppSelector } from 'src/redux/store';
 
 import Button from 'src/ui/components/Button';
 
@@ -10,24 +11,26 @@ import profile from './images/User.svg';
 
 const AuthUserLinks: React.FC = () => {
   const { routesLink } = constants;
+  const booksCount = useAppSelector((store) => store.bookStore.cart.length);
 
   return (
     <div className="round-buttons">
-          <Button className="round-button">
-            <Link to={routesLink.cart}>
-              <img src={cart} alt="Cart" />
-            </Link>
-          </Button>
-          <Button className="round-button2 round-button">
-            <Link to={routesLink.likes}>
-              <img src={like} alt="Heart" />
-            </Link>
-          </Button>
-          <Button className="round-button">
-            <Link to={routesLink.profile}>
-              <img src={profile} alt="Profile" />
-            </Link>
-          </Button>
+      <Link className="round-buttons__link-count" to={routesLink.cart}>
+        <span className="books-counter">{booksCount}</span>
+        <Button className="round-button">
+          <img src={cart} alt="Cart" />
+        </Button>
+      </Link>
+      <Link to={routesLink.likes}>
+        <Button className="round-button">
+          <img src={like} alt="Heart" />
+        </Button>
+      </Link>
+      <Link to={routesLink.profile}>
+        <Button className="round-button">
+          <img src={profile} alt="Profile" />
+        </Button>
+      </Link>
     </div>
   );
 };

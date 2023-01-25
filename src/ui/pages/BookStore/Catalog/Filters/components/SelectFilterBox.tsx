@@ -40,7 +40,7 @@ const SelectFilterBox: React.FC<IProps> = ({
       typeSelect={typeSelect}
     >
       <SelectDropBox handler={handleDropSelect} title={title} />
-      <div className="select-box--items">
+      <div className="select-box__items">
         {items.map((item) => (
           <Item
             title={title}

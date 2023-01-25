@@ -11,13 +11,13 @@ import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { signUpThunk } from 'src/redux/userStore/thunks/authUser';
 
 import { fieldsValidation } from 'src/utils/validationFields';
-import { handleApiValidationError } from 'src/utils/handleApiValidationError';
+import { handleApiValidationError, validationError } from 'src/utils/handleApiValidationError';
 
 import constants from 'src/utils/constants';
 
-import mailIcon from 'src/ui/assets/images/Mail.svg';
-import eyeIcon from 'src/ui/assets/images/Hide.svg';
-import menPicture from 'src/ui/assets/images/men.svg';
+import mailIcon from 'src/ui/assets/images/icon/Mail.svg';
+import eyeIcon from 'src/ui/assets/images/icon/Hide.svg';
+import menPicture from 'src/ui/assets/images/icon/men.svg';
 
 import StyledSignUp from './SignUp.styles';
 
@@ -39,24 +39,22 @@ const SignUp: React.FC = () => {
       repeatPassword: fieldsValidation.repeatPassword,
     }),
     onSubmit: async (values) => {
-      const { email, password } = values;
-      await dispatch(signUpThunk({ email, password }))
-        .unwrap()
-        .then(() => {
-          navigate(`${success}` ? `${constants.routesLink.home}` : `${location.state.from.pathname}`);
-        })
-        .catch(
-          (error: {
-            error: Array<{ key: string; path: string; message: string }>;
-            message: string;
-          }) => {
-            if (error?.error && error.message === 'ValidationError') {
-              handleApiValidationError(error.error, formik.setErrors);
-            } else {
-              toast.error(error.message);
-            }
-          },
-        );
+      try {
+        const { email, password } = values;
+        await dispatch(signUpThunk({ email, password }))
+          .unwrap()
+          .then(() => {
+            navigate(`${success}` ? `${constants.routesLink.home}` : `${location.state.from.pathname}`);
+          });
+      } catch (error) {
+        if (validationError(error)) {
+          handleApiValidationError(
+            error.error,
+            formik.setErrors,
+          );
+          toast.error(error.message);
+        }
+      }
     },
   });
 
@@ -79,7 +77,7 @@ const SignUp: React.FC = () => {
 
             <Input
               img={mailIcon}
-              classStyles={stylesInputEmail}
+              className={stylesInputEmail}
               placeholder="Email"
               label="Enter your email"
               errors={formik.touched.email ? formik.errors.email : undefined}
@@ -88,7 +86,7 @@ const SignUp: React.FC = () => {
             />
             <Input
               img={eyeIcon}
-              classStyles={stylesInputPassword}
+              className={stylesInputPassword}
               placeholder="Password"
               label="Enter your password"
               type="password"
@@ -100,7 +98,7 @@ const SignUp: React.FC = () => {
             />
             <Input
               img={eyeIcon}
-              classStyles={stylesInputPassword}
+              className={stylesInputPassword}
               placeholder="Password replay"
               label="Repeat your password"
               type="password"

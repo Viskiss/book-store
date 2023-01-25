@@ -1,4 +1,6 @@
-import arrow from 'src/ui/assets/images/arrowRight.svg';
+import arrow from 'src/ui/assets/images/icon/arrowRight.svg';
+
+import polygon from 'src/ui/assets/images/Polygon.svg';
 
 import StyledBox from './SelectFilterBox.styles';
 
@@ -11,8 +13,9 @@ const SelectDropBox: React.FC<IProps> = ({ title, handler }) => {
   return (
     <StyledBox>
       <div onClick={() => handler()} className="select-box">
-        <span className="select-box-title">{title}</span>
-        <img className="select-box--arrow" src={arrow} alt="" />
+      <img className="select-box__polygon" src={polygon} alt="" />
+        <span className="select-box__title">{title}</span>
+        <img className="select-box__arrow" src={arrow} alt="" />
       </div>
     </StyledBox>
   );

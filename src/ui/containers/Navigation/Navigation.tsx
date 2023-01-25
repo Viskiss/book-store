@@ -55,7 +55,7 @@ const Navigation: React.FC = () => {
           {!user && (
             <>
               <Route path={routesLink.signUp} element={<SignUp />} />
-              <Route path={routesLink.login} element={<LogIn />} />
+              <Route path={routesLink.signIn} element={<LogIn />} />
             </>
           )}
 

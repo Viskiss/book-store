@@ -4,8 +4,8 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 import Button from 'src/ui/components/Button';
 
-import { useAppSelector } from 'src/redux/store';
 import constants from 'src/utils/constants';
+import tokenHelper from 'src/utils/tokenHelper';
 import AuthUserLinks from './AuthUserLinks';
 
 import logo from './images/logoH.svg';
@@ -17,7 +17,8 @@ const Header: React.FC = () => {
   const { routesLink } = constants;
   const [searchParams, setSearchParams] = useSearchParams();
   const [filter, setFilter] = useState<string>('');
-  const user = useAppSelector((store) => store.userStore.user);
+
+  const token = tokenHelper.token.get();
 
   useEffect(() => {
     searchParams.set('search', filter as string);
@@ -44,16 +45,21 @@ const Header: React.FC = () => {
           <button className="search-input_button">
             <img src={loupe} alt="" />
           </button>
-          <input onChange={(e) => handleChangeSearch(e)} value={filter} className="search-input" placeholder="Search" />
+          <input
+            onChange={(e) => handleChangeSearch(e)}
+            value={filter}
+            className="search-input"
+            placeholder="Search"
+          />
         </div>
-        {!user ? (
+        {!token ? (
           <>
-            <Button className="auth-button">
-              <Link to={routesLink.login}>Sign In</Link>
-            </Button>
-            <Button className="auth-button">
-              <Link to={routesLink.signUp}>Sign Up</Link>
-            </Button>
+            <Link to={routesLink.signIn}>
+              <Button className="auth-button">Sign In</Button>
+            </Link>
+            <Link to={routesLink.signUp}>
+              <Button className="auth-button">Sign Up</Button>
+            </Link>
           </>
         ) : (
           <AuthUserLinks />
@@ -66,15 +72,14 @@ const Header: React.FC = () => {
         <Link className="catalog-link" to={routesLink.home}>
           Catalog
         </Link>
-        {!user ? (
+        {!token ? (
           <>
-            <Button className="auth-button__small">
-              <Link to={routesLink.login}>Log In</Link>
-            </Button>
-            <Button className="auth-button__small">
-              <Link to={routesLink.signUp} />
-              Sign Up
-            </Button>
+            <Link to={routesLink.signIn}>
+              <Button className="auth-button__small">Log In</Button>
+            </Link>
+            <Link to={routesLink.signUp}>
+              <Button className="auth-button__small">Sign Up</Button>
+            </Link>
           </>
         ) : (
           <AuthUserLinks />

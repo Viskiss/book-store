@@ -1,6 +1,5 @@
 import { useFormik } from 'formik';
 import classNames from 'classnames';
-import type { ToastContent } from 'react-toastify';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -18,9 +17,9 @@ import {
 
 import constants from 'src/utils/constants';
 
-import mailIcon from 'src/ui/assets/images/Mail.svg';
-import eyeIcon from 'src/ui/assets/images/Hide.svg';
-import menPicture from 'src/ui/assets/images/men.svg';
+import mailIcon from 'src/ui/assets/images/icon/Mail.svg';
+import eyeIcon from 'src/ui/assets/images/icon/Hide.svg';
+import menPicture from 'src/ui/assets/images/icon/men.svg';
 
 import StyledLogin from './SignIn.styles';
 
@@ -35,10 +34,10 @@ const SignIn: React.FC = () => {
       email: '',
       password: '',
     },
-    // validationSchema: Yup.object({
-    //   email: fieldsValidation.email,
-    //   password: fieldsValidation.password,
-    // }),
+    validationSchema: Yup.object({
+      email: fieldsValidation.email,
+      password: fieldsValidation.password,
+    }),
     onSubmit: async (values) => {
       try {
         const { email, password } = values;
@@ -53,7 +52,7 @@ const SignIn: React.FC = () => {
             error.error,
             formik.setErrors,
           );
-          toast.error(error.message as ToastContent<unknown>);
+          toast.error(error.message);
         }
       }
     },
@@ -68,7 +67,7 @@ const SignIn: React.FC = () => {
 
             <Input
               img={mailIcon}
-              classStyles={classNames({
+              className={classNames({
                 'form-input': true,
                 'error-input': formik.touched.email
                   ? formik.errors.email
@@ -82,7 +81,7 @@ const SignIn: React.FC = () => {
             />
             <Input
               img={eyeIcon}
-              classStyles={classNames({
+              className={classNames({
                 'form-input': true,
                 'error-input': formik.touched.password
                   ? formik.errors.password

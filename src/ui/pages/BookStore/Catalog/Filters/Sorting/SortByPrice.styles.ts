@@ -6,7 +6,7 @@ export default styled.div<{ drop: boolean }>`
   height: 40px;
   border-radius: 16px;
 
-  .select-box--items {
+  .select-box__items {
     display: ${(props) => (props.drop ? 'flex' : 'none')};
     position: absolute;
     z-index: 1000;
@@ -15,20 +15,21 @@ export default styled.div<{ drop: boolean }>`
     height: 151px;
     border-radius: 16px;
     background: #f0f4ef;
-  }
-  .select-box--item {
-    border-radius: 16px;
-    font-size: 16px;
-    line-height: 28px;
-    color: #344966;
-    background: #f0f4ef;
+    margin-top: 20px;
   }
 
-  .select-box--arrow {
+.select-box__polygon {
+    display: ${(props) => (props.drop ? 'block' : 'none')};
+    position: absolute;
+    top: 55px;
+  }
+ 
+
+  .select-box__arrow {
     transform: ${(props) => (props.drop ? 'rotate(90deg)' : '')};
   }
 
-  .select-box--slider {
+  .select-box__slider {
     margin-top: 50px;
     margin-left: 18px;
     padding: 10px 15px;
@@ -38,11 +39,6 @@ export default styled.div<{ drop: boolean }>`
     z-index: 1;
   }
 
-  .polygon {
-    position: absolute;
-    top: -13px;
-    left: 15px;
-  }
   .price {
     display: flex;
     padding: 0 10px;
@@ -82,5 +78,14 @@ export default styled.div<{ drop: boolean }>`
   }
   .example-track-2 {
     background: #d6d8e7;
+  }
+
+  @media (max-width: 500px) {
+    margin-bottom: 10px;
+    width: 100%;
+
+    .select-box__items {
+    width: 100%;
+  }
   }
 `;

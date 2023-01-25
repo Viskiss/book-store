@@ -5,6 +5,21 @@ export default styled.header`
   justify-content: center;
   padding: 24px 80px 40px 80px;
 
+  .round-buttons__link-count {
+    position: relative;
+  }
+
+  .books-counter {
+    position: absolute;
+    z-index: 1000;
+    background: #bfcc94;
+    border-radius: 100%;
+    padding: 0 6px;
+    font-weight: 700;
+    font-size: 10px;
+    right: 10px;
+  }
+
   .small-width {
     display: none;
   }
@@ -36,11 +51,11 @@ export default styled.header`
 
   .search {
     position: relative;
-    padding-right: 72px;
+    padding-right: 30px;
   }
 
   .search-input {
-    padding: 20px 251px 20px 64px;
+    padding: 20px 166px 20px 64px;
     background: #f0f4ef;
     border-radius: 16px;
     border: none;
@@ -62,21 +77,13 @@ export default styled.header`
     background-color: initial;
   }
 
-  .round-buttons {
-    padding-left: 7px;
-  }
-
-  .round-button2 {
+  .round-button {
     margin: 0 27px;
+    padding: 9px 11px;
+    border-radius: 100%;
   }
 
   @media (max-width: 1438px) {
-    .round-button2 {
-    margin: 0 10px;
-  }
-  }
-
-  @media (max-width: 1422px) {
     .header_container {
       gap: 35px;
     }
@@ -92,17 +99,15 @@ export default styled.header`
     .header_container {
       gap: 30px;
     }
+    .round-button {
+      margin: 0 15px;
+    }
     .logo {
       padding-right: 50px;
     }
     .search-input {
       padding: 20px 160px 20px 64px;
     }
-
-    
-  }
-
-  @media (max-width: 1255px) {
     .logo {
       padding-right: 30px;
     }
@@ -115,43 +120,28 @@ export default styled.header`
   }
 
   @media (max-width: 1152px) {
-    .round-button2 {
-    margin: 0 13px;
-  }
-  .round-buttons {
-    padding-left: 16px;
-  }
-  }
-
-  @media (max-width: 1141px) {
     .logo {
       padding-right: 20px;
+    }
+
+    .round-button {
+      margin: 0 12px;
     }
     .search-input {
       padding: 20px 60px 20px 64px;
     }
-  }
 
-  @media (max-width: 1061px) {
     .search-input {
-      width: 260px;
+      width: 250px;
     }
   }
 
-  @media (max-width: 1001px) {
-    .search-input {
-      width: 200px;
-    }
-  }
-
-  @media (max-width: 946px) {
-    .search-input {
-      width: 88px;
-    }
-  }
-
-  @media (max-width: 835px) {
+  @media (max-width: 970px) {
     padding: 20px 15px 45px 15px;
+
+    .round-button {
+      margin: 0 10px;
+    }
 
     .search {
       padding-right: 20px;
@@ -164,9 +154,6 @@ export default styled.header`
     .catalog-link {
       padding-right: 43px;
     }
-  }
-
-  @media (max-width: 802px) {
     .header_container {
       gap: 20px;
     }
@@ -184,30 +171,24 @@ export default styled.header`
     }
   }
 
-  @media (max-width: 679px) {
+  @media (max-width: 775px) {
     .search-input {
-      padding: 20px 14px 20px 64px;
+      padding: 20px 80px 20px 64px;
     }
 
     .auth-button {
       padding: 7px;
     }
+
+    .round-button {
+      padding: 9px 10px 6px 9px;
+    }
+    .round-buttons {
+      padding-left: 0;
+    }
   }
 
-  @media (max-width: 636px) {
-    .round-button2 {
-    margin: 0 7px;
-  }
-
-  .round-button {
-    padding: 9px 10px 6px 9px;
-  }
-  .round-buttons {
-    padding-left: 0;
-  }
-  }
-
-  @media (max-width: 601px) {
+  @media (max-width: 600px) {
     .header_container {
       display: none;
     }
@@ -263,7 +244,7 @@ export default styled.header`
     }
 
     .round-button {
-    padding: 7px 8px 4px 7px;
+      padding: 7px 8px 4px 7px;
+    }
   }
-}
 `;

@@ -10,11 +10,12 @@ import Button from '../../../components/Button/Button';
 import { changePasswordThunk } from '../../../../redux/userStore/thunks/updateUser';
 import { useAppDispatch, useAppSelector } from '../../../../redux/store';
 import { fieldsValidation } from '../../../../utils/validationFields';
-import { handleApiValidationError } from '../../../../utils/handleApiValidationError';
+import {
+  handleApiValidationError,
+  validationError,
+} from '../../../../utils/handleApiValidationError';
 
 import eye from '../images/Hide.svg';
-
-import Styles from './PasswordProfile.styles';
 
 const PasswordProfile: React.FC = () => {
   const [changePassword, setChangePassword] = useState(false);
@@ -57,30 +58,21 @@ const PasswordProfile: React.FC = () => {
       repeatPassword: fieldsValidation.repeatPasswordProfile,
     }),
     onSubmit: async (values) => {
-      const { password, newPassword } = values;
-      await dispatch(
-        changePasswordThunk({
-          password,
-          id: userId,
-          newPassword,
-        }),
-      )
-        .unwrap()
-        .then(() => {
-          toast.success('Password changed');
-        })
-        .catch(
-          (error: {
-            error: Array<{ key: string; path: string; message: string }>;
-            message: string;
-          }) => {
-            if (error?.error && error.message === 'ValidationError') {
-              handleApiValidationError(error.error, formik.setErrors);
-            } else {
-              toast.error(error.message);
-            }
-          },
-        );
+      try {
+        const { password, newPassword } = values;
+        await dispatch(
+          changePasswordThunk({ password, id: userId, newPassword }),
+        )
+          .unwrap()
+          .then(() => {
+            toast.success('Password changed');
+          });
+      } catch (error) {
+        if (validationError(error)) {
+          handleApiValidationError(error.error, formik.setErrors);
+          toast.error(error.message);
+        }
+      }
     },
   });
 
@@ -90,7 +82,7 @@ const PasswordProfile: React.FC = () => {
   });
 
   return (
-    <Styles>
+    <div>
       <form className="user-password" onSubmit={formik.handleSubmit}>
         <div className="user-change_preview">
           <h3>Password</h3>
@@ -104,7 +96,7 @@ const PasswordProfile: React.FC = () => {
             <Input
               disabled={disabledInput}
               img={eye}
-              classStyles="form-input"
+              className="form-input"
               type="password"
               placeholder="***********"
               {...formik.getFieldProps('password')}
@@ -117,20 +109,20 @@ const PasswordProfile: React.FC = () => {
                 <label>Old password</label>
                 <Input
                   img={eye}
-                  classStyles={stylesInputPassword}
+                  className={stylesInputPassword}
                   type="password"
                   placeholder="***********"
                   label="Old password"
                   errors={
                     formik.touched.password ? formik.errors.password : undefined
                   }
-                  touched={ formik.touched.password || ''}
+                  touched={formik.touched.password || ''}
                   {...formik.getFieldProps('password')}
                 />
               </div>
               <Input
                 img={eye}
-                classStyles={stylesInputPassword}
+                className={stylesInputPassword}
                 placeholder="New password"
                 label="Enter your password"
                 type="password"
@@ -139,11 +131,11 @@ const PasswordProfile: React.FC = () => {
                     ? formik.errors.newPassword
                     : undefined
                 }
-                touched={ formik.touched.newPassword || ''}
+                touched={formik.touched.newPassword || ''}
                 {...formik.getFieldProps('newPassword')}
               />
               <Input
-                classStyles={stylesInputPassword}
+                className={stylesInputPassword}
                 img={eye}
                 placeholder="Password replay"
                 label="Repeat your password without errors"
@@ -153,7 +145,7 @@ const PasswordProfile: React.FC = () => {
                     ? formik.errors.repeatPassword
                     : undefined
                 }
-                touched={ formik.touched.repeatPassword || ''}
+                touched={formik.touched.repeatPassword || ''}
                 {...formik.getFieldProps('repeatPassword')}
               />
             </>
@@ -163,7 +155,7 @@ const PasswordProfile: React.FC = () => {
           </>
         )}
       </form>
-    </Styles>
+    </div>
   );
 };
 

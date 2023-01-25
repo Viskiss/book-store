@@ -1,5 +1,5 @@
 import { useAppSelector } from 'src/redux/store';
-import Button from 'src/ui/components/Button/Button.styles';
+import Button from 'src/ui/components/Button';
 import StyledComments from './Comments.styles';
 
 const Comments: React.FC = () => {

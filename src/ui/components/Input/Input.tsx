@@ -2,14 +2,14 @@ import type { FormikTouched } from 'formik';
 import type { MouseEventHandler } from 'react';
 import React, { useState } from 'react';
 
-import view from 'src/ui/assets/images/View.svg';
+import view from 'src/ui/assets/images/icon/View.svg';
 
 import StyledInput from './Input.styles';
 
 interface IProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  classStyles?: string;
+  className?: string;
   img: string;
   placeholder: string;
   value: string;
@@ -64,7 +64,7 @@ const Input: React.FC<IProps> = (props: IProps) => {
         name={props.name}
         onChange={props.onChange}
         value={props.value}
-        className={props.classStyles}
+        className={props.className}
         placeholder={props.placeholder}
         onBlur={props.onBlur}
       />
