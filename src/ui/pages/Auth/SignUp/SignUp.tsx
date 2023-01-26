@@ -2,16 +2,16 @@ import { useFormik } from 'formik';
 import classNames from 'classnames';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Input from 'src/ui/components/Input/Input';
 import Button from 'src/ui/components/Button';
 
-import { useAppDispatch, useAppSelector } from 'src/redux/store';
+import { useAppDispatch } from 'src/redux/store';
 import { signUpThunk } from 'src/redux/userStore/thunks/authUser';
 
 import { fieldsValidation } from 'src/utils/validationFields';
-import { handleApiValidationError, validationError } from 'src/utils/handleApiValidationError';
+import { handleApiValidationError, matchError } from 'src/utils/handleApiValidationError';
 
 import constants from 'src/utils/constants';
 
@@ -19,13 +19,13 @@ import mailIcon from 'src/ui/assets/images/icon/Mail.svg';
 import eyeIcon from 'src/ui/assets/images/icon/Hide.svg';
 import menPicture from 'src/ui/assets/images/icon/men.svg';
 
+import tokenHelper from 'src/utils/tokenHelper';
 import StyledSignUp from './SignUp.styles';
 
 const SignUp: React.FC = () => {
-  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const success = useAppSelector((store) => store.userStore.user);
+  const success = tokenHelper.token.get;
 
   const formik = useFormik({
     initialValues: {
@@ -41,19 +41,19 @@ const SignUp: React.FC = () => {
     onSubmit: async (values) => {
       try {
         const { email, password } = values;
-        await dispatch(signUpThunk({ email, password }))
-          .unwrap()
-          .then(() => {
-            navigate(`${success}` ? `${constants.routesLink.home}` : `${location.state.from.pathname}`);
-          });
+        await dispatch(signUpThunk({ email, password })).unwrap();
+        if (success !== undefined) {
+          navigate(constants.routesLink.home);
+        }
       } catch (error) {
-        if (validationError(error)) {
+        if (matchError(error)) {
           handleApiValidationError(
             error.error,
             formik.setErrors,
           );
-          toast.error(error.message);
+          return;
         }
+        toast.error('Unexpected server error');
       }
     },
   });

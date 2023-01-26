@@ -43,9 +43,9 @@ const SortByPrice: React.FC = () => {
     }
   };
   return (
-    <StyledSortByPrice onMouseLeave={() => setDropSelect(false)} drop={dropSelect}>
-      <SelectDropBox handler={handleDropSelect} title="Price" />
-      <div className="select-box__items">
+    <StyledSortByPrice drop={dropSelect}>
+    <SelectDropBox handler={handleDropSelect} title="Price" />
+      <div onMouseLeave={() => setDropSelect(false)} className="select-box__items">
         <ReactSlider
           className="select-box__slider"
           value={value}

@@ -34,7 +34,7 @@ export type CartType = {
   cover: string;
   bookId: number;
   id: number;
-  price: string;
+  price: number;
   title: string;
   author: string;
   quantityOfGoods: number;

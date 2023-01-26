@@ -8,6 +8,10 @@ export default styled.div`
     margin-right: 0;
   }
 
+  .books-rate {
+    display: flex;
+  }
+
   .book-info {
     position: relative;
     height: 270px;
@@ -15,12 +19,24 @@ export default styled.div`
     margin-top: 30px;
   }
 
+  .cover-book__like {
+    opacity: 0.7;
+    position: absolute;
+    z-index: 1000;
+    margin: 20px;
+    padding: 10px 10px 6px 10px;
+    border-radius: 100%;
+  }
+
   .cover {
     width: 305px;
     height: 448px;
+    border-radius: ${(props) => props.theme.border.default};
   }
 
   .cover-book {
+    border-radius: ${(props) => props.theme.border.default};
+    position: relative;
     display: flex;
     background-color: #35373724;
     width: 305px;
@@ -49,10 +65,14 @@ export default styled.div`
     line-height: 28px;
   }
 
-  .rate {
-    position: absolute;
-    bottom: 60px;
+  .catalog-button {
+    width: 100%;
   }
+
+  .rate {
+    margin-bottom: 30px;
+  }
+
   .fill {
     color: #bfcc94;
   }
@@ -60,15 +80,11 @@ export default styled.div`
     margin-right: 15px;
   }
 
-  .books-rate {
-    .rate-number {
-      position: absolute;
-      bottom: 70px;
-      right: 0;
-      font-size: 16px;
-      line-height: 24px;
-      color: #b9bac4;
-    }
+  .rate-number {
+    font-size: 16px;
+    line-height: 24px;
+    color: #b9bac4;
+    padding-top: 10px;
   }
 
   .cart-button {

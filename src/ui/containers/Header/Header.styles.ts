@@ -5,7 +5,7 @@ export default styled.header`
   justify-content: center;
   padding: 24px 80px 40px 80px;
 
-  .round-buttons__link-count {
+  .round-button__count {
     position: relative;
   }
 
@@ -14,10 +14,12 @@ export default styled.header`
     z-index: 1000;
     background: #bfcc94;
     border-radius: 100%;
-    padding: 0 6px;
+    padding: 1px 5px;
     font-weight: 700;
     font-size: 10px;
-    right: 10px;
+    color: #000;
+    right: 2px;
+    top: 0;
   }
 
   .small-width {

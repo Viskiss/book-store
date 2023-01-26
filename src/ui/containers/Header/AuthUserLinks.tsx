@@ -5,8 +5,8 @@ import Button from 'src/ui/components/Button';
 
 import constants from 'src/utils/constants';
 
+import like from 'src/ui/assets/images/icon/Heart.svg';
 import cart from './images/Cart.svg';
-import like from './images/Heart.svg';
 import profile from './images/User.svg';
 
 const AuthUserLinks: React.FC = () => {
@@ -15,9 +15,9 @@ const AuthUserLinks: React.FC = () => {
 
   return (
     <div className="round-buttons">
-      <Link className="round-buttons__link-count" to={routesLink.cart}>
+      <Link to={routesLink.cart}>
+        <Button className="round-button round-button__count">
         <span className="books-counter">{booksCount}</span>
-        <Button className="round-button">
           <img src={cart} alt="Cart" />
         </Button>
       </Link>

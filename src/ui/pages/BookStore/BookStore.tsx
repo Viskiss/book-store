@@ -12,7 +12,7 @@ import { getAllBooksThunk } from './redux/thunks/bookStoreThunks';
 const BookStore: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const isAuth = useAppSelector((store) => store.userStore.user);
+  const isAuth = useAppSelector((store) => store.userStore.isAuthenticated);
   const books = useAppSelector((store) => store.bookStore.books);
 
   useEffect(() => {

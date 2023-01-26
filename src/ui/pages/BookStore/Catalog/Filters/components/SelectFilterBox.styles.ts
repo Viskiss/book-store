@@ -5,7 +5,7 @@ export default styled.div<{ drop?: boolean; typeSelect?: boolean }>`
   background: #f0f4ef;
   height: 48px;
   border-radius: 16px;
-  
+
   .select-box {
     padding: 10px 35px 10px 15px;
     min-width: 146px;
@@ -38,12 +38,6 @@ export default styled.div<{ drop?: boolean; typeSelect?: boolean }>`
   .select-box__item {
     display: flex;
     align-items: center;
-    :nth-child(1) {
-      border-radius: 16px;
-    }
-    :nth-child(19) {
-      border-radius: 16px;
-    }
     font-size: 16px;
     line-height: 28px;
     color: #344966;
@@ -66,13 +60,13 @@ export default styled.div<{ drop?: boolean; typeSelect?: boolean }>`
 
   @media (max-width: 650px) {
     .select-box {
-    min-width: fit-content;
-  }
+      min-width: fit-content;
+    }
   }
 
   @media (max-width: 500px) {
     width: 100%;
-    
+
     .select-box__items {
       width: 100%;
     }

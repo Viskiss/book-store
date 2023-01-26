@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../../../redux/store';
 import { fieldsValidation } from '../../../../utils/validationFields';
 import {
   handleApiValidationError,
-  validationError,
+  matchError,
 } from '../../../../utils/handleApiValidationError';
 
 import eye from '../images/Hide.svg';
@@ -62,16 +62,13 @@ const PasswordProfile: React.FC = () => {
         const { password, newPassword } = values;
         await dispatch(
           changePasswordThunk({ password, id: userId, newPassword }),
-        )
-          .unwrap()
-          .then(() => {
-            toast.success('Password changed');
-          });
+        ).unwrap();
       } catch (error) {
-        if (validationError(error)) {
+        if (matchError(error)) {
           handleApiValidationError(error.error, formik.setErrors);
-          toast.error(error.message);
+          return;
         }
+        toast.error('Unexpected server error');
       }
     },
   });

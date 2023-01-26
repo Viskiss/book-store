@@ -16,7 +16,7 @@ import {
   uploadAvatarUserThunk,
 } from 'src/redux/userStore/thunks/updateUser';
 import { fieldsValidation } from 'src/utils/validationFields';
-import { handleApiValidationError } from 'src/utils/handleApiValidationError';
+import { handleApiValidationError, matchError } from 'src/utils/handleApiValidationError';
 import tokenHelper from 'src/utils/tokenHelper';
 
 import constants from 'src/utils/constants';
@@ -67,24 +67,19 @@ const UserProfile: React.FC = () => {
       fullName: fieldsValidation.fullName,
     }),
     onSubmit: async (values) => {
-      const { fullName, email } = values;
-      await dispatch(changeUserThunk({ fullName, email, id: userId }))
-        .unwrap()
-        .then(() => {
-          toast.success('User changed');
-        })
-        .catch(
-          (error: {
-            error: Array<{ key: string; path: string; message: string }>;
-            message: string;
-          }) => {
-            if (error?.error && error.message === 'ValidationError') {
-              handleApiValidationError(error.error, formik.setErrors);
-            } else {
-              toast.error(error.message);
-            }
-          },
-        );
+      try {
+        const { fullName, email } = values;
+        await dispatch(changeUserThunk({ fullName, email, id: userId })).unwrap();
+      } catch (error) {
+        if (matchError(error)) {
+          handleApiValidationError(
+            error.error,
+            formik.setErrors,
+          );
+          return;
+        }
+        toast.error('Unexpected server error');
+      }
     },
   });
 

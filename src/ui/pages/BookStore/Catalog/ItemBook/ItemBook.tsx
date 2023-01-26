@@ -4,11 +4,17 @@ import { Rating } from 'react-simple-star-rating';
 
 import Button from 'src/ui/components/Button';
 
+import like from 'src/ui/assets/images/icon/Heart.svg';
+import fillLike from 'src/ui/assets/images/icon/fillHeart.svg';
+
+import constants from 'src/utils/constants';
+
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { getSelectBookThunk } from '../../redux/thunks/bookStoreThunks';
 
+import { AddBookThunk, getCartBooks } from '../../redux/thunks/cartThunks';
+
 import StyledItemBook from './ItemBook.styles ';
-import { AddBookThunk } from '../../redux/thunks/cartThunks';
 
 interface IProps {
   cover: string;
@@ -21,8 +27,14 @@ interface IProps {
 
 const ItemBook: React.FC<IProps> = (props: IProps) => {
   const [rating] = useState(props.rate);
-  const [addedToCart, setAddedToCart] = useState('simple-button');
+  const [likedBook, setLikedBook] = useState(false);
+  const [likeImg, setLikeImg] = useState(like);
+
+  const cart = useAppSelector((store) => store.bookStore.cart);
   const user = useAppSelector((store) => store.userStore.user);
+
+  const selectBookInCart = cart.map((book) => book.bookId);
+  const selectBooks = selectBookInCart.includes(props.id);
 
   const navigate = useNavigate();
 
@@ -39,13 +51,50 @@ const ItemBook: React.FC<IProps> = (props: IProps) => {
     bookId: number,
   ) => {
     e.preventDefault();
-    setAddedToCart('cart-button');
+    if (!user) {
+      navigate(constants.routesLink.signIn);
+    }
     dispatch(AddBookThunk({ userId: user?.id || 0, bookId }));
+    dispatch(getCartBooks(user?.id || 0));
+  };
+
+  const handlerLikeBook = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    if (!user) {
+      navigate(constants.routesLink.signIn);
+    }
+    if (likedBook) {
+      setLikedBook(false);
+      setLikeImg(like);
+    } else {
+      setLikedBook(true);
+      setLikeImg(fillLike);
+    }
+  };
+
+  const checkedCart = () => {
+    if (!props.id || selectBooks) {
+      return true;
+    }
+    return false;
+  };
+
+  const checkedButton = () => {
+    if (selectBooks) {
+      return 'Added to cart';
+    }
+    return `${props.price} USD`;
   };
 
   return (
     <StyledItemBook>
       <div className="cover-book">
+        <Button
+          onClick={(e) => handlerLikeBook(e)}
+          className="cover-book__like"
+        >
+          <img src={likeImg} alt="Heart" />
+        </Button>
         <img className="cover" src={props.cover} alt="" />
       </div>
       <div className="book-info">
@@ -67,11 +116,11 @@ const ItemBook: React.FC<IProps> = (props: IProps) => {
           <span className="rate-number">{props.rate}.0</span>
         </div>
         <Button
+          className="catalog-button"
           onClick={(e) => handlerAddToCart(e, props.id)}
-          className={addedToCart}
+          disabled={checkedCart()}
         >
-          {addedToCart === 'simple-button' ? `${props.price} USD` : 'Added to cart'}
-
+          {checkedButton()}
         </Button>
       </div>
     </StyledItemBook>

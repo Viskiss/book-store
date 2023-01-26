@@ -15,6 +15,7 @@ import StyledHeader from './Header.styles';
 
 const Header: React.FC = () => {
   const { routesLink } = constants;
+
   const [searchParams, setSearchParams] = useSearchParams();
   const [filter, setFilter] = useState<string>('');
 

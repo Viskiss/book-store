@@ -1,32 +1,47 @@
+import decrement from 'src/ui/assets/images/icon/decrement.svg';
+import increment from 'src/ui/assets/images/icon/increment.svg';
+import trashBox from 'src/ui/assets/images/icon/Delete.svg';
+
 interface IProps {
   bookId: number;
-  price: string;
+  price: number;
   cover: string;
   title: string;
   author: string;
   quantityOfGoods: number;
 }
 
-const ItemCart: React.FC<IProps> = ({ price, cover, title, author, quantityOfGoods }) => {
+const ItemCart: React.FC<IProps> = ({
+  price,
+  cover,
+  title,
+  author,
+  quantityOfGoods,
+}) => {
   return (
-    <div className="item-cart--box">
-      <div>
-        <img className="item-cart--box-cover" src={cover} alt="" />
+    <><div className="item-cart__box">
+      <div className="item-cart__box-cover">
+        <img className="item-cart__cover" src={cover} alt="" />
       </div>
       <div>
-        <h1 className="item-cart--box-title">{title}</h1>
-        <p className="item-cart--box-author">{author}</p>
-        <div>
+        <h1 className="item-cart__box-title">{title}</h1>
+        <p className="item-cart__box-author">{author}</p>
+        <div className="item-cart__box-filter">
           <div>
-            <button className="item-cart--box-button">+</button>
-            {quantityOfGoods}
-            <button className="item-cart--box-button">-</button>
+            <button className="item-cart__box-button">
+              <img className="box-button__dec" src={decrement} alt="" />
+            </button>
+            <span className="quantity">{quantityOfGoods}</span>
+            <button className="item-cart__box-button">
+              <img className="box-button__inc" src={increment} alt="" />
+            </button>
           </div>
-          <img className="item-cart--box-trash" src="" alt="" />
+          <img className="item-cart__box-trash" src={trashBox} alt="" />
         </div>
-        <p className="item-cart--box-price">{price}</p>
+        <p className="item-cart__box-price">${price}USD</p>
       </div>
-    </div>
+      </div><div className="line" />
+    </>
   );
 };
 

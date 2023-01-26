@@ -35,12 +35,11 @@ const SelectFilterBox: React.FC<IProps> = ({
 
   return (
     <StyledSelect
-      onMouseLeave={() => setDropSelect(false)}
       drop={dropSelect}
       typeSelect={typeSelect}
     >
       <SelectDropBox handler={handleDropSelect} title={title} />
-      <div className="select-box__items">
+      <div onMouseLeave={() => setDropSelect(false)} className="select-box__items">
         {items.map((item) => (
           <Item
             title={title}
