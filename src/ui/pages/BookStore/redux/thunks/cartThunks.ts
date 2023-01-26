@@ -5,7 +5,7 @@ import type { AddBookType } from 'src/types';
 
 import cartApi from '../api/cartApi';
 
-export const AddBookThunk = createAsyncThunk(
+export const addBookThunk = createAsyncThunk(
   'cart/addBook',
   async (data: AddBookType, { rejectWithValue }) => {
     const { userId, bookId } = data;
@@ -28,6 +28,54 @@ export const getCartBooks = createAsyncThunk(
     try {
       const cart = await cartApi.getCartBooks(userId);
       return cart.data;
+    } catch (err) {
+      const error = err as AxiosError;
+      if (!error.response) {
+        throw err;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const addCopyBook = createAsyncThunk(
+  'cart/copyBook',
+  async (bookId: number, { rejectWithValue }) => {
+    try {
+      await cartApi.addCopy(bookId);
+      return;
+    } catch (err) {
+      const error = err as AxiosError;
+      if (!error.response) {
+        throw err;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const deleteCopyBook = createAsyncThunk(
+  'cart/copyBook',
+  async (bookId: number, { rejectWithValue }) => {
+    try {
+      await cartApi.deleteCopy(bookId);
+      return;
+    } catch (err) {
+      const error = err as AxiosError;
+      if (!error.response) {
+        throw err;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const deleteBookInCart = createAsyncThunk(
+  'cart/deleteBook',
+  async (cartId: number, { rejectWithValue }) => {
+    try {
+      await cartApi.deleteBook(cartId);
+      return;
     } catch (err) {
       const error = err as AxiosError;
       if (!error.response) {

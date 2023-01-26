@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
@@ -18,8 +18,9 @@ import StyledCart from './Cart.styles';
 const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const cart = useAppSelector((store) => store.bookStore.cart);
+  const [total, setTotal] = useState(0);
 
+  const cart = useAppSelector((store) => store.bookStore.cart);
   const isAuth = useAppSelector((store) => store.userStore.isAuthenticated);
   const user = useAppSelector((store) => store.userStore.user);
 
@@ -28,17 +29,12 @@ const Cart: React.FC = () => {
       return;
     }
     dispatch(getCartBooks(user?.id || 0));
-  });
+  }, [dispatch, isAuth, user?.id]);
 
-  // const totalPrice = cart.reduce((a, b) => a + b.price, 0);
-
-  // const totalPrice = () => {
-  //   let total = 0;
-  //   for (let i = 0; i < cart.length; i++) {
-  //     total += cart[i].price;
-  //   }
-  //   return total;
-  // };
+  useEffect(() => {
+    const price = cart.reduce((acc, item) => acc + (item.price * item.quantityOfGoods), 0);
+    setTotal(Number(price.toFixed(2)));
+  }, [cart]);
 
   return (
     <StyledCart>
@@ -50,7 +46,8 @@ const Cart: React.FC = () => {
                 author={item.author}
                 quantityOfGoods={item.quantityOfGoods}
                 title={item.title}
-                bookId={item.id}
+                bookId={item.bookId}
+                cartId={item.id}
                 cover={item.cover}
                 price={item.price}
                 key={item.id}
@@ -59,7 +56,7 @@ const Cart: React.FC = () => {
           </div>
           <div>
             <p>
-              Total:<span className="cart__total">00</span>
+              Total:<span className="cart__total">{total}</span>
             </p>
             <Button onClick={() => navigate(constants.routesLink.home)} className="cart-button">Continue shopping</Button>
             <Button>Chekout</Button>

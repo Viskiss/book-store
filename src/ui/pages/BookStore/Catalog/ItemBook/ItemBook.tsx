@@ -12,7 +12,7 @@ import constants from 'src/utils/constants';
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { getSelectBookThunk } from '../../redux/thunks/bookStoreThunks';
 
-import { AddBookThunk, getCartBooks } from '../../redux/thunks/cartThunks';
+import { addBookThunk, getCartBooks } from '../../redux/thunks/cartThunks';
 
 import StyledItemBook from './ItemBook.styles ';
 
@@ -54,7 +54,7 @@ const ItemBook: React.FC<IProps> = (props: IProps) => {
     if (!user) {
       navigate(constants.routesLink.signIn);
     }
-    dispatch(AddBookThunk({ userId: user?.id || 0, bookId }));
+    dispatch(addBookThunk({ userId: user?.id || 0, bookId }));
     dispatch(getCartBooks(user?.id || 0));
   };
 

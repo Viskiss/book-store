@@ -12,7 +12,22 @@ const getCartBooks = (userId: number) => {
   return api.get<{books: CartType[]}>(`${CART_PATH_PREFIX}/${userId}`, { params: { userId } });
 };
 
+const addCopy = (bookId: number) => {
+  return api.get(`${CART_PATH_PREFIX}copy/${bookId}`);
+};
+
+const deleteBook = (cartId: number) => {
+  return api.delete(`${CART_PATH_PREFIX}/delete/${cartId}`);
+};
+
+const deleteCopy = (bookId: number) => {
+  return api.delete(`${CART_PATH_PREFIX}/delete-copy/${bookId}`);
+};
+
 export default {
   addBook,
   getCartBooks,
+  deleteBook,
+  addCopy,
+  deleteCopy,
 };
