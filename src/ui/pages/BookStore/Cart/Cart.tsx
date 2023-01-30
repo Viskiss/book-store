@@ -7,11 +7,11 @@ import constants from 'src/utils/constants';
 import Button from 'src/ui/components/Button';
 import TextBlock from 'src/ui/components/TextBlock/TextBlock';
 
+import booksImg from 'src/ui/assets/images/books.svg';
+
 import { getCartBooks } from '../redux/thunks/cartThunks';
 
 import ItemCart from './ItemCart';
-
-import booksImg from './images/books.svg';
 
 import StyledCart from './Cart.styles';
 
@@ -32,7 +32,10 @@ const Cart: React.FC = () => {
   }, [dispatch, isAuth, user?.id]);
 
   useEffect(() => {
-    const price = cart.reduce((acc, item) => acc + (item.price * item.quantityOfGoods), 0);
+    const price = cart.reduce(
+      (acc, item) => acc + item.price * item.quantityOfGoods,
+      0,
+    );
     setTotal(Number(price.toFixed(2)));
   }, [cart]);
 
@@ -58,13 +61,18 @@ const Cart: React.FC = () => {
             <p>
               Total:<span className="cart__total">{total}</span>
             </p>
-            <Button onClick={() => navigate(constants.routesLink.home)} className="cart-button">Continue shopping</Button>
+            <Button
+              onClick={() => navigate(constants.routesLink.home)}
+              className="cart-button"
+            >
+              Continue shopping
+            </Button>
             <Button>Chekout</Button>
           </div>
         </>
       ) : (
         <div className="cart-container">
-          <img className="img_book" src={booksImg} alt="" />
+          <img className="cart-container__img" src={booksImg} alt="" />
           <TextBlock
             h1="Your cart is empty"
             className="simple-button"

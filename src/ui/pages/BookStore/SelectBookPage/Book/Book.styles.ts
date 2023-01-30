@@ -11,50 +11,54 @@ export default styled.div`
   }
 
   .title {
-    font-size: 40px;
-    line-height: 60px;
+    font-size: ${(props) => props.theme.fontSize.fs40};
+    line-height: ${(props) => props.theme.lineHeight.lh60};
     margin: 0;
   }
 
   .book-author {
-    font-size: 24px;
-    line-height: 36px;
+    font-size: ${(props) => props.theme.fontSize.fs24};
+    line-height: ${(props) => props.theme.lineHeight.lh36};
     margin-top: 0;
   }
+
   .description {
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 36px;
+    font-weight: ${(props) => props.theme.fontWeight.middle};
+    line-height: ${(props) => props.theme.lineHeight.lh36};;
+    font-size: ${(props) => props.theme.fontSize.fs24};
+    line-height: ${(props) => props.theme.lineHeight.lh36};
     margin-bottom: 10px;
   }
 
   .text {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: ${(props) => props.theme.fontSize.fs16};
+    line-height: ${(props) => props.theme.lineHeight.lh24};
     margin: 0 0 74px 0;
   }
 
   .disabled-button {
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 30px;
-    background: #b9bac4;
-    color: #f0f4ef;
+    font-weight: ${(props) => props.theme.fontWeight.height};
+    font-size: ${(props) => props.theme.fontSize.fs20};
+    line-height: ${(props) => props.theme.lineHeight.lh30};
+    background: ${(props) => props.theme.color.grey};
+    color: ${(props) => props.theme.color.white};
     padding: 10px 50px;
   }
 
   .simple-button {
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 30px;
+    font-weight: ${(props) => props.theme.fontWeight.height};
+    font-size: ${(props) => props.theme.fontSize.fs20};
+    line-height: ${(props) => props.theme.lineHeight.lh30};
   }
 
   .buttons-box {
     display: flex;
     justify-content: flex-start;
     gap: 82px;
-    p {
-      margin-top: 0;
-    }
+
+  }
+
+  .buttons-box__title {
+    margin-top: 0;
   }
 `;

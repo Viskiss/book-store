@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export default styled.section`
-  background: #f0f4ef;
-  color: #f0f4ef;
+  background: ${(props) => props.theme.color.white};
+  color: ${(props) => props.theme.color.white};
   display: flex;
   justify-content: space-between;
-  border-radius: 16px;
+  border-radius: ${(props) => props.theme.border.default};
   margin-bottom: 120px;
   max-height: 400px;
   width: 100%;

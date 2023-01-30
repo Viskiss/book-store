@@ -15,18 +15,18 @@ export default styled.div`
   }
 
   .title {
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 60px;
-    color: #0d1821;
+    font-weight: ${(props) => props.theme.fontWeight.height};
+    font-size: ${(props) => props.theme.fontSize.fs40};
+    line-height: ${(props) => props.theme.lineHeight.lh60};
+    color: ${(props) => props.theme.color.dark};
     margin-bottom: 10px;
     margin-top: 80px;
   }
 
   .text {
-    font-size: 20px;
-    line-height: 30px;
-    color: #344966;
+    font-size: ${(props) => props.theme.fontSize.fs20};
+    line-height: ${(props) => props.theme.lineHeight.lh30};
+    color: ${(props) => props.theme.color.blue};
     margin-bottom: 50px;
     margin-top: 0;
   }
@@ -41,17 +41,19 @@ export default styled.div`
       padding: 0 0 56px 40px;
       z-index: 1000;
     }
+
     .title {
-      font-size: 32px;
-      line-height: 48px;
+      font-size: ${(props) => props.theme.fontSize.fs32};
+      line-height: ${(props) => props.theme.lineHeight.lh48};
       margin-bottom: 0;
     }
 
     .text {
-      font-size: 16px;
-      line-height: 24px;
+      font-size: ${(props) => props.theme.fontSize.fs16};
+      line-height: ${(props) => props.theme.lineHeight.lh24};
       margin-bottom: 40px;
     }
+
     .block-text_img {
       width: 361px;
     }
@@ -61,13 +63,13 @@ export default styled.div`
     .title {
       margin-top: 45px;
       margin-bottom: 10px;
-      font-size: 25px;
+      font-size: ${(props) => props.theme.fontSize.fs24};
     }
   }
 
   @media (max-width: 820px) {
     .title {
-      font-size: 18px;
+      font-size: ${(props) => props.theme.fontSize.fs18};
     }
     .block-text_img {
       width: 232px;
@@ -82,9 +84,11 @@ export default styled.div`
     .text {
       margin-bottom: 20px;
     }
+
     .title {
       margin-top: 5px;
     }
+
     .block-text_img {
       right: 0;
       bottom: 22px;

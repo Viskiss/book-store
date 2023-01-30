@@ -3,7 +3,7 @@ import { useAppSelector } from 'src/redux/store';
 import Button from 'src/ui/components/Button';
 
 import StyledBook from './Book.styles';
-import StarRate from './StarRate/StarRate';
+import StarRate from '../../../../components/Rating/StarRate';
 
 const Book: React.FC = () => {
   const book = useAppSelector((store) => store.bookStore.book);
@@ -33,7 +33,7 @@ const Book: React.FC = () => {
             )}
           </div>
           <div>
-            <p>Hardcover</p>
+            <p className="buttons-box__title">Hardcover</p>
             {book.status === 'Hardcover' ? (
               <Button className="simple-button">$ {book.price} USD</Button>
             ) : (

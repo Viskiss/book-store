@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
-import logo from './images/logoF.svg';
-import map from './images/map.png';
+import logo from 'src/ui/assets/images/logoF.svg';
+import map from 'src/ui/assets/images/map.png';
 
 import StyledFooter from './Footer.styles';
 

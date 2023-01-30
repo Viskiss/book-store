@@ -25,9 +25,8 @@ import mail from 'src/ui/assets/images/icon/Mail.svg';
 import camera from 'src/ui/assets/images/icon/Camera.svg';
 import imgUser from 'src/ui/assets/images/icon/User.svg';
 
-import PasswordProfile from './component/PasswordProfile';
-
-import defaultPhoto from './images/UserPhoto.svg';
+import defaultPhoto from 'src/ui/assets/images/UserPhoto.svg';
+import PasswordProfile from './PasswordProfile';
 
 import StyledUserProfile from './UserProfile.styles';
 
@@ -126,7 +125,7 @@ const UserProfile: React.FC = () => {
         <img className="user-photo" src={user?.avatar ? user?.avatar : defaultPhoto } alt="" />
         <div className="load-avatar">
           <div className="drop-box">
-            <input type="file" onChange={(e) => uploadPhoto(e)} />
+            <input className="load-avatar__input" type="file" onChange={(e) => uploadPhoto(e)} />
           </div>
           <Button className="add-avatar">
             <img src={camera} alt="" />
@@ -139,9 +138,9 @@ const UserProfile: React.FC = () => {
 
       <div>
         <form className="form-user-data" onSubmit={formik.handleSubmit}>
-          <div className="user-change_preview">
-            <h3>Personal information</h3>
-            <a onClick={(e) => changeDataHandler('userData', e)} href="">
+          <div className="user-change-preview">
+            <h3 className="user-change-preview__title">Personal information</h3>
+            <a className="user-change-preview__link" onClick={(e) => changeDataHandler('userData', e)} href="">
               Change information
             </a>
           </div>

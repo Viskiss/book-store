@@ -2,16 +2,16 @@ import styled from 'styled-components';
 
 export default styled.div<{ drop?: boolean; typeSelect?: boolean }>`
   position: relative;
-  background: #f0f4ef;
+  background: ${(props) => props.theme.color.white};
   height: 48px;
-  border-radius: 16px;
+  border-radius: ${(props) => props.theme.border.default};
 
   .select-box {
     padding: 10px 35px 10px 15px;
     min-width: 146px;
     cursor: pointer;
-    font-size: 18px;
-    line-height: 28px;
+    font-size: ${(props) => props.theme.fontSize.fs18};
+    line-height: ${(props) => props.theme.lineHeight.lh28};
   }
 
   .select-box__arrow {
@@ -27,21 +27,21 @@ export default styled.div<{ drop?: boolean; typeSelect?: boolean }>`
     height: ${(props) => (props.typeSelect ? '226px' : '400px')};
     overflow: auto;
     position: absolute;
-    z-index: 1000;
-    border-radius: 16px;
-    background: #f0f4ef;
-    font-size: 16px;
-    line-height: 28px;
+    z-index: 1001;
+    border-radius: ${(props) => props.theme.border.default};
+    background: ${(props) => props.theme.color.white};
+    font-size: ${(props) => props.theme.fontSize.fs16};
+    line-height: ${(props) => props.theme.lineHeight.lh28};
     margin-top: 20px;
   }
 
   .select-box__item {
     display: flex;
     align-items: center;
-    font-size: 16px;
-    line-height: 28px;
-    color: #344966;
-    background: #f0f4ef;
+    font-size: ${(props) => props.theme.fontSize.fs16};
+    line-height: ${(props) => props.theme.lineHeight.lh28};
+    color: ${(props) => props.theme.color.blue};
+    background: ${(props) => props.theme.color.white};
   }
 
   .select-box__text {

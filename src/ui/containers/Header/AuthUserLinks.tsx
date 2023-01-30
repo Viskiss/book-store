@@ -6,8 +6,8 @@ import Button from 'src/ui/components/Button';
 import constants from 'src/utils/constants';
 
 import like from 'src/ui/assets/images/icon/Heart.svg';
-import cart from './images/Cart.svg';
-import profile from './images/User.svg';
+import cart from 'src/ui/assets/images/Cart.svg';
+import profile from 'src/ui/assets/images/User.svg';
 
 const AuthUserLinks: React.FC = () => {
   const { routesLink } = constants;

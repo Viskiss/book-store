@@ -6,8 +6,8 @@ export default styled.div`
   margin-bottom: 50px;
 
   .filters__title {
-    font-size: 40px;
-    line-height: 60px;
+    font-size: ${(props) => props.theme.fontSize.fs40};
+    line-height: ${(props) => props.theme.lineHeight.lh60};
     margin: 0;
   }
 

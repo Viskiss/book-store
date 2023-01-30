@@ -6,26 +6,21 @@ export default styled.section`
 
   .form-input {
     padding: 20px 34px 20px 64px;
-    background: #f0f4ef;
-    border-radius: 16px;
+    background: ${(props) => props.theme.color.white};
+    border-radius: ${(props) => props.theme.border.default};
     border: none;
-    font-family: "Poppins";
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+    font-weight: ${(props) => props.theme.fontWeight.small};
+    font-size: ${(props) => props.theme.fontSize.fs16};
+    line-height: ${(props) => props.theme.lineHeight.lh24};
     position: relative;
   }
 
   .error-input {
-    border: 2px solid #ED2E7E;
-  }
-
-  .success-input {
-    border: 2px solid #00BA88;
+    border: ${(props) => props.theme.border.errorInput};
   }
 
   .form-input::placeholder {
-    color: #b9bac4;
+    color: ${(props) => props.theme.color.grey};
   }
 
   .form-input_button {
@@ -38,22 +33,20 @@ export default styled.section`
 
   .label {
     width: fit-content;
-    color: #0d1821;
-    font-family: "Poppins";
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
+    color: ${(props) => props.theme.color.dark};
+    font-weight: ${(props) => props.theme.fontWeight.middle};
+    font-size: ${(props) => props.theme.fontSize.fs14};
+    line-height: ${(props) => props.theme.lineHeight.lh24};
     margin-bottom: 30px;
     margin-right: 0;
     padding-top: 10px;
   }
 
   .label-error {
-    color: red;
-    font-family: "Poppins";
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 24px;
+    color: ${(props) => props.theme.color.red};
+    font-weight: ${(props) => props.theme.fontWeight.height};
+    font-size: ${(props) => props.theme.fontSize.fs14};
+    line-height: ${(props) => props.theme.lineHeight.lh24};
     margin-bottom: 40px;
     padding-top: 10px;
   }

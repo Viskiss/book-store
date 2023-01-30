@@ -25,6 +25,7 @@ const Catalog: React.FC = () => {
               {books.map((el) => (
                 <ItemBook
                   price={el.price}
+                  date = {el.date}
                   cover={el.cover}
                   author={el.author}
                   rate={el.rate}

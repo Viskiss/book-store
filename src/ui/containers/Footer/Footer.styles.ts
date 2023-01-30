@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.footer`
-  background: #0d1821;
+  background: ${(props) => props.theme.color.dark};
   background-size: 100%;
   padding: 73px 80px;
   padding-left: 0 inherit;
@@ -21,7 +21,7 @@ export default styled.footer`
   .text {
     margin-bottom: 5px;
     margin-top: 0;
-    color: #f0f4ef;
+    color: ${(props) => props.theme.color.white};
   }
 
   .footer__router-links {
@@ -32,9 +32,9 @@ export default styled.footer`
       text-decoration: none;
       margin-bottom: 10px;
       margin-top: 0;
-      font-size: 20px;
-      line-height: 30px;
-      color: #f0f4ef;
+      font-size: ${(props) => props.theme.fontSize.fs20};
+      line-height: ${(props) => props.theme.lineHeight.lh30};
+      color: ${(props) => props.theme.color.white};
     }
   }
 
@@ -58,8 +58,8 @@ export default styled.footer`
 
   @media (max-width: 990px) {
     padding: 73px 15px 79px 15px;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: ${(props) => props.theme.fontSize.fs16};
+    line-height: ${(props) => props.theme.lineHeight.lh24};
 
     .footer_container {
       max-width: 803px;
@@ -68,9 +68,10 @@ export default styled.footer`
     .map_location {
       padding-left: 0;
 
-      .map_location-img {
-        width: 300px;
-      }
+    }
+
+    .map_location-img {
+      width: 300px;
     }
   }
 
@@ -94,10 +95,11 @@ export default styled.footer`
       flex-direction: column;
       align-items: center;
 
-      .map_location-img {
-        width: 280px;
-        height: 160px;
-      }
+    }
+
+    .map_location-img {
+      width: 280px;
+      height: 160px;
     }
   }
 `;

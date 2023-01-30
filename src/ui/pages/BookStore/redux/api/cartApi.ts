@@ -13,7 +13,7 @@ const getCartBooks = (userId: number) => {
 };
 
 const addCopy = (bookId: number) => {
-  return api.get(`${CART_PATH_PREFIX}copy/${bookId}`);
+  return api.get(`${CART_PATH_PREFIX}/copy/${bookId}`);
 };
 
 const deleteBook = (cartId: number) => {

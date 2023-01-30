@@ -4,18 +4,18 @@ import * as Yup from 'yup';
 import classNames from 'classnames';
 import { toast } from 'react-toastify';
 
-import Input from '../../../components/Input/Input';
-import Button from '../../../components/Button/Button';
+import Input from 'src/ui/components/Input';
+import Button from 'src/ui/components/Button';
 
-import { changePasswordThunk } from '../../../../redux/userStore/thunks/updateUser';
-import { useAppDispatch, useAppSelector } from '../../../../redux/store';
-import { fieldsValidation } from '../../../../utils/validationFields';
+import { changePasswordThunk } from 'src/redux/userStore/thunks/updateUser';
+import { useAppDispatch, useAppSelector } from 'src/redux/store';
+import { fieldsValidation } from 'src/utils/validationFields';
 import {
   handleApiValidationError,
   matchError,
-} from '../../../../utils/handleApiValidationError';
+} from 'src/utils/handleApiValidationError';
 
-import eye from '../images/Hide.svg';
+import eye from 'src/ui/assets/images/Hide.svg';
 
 const PasswordProfile: React.FC = () => {
   const [changePassword, setChangePassword] = useState(false);
@@ -81,9 +81,9 @@ const PasswordProfile: React.FC = () => {
   return (
     <div>
       <form className="user-password" onSubmit={formik.handleSubmit}>
-        <div className="user-change_preview">
-          <h3>Password</h3>
-          <a onClick={(e) => changeDataHandler('password', e)} href="">
+        <div className="user-change-preview">
+          <h3 className="user-change-preview__title">Password</h3>
+          <a className="user-change-preview__link" onClick={(e) => changeDataHandler('password', e)} href="">
             Change password
           </a>
         </div>

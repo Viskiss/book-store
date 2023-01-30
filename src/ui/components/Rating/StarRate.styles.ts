@@ -30,9 +30,9 @@ export default styled.div`
   }
 
   .rate-this-book {
-    font-size: 16px;
-    line-height: 24px;
-    color: #b9bac4;
+    font-size: ${(props) => props.theme.fontSize.fs16};
+    line-height: ${(props) => props.theme.lineHeight.lh24};
+    color: ${(props) => props.theme.color.grey};
   }
 
   .arrow-box {

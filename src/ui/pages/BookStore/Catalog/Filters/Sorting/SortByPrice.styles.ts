@@ -2,28 +2,27 @@ import styled from 'styled-components';
 
 export default styled.div<{ drop: boolean }>`
   position: relative;
-  background: #F0F4EF;
+  background: ${(props) => props.theme.color.white};
   height: 40px;
   border-radius: 16px;
 
   .select-box__items {
     display: ${(props) => (props.drop ? 'flex' : 'none')};
     position: absolute;
-    z-index: 1000;
+    z-index: 1001;
     flex-direction: column;
     width: 413px;
     height: 151px;
-    border-radius: 16px;
-    background: #f0f4ef;
+    border-radius: ${(props) => props.theme.border.default};
+    background: ${(props) => props.theme.color.white};
     margin-top: 20px;
   }
 
-.select-box__polygon {
+  .select-box__polygon {
     display: ${(props) => (props.drop ? 'block' : 'none')};
     position: absolute;
     top: 55px;
   }
- 
 
   .select-box__arrow {
     transform: ${(props) => (props.drop ? 'rotate(90deg)' : '')};
@@ -43,10 +42,10 @@ export default styled.div<{ drop: boolean }>`
     display: flex;
     padding: 0 10px;
     justify-content: space-between;
-    font-size: 16px;
-    line-height: 34px;
+    font-size: ${(props) => props.theme.fontSize.fs16};
+    line-height: ${(props) => props.theme.lineHeight.lh34};
     letter-spacing: 0.75px;
-    color: #344966;
+    color: ${(props) => props.theme.color.blue};
   }
 
   .example-thumb {
@@ -54,7 +53,7 @@ export default styled.div<{ drop: boolean }>`
     top: 0;
     height: 32px;
     width: 32px;
-    color: #fff;
+    color: ${(props) => props.theme.color.white};
     border-radius: 50%;
     cursor: grab;
     font-size: 0;
@@ -85,7 +84,7 @@ export default styled.div<{ drop: boolean }>`
     width: 100%;
 
     .select-box__items {
-    width: 100%;
-  }
+      width: 100%;
+    }
   }
 `;

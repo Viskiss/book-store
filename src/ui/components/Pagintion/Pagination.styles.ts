@@ -25,7 +25,7 @@ export default styled.div`
     height: 14px;
     width: 14px;
     border: 2px solid black;
-    border-radius: 50%;
+    border-radius: ${(props) => props.theme.border.round};
   }
   .indicator--selected {
     background-color: black;

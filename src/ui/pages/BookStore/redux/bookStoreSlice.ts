@@ -1,15 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { BookType, CartType, GenreType } from 'src/types';
+import type { BookType, CartType, CommentType, GenreType } from 'src/types';
 
-import { getAllGenresThunk, getFilterBooksThunk, getSelectBookThunk } from './thunks/bookStoreThunks';
+import { getAllGenresThunk, getFilterBooksThunk, getRecommendedBooksThunk, getSelectBookThunk } from './thunks/bookStoreThunks';
 import { getCartBooks } from './thunks/cartThunks';
+import { addCommentThunk } from './thunks/commentsThunks';
 
 const initialState = () => ({
   books: [] as BookType[],
+  recBooks: [] as BookType[],
   book: {} as BookType,
   cart: [] as CartType[],
   genres: [] as GenreType[],
+  comments: [] as CommentType[],
   count: 0,
   pages: 0,
 });
@@ -21,6 +24,10 @@ const bookStoreSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getCartBooks.fulfilled, (state, { payload }) => {
       state.cart = payload.books;
+    });
+
+    builder.addCase(getRecommendedBooksThunk.fulfilled, (state, { payload }) => {
+      state.recBooks = payload.books;
     });
 
     builder.addCase(getFilterBooksThunk.fulfilled, (state, { payload }) => {
@@ -35,6 +42,10 @@ const bookStoreSlice = createSlice({
 
     builder.addCase(getSelectBookThunk.fulfilled, (state, { payload }) => {
       state.book = payload.book;
+    });
+
+    builder.addCase(addCommentThunk.fulfilled, (state, { payload }) => {
+      state.comments = payload;
     });
   },
 });

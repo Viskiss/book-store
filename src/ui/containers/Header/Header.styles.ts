@@ -12,12 +12,12 @@ export default styled.header`
   .books-counter {
     position: absolute;
     z-index: 1000;
-    background: #bfcc94;
-    border-radius: 100%;
+    background: ${(props) => props.theme.color.green};
+    border-radius: ${(props) => props.theme.border.round};
     padding: 1px 5px;
-    font-weight: 700;
+    font-weight: ${(props) => props.theme.fontWeight.height};
     font-size: 10px;
-    color: #000;
+    color: ${(props) => props.theme.color.dark};
     right: 2px;
     top: 0;
   }
@@ -40,15 +40,14 @@ export default styled.header`
 
   .catalog-link {
     text-decoration: none;
-    font-family: "Poppins";
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    color: #000000;
+    font-weight: ${(props) => props.theme.fontWeight.middle};
+    font-size: ${(props) => props.theme.fontSize.fs16};
+    line-height: ${(props) => props.theme.lineHeight.lh24};
+    color: ${(props) => props.theme.color.dark};
   }
 
   .catalog-link:hover {
-    color: #bfcc94;
+    color: ${(props) => props.theme.color.green};
   }
 
   .search {
@@ -58,13 +57,12 @@ export default styled.header`
 
   .search-input {
     padding: 20px 166px 20px 64px;
-    background: #f0f4ef;
-    border-radius: 16px;
+    background: ${(props) => props.theme.color.white};
+    border-radius: ${(props) => props.theme.border.default};
     border: none;
-    font-family: "Poppins";
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+    font-weight: ${(props) => props.theme.fontWeight.small};
+    font-size: ${(props) => props.theme.fontSize.fs16};
+    line-height: ${(props) => props.theme.lineHeight.lh24};
   }
 
   .search-input::placeholder {
@@ -89,9 +87,11 @@ export default styled.header`
     .header_container {
       gap: 35px;
     }
+
     .search-input {
       padding: 20px 180px 20px 64px;
     }
+
     .logo {
       padding-right: 50px;
     }
@@ -101,21 +101,27 @@ export default styled.header`
     .header_container {
       gap: 30px;
     }
+
     .round-button {
       margin: 0 15px;
     }
+
     .logo {
       padding-right: 50px;
     }
+
     .search-input {
       padding: 20px 160px 20px 64px;
     }
+
     .logo {
       padding-right: 30px;
     }
+
     .search-input {
       padding: 20px 130px 20px 64px;
     }
+
     .search {
       padding-right: 0;
     }
@@ -129,6 +135,7 @@ export default styled.header`
     .round-button {
       margin: 0 12px;
     }
+
     .search-input {
       padding: 20px 60px 20px 64px;
     }
@@ -156,6 +163,7 @@ export default styled.header`
     .catalog-link {
       padding-right: 43px;
     }
+
     .header_container {
       gap: 20px;
     }
@@ -185,6 +193,7 @@ export default styled.header`
     .round-button {
       padding: 9px 10px 6px 9px;
     }
+
     .round-buttons {
       padding-left: 0;
     }
@@ -211,8 +220,8 @@ export default styled.header`
     }
 
     .catalog-link {
-      font-size: 14px;
-      line-height: 21px;
+      font-size: ${(props) => props.theme.fontSize.fs14};
+      line-height: ${(props) => props.theme.lineHeight.lh21};
       margin: 0;
     }
 
@@ -225,16 +234,16 @@ export default styled.header`
     }
 
     .search-input::placeholder {
-      font-size: 12px;
-      line-height: 28px;
+      font-size: ${(props) => props.theme.fontSize.fs12};
+      line-height: ${(props) => props.theme.lineHeight.lh28};
     }
 
     .auth-button__small {
       padding: 10px;
 
       a {
-        font-size: 12px;
-        line-height: 18px;
+        font-size: ${(props) => props.theme.fontSize.fs12};
+        line-height: ${(props) => props.theme.lineHeight.lh18};
         letter-spacing: 0.75px;
       }
     }

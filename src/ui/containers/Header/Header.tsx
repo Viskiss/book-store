@@ -6,10 +6,11 @@ import Button from 'src/ui/components/Button';
 
 import constants from 'src/utils/constants';
 import tokenHelper from 'src/utils/tokenHelper';
-import AuthUserLinks from './AuthUserLinks';
 
-import logo from './images/logoH.svg';
-import loupe from './images/Search.svg';
+import logo from 'src/ui/assets/images/logoH.svg';
+import loupe from 'src/ui/assets/images/Search.svg';
+
+import AuthUserLinks from './AuthUserLinks';
 
 import StyledHeader from './Header.styles';
 
