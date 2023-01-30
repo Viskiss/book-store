@@ -6,7 +6,7 @@ import type { AddBookType } from 'src/types';
 import cartApi from '../api/cartApi';
 
 export const addBookThunk = createAsyncThunk(
-  'cart/addBook',
+  'cart/addBookInCart',
   async (data: AddBookType, { rejectWithValue }) => {
     const { userId, bookId } = data;
     try {
@@ -42,8 +42,8 @@ export const addCopyBook = createAsyncThunk(
   'cart/copyBook',
   async (bookId: number, { rejectWithValue }) => {
     try {
-      await cartApi.addCopy(bookId);
-      return;
+      const books = await cartApi.addCopy(bookId);
+      return books.data;
     } catch (err) {
       const error = err as AxiosError;
       if (!error.response) {
@@ -55,11 +55,11 @@ export const addCopyBook = createAsyncThunk(
 );
 
 export const deleteCopyBook = createAsyncThunk(
-  'cart/copyBook',
+  'cart/deleteCopyBook',
   async (bookId: number, { rejectWithValue }) => {
     try {
-      await cartApi.deleteCopy(bookId);
-      return;
+      const books = await cartApi.deleteCopy(bookId);
+      return books.data;
     } catch (err) {
       const error = err as AxiosError;
       if (!error.response) {
@@ -74,8 +74,8 @@ export const deleteBookInCart = createAsyncThunk(
   'cart/deleteBook',
   async (cartId: number, { rejectWithValue }) => {
     try {
-      await cartApi.deleteBook(cartId);
-      return;
+      const books = await cartApi.deleteBook(cartId);
+      return books.data;
     } catch (err) {
       const error = err as AxiosError;
       if (!error.response) {

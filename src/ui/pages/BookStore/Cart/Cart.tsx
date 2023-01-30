@@ -29,7 +29,7 @@ const Cart: React.FC = () => {
       return;
     }
     dispatch(getCartBooks(user?.id || 0));
-  }, [dispatch, isAuth, user?.id]);
+  }, [dispatch, isAuth, user?.id, cart.length]);
 
   useEffect(() => {
     const price = cart.reduce(

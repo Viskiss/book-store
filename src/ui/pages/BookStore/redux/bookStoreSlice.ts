@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { BookType, CartType, CommentType, GenreType } from 'src/types';
 
 import { getAllGenresThunk, getFilterBooksThunk, getRecommendedBooksThunk, getSelectBookThunk } from './thunks/bookStoreThunks';
-import { getCartBooks } from './thunks/cartThunks';
+import { deleteBookInCart, getCartBooks, addCopyBook, deleteCopyBook } from './thunks/cartThunks';
 import { addCommentThunk } from './thunks/commentsThunks';
 
 const initialState = () => ({
@@ -23,6 +23,18 @@ const bookStoreSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getCartBooks.fulfilled, (state, { payload }) => {
+      state.cart = payload.books;
+    });
+
+    builder.addCase(deleteBookInCart.fulfilled, (state, { payload }) => {
+      state.cart = payload.books;
+    });
+
+    builder.addCase(addCopyBook.fulfilled, (state, { payload }) => {
+      state.cart = payload.books;
+    });
+
+    builder.addCase(deleteCopyBook.fulfilled, (state, { payload }) => {
       state.cart = payload.books;
     });
 

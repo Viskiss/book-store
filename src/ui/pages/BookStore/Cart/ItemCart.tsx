@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
+
 import decrement from 'src/ui/assets/images/icon/decrement.svg';
 import increment from 'src/ui/assets/images/icon/increment.svg';
 import trashBox from 'src/ui/assets/images/icon/Delete.svg';
-import { useAppDispatch } from 'src/redux/store';
-import { addCopyBook, deleteBookInCart, deleteCopyBook } from '../redux/thunks/cartThunks';
+import { useAppDispatch, useAppSelector } from 'src/redux/store';
+import { addCopyBook, deleteBookInCart, deleteCopyBook, getCartBooks } from '../redux/thunks/cartThunks';
 
 interface IProps {
   bookId: number;
@@ -24,6 +26,12 @@ const ItemCart: React.FC<IProps> = ({
   quantityOfGoods,
 }) => {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((store) => store.userStore.user);
+  const cart = useAppSelector((store) => store.bookStore.cart);
+
+  // useEffect(() => {
+  //   dispatch(getCartBooks(user?.id || 0));
+  // }, [dispatch, user?.id, cart]);
 
   const handleDeleteBook = (cartId: number) => {
     dispatch(deleteBookInCart(cartId));
