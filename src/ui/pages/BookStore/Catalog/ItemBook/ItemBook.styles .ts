@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div`
+export default styled.div<{ likedBook?: boolean }>`
   display: flex;
   flex-direction: column;
   margin: 0 0 80px 0;
@@ -22,7 +22,7 @@ export default styled.div`
   }
 
   .cover-book__like {
-    opacity: 0.7;
+    opacity: ${(props) => (props.likedBook ? '1' : '0.7')};
     position: absolute;
     z-index: 1000;
     margin: 20px;

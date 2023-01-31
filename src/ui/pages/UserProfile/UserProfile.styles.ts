@@ -21,7 +21,7 @@ export default styled.section`
     width: 305px;
     height: 305px;
     object-fit: contain;
-    background-color: ${(props) => props.theme.color.grey};
+    background-color: ${(props) => props.theme.color.white};
   }
 
   .img-profile {

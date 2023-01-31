@@ -6,8 +6,8 @@ import Button from 'src/ui/components/Button';
 import constants from 'src/utils/constants';
 
 import like from 'src/ui/assets/images/icon/Heart.svg';
-import cart from 'src/ui/assets/images/Cart.svg';
-import profile from 'src/ui/assets/images/User.svg';
+import cart from 'src/ui/assets/images/icon/Cart.svg';
+import profile from 'src/ui/assets/images/icon/UserIcon.svg';
 
 const AuthUserLinks: React.FC = () => {
   const { routesLink } = constants;
@@ -17,11 +17,11 @@ const AuthUserLinks: React.FC = () => {
     <div className="round-buttons">
       <Link to={routesLink.cart}>
         <Button className="round-button round-button__count">
-        <span className="books-counter">{booksCount}</span>
+          {booksCount !== 0 ? <span className="books-counter">{booksCount}</span> : ''}
           <img src={cart} alt="Cart" />
         </Button>
       </Link>
-      <Link to={routesLink.likes}>
+      <Link to={routesLink.liked}>
         <Button className="round-button">
           <img src={like} alt="Heart" />
         </Button>

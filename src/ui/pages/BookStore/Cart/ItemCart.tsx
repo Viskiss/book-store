@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
-
 import decrement from 'src/ui/assets/images/icon/decrement.svg';
 import increment from 'src/ui/assets/images/icon/increment.svg';
 import trashBox from 'src/ui/assets/images/icon/Delete.svg';
-import { useAppDispatch, useAppSelector } from 'src/redux/store';
-import { addCopyBook, deleteBookInCart, deleteCopyBook, getCartBooks } from '../redux/thunks/cartThunks';
+import { useAppDispatch } from 'src/redux/store';
+import {
+  addCopyBook,
+  deleteBookInCart,
+  deleteCopyBook,
+} from '../redux/thunks/cartThunks';
 
 interface IProps {
   bookId: number;
@@ -26,12 +28,6 @@ const ItemCart: React.FC<IProps> = ({
   quantityOfGoods,
 }) => {
   const dispatch = useAppDispatch();
-  const user = useAppSelector((store) => store.userStore.user);
-  const cart = useAppSelector((store) => store.bookStore.cart);
-
-  // useEffect(() => {
-  //   dispatch(getCartBooks(user?.id || 0));
-  // }, [dispatch, user?.id, cart]);
 
   const handleDeleteBook = (cartId: number) => {
     dispatch(deleteBookInCart(cartId));
@@ -46,28 +42,41 @@ const ItemCart: React.FC<IProps> = ({
   };
 
   return (
-    <><div className="item-cart__box">
-      <div className="item-cart__box-cover">
-        <img className="item-cart__cover" src={cover} alt="" />
-      </div>
-      <div>
-        <h1 className="item-cart__box-title">{title}</h1>
-        <p className="item-cart__box-author">{author}</p>
-        <div className="item-cart__box-filter">
-          <div>
-            <button onClick={() => handleDeleteCopyBook(bookId)} className="item-cart__box-button">
-              <img className="box-button__dec" src={decrement} alt="" />
-            </button>
-            <span className="quantity">{quantityOfGoods}</span>
-            <button onClick={() => handleAddCopyBook(bookId)} className="item-cart__box-button">
-              <img className="box-button__inc" src={increment} alt="" />
-            </button>
-          </div>
-          <img onClick={() => handleDeleteBook(cartId)} className="item-cart__box-trash" src={trashBox} alt="" />
+    <>
+      <div className="item-cart__box">
+        <div className="item-cart__box-cover">
+          <img className="item-cart__cover" src={cover} alt="" />
         </div>
-        <p className="item-cart__box-price">${price}USD</p>
+        <div>
+          <h1 className="item-cart__box-title">{title}</h1>
+          <p className="item-cart__box-author">{author}</p>
+          <div className="item-cart__box-filter">
+            <div>
+              <button
+                onClick={() => handleDeleteCopyBook(bookId)}
+                className="item-cart__box-button"
+              >
+                <img className="box-button__dec" src={decrement} alt="" />
+              </button>
+              <span className="quantity">{quantityOfGoods}</span>
+              <button
+                onClick={() => handleAddCopyBook(bookId)}
+                className="item-cart__box-button"
+              >
+                <img className="box-button__inc" src={increment} alt="" />
+              </button>
+            </div>
+            <img
+              onClick={() => handleDeleteBook(cartId)}
+              className="item-cart__box-trash"
+              src={trashBox}
+              alt=""
+            />
+          </div>
+          <p className="item-cart__box-price">${price}USD</p>
+        </div>
       </div>
-      </div><div className="line" />
+      <div className="line" />
     </>
   );
 };

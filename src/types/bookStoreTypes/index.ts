@@ -1,3 +1,6 @@
+import { NamedImportBindings } from 'typescript';
+import type { UserType } from '../userTypes/updateUser';
+
 export type BookType = {
   id: number;
   title: string;
@@ -26,8 +29,8 @@ export type FilterType = {
 };
 
 export type AddBookType = {
-  userId: number;
-  bookId: number;
+  userId: UserType['id'];
+  bookId: BookType['id'];
 };
 
 export type CartType = {
@@ -39,4 +42,11 @@ export type CartType = {
   author: string;
   quantityOfGoods: number;
   userId: number;
+};
+
+export type LikedBookType = {
+  book: BookType;
+  bookId: BookType['id'];
+  id: number;
+  userId: UserType['id'];
 };

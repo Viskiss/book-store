@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating';
 
@@ -15,6 +15,11 @@ import { getSelectBookThunk } from '../../redux/thunks/bookStoreThunks';
 import { addBookThunk, getCartBooks } from '../../redux/thunks/cartThunks';
 
 import StyledItemBook from './ItemBook.styles ';
+import {
+  addLikedBookThunk,
+  deleteLikedBookThunk,
+  getLikedBooksThunk,
+} from '../../redux/thunks/likedBooksThunks';
 
 interface IProps {
   cover: string;
@@ -37,18 +42,26 @@ const ItemBook: React.FC<IProps> = ({
 }) => {
   const [rating] = useState(rate);
   const [likedBook, setLikedBook] = useState(false);
-  const [likeImg, setLikeImg] = useState(like);
   const newDay = new Date('2023-01-01');
 
   const cart = useAppSelector((store) => store.bookStore.cart);
+  const likedBooks = useAppSelector((store) => store.bookStore.likedBooks);
   const user = useAppSelector((store) => store.userStore.user);
 
   const selectBookInCart = cart.map((book) => book.bookId);
+  const selectBookLiked = likedBooks.map((book) => book.book.id);
   const selectBooks = selectBookInCart.includes(id);
+  const selectBookLike = selectBookLiked.includes(id);
 
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!likedBooks.length) {
+      dispatch(getLikedBooksThunk());
+    }
+  }, [dispatch, likedBooks.length]);
 
   const selectBook = (e: React.MouseEvent<HTMLElement>, id: number) => {
     e.preventDefault();
@@ -74,11 +87,11 @@ const ItemBook: React.FC<IProps> = ({
       navigate(constants.routesLink.signIn);
     }
     if (likedBook) {
+      dispatch(deleteLikedBookThunk(id));
       setLikedBook(false);
-      setLikeImg(like);
     } else {
+      dispatch(addLikedBookThunk(id));
       setLikedBook(true);
-      setLikeImg(fillLike);
     }
   };
 
@@ -96,14 +109,25 @@ const ItemBook: React.FC<IProps> = ({
     return `$ ${price} USD`;
   };
 
+  const checkLikedBook = () => {
+    if (selectBookLike) {
+      return fillLike;
+    }
+    return like;
+  };
+
   return (
-    <StyledItemBook>
+    <StyledItemBook likedBook={selectBookLike}>
       <div className="cover-book">
         <Button
           onClick={(e) => handlerLikeBook(e)}
           className="cover-book__like"
         >
-          <img className="cover-book__like-img" src={likeImg} alt="Heart" />
+          <img
+            className="cover-book__like-img"
+            src={checkLikedBook()}
+            alt="Heart"
+          />
         </Button>
         <img className="cover" src={cover} alt="" />
         {rate > 4 && <span className="cover-book__best">Bestseller</span>}

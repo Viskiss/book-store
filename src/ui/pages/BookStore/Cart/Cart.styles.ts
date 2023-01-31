@@ -27,6 +27,20 @@ export default styled.section`
     margin-right: 20px;
   }
 
+  .cart__total-title {
+    font-weight: ${(props) => props.theme.fontWeight.middle};
+font-size: ${(props) => props.theme.fontSize.fs36};
+line-height: ${(props) => props.theme.lineHeight.lh54};
+color: ${(props) => props.theme.color.dark};
+  }
+
+  .cart__total {
+    color: ${(props) => props.theme.color.dark};
+    font-weight: ${(props) => props.theme.fontWeight.height};
+font-size: ${(props) => props.theme.fontSize.fs36};
+line-height: ${(props) => props.theme.lineHeight.lh54};
+  }
+
   .item-cart__box {
     display: flex;
     justify-content: flex-start;

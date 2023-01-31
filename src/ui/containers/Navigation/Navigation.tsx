@@ -16,7 +16,7 @@ import MainLayoutStyled from '../MainLayout.styles';
 const BookStore = lazy(() => import('../../pages/BookStore'));
 const SignUp = lazy(() => import('../../pages/Auth/SignUp'));
 const Cart = lazy(() => import('../../pages/BookStore/Cart'));
-const LokesBooks = lazy(() => import('../../pages/BookStore/LikesBooks'));
+const LokesBooks = lazy(() => import('../../pages/BookStore/LikedBooks/LikedBooks'));
 const LogIn = lazy(() => import('../../pages/Auth/SignIn/SignIn'));
 const UserProfile = lazy(() => import('../../pages/UserProfile'));
 
@@ -62,7 +62,7 @@ const Navigation: React.FC = () => {
           {user && (
             <>
               <Route path={routesLink.cart} element={<Cart />} />
-              <Route path={routesLink.likes} element={<LokesBooks />} />
+              <Route path={routesLink.liked} element={<LokesBooks />} />
               <Route path={routesLink.profile} element={<UserProfile />} />
             </>
           )}

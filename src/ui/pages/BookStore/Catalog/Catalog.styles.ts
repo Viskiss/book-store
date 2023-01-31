@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export default styled.section`
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   .books-catalog__items {
     display: flex;

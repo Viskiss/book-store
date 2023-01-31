@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import type { GenreType } from 'src/types';
 
@@ -24,6 +24,24 @@ const SelectFilterBox: React.FC<IProps> = ({
 }) => {
   const [dropSelect, setDropSelect] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function useOutsideDrop(ref: any) {
+    useEffect(() => {
+      function handleClickOutside(event: { target: unknown }) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setDropSelect(false);
+        }
+      }
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [ref]);
+  }
+
+  const wrapperRef = useRef(null);
+  useOutsideDrop(wrapperRef);
+
   const handleDropSelect = () => {
     if (dropSelect) {
       setDropSelect(false);
@@ -34,12 +52,9 @@ const SelectFilterBox: React.FC<IProps> = ({
   };
 
   return (
-    <StyledSelect
-      drop={dropSelect}
-      typeSelect={typeSelect}
-    >
+    <StyledSelect drop={dropSelect} typeSelect={typeSelect} ref={wrapperRef}>
       <SelectDropBox handler={handleDropSelect} title={title} />
-      <div onMouseLeave={() => setDropSelect(false)} className="select-box__items">
+      <div className="select-box__items">
         {items.map((item) => (
           <Item
             title={title}

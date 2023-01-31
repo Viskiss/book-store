@@ -8,7 +8,7 @@ import constants from 'src/utils/constants';
 import tokenHelper from 'src/utils/tokenHelper';
 
 import logo from 'src/ui/assets/images/logoH.svg';
-import loupe from 'src/ui/assets/images/Search.svg';
+import loupe from 'src/ui/assets/images/icon/Search.svg';
 
 import AuthUserLinks from './AuthUserLinks';
 

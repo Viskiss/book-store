@@ -15,7 +15,7 @@ import {
   matchError,
 } from 'src/utils/handleApiValidationError';
 
-import eye from 'src/ui/assets/images/Hide.svg';
+import eye from 'src/ui/assets/images/icon/Hide.svg';
 
 const PasswordProfile: React.FC = () => {
   const [changePassword, setChangePassword] = useState(false);

@@ -5,7 +5,7 @@ const routes = {
   cart: '/cart',
   profile: '/profile',
   bookId: '/book/:bookId',
-  likes: '/likes-book',
+  liked: '/liked-book',
 };
 
 const sortList = [

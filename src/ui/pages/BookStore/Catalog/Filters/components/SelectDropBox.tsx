@@ -1,6 +1,6 @@
 import arrow from 'src/ui/assets/images/icon/arrowRight.svg';
 
-import polygon from 'src/ui/assets/images/Polygon.svg';
+import polygon from 'src/ui/assets/images/icon/Polygon.svg';
 
 import StyledBox from './SelectFilterBox.styles';
 

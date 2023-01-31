@@ -1,10 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { BookType, CartType, CommentType, GenreType } from 'src/types';
+import type { LikedBookType } from 'src/types/bookStoreTypes';
 
-import { getAllGenresThunk, getFilterBooksThunk, getRecommendedBooksThunk, getSelectBookThunk } from './thunks/bookStoreThunks';
-import { deleteBookInCart, getCartBooks, addCopyBook, deleteCopyBook } from './thunks/cartThunks';
-import { addCommentThunk } from './thunks/commentsThunks';
+import {
+  getAllGenresThunk,
+  getFilterBooksThunk,
+  getRecommendedBooksThunk,
+  getSelectBookThunk,
+} from './thunks/bookStoreThunks';
+import {
+  deleteBookInCart,
+  getCartBooks,
+  addCopyBook,
+  deleteCopyBook,
+  addBookThunk,
+} from './thunks/cartThunks';
+import { getCommentsThunk } from './thunks/commentsThunks';
+import {
+  addLikedBookThunk,
+  deleteLikedBookThunk,
+  getLikedBooksThunk,
+} from './thunks/likedBooksThunks';
 
 const initialState = () => ({
   books: [] as BookType[],
@@ -13,6 +30,7 @@ const initialState = () => ({
   cart: [] as CartType[],
   genres: [] as GenreType[],
   comments: [] as CommentType[],
+  likedBooks: [] as LikedBookType[],
   count: 0,
   pages: 0,
 });
@@ -22,6 +40,18 @@ const bookStoreSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(getLikedBooksThunk.fulfilled, (state, { payload }) => {
+      state.likedBooks = payload.books;
+    });
+
+    builder.addCase(deleteLikedBookThunk.fulfilled, (state, { payload }) => {
+      state.likedBooks = payload.books;
+    });
+
+    builder.addCase(addLikedBookThunk.fulfilled, (state, { payload }) => {
+      state.likedBooks = payload.books;
+    });
+
     builder.addCase(getCartBooks.fulfilled, (state, { payload }) => {
       state.cart = payload.books;
     });
@@ -34,13 +64,20 @@ const bookStoreSlice = createSlice({
       state.cart = payload.books;
     });
 
+    builder.addCase(addBookThunk.fulfilled, (state, { payload }) => {
+      state.cart = payload.books;
+    });
+
     builder.addCase(deleteCopyBook.fulfilled, (state, { payload }) => {
       state.cart = payload.books;
     });
 
-    builder.addCase(getRecommendedBooksThunk.fulfilled, (state, { payload }) => {
-      state.recBooks = payload.books;
-    });
+    builder.addCase(
+      getRecommendedBooksThunk.fulfilled,
+      (state, { payload }) => {
+        state.recBooks = payload.books;
+      },
+    );
 
     builder.addCase(getFilterBooksThunk.fulfilled, (state, { payload }) => {
       state.books = payload.books;
@@ -56,7 +93,7 @@ const bookStoreSlice = createSlice({
       state.book = payload.book;
     });
 
-    builder.addCase(addCommentThunk.fulfilled, (state, { payload }) => {
+    builder.addCase(getCommentsThunk.fulfilled, (state, { payload }) => {
       state.comments = payload;
     });
   },

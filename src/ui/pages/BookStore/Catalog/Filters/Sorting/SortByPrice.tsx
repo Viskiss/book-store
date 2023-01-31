@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ReactSlider from 'react-slider';
 
@@ -30,6 +30,24 @@ const SortByPrice: React.FC = () => {
     setSearchParams(searchParams);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function useOutsideDrop(ref: any) {
+    useEffect(() => {
+      function handleClickOutside(event: { target: unknown }) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setDropSelect(false);
+        }
+      }
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [ref]);
+  }
+
+  const wrapperRef = useRef(null);
+  useOutsideDrop(wrapperRef);
+
   const changeHandler = (value: number[]) => {
     setValue(value);
   };
@@ -43,9 +61,9 @@ const SortByPrice: React.FC = () => {
     }
   };
   return (
-    <StyledSortByPrice drop={dropSelect}>
-    <SelectDropBox handler={handleDropSelect} title="Price" />
-      <div onMouseLeave={() => setDropSelect(false)} className="select-box__items">
+    <StyledSortByPrice ref={wrapperRef} drop={dropSelect}>
+      <SelectDropBox handler={handleDropSelect} title="Price" />
+      <div className="select-box__items">
         <ReactSlider
           className="select-box__slider"
           value={value}

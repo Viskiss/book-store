@@ -7,7 +7,7 @@ const RecommendBooks: React.FC = () => {
 
   return (
     <StyledRecBooks>
-      <h2>Recommendations</h2>
+      <h2 className="recommendations__title">Recommendations</h2>
       <div className="recommend-books__items">
         {books.map((el) => (
           <ItemBook

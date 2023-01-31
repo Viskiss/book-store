@@ -10,10 +10,6 @@ const Button = styled.button`
   cursor: pointer;
   margin: 0;
   color: ${(props) => props.theme.color.white};
-  
-  :hover {
-    background: ${(props) => props.theme.color.dark};
-  }
 
   &:disabled {
     background: ${(props) => props.theme.color.grey};

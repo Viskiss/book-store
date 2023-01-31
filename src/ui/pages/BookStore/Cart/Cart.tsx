@@ -58,8 +58,8 @@ const Cart: React.FC = () => {
             ))}
           </div>
           <div>
-            <p>
-              Total:<span className="cart__total">{total}</span>
+            <p className="cart__total-title">
+              Total:<span className="cart__total"> {total}</span>
             </p>
             <Button
               onClick={() => navigate(constants.routesLink.home)}

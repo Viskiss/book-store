@@ -13,6 +13,7 @@ export default styled.div`
   .title {
     font-size: ${(props) => props.theme.fontSize.fs40};
     line-height: ${(props) => props.theme.lineHeight.lh60};
+    color: ${(props) => props.theme.color.dark};
     margin: 0;
   }
 
@@ -27,12 +28,15 @@ export default styled.div`
     line-height: ${(props) => props.theme.lineHeight.lh36};;
     font-size: ${(props) => props.theme.fontSize.fs24};
     line-height: ${(props) => props.theme.lineHeight.lh36};
+    color: ${(props) => props.theme.color.dark};
+    margin-top: 0;
     margin-bottom: 10px;
   }
 
   .text {
     font-size: ${(props) => props.theme.fontSize.fs16};
     line-height: ${(props) => props.theme.lineHeight.lh24};
+    color: ${(props) => props.theme.color.blue};
     margin: 0 0 74px 0;
   }
 
@@ -54,6 +58,7 @@ export default styled.div`
   .buttons-box {
     display: flex;
     justify-content: flex-start;
+    align-items: flex-end;
     gap: 82px;
 
   }

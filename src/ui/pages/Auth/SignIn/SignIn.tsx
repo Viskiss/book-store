@@ -19,7 +19,7 @@ import constants from 'src/utils/constants';
 
 import mailIcon from 'src/ui/assets/images/icon/Mail.svg';
 import eyeIcon from 'src/ui/assets/images/icon/Hide.svg';
-import menPicture from 'src/ui/assets/images/icon/men.svg';
+import menPicture from 'src/ui/assets/images/men.svg';
 
 import tokenHelper from 'src/utils/tokenHelper';
 import StyledLogin from './SignIn.styles';

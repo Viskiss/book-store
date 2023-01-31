@@ -7,7 +7,10 @@ import options from 'src/utils/lottieOptions';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { useSearchParams } from 'react-router-dom';
-import { getAllGenresThunk, getFilterBooksThunk } from '../../redux/thunks/bookStoreThunks';
+import {
+  getAllGenresThunk,
+  getFilterBooksThunk,
+} from '../../redux/thunks/bookStoreThunks';
 
 import Genre from './Sorting/SortByGenre';
 
@@ -31,10 +34,12 @@ const Filters: React.FC = () => {
     const genre = searchParams.get('genres') || '';
     const select = searchParams.get('select') || 'Name';
     const search = searchParams.get('search') || '';
-    const page = (Number(searchParams.get('page') || 1));
+    const page = Number(searchParams.get('page') || 1);
     const minPrice = Number(searchParams.get('minPrice') || '7.39');
     const maxPrice = Number(searchParams.get('maxPrice') || '70.99');
-    dispatch(getFilterBooksThunk({ genre, select, search, page, maxPrice, minPrice }));
+    dispatch(
+      getFilterBooksThunk({ genre, select, search, page, maxPrice, minPrice }),
+    );
   }, [dispatch, searchParams]);
 
   if (!genres.length) {
@@ -43,7 +48,7 @@ const Filters: React.FC = () => {
 
   return (
     <StyledFilters>
-        <h2 className="filters__title">Catalog</h2>
+      <h2 className="filters__title">Catalog</h2>
       <div className="filters__book-filter">
         <Genre />
         <SortByPrice />
