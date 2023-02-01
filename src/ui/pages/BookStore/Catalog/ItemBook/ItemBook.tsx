@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating';
+import { toast } from 'react-toastify';
 
 import Button from 'src/ui/components/Button';
 
@@ -8,18 +9,20 @@ import like from 'src/ui/assets/images/icon/Heart.svg';
 import fillLike from 'src/ui/assets/images/icon/fillHeart.svg';
 
 import constants from 'src/utils/constants';
+import tokenHelper from 'src/utils/tokenHelper';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
-import { getSelectBookThunk } from '../../redux/thunks/bookStoreThunks';
 
+import { getSelectBookThunk } from '../../redux/thunks/bookStoreThunks';
 import { addBookThunk, getCartBooks } from '../../redux/thunks/cartThunks';
 
-import StyledItemBook from './ItemBook.styles ';
 import {
   addLikedBookThunk,
   deleteLikedBookThunk,
   getLikedBooksThunk,
 } from '../../redux/thunks/likedBooksThunks';
+
+import StyledItemBook from './ItemBook.styles ';
 
 interface IProps {
   cover: string;
@@ -40,8 +43,11 @@ const ItemBook: React.FC<IProps> = ({
   price,
   id,
 }) => {
-  const [rating] = useState(rate);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const [likedBook, setLikedBook] = useState(false);
+
   const newDay = new Date('2023-01-01');
 
   const cart = useAppSelector((store) => store.bookStore.cart);
@@ -49,25 +55,16 @@ const ItemBook: React.FC<IProps> = ({
   const user = useAppSelector((store) => store.userStore.user);
 
   const selectBookInCart = cart.map((book) => book.bookId);
-  const selectBookLiked = likedBooks.map((book) => book.book.id);
   const selectBooks = selectBookInCart.includes(id);
+
+  const selectBookLiked = likedBooks.map((book) => book.book.id);
   const selectBookLike = selectBookLiked.includes(id);
 
-  const navigate = useNavigate();
-
-  const dispatch = useAppDispatch();
-
   useEffect(() => {
-    if (!likedBooks.length) {
+    if (!likedBooks.length && user?.email) {
       dispatch(getLikedBooksThunk());
     }
-  }, [dispatch, likedBooks.length]);
-
-  const selectBook = (e: React.MouseEvent<HTMLElement>, id: number) => {
-    e.preventDefault();
-    dispatch(getSelectBookThunk(id));
-    navigate(`/book/${id}`);
-  };
+  }, [dispatch, likedBooks.length, user?.email]);
 
   const handlerAddToCart = (
     e: React.MouseEvent<HTMLElement>,
@@ -76,9 +73,10 @@ const ItemBook: React.FC<IProps> = ({
     e.preventDefault();
     if (!user) {
       navigate(constants.routesLink.signIn);
+    } else {
+      dispatch(addBookThunk({ userId: user.id, bookId }));
+      dispatch(getCartBooks(user.id));
     }
-    dispatch(addBookThunk({ userId: user?.id || 0, bookId }));
-    dispatch(getCartBooks(user?.id || 0));
   };
 
   const handlerLikeBook = (e: React.MouseEvent<HTMLElement>) => {
@@ -95,22 +93,32 @@ const ItemBook: React.FC<IProps> = ({
     }
   };
 
+  const selectBook = (e: React.MouseEvent<HTMLElement>, id: number) => {
+    e.preventDefault();
+    try {
+      dispatch(getSelectBookThunk(id));
+      navigate(`/book/${id}`);
+    } catch (err) {
+      toast.error('Unexpected server error');
+    }
+  };
+
   const checkedCart = () => {
-    if (!id || selectBooks) {
+    if (selectBooks && tokenHelper.token.get()) {
       return true;
     }
     return false;
   };
 
   const checkedButton = () => {
-    if (selectBooks) {
+    if (selectBooks && tokenHelper.token.get()) {
       return 'Added to cart';
     }
     return `$ ${price} USD`;
   };
 
   const checkLikedBook = () => {
-    if (selectBookLike) {
+    if (selectBookLike && tokenHelper.token.get()) {
       return fillLike;
     }
     return like;
@@ -149,7 +157,7 @@ const ItemBook: React.FC<IProps> = ({
             readonly
             fillColor="#BFCC94"
             className="rate"
-            initialValue={rating}
+            initialValue={rate}
             size={28}
             fillIcon={
               (<svg

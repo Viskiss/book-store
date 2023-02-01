@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import Lottie from 'lottie-react';
+import { useSearchParams } from 'react-router-dom';
 
 import loader from 'src/ui/assets/lottieFiles/loading.json';
 
 import options from 'src/utils/lottieOptions';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
-import { useSearchParams } from 'react-router-dom';
 import {
   getAllGenresThunk,
   getFilterBooksThunk,
-} from '../../redux/thunks/bookStoreThunks';
+} from 'src/ui/pages/BookStore/redux/thunks/bookStoreThunks';
 
 import Genre from './Sorting/SortByGenre';
 
@@ -20,9 +20,9 @@ import SortByPrice from './Sorting/SortByPrice';
 
 const Filters: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const genres = useAppSelector((store) => store.bookStore.genres);
-
   const dispatch = useAppDispatch();
+
+  const genres = useAppSelector((store) => store.bookStore.genres);
 
   useEffect(() => {
     if (genres.length === 0) {

@@ -8,7 +8,7 @@ export default styled.section`
   .liked__books {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 20px;
     justify-content: center;
   }
 
@@ -53,5 +53,45 @@ export default styled.section`
 
   .item-liked__box-data {
     padding: 0 10px 0 10px;
+  }
+
+  @media (max-width: 800px) {
+    .item-liked__box-data {
+      max-width: 265px;
+    }
+
+    .item-liked__box-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .item-liked__cover {
+      padding: 10px;
+      width: 255px;
+      height: 398px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .item-liked__box {
+      display: flex;
+      width: 100%;
+    }
+    .item-liked__box-data {
+      max-width: none;
+    }
+
+    .item-liked__box-title {
+      font-size: ${(props) => props.theme.fontSize.fs18};
+      line-height: ${(props) => props.theme.lineHeight.lh20};
+      white-space: break-spaces;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .item-liked__cover {
+      padding: 10px;
+      width: 135px;
+      height: 202px;
+    }
   }
 `;

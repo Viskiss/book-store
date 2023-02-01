@@ -1,7 +1,9 @@
-import decrement from 'src/ui/assets/images/icon/decrement.svg';
-import increment from 'src/ui/assets/images/icon/increment.svg';
 import trashBox from 'src/ui/assets/images/icon/Delete.svg';
 import { useAppDispatch } from 'src/redux/store';
+
+import decrement from 'src/ui/assets/images/icon/decrement.svg';
+import increment from 'src/ui/assets/images/icon/increment.svg';
+
 import {
   addCopyBook,
   deleteBookInCart,

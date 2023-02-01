@@ -8,8 +8,8 @@ const BOOK_PATH_PREFIX = '/book';
 
 type GetFilteredBooksType = {
   books: BookType[];
-  count: number;
-  pages: number;
+  counterBooks: number;
+  numberPages: number;
 };
 
 const getAllBooks = () => {

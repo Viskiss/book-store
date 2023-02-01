@@ -43,7 +43,11 @@ const TextBlock: React.FC<IProps> = (props: IProps) => {
       <picture>
         <source media="(max-width: 425px)" srcSet={props.img3} />
         <source media="(max-width: 840px)" srcSet={props.img2} />
-        <img className="block-text_img img-book-banner img-auth-banner" src={props.img} alt="" />
+        <img
+          className="block-text_img img-book-banner img-auth-banner"
+          src={props.img}
+          alt=""
+        />
       </picture>
     </Styles>
   );

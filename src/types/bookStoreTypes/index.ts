@@ -1,4 +1,3 @@
-import { NamedImportBindings } from 'typescript';
 import type { UserType } from '../userTypes/updateUser';
 
 export type BookType = {
@@ -49,4 +48,37 @@ export type LikedBookType = {
   bookId: BookType['id'];
   id: number;
   userId: UserType['id'];
+};
+
+export type CommentApiType = {
+  userId: number;
+  bookId: number;
+  text: string;
+};
+
+export type CommentType = {
+  id: number;
+  text: string;
+  bookId: BookType['id'];
+  userId: UserType['id'];
+  createdTime: string;
+  user: UserType;
+};
+
+export type RateBookType = {
+  id: number;
+  bookId: BookType['id'];
+  userId: UserType['id'];
+  rate: number;
+};
+
+export type AddRateApiType = {
+  userId: number;
+  bookId: number;
+  rate: number;
+};
+
+export type GetRateApiType = {
+  userId: number;
+  bookId: number;
 };

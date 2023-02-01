@@ -12,14 +12,13 @@ const Pagination: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(Number(searchParams.get('page') || 1));
   const counter = useAppSelector((state) => state.bookStore.count);
-  const numberPerPage = useAppSelector((state) => state.bookStore.pages);
-  const maxPages = Math.ceil(counter / numberPerPage);
+  const numberPage = useAppSelector((state) => state.bookStore.pages);
+  const maxPages = Math.ceil(counter / numberPage);
 
   useEffect(() => {
     searchParams.set('page', `${page}`);
     setSearchParams(searchParams);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [page, searchParams, setSearchParams]);
 
   const previousPageClickHandler = () => {
     if (page === 1) {
@@ -35,22 +34,19 @@ const Pagination: React.FC = () => {
     setPage(page + 1);
   };
 
-  const leftIndicatorClass = classNames({
-    // eslint-disable-next-line quote-props
-    'indicator': true,
-    'indicator--selected': (page === 1),
+  const leftCounterClass = classNames({
+    counter: true,
+    'counter--selected': page === 1,
   });
 
-  const centerIndicatorClass = classNames({
-    // eslint-disable-next-line quote-props
-    'indicator': true,
-    'indicator--selected': (page > 1 && page < maxPages),
+  const centercounterClass = classNames({
+    counter: true,
+    'counter--selected': page > 1 && page < maxPages,
   });
 
-  const rightIndicatorClass = classNames({
-    // eslint-disable-next-line quote-props
-    'indicator': true,
-    'indicator--selected': page === maxPages,
+  const rightcounterClass = classNames({
+    counter: true,
+    'counter--selected': page === maxPages,
   });
 
   return (
@@ -60,10 +56,10 @@ const Pagination: React.FC = () => {
         src={leftArrow}
         onClick={previousPageClickHandler}
       />
-      <div className="indicator-block">
-        <div className={leftIndicatorClass} />
-        <div className={centerIndicatorClass} />
-        <div className={rightIndicatorClass} />
+      <div className="counter-block">
+        <div className={leftCounterClass} />
+        <div className={centercounterClass} />
+        <div className={rightcounterClass} />
       </div>
       <img
         className="next-page__button page-button"

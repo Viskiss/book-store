@@ -8,7 +8,7 @@ const addComment = (data: {userId: number; bookId: number; text: string}) => {
 };
 
 const getComments = (bookId: number) => {
-  return api.post<CommentType[]>(`${COMMENT_PATH_PREFIX}/comments/${bookId}`);
+  return api.get<CommentType[]>(`${COMMENT_PATH_PREFIX}/comments/${bookId}`);
 };
 export default {
   addComment,

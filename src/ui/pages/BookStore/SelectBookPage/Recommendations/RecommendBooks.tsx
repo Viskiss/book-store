@@ -1,5 +1,7 @@
-import { useAppSelector } from '../../../../../redux/store';
+import { useAppSelector } from 'src/redux/store';
+
 import ItemBook from '../../Catalog/ItemBook/ItemBook';
+
 import StyledRecBooks from './RecommendBooks.styles';
 
 const RecommendBooks: React.FC = () => {

@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import constants from 'src/utils/constants';
 
 import Button from 'src/ui/components/Button';
-import TextBlock from 'src/ui/components/TextBlock/TextBlock';
+import TextBlock from 'src/ui/components/TextBlock';
 
 import booksImg from 'src/ui/assets/images/books.svg';
 
@@ -18,6 +18,7 @@ import StyledCart from './Cart.styles';
 const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const [total, setTotal] = useState(0);
 
   const cart = useAppSelector((store) => store.bookStore.cart);
@@ -57,7 +58,7 @@ const Cart: React.FC = () => {
               />
             ))}
           </div>
-          <div>
+          <div className="cart__buttons-box">
             <p className="cart__total-title">
               Total:<span className="cart__total"> {total}</span>
             </p>
@@ -67,7 +68,7 @@ const Cart: React.FC = () => {
             >
               Continue shopping
             </Button>
-            <Button>Chekout</Button>
+            <Button className="cart-button-checkout">Chekout</Button>
           </div>
         </>
       ) : (

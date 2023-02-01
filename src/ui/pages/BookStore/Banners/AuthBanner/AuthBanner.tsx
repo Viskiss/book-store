@@ -1,9 +1,9 @@
-import TextBlock from 'src/ui/components/TextBlock/TextBlock';
+import TextBlock from 'src/ui/components/TextBlock';
 
-import fairy from './images/fairy.svg';
-import fairy2 from './images/fairy2.svg';
-import fairy3 from './images/fairy3.svg';
-import castle from './images/castle.svg';
+import fairy from 'src/ui/assets/images/fairy.svg';
+import fairy2 from 'src/ui/assets/images/fairy2.svg';
+import fairy3 from 'src/ui/assets/images/fairy3.svg';
+import castle from 'src/ui/assets/images/castle.svg';
 
 import StyledAuthBanner from './AuthBanner.styles';
 

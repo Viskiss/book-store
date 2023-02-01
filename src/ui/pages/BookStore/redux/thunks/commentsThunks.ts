@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 
-import type { CommentApiType } from 'src/types/commentsTypes';
+import type { CommentApiType } from 'src/types';
 
 import commentApi from '../api/commentApi';
 

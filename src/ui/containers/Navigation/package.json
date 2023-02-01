@@ -1,6 +1,0 @@
-{
-  "main": "Navigation.tsx",
-  "devDependencies": {
-    "@types/react-lottie": "^1.2.6"
-  }
-}

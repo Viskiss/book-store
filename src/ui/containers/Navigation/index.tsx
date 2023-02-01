@@ -13,12 +13,12 @@ import { currentUserThunk } from 'src/redux/userStore/thunks/authUser';
 
 import MainLayoutStyled from '../MainLayout.styles';
 
-const BookStore = lazy(() => import('../../pages/BookStore'));
-const SignUp = lazy(() => import('../../pages/Auth/SignUp'));
-const Cart = lazy(() => import('../../pages/BookStore/Cart'));
-const LokesBooks = lazy(() => import('../../pages/BookStore/LikedBooks/LikedBooks'));
-const LogIn = lazy(() => import('../../pages/Auth/SignIn/SignIn'));
-const UserProfile = lazy(() => import('../../pages/UserProfile'));
+const BookStore = lazy(() => import('src/ui/pages/BookStore'));
+const SignUp = lazy(() => import('src/ui/pages/Auth/SignUp'));
+const Cart = lazy(() => import('src/ui/pages/BookStore/Cart'));
+const LikedBooks = lazy(() => import('src/ui/pages/BookStore/LikedBooks/LikedBooks'));
+const LogIn = lazy(() => import('src/ui/pages/Auth/SignIn/SignIn'));
+const UserProfile = lazy(() => import('src/ui/pages/UserProfile'));
 
 const Navigation: React.FC = () => {
   const { routesLink } = constants;
@@ -62,7 +62,7 @@ const Navigation: React.FC = () => {
           {user && (
             <>
               <Route path={routesLink.cart} element={<Cart />} />
-              <Route path={routesLink.liked} element={<LokesBooks />} />
+              <Route path={routesLink.liked} element={<LikedBooks />} />
               <Route path={routesLink.profile} element={<UserProfile />} />
             </>
           )}

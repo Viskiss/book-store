@@ -1,25 +1,42 @@
 import { Rating } from 'react-simple-star-rating';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { useAppSelector } from 'src/redux/store';
+import { useAppSelector, useAppDispatch } from 'src/redux/store';
 
 import star from 'src/ui/assets/images/icon/Star.svg';
 import arrow from 'src/ui/assets/images/icon/arrow.svg';
 
+import { addRateThunk } from 'src/ui/pages/BookStore/redux/thunks/rateBooksThunks';
+import constants from 'src/utils/constants';
+
 import StyledBook from './StarRate.styles';
 
 const StarRate: React.FC = () => {
-  const [initRate] = useState(0);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const book = useAppSelector((store) => store.bookStore.book);
+  const user = useAppSelector((store) => store.userStore.user?.id);
+  const rate = useAppSelector((store) => store.bookStore.rate);
+
+  const handleRating = (rate: number) => {
+    if (user) {
+      dispatch(addRateThunk({ bookId: book.id, userId: user, rate }));
+    } else {
+      navigate(constants.routesLink.signIn);
+    }
+  };
 
   return (
-    <StyledBook>
+    <StyledBook className="rate-box">
       <div className="initial-rate">
         <img className="star-rate" src={star} alt="" />
         <p className="number">{book.rate}.0</p>
       </div>
-      <Rating
+      <div className="rate-box__stars">
+        <Rating
         fillColor="#BFCC94"
+        onClick={handleRating}
         fillIcon={
           (<svg
             className="fillStar"
@@ -60,11 +77,12 @@ const StarRate: React.FC = () => {
            </svg>)
         }
         size={27}
-        initialValue={initRate}
+        initialValue={rate}
       />
       <div className="arrow-box">
-        <img src={arrow} alt="" />
+        <img className="arrow-box__img" src={arrow} alt="" />
         <p className="rate-this-book">Rate this book</p>
+      </div>
       </div>
     </StyledBook>
   );

@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
-import Input from 'src/ui/components/Input/Input';
+import Input from 'src/ui/components/Input';
 import Button from 'src/ui/components/Button';
 
 import { useAppDispatch } from 'src/redux/store';

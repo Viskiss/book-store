@@ -33,7 +33,7 @@ export default styled.div<{ drop: boolean }>`
     margin-left: 18px;
     padding: 10px 15px;
     top: 0;
-    width: 349px;
+    width: 80%;
     text-align: start;
     z-index: 1;
   }

@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
-import Input from 'src/ui/components/Input/Input';
+import Input from 'src/ui/components/Input';
 import Button from 'src/ui/components/Button';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
@@ -31,9 +31,11 @@ import PasswordProfile from './PasswordProfile';
 import StyledUserProfile from './UserProfile.styles';
 
 const UserProfile: React.FC = () => {
-  const [changeUser, setChangeUser] = useState(true);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  const [changeUser, setChangeUser] = useState(true);
+
   const user = useAppSelector((store) => store.userStore.user);
 
   let userId = 0;
@@ -80,16 +82,6 @@ const UserProfile: React.FC = () => {
         toast.error('Unexpected server error');
       }
     },
-  });
-
-  const stylesInputEmail = classNames({
-    'form-input': true,
-    'error-input': formik.touched.email ? formik.errors.email : undefined,
-  });
-
-  const stylesInputFullname = classNames({
-    'form-input': true,
-    'error-input': formik.touched.fullName ? formik.errors.fullName : undefined,
   });
 
   const uploadPhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -149,7 +141,10 @@ const UserProfile: React.FC = () => {
             <label>Your name</label>
             <Input
               disabled={changeUser}
-              className={stylesInputFullname}
+              className={classNames({
+                'form-input': true,
+                'error-input': formik.touched.fullName ? formik.errors.fullName : undefined,
+              })}
               img={imgUser}
               placeholder="Name"
               errors={
@@ -163,7 +158,10 @@ const UserProfile: React.FC = () => {
           <div className="data-box">
             <label>Your email</label>
             <Input
-              className={stylesInputEmail}
+              className={classNames({
+                'form-input': true,
+                'error-input': formik.touched.email ? formik.errors.email : undefined,
+              })}
               disabled={changeUser}
               img={mail}
               placeholder="Email"

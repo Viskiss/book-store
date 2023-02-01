@@ -5,11 +5,11 @@ import loader from 'src/ui/assets/lottieFiles/loading.json';
 
 import { useAppSelector } from 'src/redux/store';
 
-import Filters from './Filters/Filters';
+import Pagination from 'src/ui/components/Pagintion';
+import Filters from 'src/ui/components/Filters';
 import ItemBook from './ItemBook/ItemBook';
 
 import StyledCatalog from './Catalog.styles';
-import Pagination from '../../../components/Pagintion/Pagination';
 
 const Catalog: React.FC = () => {
   const books = useAppSelector((store) => store.bookStore.books);

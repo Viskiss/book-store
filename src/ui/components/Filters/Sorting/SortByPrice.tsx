@@ -30,17 +30,22 @@ const SortByPrice: React.FC = () => {
     setSearchParams(searchParams);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function useOutsideDrop(ref: any) {
+  function useOutsideDrop(ref: React.RefObject<HTMLInputElement>) {
     useEffect(() => {
-      function handleClickOutside(event: { target: unknown }) {
+      function handleClickOutside(event: { target: Node | null }) {
         if (ref.current && !ref.current.contains(event.target)) {
           setDropSelect(false);
         }
       }
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener(
+        'mousedown',
+        handleClickOutside as EventListenerOrEventListenerObject,
+      );
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener(
+          'mousedown',
+          handleClickOutside as EventListenerOrEventListenerObject,
+        );
       };
     }, [ref]);
   }

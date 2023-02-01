@@ -18,6 +18,7 @@ export const theme = {
 
   fontSize: {
     fs12: '12px',
+    fs13: '13px',
     fs14: '14px',
     fs16: '16px',
     fs18: '18px',
@@ -32,6 +33,7 @@ export const theme = {
     lh18: '18px',
     lh21: '21px',
     lh24: '24px',
+    lh20: '20px',
     lh28: '28px',
     lh30: '30px',
     lh34: '34px',

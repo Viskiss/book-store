@@ -1,10 +1,10 @@
-import TextBlock from 'src/ui/components/TextBlock/TextBlock';
+import TextBlock from 'src/ui/components/TextBlock';
 
 import constants from 'src/utils/constants';
 
-import books from './images/books.svg';
-import girl from './images/girl.svg';
-import girl2 from './images/girl2.svg';
+import books from 'src/ui/assets/images/booksFill.svg';
+import girl from 'src/ui/assets/images/girl.svg';
+import girl2 from 'src/ui/assets/images/girl2.svg';
 
 import StyledBookBanner from './BookBaner.styles';
 

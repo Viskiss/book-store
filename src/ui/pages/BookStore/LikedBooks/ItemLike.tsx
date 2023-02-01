@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import fillLike from 'src/ui/assets/images/icon/fillHeart.svg';
 
-import Button from 'src/ui/components/Button/Button';
+import Button from 'src/ui/components/Button';
+
 import { getSelectBookThunk } from '../redux/thunks/bookStoreThunks';
 import { deleteLikedBookThunk, getLikedBooksThunk } from '../redux/thunks/likedBooksThunks';
 

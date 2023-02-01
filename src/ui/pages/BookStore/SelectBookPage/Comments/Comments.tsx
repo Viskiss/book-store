@@ -46,7 +46,7 @@ const Comments: React.FC = () => {
 
   return (
     <StyledComments>
-      <h2 className="comments-box__title">Comments</h2>
+      {comments.length || isAuth ? <h2 className="comments-box__title">Comments</h2> : ('')}
       <div>{comments &&
         comments.map((el) => (
           <ItemComment
@@ -59,7 +59,7 @@ const Comments: React.FC = () => {
         ))
       }
       </div>
-      {isAuth && (
+      {isAuth ? (
         <form
           onSubmit={(e) => handlerSubmitForm(e)}
           className="comment-box__form"
@@ -72,7 +72,7 @@ const Comments: React.FC = () => {
           />
           <Button className="comment-box__button">Post a comment</Button>
         </form>
-      )}
+      ) : (<h2 className="comments-box__title">No comments</h2>)}
     </StyledComments>
   );
 };

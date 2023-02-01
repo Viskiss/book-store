@@ -1,22 +1,27 @@
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
-
-import TextBlock from 'src/ui/components/TextBlock/TextBlock';
-import booksImg from 'src/ui/assets/images/books.svg';
 import { useEffect } from 'react';
+
+import TextBlock from 'src/ui/components/TextBlock';
+
+import booksImg from 'src/ui/assets/images/books.svg';
+
 import ItemLike from './ItemLike';
 
-import StyledLikedBooks from './LikedBooks.styles';
 import { getLikedBooksThunk } from '../redux/thunks/likedBooksThunks';
+
+import StyledLikedBooks from './LikedBooks.styles';
 
 const LikedBooks: React.FC = () => {
   const dispatch = useAppDispatch();
+
   const likesBooks = useAppSelector((store) => store.bookStore.likedBooks);
+  const isAuth = useAppSelector((store) => store.userStore.isAuthenticated);
 
   useEffect(() => {
-    if (!likesBooks.length) {
+    if (!likesBooks.length && isAuth) {
       dispatch(getLikedBooksThunk());
     }
-  }, [dispatch, likesBooks.length]);
+  }, [dispatch, isAuth, likesBooks.length]);
 
   return (
     <StyledLikedBooks>

@@ -18,20 +18,13 @@ import {
 import eye from 'src/ui/assets/images/icon/Hide.svg';
 
 const PasswordProfile: React.FC = () => {
-  const [changePassword, setChangePassword] = useState(false);
+  const dispatch = useAppDispatch();
 
-  const disabledInput = true;
-  let userId = 0;
-  let userPassword = '';
+  const [changePassword, setChangePassword] = useState(false);
 
   const user = useAppSelector((store) => store.userStore.user);
 
-  if (user) {
-    userId = user.id;
-    userPassword = user.password;
-  }
-
-  const dispatch = useAppDispatch();
+  const disabledInput = true;
 
   const changeDataHandler = (
     type: string,
@@ -48,7 +41,7 @@ const PasswordProfile: React.FC = () => {
 
   const formik = useFormik({
     initialValues: {
-      password: userPassword || '',
+      password: '',
       newPassword: '',
       repeatPassword: '',
     },
@@ -60,9 +53,11 @@ const PasswordProfile: React.FC = () => {
     onSubmit: async (values) => {
       try {
         const { password, newPassword } = values;
-        await dispatch(
-          changePasswordThunk({ password, id: userId, newPassword }),
-        ).unwrap();
+        if (user) {
+          await dispatch(
+            changePasswordThunk({ password, id: user.id, newPassword }),
+          ).unwrap();
+        }
       } catch (error) {
         if (matchError(error)) {
           handleApiValidationError(error.error, formik.setErrors);

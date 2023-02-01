@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export default styled.div`
   display: flex;
   justify-content: space-between;
-    align-items: center;
+  align-items: center;
+  max-width: 1280px;
 
   .emptyStar {
     margin-right: 17px;
@@ -20,9 +21,9 @@ export default styled.div`
   }
 
   .number {
-    font-size: 16px;
-    line-height: 24px;
-    color: #b9bac4;
+    font-size: ${(props) => props.theme.fontSize.fs16};
+    line-height: ${(props) => props.theme.lineHeight.lh24};
+    color: ${(props) => props.theme.color.grey};
   }
   .star-rate {
     margin-right: 14px;
@@ -41,5 +42,58 @@ export default styled.div`
 
   .react-simple-star-rating {
     margin-right: 10px;
+  }
+
+  @media (max-width: 930px) {
+    .star-rate {
+      width: 22px;
+    }
+
+    .emptyStar {
+      width: 22px;
+    }
+
+    .fillStar {
+      width: 22px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    min-width: 290px;
+    .rate-this-book {
+      font-size: ${(props) => props.theme.fontSize.fs12};
+      line-height: ${(props) => props.theme.lineHeight.lh18};
+      margin-top: -10px;
+      margin-bottom: 55px;
+    }
+
+    .arrow-box__img {
+      display: none;
+    }
+
+    .initial-rate {
+    align-items: baseline;
+  }
+
+    .number {
+      font-size: ${(props) => props.theme.fontSize.fs13};
+      line-height: ${(props) => props.theme.lineHeight.lh20};
+      color: ${(props) => props.theme.color.grey};
+      margin-top: 9px;
+    }
+    .star-rate {
+      width: 13px;
+      margin-right: 7px;
+    }
+
+    .emptyStar {
+      width: 13px;
+      margin-right: 16px;
+    }
+
+    .fillStar {
+      width: 13px;
+      margin-right: 16px;
+    }
   }
 `;
