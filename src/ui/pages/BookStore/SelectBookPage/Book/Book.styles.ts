@@ -1,7 +1,27 @@
 import styled from 'styled-components';
 
 export default styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: auto;
+  /* grid-template-rows: 0fr 0.1fr 0.1fr 0.7fr; */
+  /* grid-template-rows: 0.1fr; */
+  margin-top: 20px;
+
+  .book-cover__box {
+    grid-area: 1 / 1 / 4 / 2;
+  }
+  .book-info__data {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+  .book-info__rate {
+    height: fit-content;
+    grid-area: 2 / 2 / 3 / 3;
+    margin-bottom: 15px;
+  }
+  .book-info__box {
+    grid-area: 3 / 2 / 4 / 3;
+  }
 
   .book-cover {
     height: 779px;
@@ -45,6 +65,7 @@ export default styled.div`
     line-height: ${(props) => props.theme.lineHeight.lh30};
     background: ${(props) => props.theme.color.grey};
     color: ${(props) => props.theme.color.white};
+    cursor: default;
     padding: 10px 50px;
   }
 
@@ -82,6 +103,9 @@ export default styled.div`
       height: 584px;
       width: 391px;
       margin-right: 21px;
+    }
+
+    .book-info__box {
     }
 
     .title {
@@ -139,7 +163,45 @@ export default styled.div`
 
   @media (max-width: 575px) {
     max-width: 290px;
-    position: relative;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+
+    .book-cover__box {
+      grid-area: 1 / 1 / 3 / 2;
+    }
+    .book-info__data {
+      grid-area: 1 / 2 / 2 / 3;
+    }
+    .book-info__rate {
+      grid-area: 2 / 2 / 3 / 3;
+    }
+    .book-info__box {
+      max-width: 290px;
+      margin-top: -10px;
+      grid-area: 3 / 1 / 4 / 3;
+    }
+
+    .book-cover__box {
+      max-height: 202px;
+    }
+
+    .book-info__data {
+      max-width: 135px;
+      white-space: break-spaces;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .book-info__rate {
+    }
+
+    .book-info__box {
+      width: 100%;
+    }
+
+    .book-info__text {
+      width: 100%;
+    }
 
     .book-cover {
       height: 202px;
@@ -172,37 +234,18 @@ export default styled.div`
     .disabled-button {
       font-size: ${(props) => props.theme.fontSize.fs12};
       line-height: ${(props) => props.theme.lineHeight.lh18};
+      width: 135px;
     }
 
     .simple-button {
       font-size: ${(props) => props.theme.fontSize.fs12};
       line-height: ${(props) => props.theme.lineHeight.lh18};
+      width: 135px;
     }
 
     .rate-box__stars {
       align-items: flex-start;
       flex-direction: column;
-    }
-
-    .book-cover__box {
-      max-height: 202px;
-    }
-
-    .book-info__text {
-      width: 100%;
-    }
-
-    .book-info__box {
-      position: absolute;
-      width: 100%;
-      left: 0;
-    }
-
-    .book-info__data {
-      max-width: 135px;
-      white-space: break-spaces;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
   }
 `;

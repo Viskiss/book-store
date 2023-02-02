@@ -38,8 +38,8 @@ const LikedBooks: React.FC = () => {
             ))}
         </div>
       ) : (
-        <div className="cart-container">
-          <img className="cart-container__img" src={booksImg} alt="" />
+        <div className="like-container">
+          <img className="like-container__img" src={booksImg} alt="" />
           <TextBlock
             h1="Your liked is empty"
             className="simple-button"

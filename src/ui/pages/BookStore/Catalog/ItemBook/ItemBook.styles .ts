@@ -137,6 +137,12 @@ export default styled.div<{ likedBook?: boolean }>`
       width: 254px;
       height: 372px;
     }
+
+    .book-info {
+      max-width: 254px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .cover-book {
       width: 254px;
       height: 372px;

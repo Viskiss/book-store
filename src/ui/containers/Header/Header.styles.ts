@@ -22,10 +22,6 @@ export default styled.header`
     top: 0;
   }
 
-  .small-width {
-    display: none;
-  }
-
   .header_container {
     max-width: 1280px;
     display: flex;
@@ -127,7 +123,7 @@ export default styled.header`
     }
   }
 
-  @media (max-width: 1152px) {
+  @media (max-width: 1000px) {
     .logo {
       padding-right: 20px;
     }
@@ -143,10 +139,6 @@ export default styled.header`
     .search-input {
       width: 250px;
     }
-  }
-
-  @media (max-width: 970px) {
-    padding: 20px 15px 45px 15px;
 
     .round-button {
       margin: 0 10px;
@@ -182,8 +174,33 @@ export default styled.header`
   }
 
   @media (max-width: 775px) {
+
+    .header_container {
+      flex-direction: row;
+    flex-wrap: wrap;
+    }
+
+    .logo__link {
+      order: 1;
+    }
+
+    .catalog-link {
+      order: 2;
+    }
+
+    .search {
+      order: 4;
+      width: 100%;
+    }
+
+    .round-buttons {
+      order: 3;
+      padding-left: 0;
+    }
+
     .search-input {
       padding: 20px 80px 20px 64px;
+      width: -webkit-fill-available;
     }
 
     .auth-button {
@@ -194,24 +211,14 @@ export default styled.header`
       padding: 9px 10px 6px 9px;
     }
 
-    .round-buttons {
-      padding-left: 0;
-    }
   }
 
   @media (max-width: 600px) {
-    .header_container {
-      display: none;
-    }
+    padding: 24px 15px 40px 15px;
 
-    .small-width {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      align-items: center;
-      max-width: 450px;
-      gap: 17px;
+    .round-button {
+      padding: 5px 6px 2px 5px;
+      margin: 3px;
     }
 
     .logo {
@@ -225,37 +232,19 @@ export default styled.header`
       margin: 0;
     }
 
-    .search-input {
-      padding: 13px 40px 13px 64px;
-    }
-
-    .search-input_button {
-      padding: 15px 20px;
-    }
 
     .search-input::placeholder {
       font-size: ${(props) => props.theme.fontSize.fs12};
       line-height: ${(props) => props.theme.lineHeight.lh28};
     }
 
-    .auth-button__small {
-      padding: 10px;
-
-      a {
-        font-size: ${(props) => props.theme.fontSize.fs12};
-        line-height: ${(props) => props.theme.lineHeight.lh18};
-        letter-spacing: 0.75px;
-      }
-    }
   }
 
-  @media (max-width: 375px) {
-    .auth-button__small {
-      padding: 7px;
+  @media (max-width: 380px) {
+    .header_container {
+      max-width: 290px;
     }
 
-    .round-button {
-      padding: 7px 8px 4px 7px;
-    }
-  }
+}
+
 `;

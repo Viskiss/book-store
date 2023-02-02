@@ -1,4 +1,3 @@
-// import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
@@ -10,27 +9,17 @@ import StarRate from 'src/ui/components/Rating';
 import { addBookThunk, getCartBooks } from '../../redux/thunks/cartThunks';
 
 import StyledBook from './Book.styles';
-// import { getRateThunk } from '../../redux/thunks/rateBooksThunks';
 
 const Book: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  // const { bookId } = useParams();
-
   const book = useAppSelector((store) => store.bookStore.book);
   const cart = useAppSelector((store) => store.bookStore.cart);
   const user = useAppSelector((store) => store.userStore.user);
-  // const rate = useAppSelector((store) => store.bookStore.rate);
 
   const selectBookInCart = cart.map((book) => book.bookId);
   const selectBooks = selectBookInCart.includes(book.id);
-
-  // useEffect(() => {
-  //   if (!rate && user && book.id) {
-  //     dispatch(getRateThunk({ bookId: Number(bookId), userId: user.id }));
-  //   }
-  // }, [book.id, bookId, dispatch, rate, user]);
 
   const handlerAddToCart = (
     e: React.MouseEvent<HTMLElement>,
@@ -60,17 +49,15 @@ const Book: React.FC = () => {
 
   return (
     <StyledBook>
-      <div>
+      <div className="book-cover__box">
         <img className="book-cover" src={book.cover} alt="" />
       </div>
-      <div className="book-info">
         <div className="book-info__data">
         <h2 className="title">{book.title}</h2>
         <p className="book-author">{book.author}</p>
         </div>
-        <div>
+        <div className="book-info__rate">
           <StarRate />
-          <img src="" alt="" />
         </div>
         <div className="book-info__box">
           <div className="book-info__text">
@@ -112,7 +99,6 @@ const Book: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
     </StyledBook>
   );
 };

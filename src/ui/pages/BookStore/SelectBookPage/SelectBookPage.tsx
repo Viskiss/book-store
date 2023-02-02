@@ -12,7 +12,6 @@ import AuthBanner from '../Banners/AuthBanner/AuthBanner';
 import RecommendBooks from './Recommendations/RecommendBooks';
 
 import StyledItemBookPage from './SelectBookPage.styles';
-import { getRateThunk } from '../redux/thunks/rateBooksThunks';
 
 const SelectBook: React.FC = () => {
   const { bookId } = useParams();
@@ -21,16 +20,6 @@ const SelectBook: React.FC = () => {
   const navigate = useNavigate();
 
   const isAuth = useAppSelector((store) => store.userStore.user);
-
-  const book = useAppSelector((store) => store.bookStore.book);
-  const user = useAppSelector((store) => store.userStore.user);
-  const rate = useAppSelector((store) => store.bookStore.rate);
-
-  useEffect(() => {
-    if (!rate && user && book.id) {
-      dispatch(getRateThunk({ bookId: Number(bookId), userId: user.id }));
-    }
-  }, [book.id, bookId, dispatch, rate, user]);
 
   useEffect(() => {
     dispatch(getRecommendedBooksThunk(isAuth?.id || 1));

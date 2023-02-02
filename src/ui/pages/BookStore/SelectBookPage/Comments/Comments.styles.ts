@@ -1,12 +1,36 @@
 import styled from 'styled-components';
 
 export default styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
+  margin-top: 70px;
 
-  :nth-last-child(1) {
-    margin-bottom: 60px;
+  .comments-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .comment {
+    display: grid;
+    grid-template-columns: 0.1fr;
+    grid-template-rows: auto;
+    max-width: 738px;
+    background: ${(props) => props.theme.color.white};
+    border-radius: ${(props) => props.theme.border.default};
+    padding: 25px;
+  }
+
+  .comment__user {
+    grid-area: 1 / 1 / 4 / 2;
+    padding: 5px 20px 0 5px;
+  }
+
+  .comment__user-data {
+    grid-area: 1 / 2 / 3 / 3;
+    padding-top: 5px;
+  }
+
+  .comment__user-comment {
+    grid-area: 3 / 2 / 4 / 3;
   }
 
   .comment-box__input {
@@ -17,11 +41,10 @@ export default styled.div`
     border-radius: ${(props) => props.theme.border.default};
     padding: 20px;
     resize: none;
-    margin-bottom: 30px;
+    margin: 60px 0 30px 0;
   }
 
   .comments-box__title {
-    margin-top: 110px;
     font-weight: ${(props) => props.theme.fontWeight.height};
     font-size: ${(props) => props.theme.fontSize.fs40};
     line-height: ${(props) => props.theme.lineHeight.lh60};
@@ -47,26 +70,11 @@ export default styled.div`
     color: ${(props) => props.theme.color.white};
   }
 
-  .comment {
-    display: flex;
-    max-width: 738px;
-    background: ${(props) => props.theme.color.white};
-    border-radius: ${(props) => props.theme.border.default};
-  }
-
-  .comment__user {
-    padding: 30px 20px 97px 30px;
-  }
-
   .comment__user-photo {
     width: 60px;
     height: 60px;
     object-fit: cover;
     border-radius: ${(props) => props.theme.border.round};
-  }
-
-  .comment__user-data {
-    padding: 35px 30px 25px 0;
   }
 
   .comment__title {
@@ -95,7 +103,10 @@ export default styled.div`
   }
 
   @media (max-width: 930px) {
-    max-width: 667px;
+    .comment {
+      max-width: 667px;
+      grid-template-rows: 0.1fr;
+    }
 
     .comment__user {
       padding: 30px 20px 77px 30px;
@@ -125,33 +136,41 @@ export default styled.div`
   }
 
   @media (max-width: 575px) {
+    margin-top: 20px;
     max-width: 290px;
     position: relative;
 
-    :nth-child(1) {
-      margin-top: 300px;
+    .comment {
+      display: grid;
+      grid-template-columns: 0.1fr;
+      grid-template-rows: 0.1fr;
+      padding: 10px;
+    }
+
+    .comment__user {
+      grid-area: 1 / 1 / 2 / 2;
+      padding: 3px 13px 0 0;
     }
 
     .comment__user-data {
-      max-width: 170px;
-      white-space: break-spaces;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      grid-area: 1 / 2 / 2 / 3;
+      padding: 0;
     }
 
-    .comment__text {
-      position: absolute;
-      left: 15px;
-      top: 100px;
+    .comment__user-comment {
+      grid-area: 2 / 1 / 3 / 3;
     }
 
-    :nth-last-child(1) {
-      margin-bottom: 20px;
+    .comment__user-photo {
+      width: 35px;
+      height: 35px;
     }
 
     .comment__title {
+      font-weight: 100;
       font-size: ${(props) => props.theme.fontSize.fs14};
       line-height: ${(props) => props.theme.lineHeight.lh21};
+      letter-spacing: 0.75px;
     }
 
     .comment__date {
@@ -165,7 +184,8 @@ export default styled.div`
     }
 
     .comments-box__title {
-      display: none;
+      font-size: ${(props) => props.theme.fontSize.fs18};
+      line-height: ${(props) => props.theme.lineHeight.lh27};
     }
 
     .comment-box__input {

@@ -3,7 +3,11 @@ import styled from 'styled-components';
 export default styled.section`
   display: flex;
   justify-content: center;
-  max-width: 1280px;
+  width: 100%;
+
+  .like-container {
+    display: -webkit-box;
+  }
 
   .liked__books {
     display: flex;
@@ -12,19 +16,11 @@ export default styled.section`
     justify-content: center;
   }
 
-  .cart-container {
-    display: flex;
-    justify-content: center;
-  }
-
-  .cart_container__img {
-    height: 261px;
-  }
-
   .item-liked__box {
     background: ${(props) => props.theme.color.white};
     border-radius: ${(props) => props.theme.border.default};
     transition: 0.5s;
+    height: fit-content;
   }
 
   .item-liked__box:hover {
@@ -56,6 +52,19 @@ export default styled.section`
   }
 
   @media (max-width: 800px) {
+    .like-container {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: flex-end;
+      align-items: center;
+      padding-bottom: 100px;
+    }
+
+    .like-container__img {
+      height: 176px;
+      padding-right: 0;
+      margin-top: 40px;
+    }
     .item-liked__box-data {
       max-width: 265px;
     }

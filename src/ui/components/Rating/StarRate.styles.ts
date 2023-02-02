@@ -6,6 +6,11 @@ export default styled.div`
   align-items: center;
   max-width: 1280px;
 
+  .rate-box__stars {
+    display: flex;
+    align-items: center;
+  }
+
   .emptyStar {
     margin-right: 17px;
     width: 27px;
@@ -47,6 +52,14 @@ export default styled.div`
   @media (max-width: 930px) {
     .star-rate {
       width: 22px;
+    }
+
+    .initial-rate {
+      margin-bottom: -10px;
+    }
+
+    .rate-box__stars {
+      margin-bottom: -10px;
     }
 
     .emptyStar {

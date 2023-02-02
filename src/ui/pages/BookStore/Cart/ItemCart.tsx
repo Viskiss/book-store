@@ -1,5 +1,9 @@
-import trashBox from 'src/ui/assets/images/icon/Delete.svg';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 import { useAppDispatch } from 'src/redux/store';
+
+import trashBox from 'src/ui/assets/images/icon/Delete.svg';
 
 import decrement from 'src/ui/assets/images/icon/decrement.svg';
 import increment from 'src/ui/assets/images/icon/increment.svg';
@@ -9,6 +13,7 @@ import {
   deleteBookInCart,
   deleteCopyBook,
 } from '../redux/thunks/cartThunks';
+import { getSelectBookThunk } from '../redux/thunks/bookStoreThunks';
 
 interface IProps {
   bookId: number;
@@ -29,6 +34,7 @@ const ItemCart: React.FC<IProps> = ({
   author,
   quantityOfGoods,
 }) => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleDeleteBook = (cartId: number) => {
@@ -43,6 +49,16 @@ const ItemCart: React.FC<IProps> = ({
     dispatch(deleteCopyBook(bookId));
   };
 
+  const selectBook = (e: React.MouseEvent<HTMLElement>, id: number) => {
+    e.preventDefault();
+    try {
+      dispatch(getSelectBookThunk(id));
+      navigate(`/book/${id}`);
+    } catch (err) {
+      toast.error('Unexpected server error');
+    }
+  };
+
   return (
     <>
       <div className="item-cart__box">
@@ -50,7 +66,7 @@ const ItemCart: React.FC<IProps> = ({
           <img className="item-cart__cover" src={cover} alt="" />
         </div>
         <div>
-          <h1 className="item-cart__box-title">{title}</h1>
+          <h1 onClick={(e) => selectBook(e, bookId)} className="item-cart__box-title">{title}</h1>
           <p className="item-cart__box-author">{author}</p>
           <div className="item-cart__box-filter">
             <div>

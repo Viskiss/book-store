@@ -22,7 +22,6 @@ import {
   deleteLikedBookThunk,
   getLikedBooksThunk,
 } from './thunks/likedBooksThunks';
-import { getRateThunk } from './thunks/rateBooksThunks';
 
 const initialState = () => ({
   books: [] as BookType[],
@@ -32,7 +31,6 @@ const initialState = () => ({
   genres: [] as GenreType[],
   comments: [] as CommentType[],
   likedBooks: [] as LikedBookType[],
-  rate: 0,
   count: 0,
   pages: 0,
 });
@@ -44,13 +42,6 @@ const bookStoreSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getLikedBooksThunk.fulfilled, (state, { payload }) => {
       state.likedBooks = payload.books;
-    });
-
-    builder.addCase(getRateThunk.fulfilled, (state, { payload }) => {
-      if (!payload) {
-        state.rate = 0;
-      }
-      state.rate = payload.rate;
     });
 
     builder.addCase(deleteLikedBookThunk.fulfilled, (state, { payload }) => {

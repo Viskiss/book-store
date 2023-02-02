@@ -53,13 +53,14 @@ export default styled.section`
 
   .item-cart__box-cover {
     margin-right: 20px;
-    max-width: 197px;
-    max-height: 289px;
+    width: 197px;
+    height: 289px;
   }
 
   .item-cart__cover {
     border-radius: ${(props) => props.theme.border.default};
     height: 100%;
+    width: 100%;
   }
 
   .item-cart__box-title {
@@ -68,6 +69,7 @@ export default styled.section`
     line-height: ${(props) => props.theme.lineHeight.lh60};
     color: ${(props) => props.theme.color.dark};
     margin: 0;
+    cursor: pointer;
   }
 
   .item-cart__box-author {
@@ -90,6 +92,7 @@ export default styled.section`
     background: ${(props) => props.theme.color.bannerBd};
     padding: 8px 10px;
     border: none;
+    cursor: pointer;
   }
 
   .box-button__dec {
@@ -107,6 +110,7 @@ export default styled.section`
 
   .item-cart__box-trash {
     margin-left: 50px;
+    cursor: pointer;
   }
 
   .line:not(:last-child) {

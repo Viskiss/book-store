@@ -12,6 +12,7 @@ import profile from 'src/ui/assets/images/icon/UserIcon.svg';
 const AuthUserLinks: React.FC = () => {
   const { routesLink } = constants;
   const booksCount = useAppSelector((store) => store.bookStore.cart.length);
+  const likeCount = useAppSelector((store) => store.bookStore.likedBooks.length);
 
   return (
     <div className="round-buttons">
@@ -22,7 +23,8 @@ const AuthUserLinks: React.FC = () => {
         </Button>
       </Link>
       <Link to={routesLink.liked}>
-        <Button className="round-button">
+        <Button className="round-button round-button__count">
+        {likeCount !== 0 ? <span className="books-counter">{likeCount}</span> : ''}
           <img src={like} alt="Heart" />
         </Button>
       </Link>

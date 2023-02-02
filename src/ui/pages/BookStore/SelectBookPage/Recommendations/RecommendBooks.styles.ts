@@ -36,6 +36,8 @@ export default styled.div`
   }
 
   @media (max-width: 825px) {
+    margin-bottom: -50px;
+    margin-top: 30px;
     .recommendations__title {
       font-size: ${(props) => props.theme.fontSize.fs18};
       line-height: ${(props) => props.theme.lineHeight.lh27};

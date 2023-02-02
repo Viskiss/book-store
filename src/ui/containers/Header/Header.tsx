@@ -37,7 +37,7 @@ const Header: React.FC = () => {
   return (
     <StyledHeader>
       <div className="header_container">
-        <Link to={routesLink.home}>
+        <Link className="logo__link" to={routesLink.home}>
           <img className="logo" src={logo} alt="" />
         </Link>
         <Link className="catalog-link" to={routesLink.home}>
@@ -66,32 +66,6 @@ const Header: React.FC = () => {
         ) : (
           <AuthUserLinks />
         )}
-      </div>
-      <div className="small-width">
-        <Link to={routesLink.home}>
-          <img className="logo" src={logo} alt="" />
-        </Link>
-        <Link className="catalog-link" to={routesLink.home}>
-          Catalog
-        </Link>
-        {!token ? (
-          <>
-            <Link to={routesLink.signIn}>
-              <Button className="auth-button__small">Log In</Button>
-            </Link>
-            <Link to={routesLink.signUp}>
-              <Button className="auth-button__small">Sign Up</Button>
-            </Link>
-          </>
-        ) : (
-          <AuthUserLinks />
-        )}
-        <div className="search">
-          <button className="search-input_button">
-            <img src={loupe} alt="" />
-          </button>
-          <input className="search-input" placeholder="Search" />
-        </div>
       </div>
     </StyledHeader>
   );

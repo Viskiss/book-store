@@ -47,7 +47,7 @@ const Comments: React.FC = () => {
   return (
     <StyledComments>
       {comments.length || isAuth ? <h2 className="comments-box__title">Comments</h2> : ('')}
-      <div>{comments &&
+      <div className="comments-box">{comments &&
         comments.map((el) => (
           <ItemComment
             authorName={el.user?.email}
