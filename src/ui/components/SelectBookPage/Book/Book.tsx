@@ -6,8 +6,10 @@ import constants from 'src/utils/constants';
 import Button from 'src/ui/components/Button';
 import StarRate from 'src/ui/components/Rating';
 
-import { addBookThunk, getCartBooks } from '../../redux/thunks/cartThunks';
-
+import {
+  addBookThunk,
+  getCartBooks,
+} from 'src/ui/pages/BookStore/redux/thunks/cartThunks';
 import StyledBook from './Book.styles';
 
 const Book: React.FC = () => {
@@ -52,53 +54,53 @@ const Book: React.FC = () => {
       <div className="book-cover__box">
         <img className="book-cover" src={book.cover} alt="" />
       </div>
-        <div className="book-info__data">
+      <div className="book-info__data">
         <h2 className="title">{book.title}</h2>
         <p className="book-author">{book.author}</p>
+      </div>
+      <div className="book-info__rate">
+        <StarRate />
+      </div>
+      <div className="book-info__box">
+        <div className="book-info__text">
+          <p className="description">Description</p>
+          <p className="text">{book.text}</p>
         </div>
-        <div className="book-info__rate">
-          <StarRate />
-        </div>
-        <div className="book-info__box">
-          <div className="book-info__text">
-            <p className="description">Description</p>
-            <p className="text">{book.text}</p>
+        <div className="buttons-box">
+          <div className="buttons-box__title">
+            <p>Paperback</p>
+            {book.status === 'Paperback' ? (
+              <Button
+                onClick={(e) => handlerAddToCart(e, book.id)}
+                disabled={checkedCart()}
+                className="simple-button"
+              >
+                {checkedButton()}
+              </Button>
+            ) : (
+              <Button disabled className="disabled-button">
+                Not available
+              </Button>
+            )}
           </div>
-          <div className="buttons-box">
-            <div className="buttons-box__title">
-              <p>Paperback</p>
-              {book.status === 'Paperback' ? (
-                <Button
-                  onClick={(e) => handlerAddToCart(e, book.id)}
-                  disabled={checkedCart()}
-                  className="simple-button"
-                >
-                  {checkedButton()}
-                </Button>
-              ) : (
-                <Button disabled className="disabled-button">
-                  Not available
-                </Button>
-              )}
-            </div>
-            <div>
-              <p className="buttons-box__title">Hardcover</p>
-              {book.status === 'Hardcover' ? (
-                <Button
-                  onClick={(e) => handlerAddToCart(e, book.id)}
-                  disabled={checkedCart()}
-                  className="simple-button"
-                >
-                  {checkedButton()}
-                </Button>
-              ) : (
-                <Button disabled className="disabled-button">
-                  Not available
-                </Button>
-              )}
-            </div>
+          <div>
+            <p className="buttons-box__title">Hardcover</p>
+            {book.status === 'Hardcover' ? (
+              <Button
+                onClick={(e) => handlerAddToCart(e, book.id)}
+                disabled={checkedCart()}
+                className="simple-button"
+              >
+                {checkedButton()}
+              </Button>
+            ) : (
+              <Button disabled className="disabled-button">
+                Not available
+              </Button>
+            )}
           </div>
         </div>
+      </div>
     </StyledBook>
   );
 };

@@ -25,11 +25,11 @@ const BookStore: React.FC = () => {
   });
 
   useEffect(() => {
-    if (!isAuth) {
+    if (!user) {
       return;
     }
-    dispatch(getCartBooks(user?.id || 0));
-  }, [dispatch, isAuth, user?.id]);
+    dispatch(getCartBooks(user.id));
+  }, [dispatch, isAuth, user]);
 
   return (
     <StyledBookStore>

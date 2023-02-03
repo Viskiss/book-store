@@ -1,17 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
 import { useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import loader from 'src/ui/assets/lottieFiles/loading.json';
 
 import options from 'src/utils/lottieOptions';
 
-import { useAppDispatch, useAppSelector } from 'src/redux/store';
+import { useAppDispatch } from 'src/redux/store';
 import {
-  getAllGenresThunk,
   getFilterBooksThunk,
 } from 'src/ui/pages/BookStore/redux/thunks/bookStoreThunks';
 
+import bookApi from 'src/ui/pages/BookStore/redux/api/bookApi';
+import type { GenreType } from 'src/types';
 import Genre from './Sorting/SortByGenre';
 
 import StyledFilters from './Filters.styles';
@@ -22,13 +24,19 @@ const Filters: React.FC = () => {
   const [searchParams] = useSearchParams();
   const dispatch = useAppDispatch();
 
-  const genres = useAppSelector((store) => store.bookStore.genres);
+  const [genres, setGenres] = useState<GenreType[]>([]);
 
   useEffect(() => {
-    if (genres.length === 0) {
-      dispatch(getAllGenresThunk());
-    }
-  }, [dispatch, genres.length]);
+    (async () => {
+      try {
+        const genres = await bookApi.getAllGernes();
+        setGenres(genres.data.genres);
+      } catch (err) {
+        const error = err as Error;
+        return toast.error(error.message);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     const genre = searchParams.get('genres') || '';
@@ -50,7 +58,7 @@ const Filters: React.FC = () => {
     <StyledFilters>
       <h2 className="filters__title">Catalog</h2>
       <div className="filters__book-filter">
-        <Genre />
+        <Genre genres={genres} />
         <SortByPrice />
         <FilterSelect />
       </div>

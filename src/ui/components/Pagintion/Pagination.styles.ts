@@ -18,7 +18,7 @@ export default styled.div`
     gap: 36px;
   }
 
-  .counter--selected {
+  .counter-selected {
     background-color: black;
   }
 

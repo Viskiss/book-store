@@ -9,7 +9,7 @@ import TextBlock from 'src/ui/components/TextBlock';
 
 import booksImg from 'src/ui/assets/images/books.svg';
 
-import { getCartBooks } from '../redux/thunks/cartThunks';
+import { getCartBooks } from '../../pages/BookStore/redux/thunks/cartThunks';
 
 import ItemCart from './ItemCart';
 

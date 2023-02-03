@@ -6,7 +6,7 @@ import options from 'src/utils/lottieOptions';
 import constants from 'src/utils/constants';
 import loader from 'src/ui/assets/lottieFiles/loading.json';
 
-import SelectBook from 'src/ui/pages/BookStore/SelectBookPage';
+import SelectBook from 'src/ui/components/SelectBookPage';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { currentUserThunk } from 'src/redux/userStore/thunks/authUser';
@@ -15,8 +15,8 @@ import MainLayoutStyled from '../MainLayout.styles';
 
 const BookStore = lazy(() => import('src/ui/pages/BookStore'));
 const SignUp = lazy(() => import('src/ui/pages/Auth/SignUp'));
-const Cart = lazy(() => import('src/ui/pages/BookStore/Cart'));
-const LikedBooks = lazy(() => import('src/ui/pages/BookStore/LikedBooks/LikedBooks'));
+const Cart = lazy(() => import('src/ui/components/Cart'));
+const LikedBooks = lazy(() => import('src/ui/components/LikedBooks/LikedBooks'));
 const LogIn = lazy(() => import('src/ui/pages/Auth/SignIn/SignIn'));
 const UserProfile = lazy(() => import('src/ui/pages/UserProfile'));
 

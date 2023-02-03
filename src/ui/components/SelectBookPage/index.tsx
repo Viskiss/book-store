@@ -1,14 +1,12 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
-import constants from 'src/utils/constants';
-import { getRecommendedBooksThunk, getSelectBookThunk } from '../redux/thunks/bookStoreThunks';
+import AuthBanner from 'src/ui/pages/BookStore/Banners/AuthBanner/AuthBanner';
+import { getSelectBookThunk } from 'src/ui/pages/BookStore/redux/thunks/bookStoreThunks';
 
 import Book from './Book/Book';
 import Comments from './Comments/Comments';
-import AuthBanner from '../Banners/AuthBanner/AuthBanner';
 import RecommendBooks from './Recommendations/RecommendBooks';
 
 import StyledItemBookPage from './SelectBookPage.styles';
@@ -22,19 +20,7 @@ const SelectBook: React.FC = () => {
   const isAuth = useAppSelector((store) => store.userStore.user);
 
   useEffect(() => {
-    dispatch(getRecommendedBooksThunk(isAuth?.id || 1));
-    dispatch(getSelectBookThunk(Number(bookId)))
-      .unwrap()
-      .catch(
-        (error: {
-        message: string;
-      }) => {
-          if (error.message) {
-            navigate(`${constants.routesLink.home}`);
-            toast.error(error.message);
-          }
-        },
-      );
+    dispatch(getSelectBookThunk(Number(bookId)));
   }, [bookId, dispatch, isAuth?.id, navigate]);
 
   return (

@@ -21,44 +21,12 @@ export const getAllBooksThunk = createAsyncThunk(
   },
 );
 
-export const getRecommendedBooksThunk = createAsyncThunk(
-  'book/getRecommendedBooks',
-  async (userId: number, { rejectWithValue }) => {
-    try {
-      const books = await bookApi.getRecommendedBooks(userId);
-      return books.data;
-    } catch (err) {
-      const error = err as AxiosError;
-      if (!error.response) {
-        throw err;
-      }
-      return rejectWithValue(error.response.data);
-    }
-  },
-);
-
 export const getFilterBooksThunk = createAsyncThunk(
   'book/getFilterBooks',
   async (filterData: FilterType, { rejectWithValue }) => {
     try {
       const books = await bookApi.getFilterBooks(filterData);
       return books.data;
-    } catch (err) {
-      const error = err as AxiosError;
-      if (!error.response) {
-        throw err;
-      }
-      return rejectWithValue(error.response.data);
-    }
-  },
-);
-
-export const getAllGenresThunk = createAsyncThunk(
-  'book/getAllGenres',
-  async (_, { rejectWithValue }) => {
-    try {
-      const genres = await bookApi.getAllGernes();
-      return genres.data;
     } catch (err) {
       const error = err as AxiosError;
       if (!error.response) {

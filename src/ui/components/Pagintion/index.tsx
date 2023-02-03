@@ -10,10 +10,20 @@ import StyledPaginationBooks from './Pagination.styles';
 
 const Pagination: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+
   const [page, setPage] = useState(Number(searchParams.get('page') || 1));
+
   const counter = useAppSelector((state) => state.bookStore.count);
   const numberPage = useAppSelector((state) => state.bookStore.pages);
   const maxPages = Math.ceil(counter / numberPage);
+
+  const maxPagesDot = () => {
+    const pages = Math.ceil(counter / numberPage);
+    if (pages === 1) {
+      return 2;
+    }
+    return pages;
+  };
 
   useEffect(() => {
     searchParams.set('page', `${page}`);
@@ -28,25 +38,24 @@ const Pagination: React.FC = () => {
   };
 
   const nextPageClickHandler = () => {
-    if (page === maxPages) {
-      return;
+    if (page !== maxPages) {
+      setPage(page + 1);
     }
-    setPage(page + 1);
   };
 
   const leftCounterClass = classNames({
     counter: true,
-    'counter--selected': page === 1,
+    'counter-selected': page === 1,
   });
 
   const centercounterClass = classNames({
     counter: true,
-    'counter--selected': page > 1 && page < maxPages,
+    'counter-selected': page > 1 && page < maxPagesDot(),
   });
 
   const rightcounterClass = classNames({
     counter: true,
-    'counter--selected': page === maxPages,
+    'counter-selected': page === maxPagesDot(),
   });
 
   return (

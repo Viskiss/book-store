@@ -46,6 +46,12 @@ export default styled.div<{ drop?: boolean; typeSelect?: boolean }>`
 
   .select-box__text {
     margin: ${(props) => (props.typeSelect ? '6px 0 6px 15px' : '0')};
+    color: ${(props) => props.theme.color.blue};
+  }
+
+  .select-box__text-disabled {
+    color: ${(props) => props.theme.color.grey};
+    margin: ${(props) => (props.typeSelect ? '6px 0 6px 15px' : '0')};
   }
 
   .select-box__img {

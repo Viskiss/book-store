@@ -1,16 +1,28 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from 'src/redux/store';
+import { useAppDispatch } from 'src/redux/store';
+import type { GenreType } from 'src/types';
 
 import SelectBox from '../components/SelectFilterBox';
 
-const SortByGenre: React.FC = () => {
+interface IProps {
+  genres: GenreType[];
+}
+
+const SortByGenre: React.FC<IProps> = ({ genres }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [filter, setFilter] = useState<string[]>([]);
 
   const dispatch = useAppDispatch();
-  const genres = useAppSelector((store) => store.bookStore.genres);
+  useEffect(() => {
+    const genre = searchParams.get('genres');
+    if (genre) {
+      const filter = genre?.split(',');
+      setFilter(filter);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const changeFilterState = (newFilter: string) => {
     setFilter((prevFilter) => {
@@ -31,7 +43,12 @@ const SortByGenre: React.FC = () => {
   }, [dispatch, filter, searchParams, setSearchParams]);
 
   return (
-    <SelectBox title="Genre" filter={filter} items={genres} setState={changeFilterState} />
+    <SelectBox
+      title="Genre"
+      filter={filter}
+      items={genres}
+      setState={changeFilterState}
+    />
   );
 };
 

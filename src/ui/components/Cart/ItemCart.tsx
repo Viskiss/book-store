@@ -12,8 +12,8 @@ import {
   addCopyBook,
   deleteBookInCart,
   deleteCopyBook,
-} from '../redux/thunks/cartThunks';
-import { getSelectBookThunk } from '../redux/thunks/bookStoreThunks';
+} from '../../pages/BookStore/redux/thunks/cartThunks';
+import { getSelectBookThunk } from '../../pages/BookStore/redux/thunks/bookStoreThunks';
 
 interface IProps {
   bookId: number;

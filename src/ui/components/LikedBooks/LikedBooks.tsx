@@ -3,11 +3,11 @@ import { useEffect } from 'react';
 
 import TextBlock from 'src/ui/components/TextBlock';
 
+import { getLikedBooksThunk } from 'src/ui/pages/BookStore/redux/thunks/likedBooksThunks';
+
 import booksImg from 'src/ui/assets/images/books.svg';
 
 import ItemLike from './ItemLike';
-
-import { getLikedBooksThunk } from '../redux/thunks/likedBooksThunks';
 
 import StyledLikedBooks from './LikedBooks.styles';
 

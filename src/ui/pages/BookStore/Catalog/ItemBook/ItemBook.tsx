@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating';
 import { toast } from 'react-toastify';
@@ -19,7 +19,6 @@ import { addBookThunk, getCartBooks } from '../../redux/thunks/cartThunks';
 import {
   addLikedBookThunk,
   deleteLikedBookThunk,
-  getLikedBooksThunk,
 } from '../../redux/thunks/likedBooksThunks';
 
 import StyledItemBook from './ItemBook.styles ';
@@ -60,12 +59,6 @@ const ItemBook: React.FC<IProps> = ({
   const selectBookLiked = likedBooks.map((book) => book.book.id);
   const selectBookLike = selectBookLiked.includes(id);
 
-  useEffect(() => {
-    if (!likedBooks.length && user?.email) {
-      dispatch(getLikedBooksThunk());
-    }
-  }, [dispatch, likedBooks.length, user?.email]);
-
   const handlerAddToCart = (
     e: React.MouseEvent<HTMLElement>,
     bookId: number,
@@ -84,7 +77,7 @@ const ItemBook: React.FC<IProps> = ({
     if (!user) {
       navigate(constants.routesLink.signIn);
     }
-    if (likedBook) {
+    if (likedBook && selectBookLike) {
       dispatch(deleteLikedBookThunk(id));
       setLikedBook(false);
     } else {
