@@ -3,14 +3,14 @@ import type { AxiosError } from 'axios';
 
 import type { AddBookType } from 'src/types';
 
-import cartApi from '../api/cartApi';
+import { addBook, addCopy, deleteBook, deleteCopy, getCartBooks } from 'src/api';
 
 export const addBookThunk = createAsyncThunk(
   'cart/addBookInCart',
   async (data: AddBookType, { rejectWithValue }) => {
     const { userId, bookId } = data;
     try {
-      const cart = await cartApi.addBook(userId, bookId);
+      const cart = await addBook(userId, bookId);
       return cart.data;
     } catch (err) {
       const error = err as AxiosError;
@@ -22,11 +22,11 @@ export const addBookThunk = createAsyncThunk(
   },
 );
 
-export const getCartBooks = createAsyncThunk(
+export const getCart = createAsyncThunk(
   'cart/cartBooks',
   async (userId: number, { rejectWithValue }) => {
     try {
-      const cart = await cartApi.getCartBooks(userId);
+      const cart = await getCartBooks(userId);
       return cart.data;
     } catch (err) {
       const error = err as AxiosError;
@@ -42,7 +42,7 @@ export const addCopyBook = createAsyncThunk(
   'cart/copyBook',
   async (bookId: number, { rejectWithValue }) => {
     try {
-      const books = await cartApi.addCopy(bookId);
+      const books = await addCopy(bookId);
       return books.data;
     } catch (err) {
       const error = err as AxiosError;
@@ -58,7 +58,7 @@ export const deleteCopyBook = createAsyncThunk(
   'cart/deleteCopyBook',
   async (bookId: number, { rejectWithValue }) => {
     try {
-      const books = await cartApi.deleteCopy(bookId);
+      const books = await deleteCopy(bookId);
       return books.data;
     } catch (err) {
       const error = err as AxiosError;
@@ -74,7 +74,7 @@ export const deleteBookInCart = createAsyncThunk(
   'cart/deleteBook',
   async (cartId: number, { rejectWithValue }) => {
     try {
-      const books = await cartApi.deleteBook(cartId);
+      const books = await deleteBook(cartId);
       return books.data;
     } catch (err) {
       const error = err as AxiosError;

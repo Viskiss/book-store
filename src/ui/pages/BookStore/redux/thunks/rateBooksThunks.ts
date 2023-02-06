@@ -3,14 +3,14 @@ import type { AxiosError } from 'axios';
 
 import type { AddRateApiType } from 'src/types';
 
-import rateApi from '../api/rateBookApi';
+import { addRate } from 'src/api';
 
 export const addRateThunk = createAsyncThunk(
   'rate/addRate',
   async (data: AddRateApiType, { rejectWithValue }) => {
     const { userId, bookId, rate } = data;
     try {
-      await rateApi.addRate({ userId, bookId, rate });
+      await addRate({ userId, bookId, rate });
     } catch (err) {
       const error = err as AxiosError;
       if (!error.response) {

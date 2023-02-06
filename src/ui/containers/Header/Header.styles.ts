@@ -2,11 +2,23 @@ import styled from 'styled-components';
 
 export default styled.header`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 43px;
   padding: 24px 80px 40px 80px;
 
   .round-button__count {
     position: relative;
+  }
+
+  .logo-box {
+    display: flex;
+    align-items: center;
+    margin-right: 84px;
+  }
+
+  .catalog-link-box {
+    display: flex;
+    align-items: center;
   }
 
   .books-counter {
@@ -22,18 +34,6 @@ export default styled.header`
     top: 0;
   }
 
-  .header_container {
-    max-width: 1280px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 43px;
-  }
-
-  .logo {
-    padding-right: 84px;
-  }
-
   .catalog-link {
     text-decoration: none;
     font-weight: ${(props) => props.theme.fontWeight.middle};
@@ -47,18 +47,22 @@ export default styled.header`
   }
 
   .search {
+    display: flex;
     position: relative;
-    padding-right: 30px;
+    align-items: center;
+    max-width: 630px;
+    width: 100%;
   }
 
   .search-input {
-    padding: 20px 166px 20px 64px;
+    padding: 20px 64px;
     background: ${(props) => props.theme.color.white};
     border-radius: ${(props) => props.theme.border.default};
     border: none;
     font-weight: ${(props) => props.theme.fontWeight.small};
     font-size: ${(props) => props.theme.fontSize.fs16};
     line-height: ${(props) => props.theme.lineHeight.lh24};
+    width: 100%;
   }
 
   .search-input::placeholder {
@@ -66,6 +70,7 @@ export default styled.header`
   }
 
   .search-input_button {
+    z-index: 1000;
     padding: 22px 20px;
     cursor: pointer;
     position: absolute;
@@ -73,124 +78,45 @@ export default styled.header`
     background-color: initial;
   }
 
+  .round-buttons {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+  }
+
   .round-button {
-    margin: 0 27px;
-    padding: 9px 11px;
+    display: flex;
+    padding: 11px;
     border-radius: 100%;
   }
 
-  @media (max-width: 1438px) {
-    .header_container {
-      gap: 35px;
+  @media (max-width: 1024px) {
+    padding: 24px 15px 40px 15px;
+    gap: 50px;
+
+    .logo-box {
+      margin: 0;
     }
 
-    .search-input {
-      padding: 20px 180px 20px 64px;
-    }
-
-    .logo {
-      padding-right: 50px;
-    }
-  }
-
-  @media (max-width: 1285px) {
-    .header_container {
-      gap: 30px;
-    }
-
-    .round-button {
-      margin: 0 15px;
-    }
-
-    .logo {
-      padding-right: 50px;
-    }
-
-    .search-input {
-      padding: 20px 160px 20px 64px;
-    }
-
-    .logo {
-      padding-right: 30px;
-    }
-
-    .search-input {
-      padding: 20px 130px 20px 64px;
+    .catalog-link-box {
+      margin-right: 23px;
     }
 
     .search {
-      padding-right: 0;
+      min-width: 247px;
+      margin-right: 81px;
     }
   }
 
-  @media (max-width: 1000px) {
-    .logo {
-      padding-right: 20px;
-    }
-
-    .round-button {
-      margin: 0 12px;
-    }
-
-    .search-input {
-      padding: 20px 60px 20px 64px;
-    }
-
-    .search-input {
-      width: 250px;
-    }
-
-    .round-button {
-      margin: 0 10px;
-    }
-
-    .search {
-      padding-right: 20px;
-    }
-
-    .search-input {
-      width: 123px;
-    }
-
-    .catalog-link {
-      padding-right: 43px;
-    }
-
-    .header_container {
-      gap: 20px;
-    }
-
-    .search {
-      padding-right: 0;
-    }
-
-    .catalog-link {
-      padding-right: 0;
-    }
-
-    .logo {
-      padding-right: 0;
-    }
-  }
-
-  @media (max-width: 775px) {
-
-    .header_container {
-      flex-direction: row;
+  @media (max-width: 800px) {
+    flex-direction: row;
     flex-wrap: wrap;
-    }
-
-    .logo__link {
-      order: 1;
-    }
-
-    .catalog-link {
-      order: 2;
-    }
+    gap: 20px;
 
     .search {
       order: 4;
       width: 100%;
+      margin: 0;
     }
 
     .round-buttons {
@@ -198,19 +124,13 @@ export default styled.header`
       padding-left: 0;
     }
 
-    .search-input {
-      padding: 20px 80px 20px 64px;
-      width: -webkit-fill-available;
-    }
-
     .auth-button {
-      padding: 7px;
+      padding: 12px 35px 12px 35px;
     }
 
     .round-button {
       padding: 9px 10px 6px 9px;
     }
-
   }
 
   @media (max-width: 600px) {
@@ -221,9 +141,14 @@ export default styled.header`
       margin: 3px;
     }
 
+    .auth-button {
+      padding: 7px 10px;
+    }
+
     .logo {
       width: 62px;
       height: 31px;
+      padding-right: 0;
     }
 
     .catalog-link {
@@ -232,19 +157,15 @@ export default styled.header`
       margin: 0;
     }
 
-
     .search-input::placeholder {
       font-size: ${(props) => props.theme.fontSize.fs12};
       line-height: ${(props) => props.theme.lineHeight.lh28};
     }
-
   }
 
   @media (max-width: 380px) {
     .header_container {
       max-width: 290px;
     }
-
-}
-
+  }
 `;

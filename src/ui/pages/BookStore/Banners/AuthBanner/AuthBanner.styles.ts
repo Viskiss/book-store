@@ -106,6 +106,7 @@ export default styled.section`
     flex-direction: column;
     align-items: center;
     height: 500px;
+    max-width: 290px;
 
     .title {
       margin-top: 20px;

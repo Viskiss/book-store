@@ -2,18 +2,19 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 
 import tokenHelper from 'src/utils/tokenHelper';
-import userApi from 'src/api/authApi';
 
 import type {
   UserCreateType,
 } from 'src/types';
+
+import { getMe, logInUser, signUpUser } from 'src/api';
 
 export const signUpThunk = createAsyncThunk(
   'user/createUser',
   async (userData: UserCreateType, { rejectWithValue }) => {
     const { email, password } = userData;
     try {
-      const user = await userApi.signUpUser({ email, password });
+      const user = await signUpUser({ email, password });
       return user.data;
     } catch (err) {
       const error = err as AxiosError;
@@ -30,7 +31,7 @@ export const logInUserThunk = createAsyncThunk(
   async (userData: UserCreateType, { rejectWithValue }) => {
     const { email, password } = userData;
     try {
-      const user = await userApi.logInUser(email, password);
+      const user = await logInUser(email, password);
       return user.data;
     } catch (err) {
       const error = err as AxiosError;
@@ -50,7 +51,7 @@ export const currentUserThunk = createAsyncThunk(
       if (!token) {
         return null;
       }
-      const user = await userApi.getMe();
+      const user = await getMe();
       return user.data;
     } catch {
       return null;

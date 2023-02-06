@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 
 import { getAllBooksThunk } from './redux/thunks/bookStoreThunks';
-import { getCartBooks } from './redux/thunks/cartThunks';
+import { getCart } from './redux/thunks/cartThunks';
 
 import AuthBanner from './Banners/AuthBanner';
 import BookBaner from './Banners/BookBanner';
@@ -28,7 +28,7 @@ const BookStore: React.FC = () => {
     if (!user) {
       return;
     }
-    dispatch(getCartBooks(user.id));
+    dispatch(getCart(user.id));
   }, [dispatch, isAuth, user]);
 
   return (

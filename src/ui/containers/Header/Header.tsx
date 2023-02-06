@@ -36,37 +36,39 @@ const Header: React.FC = () => {
 
   return (
     <StyledHeader>
-      <div className="header_container">
+      <div className="logo-box">
         <Link className="logo__link" to={routesLink.home}>
           <img className="logo" src={logo} alt="" />
         </Link>
+      </div>
+      <div className="catalog-link-box">
         <Link className="catalog-link" to={routesLink.home}>
           Catalog
         </Link>
-        <div className="search">
-          <button className="search-input_button">
-            <img src={loupe} alt="" />
-          </button>
-          <input
-            onChange={(e) => handleChangeSearch(e)}
-            value={filter}
-            className="search-input"
-            placeholder="Search"
-          />
-        </div>
-        {!token ? (
-          <>
-            <Link to={routesLink.signIn}>
-              <Button className="auth-button">Sign In</Button>
-            </Link>
-            <Link to={routesLink.signUp}>
-              <Button className="auth-button">Sign Up</Button>
-            </Link>
-          </>
-        ) : (
-          <AuthUserLinks />
-        )}
       </div>
+      <div className="search">
+        <button className="search-input_button">
+          <img src={loupe} alt="" />
+        </button>
+        <input
+          onChange={(e) => handleChangeSearch(e)}
+          value={filter}
+          className="search-input"
+          placeholder="Search"
+        />
+      </div>
+      {!token ? (
+        <div className="buttons-box">
+          <Link to={routesLink.signIn}>
+            <Button className="auth-button">Sign In</Button>
+          </Link>
+          <Link to={routesLink.signUp}>
+            <Button className="auth-button">Sign Up</Button>
+          </Link>
+        </div>
+      ) : (
+        <AuthUserLinks />
+      )}
     </StyledHeader>
   );
 };

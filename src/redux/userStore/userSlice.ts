@@ -6,12 +6,12 @@ import type { UserType } from 'src/types';
 import tokenHelper from 'src/utils/tokenHelper';
 
 import {
+  changeUserThunk,
   currentUserThunk,
   logInUserThunk,
   signUpThunk,
-} from './thunks/authUser';
-
-import { changeUserThunk, uploadAvatarUserThunk } from './thunks/updateUser';
+  uploadAvatarUserThunk,
+} from 'src/redux/userStore/thunks';
 
 const initialState = () => ({
   user: null as UserType | null,

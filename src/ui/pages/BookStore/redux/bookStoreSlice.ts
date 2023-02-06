@@ -2,25 +2,18 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import type { BookType, CartType } from 'src/types';
 import type { LikedBookType } from 'src/types/bookStoreTypes';
-
 import {
+  getLikedBooksThunk,
+  deleteLikedBookThunk,
+  addLikedBookThunk,
+  getCart,
+  deleteBookInCart,
+  addCopyBook,
+  addBookThunk,
+  deleteCopyBook,
   getFilterBooksThunk,
   getSelectBookThunk,
-} from './thunks/bookStoreThunks';
-
-import {
-  deleteBookInCart,
-  getCartBooks,
-  addCopyBook,
-  deleteCopyBook,
-  addBookThunk,
-} from './thunks/cartThunks';
-
-import {
-  addLikedBookThunk,
-  deleteLikedBookThunk,
-  getLikedBooksThunk,
-} from './thunks/likedBooksThunks';
+} from './thunks';
 
 const initialState = () => ({
   books: [] as BookType[],
@@ -48,7 +41,7 @@ const bookStoreSlice = createSlice({
       state.likedBooks = payload.books;
     });
 
-    builder.addCase(getCartBooks.fulfilled, (state, { payload }) => {
+    builder.addCase(getCart.fulfilled, (state, { payload }) => {
       state.cart = payload.books;
     });
 

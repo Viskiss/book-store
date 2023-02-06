@@ -20,9 +20,9 @@ root.render(
   <BrowserRouter>
     <Provider store={store}>
       <GlobalStyles />
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </Provider>
   </BrowserRouter>,
 );
