@@ -12,9 +12,11 @@ interface IProps {
 
 const SortByGenre: React.FC<IProps> = ({ genres }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+
   const [filter, setFilter] = useState<string[]>([]);
 
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     const genre = searchParams.get('genres');
     if (genre) {
@@ -40,7 +42,8 @@ const SortByGenre: React.FC<IProps> = ({ genres }) => {
       searchParams.delete('genres');
     }
     setSearchParams(searchParams);
-  }, [dispatch, filter, searchParams, setSearchParams]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, filter, setSearchParams]);
 
   return (
     <SelectBox

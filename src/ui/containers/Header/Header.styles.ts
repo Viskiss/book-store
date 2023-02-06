@@ -81,6 +81,8 @@ export default styled.header`
   .round-buttons {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    flex: 1;
     gap: 27px;
   }
 
@@ -104,7 +106,6 @@ export default styled.header`
 
     .search {
       min-width: 247px;
-      margin-right: 81px;
     }
   }
 
@@ -115,6 +116,7 @@ export default styled.header`
 
     .search {
       order: 4;
+      max-width: unset;
       width: 100%;
       margin: 0;
     }
@@ -122,6 +124,7 @@ export default styled.header`
     .round-buttons {
       order: 3;
       padding-left: 0;
+      flex: unset;
     }
 
     .auth-button {

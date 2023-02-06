@@ -15,7 +15,8 @@ const FilterSelect: React.FC = () => {
       searchParams.delete('select');
     }
     setSearchParams(searchParams);
-  }, [filter, searchParams, setSearchParams]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter, setSearchParams]);
 
   const handleChangeSort = (name: string) => {
     setFilter(name);

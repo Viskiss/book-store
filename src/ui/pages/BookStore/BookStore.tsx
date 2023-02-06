@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 
-import { getAllBooksThunk } from './redux/thunks/bookStoreThunks';
 import { getCart } from './redux/thunks/cartThunks';
 
 import AuthBanner from './Banners/AuthBanner';
@@ -15,14 +14,7 @@ const BookStore: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const isAuth = useAppSelector((store) => store.userStore.isAuthenticated);
-  const books = useAppSelector((store) => store.bookStore.books);
   const user = useAppSelector((store) => store.userStore.user);
-
-  useEffect(() => {
-    if (books.length === 0) {
-      dispatch(getAllBooksThunk());
-    }
-  });
 
   useEffect(() => {
     if (!user) {

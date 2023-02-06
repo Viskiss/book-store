@@ -14,6 +14,7 @@ const Button = styled.button`
   &:disabled {
     background: ${(props) => props.theme.color.grey};
     color: ${(props) => props.theme.color.white};
+    cursor: default;
   }
 `;
 

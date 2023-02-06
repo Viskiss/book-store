@@ -10,6 +10,7 @@ import tokenHelper from 'src/utils/tokenHelper';
 import logo from 'src/ui/assets/images/logoH.svg';
 import loupe from 'src/ui/assets/images/icon/Search.svg';
 
+import { useDebounce } from 'src/hooks';
 import AuthUserLinks from './AuthUserLinks';
 
 import StyledHeader from './Header.styles';
@@ -20,15 +21,19 @@ const Header: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [filter, setFilter] = useState<string>('');
 
+  const debouncedFilter = useDebounce(filter, 1500);
+
   const token = tokenHelper.token.get();
 
   useEffect(() => {
-    searchParams.set('search', filter as string);
-    if (!filter) {
+    if (debouncedFilter) {
+      searchParams.set('search', debouncedFilter as string);
+    } else {
       searchParams.delete('search');
     }
     setSearchParams(searchParams);
-  }, [filter, searchParams, setSearchParams]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedFilter]);
 
   const handleChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value);

@@ -5,6 +5,17 @@ export default styled.div`
   justify-content: center;
   align-items: center;
 
+  .pagination-button {
+    background-color: transparent;
+    height: fit-content;
+    padding: 0;
+
+    &:disabled {
+      background-color: inherit;
+      opacity: 0.5;
+    }
+  }
+
   .counter {
     height: 14px;
     width: 14px;
@@ -25,7 +36,6 @@ export default styled.div`
   .page-button {
     width: 7px;
     height: 14px;
-    cursor: pointer;
   }
 
   .previous-page__button {
