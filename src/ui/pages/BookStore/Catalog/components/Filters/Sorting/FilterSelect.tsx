@@ -28,7 +28,7 @@ const FilterSelect: React.FC = () => {
         setState={handleChangeSort}
         filter={filter}
         items={constants.sort}
-        title={`Sort by ${filter}`}
+        title={`Sort by ${filter.toLowerCase()}`}
       />
   );
 };

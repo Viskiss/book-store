@@ -12,7 +12,7 @@ import StyledPaginationBooks from './Pagination.styles';
 const Pagination: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const page = Number(searchParams.get('page'));
+  const page = Number(searchParams.get('page')) || 1;
 
   const counter = useAppSelector((state) => state.bookStore.count);
   const numberPage = useAppSelector((state) => state.bookStore.pages);
@@ -27,8 +27,13 @@ const Pagination: React.FC = () => {
   };
 
   useEffect(() => {
-    searchParams.set('page', `${page}`);
-    setSearchParams(searchParams);
+    if (page > 1 && counter <= 13) {
+      searchParams.set('page', '1');
+      setSearchParams(searchParams);
+    } else {
+      searchParams.set('page', `${page}`);
+      setSearchParams(searchParams);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, setSearchParams]);
 
@@ -37,12 +42,12 @@ const Pagination: React.FC = () => {
       return;
     }
     searchParams.set('page', String(page - 1));
+    setSearchParams(searchParams);
   };
 
   const nextPageClickHandler = () => {
-    if (page !== maxPages) {
-      searchParams.set('page', String(page + 1));
-    }
+    searchParams.set('page', String(page + 1));
+    setSearchParams(searchParams);
   };
 
   const leftCounterClass = classNames({
@@ -70,9 +75,20 @@ const Pagination: React.FC = () => {
         <img className="previous-page__button page-button" src={leftArrow} />
       </Button>
       <div className="counter-block">
-        <div className={leftCounterClass} />
-        <div className={centercounterClass} />
-        <div className={rightcounterClass} />
+        <button
+          onClick={previousPageClickHandler}
+          className={leftCounterClass}
+        />
+        <button
+          disabled={counter < 22}
+          onClick={page === maxPages ? previousPageClickHandler : nextPageClickHandler}
+          className={centercounterClass}
+        />
+        <button
+          disabled={page === maxPages && page === 1}
+          onClick={nextPageClickHandler}
+          className={rightcounterClass}
+        />
       </div>
       <Button
         disabled={page === maxPages}

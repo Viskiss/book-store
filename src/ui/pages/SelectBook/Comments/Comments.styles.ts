@@ -13,7 +13,7 @@ export default styled.div`
     display: grid;
     grid-template-columns: 0.1fr;
     grid-template-rows: auto;
-    max-width: 738px;
+    max-width: 690px;
     background: ${(props) => props.theme.color.white};
     border-radius: ${(props) => props.theme.border.default};
     padding: 25px;
@@ -105,27 +105,25 @@ export default styled.div`
   @media (max-width: 930px) {
     .comment {
       max-width: 667px;
-      grid-template-rows: 0.1fr;
+      grid-template-rows: 0.7fr 0.5fr;
+      padding: 20px;
     }
 
     .comment__user {
-      padding: 30px 20px 77px 30px;
-    }
+      padding: 0 20px 0 0;
+    } 
 
     .comment-box__input {
       width: 100%;
     }
+
     .comment__text {
       line-height: ${(props) => props.theme.lineHeight.lh21};
-    }
+    } 
   }
 
   @media (max-width: 735px) {
     max-width: 550px;
-
-    .comment__user {
-      padding: 30px 20px 77px 30px;
-    }
 
     .comment-box__input {
       width: 100%;

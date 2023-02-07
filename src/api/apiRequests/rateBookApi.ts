@@ -3,7 +3,11 @@ import type { RateBookType } from 'src/types';
 
 const RATE_PATH_PREFIX = '/rating';
 
-export const addRate = (data: {userId: number; bookId: number; rate: number}) => {
+export const addRate = (data: {
+  userId: number;
+  bookId: number;
+  rate: number;
+}) => {
   return api.post(`${RATE_PATH_PREFIX}/add`, data);
 };
 

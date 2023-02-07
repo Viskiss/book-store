@@ -20,6 +20,8 @@ export default styled.section`
   }
 
   .books-catalog {
-    margin-bottom: 80px;
+    margin-bottom: 23px;
+    display: flex;
+    width: calc((100% - (20 * 3)) / 4);
   }
 `;

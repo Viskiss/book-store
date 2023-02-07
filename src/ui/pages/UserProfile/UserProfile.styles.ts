@@ -42,21 +42,23 @@ export default styled.section`
 
   .exit-box {
     display: flex;
+  }
 
-    button {
-      position: static;
-      padding: 10px;
-      border-radius: 10px;
-      background-color: ${(props) => props.theme.color.blue};
-      border: none;
-      color: ${(props) => props.theme.color.white};
-      font-weight: ${(props) => props.theme.fontWeight.height};
-    }
+  .exit-box__button {
+    position: static;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: ${(props) => props.theme.color.blue};
+    border: none;
+    color: ${(props) => props.theme.color.white};
+    font-weight: ${(props) => props.theme.fontWeight.height};
+    cursor: pointer;
   }
 
   .load-avatar__input {
     width: 100%;
     height: 100%;
+    cursor: pointer;
   }
 
   .drop-box {
@@ -82,16 +84,15 @@ export default styled.section`
 
   .data-box {
     position: relative;
-
-    label {
-      z-index: 1000;
-      position: absolute;
-      font-size: ${(props) => props.theme.fontSize.fs14};
-      line-height: ${(props) => props.theme.lineHeight.lh24};
-      color: ${(props) => props.theme.color.blue};
-      letter-spacing: 0.75px;
-      left: 64px;
-    }
+  }
+  .data-box__label {
+    z-index: 1000;
+    position: absolute;
+    font-size: ${(props) => props.theme.fontSize.fs14};
+    line-height: ${(props) => props.theme.lineHeight.lh24};
+    color: ${(props) => props.theme.color.blue};
+    letter-spacing: 0.75px;
+    left: 64px;
   }
 
   .form-user-data {
@@ -123,17 +124,7 @@ export default styled.section`
     margin-bottom: 10px;
   }
 
-  @media (max-width: 1350px) {
-    .img-profile {
-      margin-right: 40px;
-    }
-
-    .form-input {
-      padding: 20px 10px 20px 64px;
-    }
-  }
-
-  @media (max-width: 1140px) {
+  @media (max-width: 1200px) {
     padding: 20px 0 104px 0;
   }
 
@@ -144,66 +135,45 @@ export default styled.section`
   }
 
   @media (max-width: 900px) {
-    .exit-box {
-      button {
-        position: static;
-      }
+    .exit-box__button {
+      position: static;
     }
+
     .img-profile {
       width: 255px;
       height: 255px;
       margin-right: 20px;
       position: relative;
+    }
 
-      .user-photo {
-        width: 255px;
-        height: 255px;
-      }
+    .user-photo {
+      width: 255px;
+      height: 255px;
+    }
 
-      .add-avatar {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        margin: 15px;
-      }
+    .add-avatar {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin: 15px;
     }
   }
 
-  @media (max-width: 720px) {
-    .form-input {
-      width: 60%;
-    }
-  }
-
-  @media (max-width: 550px) {
+  @media (max-width: 710px) {
     flex-direction: column;
     align-items: center;
+    max-width: 290px;
 
     .form-input {
-      width: 65%;
+      padding: 20px 20px 20px 64px;
+    }
+
+    .form-user__box {
+      max-width: 290px;
     }
 
     .form-user-data {
       margin-top: 50px;
-    }
-
-    .img-profile_box {
-      width: 100%;
-      height: 100%;
-
-      .img-profile {
-        width: 100%;
-        height: 100%;
-
-        .user-photo {
-          width: inherit;
-          height: auto;
-        }
-
-        button {
-          margin: 20px;
-        }
-      }
     }
   }
 `;

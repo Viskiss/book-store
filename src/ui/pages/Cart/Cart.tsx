@@ -12,7 +12,7 @@ import booksImg from 'src/ui/assets/images/books.svg';
 import ItemCart from './ItemCart';
 
 import StyledCart from './Cart.styles';
-import { getCart } from '../BookStore/redux/thunks/cartThunks';
+import { getCart } from '../BookStore/redux/thunks';
 
 const Cart: React.FC = () => {
   const dispatch = useAppDispatch();

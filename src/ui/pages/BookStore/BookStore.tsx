@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 
-import { getCart } from './redux/thunks/cartThunks';
+import { getCart } from './redux/thunks';
 
 import AuthBanner from './Banners/AuthBanner';
 import BookBaner from './Banners/BookBanner';

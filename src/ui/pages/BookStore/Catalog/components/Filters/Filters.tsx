@@ -1,16 +1,10 @@
 import { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
-import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import loader from 'src/ui/assets/lottieFiles/loading.json';
 
 import options from 'src/utils/lottieOptions';
-
-import { useAppDispatch } from 'src/redux/store';
-import {
-  getFilterBooksThunk,
-} from 'src/ui/pages/BookStore/redux/thunks/bookStoreThunks';
 
 import type { GenreType } from 'src/types';
 import { getAllGernes } from 'src/api';
@@ -21,10 +15,6 @@ import FilterSelect from './Sorting/FilterSelect';
 import SortByPrice from './Sorting/SortByPrice';
 
 const Filters: React.FC = () => {
-  const [searchParams] = useSearchParams();
-
-  const dispatch = useAppDispatch();
-
   const [genres, setGenres] = useState<GenreType[]>([]);
 
   useEffect(() => {
@@ -38,18 +28,6 @@ const Filters: React.FC = () => {
       }
     })();
   }, []);
-
-  useEffect(() => {
-    const genre = searchParams.get('genres') || '';
-    const select = searchParams.get('select') || 'Price';
-    const search = searchParams.get('search') || '';
-    const page = Number(searchParams.get('page') || 1);
-    const minPrice = Number(searchParams.get('minPrice') || '7.39');
-    const maxPrice = Number(searchParams.get('maxPrice') || '70.99');
-    dispatch(
-      getFilterBooksThunk({ genre, select, search, page, maxPrice, minPrice }),
-    );
-  }, [dispatch, searchParams]);
 
   if (!genres.length) {
     return <Lottie style={options.loadingStyles} animationData={loader} />;

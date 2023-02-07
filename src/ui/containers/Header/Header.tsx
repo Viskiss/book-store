@@ -21,7 +21,7 @@ const Header: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [filter, setFilter] = useState<string>('');
 
-  const debouncedFilter = useDebounce(filter, 1500);
+  const debouncedFilter = useDebounce(filter, 1000);
 
   const token = tokenHelper.token.get();
 
@@ -63,7 +63,7 @@ const Header: React.FC = () => {
         />
       </div>
       {!token ? (
-        <div className="buttons-box">
+        <div className="round-buttons ">
           <Link to={routesLink.signIn}>
             <Button className="auth-button">Sign In</Button>
           </Link>

@@ -8,7 +8,7 @@ import Button from 'src/ui/components/Button';
 import {
   deleteLikedBookThunk,
   getLikedBooksThunk,
-} from 'src/ui/pages/BookStore/redux/thunks/likedBooksThunks';
+} from 'src/ui/pages/BookStore/redux/thunks';
 
 interface IProps {
   bookId: number;
@@ -35,7 +35,7 @@ const ItemLike: React.FC<IProps> = ({ bookId, cover, title, author }) => {
     <>
       <div className="item-liked__box">
         <div className="item-liked__box-cover">
-          <img className="item-liked__cover" src={cover} alt="" />
+          <img onClick={(e) => selectBook(e, bookId)} className="item-liked__cover" src={cover} alt="" />
           <Button
             onClick={() => handleUnlikedBook(bookId)}
             className="item-liked__like"
@@ -45,7 +45,6 @@ const ItemLike: React.FC<IProps> = ({ bookId, cover, title, author }) => {
         </div>
         <div className="item-liked__box-data">
           <h1
-            onClick={(e) => selectBook(e, bookId)}
             className="item-liked__box-title"
           >
             {title}

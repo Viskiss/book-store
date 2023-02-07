@@ -3,10 +3,10 @@ import styled from 'styled-components';
 export default styled.div<{ likedBook?: boolean }>`
   display: flex;
   flex-direction: column;
-  margin: 0 0 80px 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin: 0 0 60px 0;
+
+  width: calc((100% - (20px * 3)) / 4);
+
   :nth-child(4n) {
     margin-right: 0;
   }
@@ -19,6 +19,9 @@ export default styled.div<{ likedBook?: boolean }>`
     position: relative;
     max-width: 305px;
     margin-top: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .cover-book__like {
@@ -29,20 +32,33 @@ export default styled.div<{ likedBook?: boolean }>`
     padding: 10px 10px 6px 10px;
     border-radius: 100%;
   }
-
+  
   .cover {
-    width: 305px;
-    height: 448px;
     border-radius: ${(props) => props.theme.border.default};
+    cursor: pointer;
+    width: 90%;
+    height: calc((305/100) * 68%);
+    height: auto;
+    object-fit: contain;
+    position: absolute;
+    inset: 5%;
+    z-index: 123;
   }
-
+  
+  .cover-duble {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(14px);
+  }
+  
   .cover-book {
     border-radius: ${(props) => props.theme.border.default};
     position: relative;
     display: flex;
+    height: calc((305/100) * 22% - 5px);
     background-color: #35373724;
-    width: 305px;
-    height: 448px;
+    overflow: hidden;
   }
 
   .book-title {
@@ -71,6 +87,7 @@ export default styled.div<{ likedBook?: boolean }>`
     width: 100%;
     font-size: ${(props) => props.theme.fontSize.fs20};
     line-height: ${(props) => props.theme.lineHeight.lh28};
+   margin-bottom: 10px;
   }
 
   .rate {
@@ -132,22 +149,11 @@ export default styled.div<{ likedBook?: boolean }>`
     margin: 20px;
   }
 
+   @media (max-width: 834px) {
+    width: calc((100% - (20px * 3)) / 3);
+  }
+/* 
   @media (max-width: 1120px) {
-    .cover {
-      width: 254px;
-      height: 372px;
-    }
-
-    .book-info {
-      max-width: 254px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .cover-book {
-      width: 254px;
-      height: 372px;
-    }
-
     .emptyStar {
       margin-right: 24px;
     }
@@ -155,9 +161,9 @@ export default styled.div<{ likedBook?: boolean }>`
     .fillStar {
       margin-right: 24px;
     }
-  }
+  }  */
 
-  @media (max-width: 590px) {
+  /* @media (max-width: 590px) {
     max-width: 135px;
     margin: 0 0 30px 0;
 
@@ -239,5 +245,5 @@ export default styled.div<{ likedBook?: boolean }>`
       font-size: 10px;
       margin: 0 12px 9px 12px;
     }
-  }
+  }  */
 `;

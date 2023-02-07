@@ -25,5 +25,7 @@ const defaultOptionsDevelop = {
 };
 
 export default {
-  defaultOptionsLoading, loadingStyles, defaultOptionsDevelop,
+  defaultOptionsLoading,
+  loadingStyles,
+  defaultOptionsDevelop,
 };

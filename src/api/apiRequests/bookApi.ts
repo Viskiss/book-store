@@ -13,21 +13,25 @@ type GetFilteredBooksType = {
 };
 
 export const getAllBooks = () => {
-  return api.get<{books: BookType[]}>(`${BOOK_PATH_PREFIX}/all`);
+  return api.get<{ books: BookType[] }>(`${BOOK_PATH_PREFIX}/all`);
 };
 
 export const getRecommendedBooks = (userId: number) => {
-  return api.get<{books: BookType[]}>(`${BOOK_PATH_PREFIX}/recommend/${userId}`);
+  return api.get<{ books: BookType[] }>(
+    `${BOOK_PATH_PREFIX}/recommend/${userId}`,
+  );
 };
 
 export const getAllGernes = () => {
-  return api.get<{genres: GenreType[]}>(`${BOOK_PATH_PREFIX}/gernes`);
+  return api.get<{ genres: GenreType[] }>(`${BOOK_PATH_PREFIX}/gernes`);
 };
 
 export const getSelectBook = (bookId: number) => {
-  return api.get<{book: BookType}>(`${BOOK_PATH_PREFIX}/${bookId}`);
+  return api.get<{ book: BookType }>(`${BOOK_PATH_PREFIX}/${bookId}`);
 };
 
 export const getFilterBooks = (filters: FilterType) => {
-  return api.get<GetFilteredBooksType>(`${BOOK_PATH_PREFIX}/filter`, { params: { ...filters } }as AxiosRequestConfig);
+  return api.get<GetFilteredBooksType>(`${BOOK_PATH_PREFIX}/filter`, {
+    params: { ...filters },
+  } as AxiosRequestConfig);
 };

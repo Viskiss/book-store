@@ -79,7 +79,7 @@ const Comments: React.FC = () => {
             />
           ))}
       </div>
-      {user ? (
+      {user && (
         <form
           onSubmit={(e) => handlerSubmitForm(e)}
           className="comment-box__form"
@@ -92,9 +92,7 @@ const Comments: React.FC = () => {
           />
           <Button className="comment-box__button">Post a comment</Button>
         </form>
-      ) : (
-        <h2 className="comments-box__title">No comments</h2>
-      )}
+      ) }
     </StyledComments>
   );
 };

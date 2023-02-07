@@ -4,11 +4,9 @@ export enum EnvTypeENUM {
   staging = 'staging',
 }
 
-const envType = (
-  process.env.REACT_APP_NODE_ENV ||
+const envType = (process.env.REACT_APP_NODE_ENV ||
   process.env.NODE_ENV ||
-  EnvTypeENUM.development
-) as EnvTypeENUM;
+  EnvTypeENUM.development) as EnvTypeENUM;
 
 const config = {
   apiBaseUrl: 'http://localhost:4000/api',

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default styled.div`
   display: grid;
   grid-template-columns: repeat(2, auto);
-  grid-template-rows: auto;
+  grid-template-rows: 0.1fr 0.1fr 1fr;
   /* grid-template-rows: 0fr 0.1fr 0.1fr 0.7fr; */
   /* grid-template-rows: 0.1fr; */
   margin-top: 20px;

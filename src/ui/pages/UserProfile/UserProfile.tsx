@@ -124,11 +124,11 @@ const UserProfile: React.FC = () => {
           </Button>
         </div>
         <div className="exit-box">
-          <button onClick={(e) => exitUserHandler(e)}>Exit</button>
+          <button className="exit-box__button" onClick={(e) => exitUserHandler(e)}>Exit</button>
         </div>
       </div>
 
-      <div>
+      <div className="form-user__box">
         <form className="form-user-data" onSubmit={formik.handleSubmit}>
           <div className="user-change-preview">
             <h3 className="user-change-preview__title">Personal information</h3>
@@ -138,7 +138,7 @@ const UserProfile: React.FC = () => {
           </div>
 
           <div className="data-box">
-            <label>Your name</label>
+            <label className="data-box__label">Your name</label>
             <Input
               disabled={changeUser}
               className={classNames({

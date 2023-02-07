@@ -22,5 +22,4 @@ export const fieldsValidation = {
   repeatPasswordProfile: Yup.string()
     .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
     .required('Please retype your password.'),
-
 };

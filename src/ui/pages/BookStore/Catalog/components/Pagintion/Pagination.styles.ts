@@ -21,6 +21,12 @@ export default styled.div`
     width: 14px;
     border: 2px solid black;
     border-radius: ${(props) => props.theme.border.round};
+    cursor: pointer;
+  
+    &:disabled {
+      background-color: inherit;
+      opacity: 0.5;
+    }
   }
 
   .counter-block {

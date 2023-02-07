@@ -9,7 +9,7 @@ import { getRate } from 'src/api';
 import star from 'src/ui/assets/images/icon/Star.svg';
 import arrow from 'src/ui/assets/images/icon/arrow.svg';
 
-import { addRateThunk } from 'src/ui/pages/BookStore/redux/thunks/rateBooksThunks';
+import { addRateThunk } from 'src/ui/pages/BookStore/redux/thunks';
 import constants from 'src/utils/constants';
 
 import { useEffect, useState } from 'react';

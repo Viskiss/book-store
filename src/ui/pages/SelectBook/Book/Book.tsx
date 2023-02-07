@@ -9,7 +9,7 @@ import StarRate from 'src/ui/components/Rating';
 import {
   addBookThunk,
   getCart,
-} from 'src/ui/pages/BookStore/redux/thunks/cartThunks';
+} from 'src/ui/pages/BookStore/redux/thunks';
 import StyledBook from './Book.styles';
 
 const Book: React.FC = () => {

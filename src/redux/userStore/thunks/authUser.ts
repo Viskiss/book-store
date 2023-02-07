@@ -3,9 +3,7 @@ import type { AxiosError } from 'axios';
 
 import tokenHelper from 'src/utils/tokenHelper';
 
-import type {
-  UserCreateType,
-} from 'src/types';
+import type { UserCreateType } from 'src/types';
 
 import { getMe, logInUser, signUpUser } from 'src/api';
 

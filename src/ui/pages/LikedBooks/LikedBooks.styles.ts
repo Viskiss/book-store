@@ -21,6 +21,7 @@ export default styled.section`
     border-radius: ${(props) => props.theme.border.default};
     transition: 0.5s;
     height: fit-content;
+    cursor: pointer;
   }
 
   .item-liked__box:hover {

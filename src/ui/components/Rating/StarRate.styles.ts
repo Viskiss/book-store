@@ -85,8 +85,8 @@ export default styled.div`
     }
 
     .initial-rate {
-    align-items: baseline;
-  }
+      align-items: baseline;
+    }
 
     .number {
       font-size: ${(props) => props.theme.fontSize.fs13};

@@ -26,6 +26,11 @@ html, body, #root {
  flex-direction: column;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+}
+
 `;
 
 export default GlobalStyle;

@@ -55,7 +55,7 @@ const Input: React.FC<IProps> = (props: IProps) => {
         onClick={(e) => changeTypeHandler('', e)}
         type="button"
         className="form-input_button"
-        >
+      >
         <img src={typeImg} alt="" />
       </button>
       <input

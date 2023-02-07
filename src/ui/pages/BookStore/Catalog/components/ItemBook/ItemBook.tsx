@@ -13,10 +13,13 @@ import tokenHelper from 'src/utils/tokenHelper';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 
-import { addBookThunk, getCart } from '../../../redux/thunks/cartThunks';
-import { deleteLikedBookThunk, addLikedBookThunk } from '../../../redux/thunks/likedBooksThunks';
-
 import StyledItemBook from './ItemBook.styles ';
+
+import {
+  addBookThunk,
+  addLikedBookThunk,
+  deleteLikedBookThunk,
+} from '../../../redux/thunks';
 
 interface IProps {
   cover: string;
@@ -63,21 +66,22 @@ const ItemBook: React.FC<IProps> = ({
       navigate(constants.routesLink.signIn);
     } else {
       dispatch(addBookThunk({ userId: user.id, bookId }));
-      dispatch(getCart(user.id));
     }
   };
 
   const handlerLikeBook = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+
     if (!user) {
       navigate(constants.routesLink.signIn);
-    }
-    if (likedBook && selectBookLike) {
-      dispatch(deleteLikedBookThunk(id));
-      setLikedBook(false);
     } else {
       dispatch(addLikedBookThunk(id));
       setLikedBook(true);
+    }
+
+    if (likedBook && selectBookLike) {
+      dispatch(deleteLikedBookThunk(id));
+      setLikedBook(false);
     }
   };
 
@@ -124,7 +128,18 @@ const ItemBook: React.FC<IProps> = ({
             alt="Heart"
           />
         </Button>
-        <img className="cover" src={cover} alt="" />
+        <img
+          onClick={(e) => selectBook(e, id)}
+          className="cover"
+          src={cover}
+          alt=""
+        />
+        <img
+          onClick={(e) => selectBook(e, id)}
+          className="cover-duble"
+          src={cover}
+          alt=""
+        />
         {rate > 4 && <span className="cover-book__best">Bestseller</span>}
         {new Date(date) > newDay && (
           <span className="cover-book__new">New</span>

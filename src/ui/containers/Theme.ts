@@ -50,5 +50,4 @@ export const theme = {
     middleH: 600,
     height: 700,
   },
-
 };

@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import AuthBanner from 'src/ui/pages/BookStore/Banners/AuthBanner';
-import { getSelectBookThunk } from 'src/ui/pages/BookStore/redux/thunks/bookStoreThunks';
+import { getSelectBookThunk } from 'src/ui/pages/BookStore/redux/thunks';
 
 import Book from './Book/Book';
 import Comments from './Comments/Comments';

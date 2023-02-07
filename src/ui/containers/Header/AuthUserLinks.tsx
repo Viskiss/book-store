@@ -19,17 +19,17 @@ const AuthUserLinks: React.FC = () => {
       <Link to={routesLink.cart}>
         <Button className="round-button round-button__count">
           {booksCount !== 0 ? <span className="books-counter">{booksCount}</span> : ''}
-          <img src={cart} alt="Cart" />
+          <img className="round-button__img" src={cart} alt="Cart" />
         </Button>
       </Link>
       <Link to={routesLink.liked}>
         <Button className="round-button round-button__count">
-          <img src={like} alt="Heart" />
+          <img className="round-button__img" src={like} alt="Heart" />
         </Button>
       </Link>
       <Link to={routesLink.profile}>
         <Button className="round-button">
-          <img src={profile} alt="Profile" />
+          <img className="round-button__img" src={profile} alt="Profile" />
         </Button>
       </Link>
     </div>

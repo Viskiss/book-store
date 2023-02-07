@@ -12,7 +12,7 @@ import {
   addCopyBook,
   deleteBookInCart,
   deleteCopyBook,
-} from 'src/ui/pages/BookStore/redux/thunks/cartThunks';
+} from 'src/ui/pages/BookStore/redux/thunks';
 
 interface IProps {
   bookId: number;

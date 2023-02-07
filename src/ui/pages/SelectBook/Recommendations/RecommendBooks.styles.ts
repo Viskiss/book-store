@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export default styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 60px;
 
   .recommend-books__items {
     display: flex;
