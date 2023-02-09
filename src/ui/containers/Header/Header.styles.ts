@@ -196,5 +196,10 @@ export default styled.header`
     .auth-button {
       padding: 10px 4px;
     }
+
+    .books-counter {
+      right: -3px;
+    top: -2px;
+    }
   }
 `;

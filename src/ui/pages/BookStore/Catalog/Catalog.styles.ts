@@ -7,7 +7,7 @@ export default styled.section`
 
   .books-catalog__items {
     display: flex;
-    gap: 20px;
+    gap: 60px 20px;
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -23,5 +23,11 @@ export default styled.section`
     margin-bottom: 23px;
     display: flex;
     width: calc((100% - (20 * 3)) / 4);
+  }
+
+  @media (max-width: 834px) {
+    .books-catalog__items {
+    gap: 30px 20px;
+  }
   }
 `;

@@ -1,24 +1,23 @@
 import styled from 'styled-components';
 
-export default styled.div<{ likedBook?: boolean }>`
+export default styled.div<{ likedBook?: boolean; bestrate?: boolean }>`
   display: flex;
   flex-direction: column;
-  margin: 0 0 60px 0;
-
   width: calc((100% - (20px * 3)) / 4);
-
-  :nth-child(4n) {
-    margin-right: 0;
-  }
 
   .books-rate {
     display: flex;
+    justify-content: space-around;
+    margin-bottom: 32px;
   }
 
   .book-info {
     position: relative;
     max-width: 305px;
     margin-top: 30px;
+  }
+
+  .book-info__title-box {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -32,31 +31,30 @@ export default styled.div<{ likedBook?: boolean }>`
     padding: 10px 10px 6px 10px;
     border-radius: 100%;
   }
-  
+
   .cover {
     border-radius: ${(props) => props.theme.border.default};
     cursor: pointer;
-    width: 90%;
-    height: calc((305/100) * 68%);
+    width: 100%;
     height: auto;
     object-fit: contain;
     position: absolute;
-    inset: 5%;
+    inset: 0;
     z-index: 123;
   }
-  
+
   .cover-duble {
     width: 100%;
     height: 100%;
     object-fit: cover;
     filter: blur(14px);
   }
-  
+
   .cover-book {
     border-radius: ${(props) => props.theme.border.default};
     position: relative;
     display: flex;
-    height: calc((305/100) * 22% - 5px);
+    height: calc((305 / 100) * 21%);
     background-color: #35373724;
     overflow: hidden;
   }
@@ -75,6 +73,12 @@ export default styled.div<{ likedBook?: boolean }>`
     margin-top: 0;
   }
 
+  .book-info__author-box {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .simple-button {
     position: absolute;
     bottom: 0;
@@ -87,19 +91,12 @@ export default styled.div<{ likedBook?: boolean }>`
     width: 100%;
     font-size: ${(props) => props.theme.fontSize.fs20};
     line-height: ${(props) => props.theme.lineHeight.lh28};
-   margin-bottom: 10px;
   }
 
-  .rate {
-    margin-bottom: 30px;
-  }
-
-  .emptyStar {
-    margin-right: 27px;
-  }
-
-  .fillStar {
-    margin-right: 27px;
+  .catalog-button__box {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .rate-number {
@@ -109,24 +106,13 @@ export default styled.div<{ likedBook?: boolean }>`
     padding-top: 5px;
   }
 
-  .cart-button {
+  .cover-book__label {
     position: absolute;
-    padding: 10px 50px;
-    width: 100%;
-    bottom: 0;
-    font-size: ${(props) => props.theme.fontSize.fs20};
-    line-height: ${(props) => props.theme.lineHeight.lh28};
-    border: 2px solid #0d1821;
-    color: ${(props) => props.theme.color.dark};
-    background-color: white;
-  }
-
-  .cover-book__best {
-    position: absolute;
-    background: ${(props) => props.theme.color.blue};
+    background: ${(props) => (props.bestrate ? props.theme.color.blue : props.theme.color.green)};
     z-index: 1000;
     bottom: 0;
     border-radius: ${(props) => props.theme.border.default};
+    line-height: ${(props) => props.theme.lineHeight.lh10};
     padding: 10px 50px;
     font-size: ${(props) => props.theme.fontSize.fs14};
     line-height: 10px;
@@ -135,115 +121,99 @@ export default styled.div<{ likedBook?: boolean }>`
     margin: 20px;
   }
 
-  .cover-book__new {
-    position: absolute;
-    background: ${(props) => props.theme.color.green};
-    z-index: 1000;
-    bottom: 0;
-    border-radius: ${(props) => props.theme.border.default};
-    padding: 10px 50px;
-    font-size: ${(props) => props.theme.fontSize.fs14};
-    line-height: 10px;
-    font-style: italic;
-    color: ${(props) => props.theme.color.white};
-    margin: 20px;
+  @media (max-width: 1024px) {
+    .catalog-button {
+      font-size: ${(props) => props.theme.fontSize.fs16};
+    }
   }
 
-   @media (max-width: 834px) {
+  @media (max-width: 834px) {
     width: calc((100% - (20px * 3)) / 3);
-  }
-/* 
-  @media (max-width: 1120px) {
-    .emptyStar {
-      margin-right: 24px;
+
+    .rate-star {
+      width: 18px;
     }
 
-    .fillStar {
-      margin-right: 24px;
+    .cover-book__best {
+      padding: 10px 50px;
+      margin: 0 0 21px 16px;
     }
-  }  */
 
-  /* @media (max-width: 590px) {
-    max-width: 135px;
-    margin: 0 0 30px 0;
-
-    .cover {
-      width: 135px;
-      height: 192px;
+    .cover-book__new {
+      padding: 10px 50px;
+      margin: 0 0 21px 16px;
     }
 
     .book-title {
-      font-size: 14px;
-      line-height: 21px;
+      font-size: ${(props) => props.theme.fontSize.fs16};
+      line-height: ${(props) => props.theme.lineHeight.lh24};
     }
 
     .book-author {
-      font-size: 14px;
-      line-height: 21px;
+      font-size: ${(props) => props.theme.fontSize.fs16};
+      line-height: ${(props) => props.theme.lineHeight.lh24};
+    }
+  }
+
+  @media (max-width: 600px) {
+    width: calc((100% - (20px * 2)) / 2);
+
+    .rate-star {
+      width: 18px;
     }
 
-    .cover-book {
-      justify-content: center;
-      width: 135px;
-      height: 192px;
+    .cover-book__label {
+      padding: 10px 50px;
+      margin: 0 0 21px 16px;
     }
 
-    .star-svg {
-      margin-right: 8px;
+    .book-title {
+      font-size: ${(props) => props.theme.fontSize.fs14};
+      line-height: ${(props) => props.theme.lineHeight.lh21};
     }
 
-    .rate {
-      margin-bottom: 17px;
+    .book-author {
+      font-size: ${(props) => props.theme.fontSize.fs14};
+      line-height: ${(props) => props.theme.lineHeight.lh21};
     }
+  }
 
-    .rate-number {
-      font-size: 13px;
-      line-height: 20px;
-    }
-
-    .star-svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .emptyStar {
-      width: 16px;
-      height: 16px;
-      margin-right: 7px;
-    }
-
-    .fillStar {
-      width: 16px;
-      height: 16px;
-      margin-right: 7px;
-    }
-
-    .catalog-button {
-      font-size: 14px;
-      line-height: 28px;
-      padding: 0 21px;
-    }
-
-    .cover-book__like {
-      left: 0;
-      margin: 16px;
-      padding: 5px 5px 2px 5px;
-    }
-
+  @media (max-width: 470px) {
     .cover-book__like-img {
       width: 12px;
     }
 
-    .cover-book__best {
-      padding: 10px 29px;
-      font-size: 10px;
-      margin: 0 12px 9px 12px;
+    .books-rate {
+      margin-bottom: 10px;
     }
 
-    .cover-book__new {
-      padding: 10px 44px;
-      font-size: 10px;
-      margin: 0 12px 9px 12px;
+    .rate-number {
+      font-size: ${(props) => props.theme.fontSize.fs14};
     }
-  }  */
+
+    .rate-star {
+      width: 14px;
+    }
+
+    .book-info {
+    margin-top: 15px;
+  }
+
+    .cover-book__like {
+      margin: 17px;
+      padding: 7px 7px 3px 7px;
+    }
+
+    .catalog-button {
+      font-size: ${(props) => props.theme.fontSize.fs14};
+      padding: 3px 21px;
+    }
+
+    .cover-book__label {
+      padding: ${(props) => (props.bestrate ? '10px 29px' : '10px 44px')};;
+      margin: 0 10px 9px 10px;
+      font-size: ${(props) => props.theme.fontSize.fs10};
+      line-height: ${(props) => props.theme.lineHeight.lh10};
+    }
+  }
 `;

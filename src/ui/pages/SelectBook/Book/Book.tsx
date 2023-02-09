@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import constants from 'src/utils/constants';
@@ -6,15 +6,19 @@ import constants from 'src/utils/constants';
 import Button from 'src/ui/components/Button';
 import StarRate from 'src/ui/components/Rating';
 
-import {
-  addBookThunk,
-  getCart,
-} from 'src/ui/pages/BookStore/redux/thunks';
+import { addBookThunk, getCart } from 'src/ui/pages/BookStore/redux/thunks';
+import { useEffect, useState } from 'react';
+import { getRate } from 'src/api';
+import { toast } from 'react-toastify';
 import StyledBook from './Book.styles';
 
 const Book: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  const { bookId } = useParams();
+
+  const [rate, setRate] = useState(0);
 
   const book = useAppSelector((store) => store.bookStore.book);
   const cart = useAppSelector((store) => store.bookStore.cart);
@@ -22,6 +26,20 @@ const Book: React.FC = () => {
 
   const selectBookInCart = cart.map((book) => book.bookId);
   const selectBooks = selectBookInCart.includes(book.id);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        if (user && bookId) {
+          const rate = await getRate(user.id, Number(bookId));
+          setRate(rate.data.rate);
+        }
+      } catch (err) {
+        const error = err as Error;
+        return toast.error(error.message);
+      }
+    })();
+  }, [bookId, user]);
 
   const handlerAddToCart = (
     e: React.MouseEvent<HTMLElement>,
@@ -59,7 +77,7 @@ const Book: React.FC = () => {
         <p className="book-author">{book.author}</p>
       </div>
       <div className="book-info__rate">
-        <StarRate />
+        <StarRate rate={rate} />
       </div>
       <div className="book-info__box">
         <div className="book-info__text">

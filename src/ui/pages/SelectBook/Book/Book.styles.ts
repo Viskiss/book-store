@@ -4,8 +4,6 @@ export default styled.div`
   display: grid;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: 0.1fr 0.1fr 1fr;
-  /* grid-template-rows: 0fr 0.1fr 0.1fr 0.7fr; */
-  /* grid-template-rows: 0.1fr; */
   margin-top: 20px;
 
   .book-cover__box {
@@ -17,7 +15,7 @@ export default styled.div`
   .book-info__rate {
     height: fit-content;
     grid-area: 2 / 2 / 3 / 3;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
   }
   .book-info__box {
     grid-area: 3 / 2 / 4 / 3;

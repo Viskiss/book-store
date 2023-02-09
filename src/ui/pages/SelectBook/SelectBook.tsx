@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import AuthBanner from 'src/ui/pages/BookStore/Banners/AuthBanner';
@@ -16,10 +16,7 @@ const SelectBook: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const navigate = useNavigate();
-
   const isAuth = useAppSelector((store) => store.userStore.user);
-  const book = useAppSelector((store) => store.bookStore.book);
 
   useEffect(() => {
     dispatch(getSelectBookThunk(Number(bookId)));

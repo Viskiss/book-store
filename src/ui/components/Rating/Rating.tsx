@@ -1,10 +1,7 @@
 import { Rating } from 'react-simple-star-rating';
-import { useNavigate, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from 'src/redux/store';
-
-import { getRate } from 'src/api';
 
 import star from 'src/ui/assets/images/icon/Star.svg';
 import arrow from 'src/ui/assets/images/icon/arrow.svg';
@@ -12,33 +9,18 @@ import arrow from 'src/ui/assets/images/icon/arrow.svg';
 import { addRateThunk } from 'src/ui/pages/BookStore/redux/thunks';
 import constants from 'src/utils/constants';
 
-import { useEffect, useState } from 'react';
 import StyledBook from './StarRate.styles';
 
-const StarRate: React.FC = () => {
+interface IProps {
+  rate: number;
+}
+
+const StarRate: React.FC<IProps> = ({ rate }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { bookId } = useParams();
-
-  const [rate, setRate] = useState(0);
-
   const book = useAppSelector((store) => store.bookStore.book);
   const user = useAppSelector((store) => store.userStore.user?.id);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        if (user && bookId) {
-          const rate = await getRate(user, Number(bookId));
-          setRate(rate.data.rate);
-        }
-      } catch (err) {
-        const error = err as Error;
-        return toast.error(error.message);
-      }
-    })();
-  }, [bookId, user]);
 
   const handleRating = (rate: number) => {
     if (user) {
