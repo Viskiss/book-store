@@ -32,7 +32,7 @@ const Header: React.FC = () => {
       searchParams.delete('search');
     }
     setSearchParams(searchParams);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedFilter]);
 
   const handleChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,41 +40,43 @@ const Header: React.FC = () => {
   };
 
   return (
-    <StyledHeader>
-      <div className="logo-box">
-        <Link className="logo__link" to={routesLink.home}>
-          <img className="logo" src={logo} alt="" />
-        </Link>
-      </div>
-      <div className="catalog-link-box">
-        <Link className="catalog-link" to={routesLink.home}>
-          Catalog
-        </Link>
-      </div>
-      <div className="search">
-        <button className="search-input_button">
-          <img src={loupe} alt="" />
-        </button>
-        <input
-          onChange={(e) => handleChangeSearch(e)}
-          value={filter}
-          className="search-input"
-          placeholder="Search"
-        />
-      </div>
-      {!token ? (
-        <div className="round-buttons ">
-          <Link to={routesLink.signIn}>
-            <Button className="auth-button">Sign In</Button>
-          </Link>
-          <Link to={routesLink.signUp}>
-            <Button className="auth-button">Sign Up</Button>
+    <div className="container">
+      <StyledHeader>
+        <div className="logo-box">
+          <Link className="logo__link" to={routesLink.home}>
+            <img className="logo" src={logo} alt="" />
           </Link>
         </div>
-      ) : (
-        <AuthUserLinks />
-      )}
-    </StyledHeader>
+        <div className="catalog-link-box">
+          <Link className="catalog-link" to={routesLink.home}>
+            Catalog
+          </Link>
+        </div>
+        <div className="search">
+          <button className="search-input_button">
+            <img src={loupe} alt="" />
+          </button>
+          <input
+            onChange={(e) => handleChangeSearch(e)}
+            value={filter}
+            className="search-input"
+            placeholder="Search"
+          />
+        </div>
+        {!token ? (
+          <div className="round-buttons ">
+            <Link to={routesLink.signIn}>
+              <Button className="auth-button">Sign In</Button>
+            </Link>
+            <Link to={routesLink.signUp}>
+              <Button className="auth-button">Sign Up</Button>
+            </Link>
+          </div>
+        ) : (
+          <AuthUserLinks />
+        )}
+      </StyledHeader>
+    </div>
   );
 };
 

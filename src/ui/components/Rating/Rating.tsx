@@ -9,7 +9,7 @@ import arrow from 'src/ui/assets/images/icon/arrow.svg';
 import { addRateThunk } from 'src/ui/pages/BookStore/redux/thunks';
 import constants from 'src/utils/constants';
 
-import StyledBook from './StarRate.styles';
+import StyledBook from './Rating.styles';
 
 interface IProps {
   rate: number;

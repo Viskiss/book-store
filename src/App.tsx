@@ -8,9 +8,7 @@ const App: React.FC = () => {
   return (
     <>
       <ToastContainer />
-      <div className="container">
       <Header />
-      </div>
       <Navigation />
       <Footer />
     </>
