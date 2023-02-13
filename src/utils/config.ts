@@ -12,6 +12,10 @@ const config = {
   apiBaseUrl: 'http://localhost:4000/api',
 };
 
+const configSocket = {
+  apiBaseUrl: 'http://localhost:4000',
+};
+
 // eslint-disable-next-line default-case
 switch (envType) {
   case EnvTypeENUM.production:
@@ -29,4 +33,6 @@ switch (envType) {
 
 export const isDev = envType === EnvTypeENUM.development;
 
-export default config;
+export default {
+  config, configSocket,
+};

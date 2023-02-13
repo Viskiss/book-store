@@ -7,7 +7,7 @@ import tokenHelper from 'src/utils/tokenHelper';
 const getAuthHeader = (token = tokenHelper.token.get()) => `Bearer ${token}`;
 
 export const axiosInstance = axios.create({
-  baseURL: config.apiBaseUrl,
+  baseURL: config.config.apiBaseUrl,
   headers: {
     Authorization: getAuthHeader(),
   },
