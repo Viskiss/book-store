@@ -1,4 +1,8 @@
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+import type { BookType } from 'src/types';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import constants from 'src/utils/constants';
@@ -6,10 +10,9 @@ import constants from 'src/utils/constants';
 import Button from 'src/ui/components/Button';
 import StarRate from 'src/ui/components/Rating';
 
+import { addRate, getRate, getSelectBook } from 'src/api';
 import { addBookThunk, getCart } from 'src/ui/pages/BookStore/redux/thunks';
-import { useEffect, useState } from 'react';
-import { getRate } from 'src/api';
-import { toast } from 'react-toastify';
+
 import StyledBook from './Book.styles';
 
 const Book: React.FC = () => {
@@ -18,14 +21,40 @@ const Book: React.FC = () => {
 
   const { bookId } = useParams();
 
-  const [rate, setRate] = useState(0);
+  const [rate, setRate] = useState<number>(0);
+  const [book, setBook] = useState<BookType>({} as BookType);
 
-  const book = useAppSelector((store) => store.bookStore.book);
   const cart = useAppSelector((store) => store.bookStore.cart);
   const user = useAppSelector((store) => store.userStore.user);
 
   const selectBookInCart = cart.map((book) => book.bookId);
-  const selectBooks = selectBookInCart.includes(book.id);
+  const selectBook = selectBookInCart.includes(book.id);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const book = await getSelectBook(Number(bookId));
+        setBook(book.data.book);
+      } catch (err) {
+        const error = err as Error;
+        return toast.error(error.message);
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        if (rate && user && bookId) {
+          await addRate({ userId: user?.id, bookId: Number(bookId), rate });
+        }
+      } catch (err) {
+        const error = err as Error;
+        return toast.error(error.message);
+      }
+    })();
+  }, [bookId, rate, user]);
 
   useEffect(() => {
     (async () => {
@@ -54,14 +83,14 @@ const Book: React.FC = () => {
   };
 
   const checkedCart = () => {
-    if (!book.id || selectBooks) {
+    if (!book.id || selectBook) {
       return true;
     }
     return false;
   };
 
   const checkedButton = () => {
-    if (selectBooks) {
+    if (selectBook) {
       return 'Added to cart';
     }
     return `$ ${book.price} USD`;
@@ -77,7 +106,7 @@ const Book: React.FC = () => {
         <p className="book-author">{book.author}</p>
       </div>
       <div className="book-info__rate">
-        <StarRate rate={rate} />
+        <StarRate setRate={setRate} rate={book.rate} />
       </div>
       <div className="book-info__box">
         <div className="book-info__text">

@@ -27,7 +27,6 @@ export {
 } from './apiRequests/cartApi';
 
 export {
-  addComment,
   getComments,
 } from './apiRequests/commentApi';
 

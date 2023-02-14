@@ -3,7 +3,7 @@ import type { AxiosError } from 'axios';
 
 import type { FilterType } from 'src/types';
 
-import { getAllBooks, getFilterBooks, getSelectBook } from 'src/api';
+import { getAllBooks, getFilterBooks } from 'src/api';
 
 export const getAllBooksThunk = createAsyncThunk(
   'book/getAllBooks',
@@ -27,22 +27,6 @@ export const getFilterBooksThunk = createAsyncThunk(
     try {
       const books = await getFilterBooks(filterData);
       return books.data;
-    } catch (err) {
-      const error = err as AxiosError;
-      if (!error.response) {
-        throw err;
-      }
-      return rejectWithValue(error.response.data);
-    }
-  },
-);
-
-export const getSelectBookThunk = createAsyncThunk(
-  'book/selectBook',
-  async (id: number, { rejectWithValue }) => {
-    try {
-      const book = await getSelectBook(id);
-      return book.data;
     } catch (err) {
       const error = err as AxiosError;
       if (!error.response) {

@@ -1,29 +1,24 @@
-import { useAppDispatch } from 'src/redux/store';
+import type { Dispatch, SetStateAction } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import fillLike from 'src/ui/assets/images/icon/fillHeart.svg';
 
 import Button from 'src/ui/components/Button';
 
-import {
-  deleteLikedBookThunk,
-  getLikedBooksThunk,
-} from 'src/ui/pages/BookStore/redux/thunks';
-
 interface IProps {
   bookId: number;
   cover: string;
   title: string;
   author: string;
+  setDeleteBook: Dispatch<SetStateAction<number>>;
 }
 
-const ItemLike: React.FC<IProps> = ({ bookId, cover, title, author }) => {
-  const dispatch = useAppDispatch();
+const ItemLike: React.FC<IProps> = ({ bookId, cover, title, author, setDeleteBook }) => {
   const navigate = useNavigate();
 
   const handleUnlikedBook = (bookId: number) => {
-    dispatch(deleteLikedBookThunk(bookId));
-    dispatch(getLikedBooksThunk());
+    setDeleteBook(bookId);
   };
 
   const selectBook = (e: React.MouseEvent<HTMLElement>, id: number) => {

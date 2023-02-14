@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { getRecommendedBooks } from 'src/api';
+import { deleteLikedBook, getRecommendedBooks } from 'src/api';
 import { useAppSelector } from 'src/redux/store';
 
 import type { BookType } from 'src/types';
@@ -13,6 +13,22 @@ import StyledRecBooks from './RecommendBooks.styles';
 const RecommendBooks: React.FC = () => {
   const [books, setBooks] = useState<BookType[]>([]);
   const user = useAppSelector((state) => state.userStore.user?.id);
+
+  const [deleteBook, setDeleteBook] = useState<number>(0);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        if (deleteBook) {
+          await deleteLikedBook(deleteBook);
+        }
+      } catch (err) {
+        const error = err as Error;
+        return toast.error(error.message);
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deleteBook]);
 
   useEffect(() => {
     (async () => {
@@ -34,6 +50,8 @@ const RecommendBooks: React.FC = () => {
       <div className="recommend-books__items">
         {books.map((el) => (
           <ItemBook
+            likedBooks={[]}
+            setDeleteBook={setDeleteBook}
             date={el.date}
             price={el.price}
             cover={el.cover}

@@ -10,11 +10,13 @@ import Button from 'src/ui/components/Button';
 import config from 'src/utils/config';
 import type { CommentType } from 'src/types';
 
-import { addComment } from 'src/api';
+import { getComments } from 'src/api';
 
 import ItemComment from './itemComment';
 
 import StyledComments from './Comments.styles';
+
+const socket = io(config.configSocket.apiBaseUrl);
 
 const Comments: React.FC = () => {
   const { bookId } = useParams();
@@ -24,41 +26,26 @@ const Comments: React.FC = () => {
 
   const user = useAppSelector((store) => store.userStore.user);
 
-  const socket = io(config.configSocket.apiBaseUrl);
-
-  // eslint-disable-next-line no-console
-  console.log(socket);
-
   useEffect(() => {
-    socket.on('connect', () => {
-      // eslint-disable-next-line no-console
-      console.log(socket.id);
+    socket.on('getComment', (data) => {
+      setComments((items) => {
+        return [...items, data];
+      });
     });
-
-    socket.emit('getComments', { bookId });
-
-    socket.on('getComments', (data) => {
-      setComments(data);
-      // eslint-disable-next-line no-console
-      console.log(data);
-      return () => {
-        socket.removeAllListeners();
-      };
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const comments = await getComments(Number(bookId));
-  //       setComments(comments.data);
-  //     } catch (err) {
-  //       const error = err as Error;
-  //       return toast.error(error.message);
-  //     }
-  //   })();
-  // }, [bookId]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const comments = await getComments(Number(bookId));
+        setComments(comments.data);
+      } catch (err) {
+        const error = err as Error;
+        return toast.error(error.message);
+      }
+    })();
+  }, [bookId]);
 
   const handlerChangeInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
@@ -67,21 +54,12 @@ const Comments: React.FC = () => {
 
   const handlerSubmitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (comment && user) {
-      const data = comment.trim();
-      (async () => {
-        try {
-          const comment = await addComment({
-            userId: user.id,
-            bookId: Number(bookId),
-            text: data,
-          });
-          setComments(comment.data);
-        } catch (err) {
-          const error = err as Error;
-          return toast.error(error.message);
-        }
-      })();
+    if (comment.trim() && user) {
+      socket.emit('addComment', {
+        userId: user.id,
+        bookId: Number(bookId),
+        text: comment,
+      });
     }
     setComment('');
   };
@@ -118,7 +96,7 @@ const Comments: React.FC = () => {
           />
           <Button className="comment-box__button">Post a comment</Button>
         </form>
-      ) }
+      )}
     </StyledComments>
   );
 };

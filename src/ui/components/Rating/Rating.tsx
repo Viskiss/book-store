@@ -1,40 +1,25 @@
+import type { Dispatch, SetStateAction } from 'react';
 import { Rating } from 'react-simple-star-rating';
-import { useNavigate } from 'react-router-dom';
-
-import { useAppSelector, useAppDispatch } from 'src/redux/store';
 
 import star from 'src/ui/assets/images/icon/Star.svg';
 import arrow from 'src/ui/assets/images/icon/arrow.svg';
-
-import { addRateThunk } from 'src/ui/pages/BookStore/redux/thunks';
-import constants from 'src/utils/constants';
 
 import StyledBook from './Rating.styles';
 
 interface IProps {
   rate: number;
+  setRate: Dispatch<SetStateAction<number>>;
 }
 
-const StarRate: React.FC<IProps> = ({ rate }) => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const book = useAppSelector((store) => store.bookStore.book);
-  const user = useAppSelector((store) => store.userStore.user?.id);
-
+const StarRate: React.FC<IProps> = ({ rate, setRate }) => {
   const handleRating = (rate: number) => {
-    if (user) {
-      dispatch(addRateThunk({ bookId: book.id, userId: user, rate }));
-    } else {
-      navigate(constants.routesLink.signIn);
-    }
+    setRate(rate);
   };
-
   return (
     <StyledBook className="rate-box">
       <div className="initial-rate">
         <img className="star-rate" src={star} alt="" />
-        <p className="number">{book.rate}.0</p>
+        <p className="number">{rate}.0</p>
       </div>
       <div className="rate-box__stars">
         <Rating

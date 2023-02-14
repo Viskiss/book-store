@@ -1,41 +1,62 @@
-import { useAppDispatch, useAppSelector } from 'src/redux/store';
-import { useEffect } from 'react';
-
-import TextBlock from 'src/ui/components/TextBlock';
-
-import { getLikedBooksThunk } from 'src/ui/pages/BookStore/redux/thunks';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import booksImg from 'src/ui/assets/images/books.svg';
+
+import { deleteLikedBook, getLikedBooks } from 'src/api';
+import type { LikedBookType } from 'src/types';
+import TextBlock from 'src/ui/components/TextBlock';
 
 import ItemLike from './ItemLike';
 
 import StyledLikedBooks from './LikedBooks.styles';
 
 const LikedBooks: React.FC = () => {
-  const dispatch = useAppDispatch();
-
-  const likesBooks = useAppSelector((store) => store.bookStore.likedBooks);
-  const isAuth = useAppSelector((store) => store.userStore.isAuthenticated);
+  const [likedBooks, setLikedBooks] = useState<LikedBookType[]>([]);
+  const [deleteBook, setDeleteBook] = useState<number>(0);
 
   useEffect(() => {
-    if (!likesBooks.length && isAuth) {
-      dispatch(getLikedBooksThunk());
-    }
-  }, [dispatch, isAuth, likesBooks.length]);
+    (async () => {
+      try {
+        const books = await getLikedBooks();
+        setLikedBooks(books.data.books);
+      } catch (err) {
+        const error = err as Error;
+        return toast.error(error.message);
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        if (deleteBook) {
+          const books = await deleteLikedBook(deleteBook);
+          setLikedBooks(books.data.books);
+        }
+      } catch (err) {
+        const error = err as Error;
+        return toast.error(error.message);
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deleteBook]);
 
   return (
     <StyledLikedBooks>
-      {likesBooks.length ? (
+      {likedBooks.length ? (
         <div className="liked__books">
-            {likesBooks.map((item) => (
-              <ItemLike
-                author={item.book.author}
-                title={item.book.title}
-                bookId={item.book.id}
-                cover={item.book.cover}
-                key={item.id}
-              />
-            ))}
+          {likedBooks.map((item) => (
+            <ItemLike
+            setDeleteBook={setDeleteBook}
+              author={item.book.author}
+              title={item.book.title}
+              bookId={item.book.id}
+              cover={item.book.cover}
+              key={item.id}
+            />
+          ))}
         </div>
       ) : (
         <div className="like-container">

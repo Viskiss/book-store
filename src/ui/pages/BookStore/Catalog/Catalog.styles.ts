@@ -20,14 +20,23 @@ export default styled.section`
   }
 
   .books-catalog {
-    margin-bottom: 23px;
+    margin-bottom: 83px;
     display: flex;
     width: calc((100% - (20 * 3)) / 4);
   }
 
   @media (max-width: 834px) {
     .books-catalog__items {
-    gap: 30px 20px;
+      gap: 30px 20px;
+    }
+    .books-catalog {
+      margin-bottom: 64px;
+    }
   }
+
+  @media (max-width: 834px) {
+    .books-catalog {
+      margin-bottom: 45px;
+    }
   }
 `;

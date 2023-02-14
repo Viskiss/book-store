@@ -1,3 +1,4 @@
+import type { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -10,6 +11,7 @@ import fillLike from 'src/ui/assets/images/icon/fillHeart.svg';
 import constants from 'src/utils/constants';
 import tokenHelper from 'src/utils/tokenHelper';
 
+import type { LikedBookType } from 'src/types';
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 
 import star from 'src/ui/assets/images/icon/Star.svg';
@@ -20,7 +22,6 @@ import StyledItemBook from './ItemBook.styles ';
 import {
   addBookThunk,
   addLikedBookThunk,
-  deleteLikedBookThunk,
 } from '../../../redux/thunks';
 
 interface IProps {
@@ -31,6 +32,8 @@ interface IProps {
   rate: number;
   price: string;
   id: number;
+  likedBooks: LikedBookType[];
+  setDeleteBook: Dispatch<SetStateAction<number>>;
 }
 
 const ItemBook: React.FC<IProps> = ({
@@ -41,6 +44,8 @@ const ItemBook: React.FC<IProps> = ({
   rate,
   price,
   id,
+  likedBooks,
+  setDeleteBook,
 }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -50,7 +55,6 @@ const ItemBook: React.FC<IProps> = ({
   const newDay = new Date('2023-01-01');
 
   const cart = useAppSelector((store) => store.bookStore.cart);
-  const likedBooks = useAppSelector((store) => store.bookStore.likedBooks);
   const user = useAppSelector((store) => store.userStore.user);
 
   const selectBookInCart = cart.map((book) => book.bookId);
@@ -82,7 +86,7 @@ const ItemBook: React.FC<IProps> = ({
     }
 
     if (likedBook && selectBookLike) {
-      dispatch(deleteLikedBookThunk(id));
+      setDeleteBook(id);
       setLikedBook(false);
     }
   };

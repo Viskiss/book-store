@@ -23,11 +23,11 @@ export const getRecommendedBooks = (userId: number) => {
 };
 
 export const getAllGernes = () => {
-  return api.get<{ genres: GenreType[] }>(`${BOOK_PATH_PREFIX}/gernes`);
+  return api.get<{ genres: GenreType[] }>(`${BOOK_PATH_PREFIX}/genres`);
 };
 
 export const getSelectBook = (bookId: number) => {
-  return api.get<{ book: BookType }>(`${BOOK_PATH_PREFIX}/${bookId}`);
+  return api.get<{book: BookType}>(`${BOOK_PATH_PREFIX}/${bookId}`);
 };
 
 export const getFilterBooks = (filters: FilterType) => {

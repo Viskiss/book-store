@@ -5,7 +5,7 @@ export default styled.div`
 
   .comments-box {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 10px;
   }
 
@@ -31,6 +31,7 @@ export default styled.div`
 
   .comment__user-comment {
     grid-area: 3 / 2 / 4 / 3;
+    overflow: hidden;
   }
 
   .comment-box__input {

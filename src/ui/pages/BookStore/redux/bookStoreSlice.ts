@@ -3,8 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { BookType, CartType } from 'src/types';
 import type { LikedBookType } from 'src/types/bookStoreTypes';
 import {
-  getLikedBooksThunk,
-  deleteLikedBookThunk,
   addLikedBookThunk,
   getCart,
   deleteBookInCart,
@@ -12,12 +10,10 @@ import {
   addBookThunk,
   deleteCopyBook,
   getFilterBooksThunk,
-  getSelectBookThunk,
 } from './thunks';
 
 const initialState = () => ({
   books: [] as BookType[],
-  book: {} as BookType,
   cart: [] as CartType[],
   likedBooks: [] as LikedBookType[],
   count: 0,
@@ -29,13 +25,9 @@ const bookStoreSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getLikedBooksThunk.fulfilled, (state, { payload }) => {
-      state.likedBooks = payload.books;
-    });
-
-    builder.addCase(deleteLikedBookThunk.fulfilled, (state, { payload }) => {
-      state.likedBooks = payload.books;
-    });
+    // builder.addCase(deleteLikedBookThunk.fulfilled, (state, { payload }) => {
+    //   state.likedBooks = payload.books;
+    // });
 
     builder.addCase(addLikedBookThunk.fulfilled, (state, { payload }) => {
       state.likedBooks = payload.books;
@@ -65,10 +57,6 @@ const bookStoreSlice = createSlice({
       state.books = payload.books;
       state.count = payload.counterBooks;
       state.pages = payload.numberPages;
-    });
-
-    builder.addCase(getSelectBookThunk.fulfilled, (state, { payload }) => {
-      state.book = payload.book;
     });
   },
 });

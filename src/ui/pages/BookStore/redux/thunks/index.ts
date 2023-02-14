@@ -1,8 +1,8 @@
 export {
   getAllBooksThunk,
   getFilterBooksThunk,
-  getSelectBookThunk,
 } from './bookStoreThunks';
+
 export {
   addBookThunk,
   addCopyBook,
@@ -10,9 +10,7 @@ export {
   deleteCopyBook,
   getCart,
 } from './cartThunks';
+
 export {
   addLikedBookThunk,
-  deleteLikedBookThunk,
-  getLikedBooksThunk,
 } from './likedBooksThunks';
-export { addRateThunk } from './rateBooksThunks';
