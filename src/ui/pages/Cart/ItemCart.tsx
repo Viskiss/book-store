@@ -1,55 +1,29 @@
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { useAppDispatch } from 'src/redux/store';
+import type { CartType } from 'src/types';
 
 import trashBox from 'src/ui/assets/images/icon/Delete.svg';
 
 import decrement from 'src/ui/assets/images/icon/decrement.svg';
 import increment from 'src/ui/assets/images/icon/increment.svg';
 
-import {
-  addCopyBook,
-  deleteBookInCart,
-  deleteCopyBook,
-} from 'src/ui/pages/BookStore/redux/thunks';
-
 interface IProps {
-  bookId: number;
-  cartId: number;
-  price: number;
-  cover: string;
-  title: string;
-  author: string;
-  quantityOfGoods: number;
+  cart: CartType;
+  handleDeleteBook: (id: number) => void;
+  handleAddCopyBook: (bookId: number) => void;
+  handleDeleteCopyBook: (bookId: number) => void;
 }
 
 const ItemCart: React.FC<IProps> = ({
-  price,
-  bookId,
-  cartId,
-  cover,
-  title,
-  author,
-  quantityOfGoods,
+  cart: { price, bookId, id, cover, title, author, quantityOfGoods },
+  handleAddCopyBook,
+  handleDeleteBook,
+  handleDeleteCopyBook,
 }) => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
-  const handleDeleteBook = (cartId: number) => {
-    dispatch(deleteBookInCart(cartId));
-  };
-
-  const handleAddCopyBook = (bookId: number) => {
-    dispatch(addCopyBook(bookId));
-  };
-
-  const handleDeleteCopyBook = (bookId: number) => {
-    dispatch(deleteCopyBook(bookId));
-  };
-
-  const selectBook = (e: React.MouseEvent<HTMLElement>, id: number) => {
-    e.preventDefault();
+  const selectBook = (id: number) => {
     try {
       navigate(`/book/${id}`);
     } catch (err) {
@@ -63,8 +37,14 @@ const ItemCart: React.FC<IProps> = ({
         <div className="item-cart__box-cover">
           <img className="item-cart__cover" src={cover} alt="" />
         </div>
+
         <div>
-          <h1 onClick={(e) => selectBook(e, bookId)} className="item-cart__box-title">{title}</h1>
+          <h1
+            onClick={() => selectBook(bookId)}
+            className="item-cart__box-title"
+          >
+            {title}
+          </h1>
           <p className="item-cart__box-author">{author}</p>
           <div className="item-cart__box-filter">
             <div>
@@ -82,8 +62,9 @@ const ItemCart: React.FC<IProps> = ({
                 <img className="box-button__inc" src={increment} alt="" />
               </button>
             </div>
+
             <img
-              onClick={() => handleDeleteBook(cartId)}
+              onClick={() => handleDeleteBook(id)}
               className="item-cart__box-trash"
               src={trashBox}
               alt=""

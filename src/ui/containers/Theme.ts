@@ -1,3 +1,29 @@
+const theme2 = {
+  color: {
+    background: {
+      page: 'white',
+    },
+  },
+  font: {
+    main: {
+      size: {
+        xs: '0.5rem',
+        sm: '0.8rem',
+        md: '15px',
+        lg: '1.2rem',
+        xl: '1.5rem',
+        xxl: '2rem',
+      },
+      weight: {
+        sm: '400',
+        md: '500',
+        lg: '600',
+        xl: '700',
+      },
+    },
+  },
+};
+
 export const theme = {
   color: {
     dark: '#0D1821',

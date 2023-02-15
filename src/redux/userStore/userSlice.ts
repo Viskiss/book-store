@@ -15,7 +15,7 @@ import {
 
 const initialState = () => ({
   user: null as UserType | null,
-  isAuthenticated: tokenHelper.token.get() ?? false,
+  isAuthenticated: false,
 });
 
 const userSlice = createSlice({
@@ -25,7 +25,6 @@ const userSlice = createSlice({
     exitUser: (state, { payload }) => {
       if (payload) {
         state.user = null;
-        state.isAuthenticated = false;
       }
     },
   },

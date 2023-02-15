@@ -6,18 +6,19 @@ import options from 'src/utils/lottieOptions';
 import constants from 'src/utils/constants';
 import loader from 'src/ui/assets/lottieFiles/loading.json';
 
-import SelectBook from 'src/ui/pages/SelectBook';
-
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { currentUserThunk } from 'src/redux/userStore/thunks/authUser';
 
-import MainLayoutStyled from '../MainLayout.styles';
+import NavigationStyled from './Navigation.styles';
 
-const SignIn = lazy(() => import('src/ui/pages/Auth/SignIn'));
-const SignUp = lazy(() => import('src/ui/pages/Auth/SignUp'));
-const BookStore = lazy(() => import('src/ui/pages/BookStore'));
+const SignIn = lazy(() => import('src/ui/pages/Authorization/SignIn/SignIn'));
+const SignUp = lazy(() => import('src/ui/pages/Authorization/SignUp/SignUp'));
+
+const BookStore = lazy(() => import('src/ui/pages/BookStoreMain'));
 const Cart = lazy(() => import('src/ui/pages/Cart'));
-const LikedBooks = lazy(() => import('src/ui/pages/LikedBooks'));
+const FavoriteBooks = lazy(() => import('src/ui/pages/FavoritesBooks'));
+const CurrentBook = lazy(() => import('src/ui/pages/CurrentBook'));
+
 const UserProfile = lazy(() => import('src/ui/pages/UserProfile'));
 
 const Navigation: React.FC = () => {
@@ -31,17 +32,15 @@ const Navigation: React.FC = () => {
   );
 
   useEffect(() => {
-    if (isAuthenticated && !user) {
-      dispatch(currentUserThunk());
-    }
-  }, [dispatch, isAuthenticated, user]);
+    dispatch(currentUserThunk());
+  }, [dispatch]);
 
-  if (isAuthenticated && !user) {
+  if (!isAuthenticated) {
     return <Lottie style={options.loadingStyles} animationData={loader} />;
   }
 
   return (
-    <MainLayoutStyled>
+    <NavigationStyled>
       <Suspense
         fallback={
           <Lottie style={options.loadingStyles} animationData={loader} />
@@ -49,7 +48,7 @@ const Navigation: React.FC = () => {
       >
         <Routes>
           <Route path={routesLink.home} element={<BookStore />} />
-          <Route path={routesLink.bookId} element={<SelectBook />} />
+          <Route path={routesLink.bookId} element={<CurrentBook />} />
 
           {!user && (
             <>
@@ -61,13 +60,13 @@ const Navigation: React.FC = () => {
           {user && (
             <>
               <Route path={routesLink.cart} element={<Cart />} />
-              <Route path={routesLink.liked} element={<LikedBooks />} />
+              <Route path={routesLink.favorite} element={<FavoriteBooks />} />
               <Route path={routesLink.profile} element={<UserProfile />} />
             </>
           )}
         </Routes>
       </Suspense>
-    </MainLayoutStyled>
+    </NavigationStyled>
   );
 };
 

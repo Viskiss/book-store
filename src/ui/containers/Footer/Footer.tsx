@@ -16,6 +16,7 @@ const Footer: React.FC = () => {
           <p className="text">tranthuy.nute@gmail.com</p>
           <p className="text">(480) 555-0103</p>
         </div>
+
         <nav className="footer__router-links">
           <Link className="footer__router-link" to={routesLink.home}>
             Home Page
@@ -30,6 +31,7 @@ const Footer: React.FC = () => {
             Cart
           </Link>
         </nav>
+
         <div className="map_location">
           <p className="text">6391 Elgin St. Celina, Delaware 10299</p>
           <img className="map_location-img" src={map} alt="" />

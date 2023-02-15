@@ -27,15 +27,15 @@ export default styled.footer`
   .footer__router-links {
     display: flex;
     flex-direction: column;
+  }
 
-    .footer__router-link {
-      text-decoration: none;
-      margin-bottom: 10px;
-      margin-top: 0;
-      font-size: ${(props) => props.theme.fontSize.fs20};
-      line-height: ${(props) => props.theme.lineHeight.lh30};
-      color: ${(props) => props.theme.color.white};
-    }
+  .footer__router-link {
+    text-decoration: none;
+    margin-bottom: 10px;
+    margin-top: 0;
+    font-size: ${(props) => props.theme.fontSize.fs20};
+    line-height: ${(props) => props.theme.lineHeight.lh30};
+    color: ${(props) => props.theme.color.white};
   }
 
   .logo {
@@ -67,7 +67,6 @@ export default styled.footer`
 
     .map_location {
       padding-left: 0;
-
     }
 
     .map_location-img {
@@ -94,7 +93,6 @@ export default styled.footer`
       display: flex;
       flex-direction: column;
       align-items: center;
-
     }
 
     .map_location-img {

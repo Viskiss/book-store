@@ -15,13 +15,13 @@ import AuthUserLinks from './AuthUserLinks';
 
 import StyledHeader from './Header.styles';
 
+const { routesLink } = constants;
+
 const Header: React.FC = () => {
-  const { routesLink } = constants;
-
   const [searchParams, setSearchParams] = useSearchParams();
-  const [filter, setFilter] = useState<string>('');
+  const [searchString, setSearchString] = useState('');
 
-  const debouncedFilter = useDebounce(filter, 1000);
+  const debouncedFilter = useDebounce(searchString, 1000);
 
   const token = tokenHelper.token.get();
 
@@ -36,7 +36,7 @@ const Header: React.FC = () => {
   }, [debouncedFilter]);
 
   const handleChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setFilter(e.target.value);
+    setSearchString(e.target.value);
   };
 
   return (
@@ -47,22 +47,25 @@ const Header: React.FC = () => {
             <img className="logo" src={logo} alt="" />
           </Link>
         </div>
+
         <div className="catalog-link-box">
           <Link className="catalog-link" to={routesLink.home}>
             Catalog
           </Link>
         </div>
+
         <div className="search">
           <button className="search-input_button">
             <img src={loupe} alt="" />
           </button>
           <input
             onChange={(e) => handleChangeSearch(e)}
-            value={filter}
+            value={searchString}
             className="search-input"
             placeholder="Search"
           />
         </div>
+
         {!token ? (
           <div className="round-buttons ">
             <Link to={routesLink.signIn}>

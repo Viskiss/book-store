@@ -1,5 +1,8 @@
-import type { Dispatch, SetStateAction } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating';
+
+import { useAppSelector } from 'src/redux/store';
+import constants from 'src/utils/constants';
 
 import star from 'src/ui/assets/images/icon/Star.svg';
 import arrow from 'src/ui/assets/images/icon/arrow.svg';
@@ -7,24 +10,37 @@ import arrow from 'src/ui/assets/images/icon/arrow.svg';
 import StyledBook from './Rating.styles';
 
 interface IProps {
-  rate: number;
-  setRate: Dispatch<SetStateAction<number>>;
+  bookRate: number;
+  userRate: number;
+  setRate: (bookId: number, rate: number) => void;
 }
 
-const StarRate: React.FC<IProps> = ({ rate, setRate }) => {
-  const handleRating = (rate: number) => {
-    setRate(rate);
+const StarRate: React.FC<IProps> = ({ bookRate, userRate, setRate }) => {
+  const navigate = useNavigate();
+
+  const { bookId } = useParams();
+
+  const user = useAppSelector((store) => store.userStore.user);
+
+  const handlerRate = (rate: number) => {
+    if (user) {
+      setRate(Number(bookId), rate);
+    } else {
+      navigate(constants.routesLink.signIn);
+    }
   };
+
   return (
     <StyledBook className="rate-box">
       <div className="initial-rate">
         <img className="star-rate" src={star} alt="" />
-        <p className="number">{rate}.0</p>
+        <p className="number">{bookRate?.toString().length > 2 ? `${bookRate}` : `${bookRate}.0`}</p>
       </div>
       <div className="rate-box__stars">
+
         <Rating
           fillColor="#BFCC94"
-          onClick={handleRating}
+          onClick={handlerRate}
           fillIcon={
             (<svg
               className="fillStar"
@@ -65,8 +81,9 @@ const StarRate: React.FC<IProps> = ({ rate, setRate }) => {
              </svg>)
           }
           size={27}
-          initialValue={rate}
+          initialValue={user ? userRate : 0}
         />
+
         <div className="arrow-box">
           <img className="arrow-box__img" src={arrow} alt="" />
           <p className="rate-this-book">Rate this book</p>

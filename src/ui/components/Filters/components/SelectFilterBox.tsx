@@ -1,0 +1,60 @@
+import React, { useState, useRef } from 'react';
+
+import { useOutsideDrop } from 'src/hooks';
+
+import type { GenreType } from 'src/types';
+
+import Item from './Item';
+import SelectDropBox from './SelectDropBox';
+
+import StyledSelect from './SelectFilterBox.styles';
+
+interface IProps {
+  title: string;
+  typeSelect?: boolean;
+  items: GenreType[] | [];
+  filter: string[] | string;
+  setState: (newFilter: string) => void;
+}
+
+const SelectFilterBox: React.FC<IProps> = ({
+  items,
+  setState,
+  filter,
+  title,
+  typeSelect,
+}) => {
+  const [dropSelect, setDropSelect] = useState(false);
+
+  const wrapperRef = useRef(null);
+  useOutsideDrop(wrapperRef, setDropSelect);
+
+  const handleDropSelect = () => {
+    if (dropSelect) {
+      setDropSelect(false);
+    }
+    if (!dropSelect) {
+      setDropSelect(true);
+    }
+  };
+
+  return (
+    <StyledSelect drop={dropSelect} typeSelect={typeSelect} ref={wrapperRef}>
+      <SelectDropBox handler={handleDropSelect} title={title} />
+      <div className="select-box__items">
+        {items.map((item) => (
+          <Item
+            title={title}
+            filter={filter}
+            setState={setState}
+            key={item.id}
+            name={item.name}
+            id={item.id}
+          />
+        ))}
+      </div>
+    </StyledSelect>
+  );
+};
+
+export default SelectFilterBox;

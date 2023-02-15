@@ -31,10 +31,10 @@ export {
 } from './apiRequests/commentApi';
 
 export {
-  addLikedBook,
-  deleteLikedBook,
-  getLikedBooks,
-} from './apiRequests/likedBooksApi';
+  addFavoriteBook,
+  deleteFavoriteBook,
+  getFavoriteBooks,
+} from './apiRequests/favoriteBooksApi';
 
 export {
   addRate,

@@ -4,6 +4,7 @@ export default styled.section`
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+  max-width: 1280px;
   width: 100%;
 
   .cart-container {

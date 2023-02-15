@@ -1,14 +1,14 @@
-const routes = {
+export const routesLink = {
   home: '/',
   signUp: '/sign-up',
   signIn: '/sign-in',
   cart: '/cart',
   profile: '/profile',
   bookId: '/book/:bookId',
-  liked: '/liked-book',
+  favorite: '/favorite-book',
 };
 
-const sortList = [
+export const sort = [
   { id: 1, name: 'Price' },
   { id: 2, name: 'Name' },
   { id: 3, name: 'Author name' },
@@ -17,6 +17,6 @@ const sortList = [
 ];
 
 export default {
-  sort: sortList,
-  routesLink: routes,
+  sort,
+  routesLink,
 };

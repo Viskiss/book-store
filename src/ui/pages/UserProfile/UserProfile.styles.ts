@@ -85,6 +85,7 @@ export default styled.section`
   .data-box {
     position: relative;
   }
+
   .data-box__label {
     z-index: 1000;
     position: absolute;
@@ -117,6 +118,7 @@ export default styled.section`
     color: ${(props) => props.theme.color.blue};
     font-weight: bold;
   }
+
   .user-change-preview {
     display: flex;
     align-items: center;

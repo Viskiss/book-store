@@ -43,7 +43,7 @@ export type CartType = {
   userId: number;
 };
 
-export type LikedBookType = {
+export type FavoriteBookType = {
   book: BookType;
   bookId: BookType['id'];
   id: number;

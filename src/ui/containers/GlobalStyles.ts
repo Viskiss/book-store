@@ -18,7 +18,8 @@ code {
 }
 
 html, body, #root {
-  height: 100%;
+  height: 1px;
+  min-height: 100%;
 }
 
 #root {

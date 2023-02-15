@@ -4,7 +4,7 @@ import type { TypedUseSelectorHook } from 'react-redux';
 // import { createLogger } from 'redux-logger';
 
 import userReduser from 'src/redux/userStore/userSlice';
-import bookReduser from 'src/ui/pages/BookStore/redux/bookStoreSlice';
+import bookReduser from 'src/ui/pages/BookStoreMain/redux/bookStoreSlice';
 
 import { isDev } from '../utils/config';
 

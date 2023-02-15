@@ -7,12 +7,19 @@ import constants from 'src/utils/constants';
 import Button from 'src/ui/components/Button';
 import TextBlock from 'src/ui/components/TextBlock';
 
+import {
+  addCopyBook,
+  deleteBookInCart,
+  deleteCopyBook,
+} from 'src/ui/pages/BookStoreMain/redux/thunks';
+
 import booksImg from 'src/ui/assets/images/books.svg';
+
+import { getCart } from '../BookStoreMain/redux/thunks';
 
 import ItemCart from './ItemCart';
 
 import StyledCart from './Cart.styles';
-import { getCart } from '../BookStore/redux/thunks';
 
 const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +31,17 @@ const Cart: React.FC = () => {
   const isAuth = useAppSelector((store) => store.userStore.isAuthenticated);
   const user = useAppSelector((store) => store.userStore.user);
 
+  const handleDeleteBook = (cartId: number) => {
+    dispatch(deleteBookInCart(cartId));
+  };
+
+  const handleAddCopyBook = (bookId: number) => {
+    dispatch(addCopyBook(bookId));
+  };
+
+  const handleDeleteCopyBook = (bookId: number) => {
+    dispatch(deleteCopyBook(bookId));
+  };
   useEffect(() => {
     if (isAuth && !cart.length) {
       dispatch(getCart(user?.id || 0));
@@ -43,16 +61,13 @@ const Cart: React.FC = () => {
       {cart.length ? (
         <>
           <div className="cart__books">
-            {cart.map((item) => (
+            {cart.map((cart) => (
               <ItemCart
-                author={item.author}
-                quantityOfGoods={item.quantityOfGoods}
-                title={item.title}
-                bookId={item.bookId}
-                cartId={item.id}
-                cover={item.cover}
-                price={item.price}
-                key={item.id}
+                handleAddCopyBook={handleAddCopyBook}
+                handleDeleteBook={handleDeleteBook}
+                handleDeleteCopyBook={handleDeleteCopyBook}
+                cart={cart}
+                key={cart.id}
               />
             ))}
           </div>

@@ -78,13 +78,18 @@ const PasswordProfile: React.FC = () => {
       <form className="user-password" onSubmit={formik.handleSubmit}>
         <div className="user-change-preview">
           <h3 className="user-change-preview__title">Password</h3>
-          <a className="user-change-preview__link" onClick={(e) => changeDataHandler('password', e)} href="">
+          <a
+            className="user-change-preview__link"
+            onClick={(e) => changeDataHandler('password', e)}
+            href=""
+          >
             Change password
           </a>
         </div>
         {!changePassword ? (
           <div className="data-box">
             <label>Old password</label>
+
             <Input
               disabled={disabledInput}
               img={eye}
@@ -99,6 +104,7 @@ const PasswordProfile: React.FC = () => {
             <>
               <div className="data-box">
                 <label>Old password</label>
+
                 <Input
                   img={eye}
                   className={stylesInputPassword}
@@ -112,6 +118,7 @@ const PasswordProfile: React.FC = () => {
                   {...formik.getFieldProps('password')}
                 />
               </div>
+
               <Input
                 img={eye}
                 className={stylesInputPassword}
@@ -126,6 +133,7 @@ const PasswordProfile: React.FC = () => {
                 touched={formik.touched.newPassword || ''}
                 {...formik.getFieldProps('newPassword')}
               />
+
               <Input
                 className={stylesInputPassword}
                 img={eye}

@@ -22,5 +22,5 @@ export type {
   AddRateApiType,
   GetRateApiType,
   RateBookType,
-  LikedBookType,
+  FavoriteBookType,
 } from './bookStoreTypes';
