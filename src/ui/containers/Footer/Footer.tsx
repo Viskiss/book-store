@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 
+import { navigationRoutes } from 'src/utils/constants';
+
 import logo from 'src/ui/assets/images/logoF.svg';
 import map from 'src/ui/assets/images/map.png';
-import constants from 'src/utils/constants';
 
 import StyledFooter from './Footer.styles';
 
 const Footer: React.FC = () => {
-  const { routesLink } = constants;
   return (
     <StyledFooter>
       <div className="footer_container">
@@ -18,16 +18,16 @@ const Footer: React.FC = () => {
         </div>
 
         <nav className="footer__router-links">
-          <Link className="footer__router-link" to={routesLink.home}>
+          <Link className="footer__router-link" to={navigationRoutes.home}>
             Home Page
           </Link>
-          <Link className="footer__router-link" to={routesLink.home}>
+          <Link className="footer__router-link" to={navigationRoutes.home}>
             Catalog
           </Link>
-          <Link className="footer__router-link" to={routesLink.profile}>
+          <Link className="footer__router-link" to={navigationRoutes.profile}>
             My Account
           </Link>
-          <Link className="footer__router-link" to={routesLink.cart}>
+          <Link className="footer__router-link" to={navigationRoutes.cart}>
             Cart
           </Link>
         </nav>

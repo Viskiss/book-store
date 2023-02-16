@@ -2,18 +2,19 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import type { BookType } from 'src/types';
+import type { BookType } from 'src/types/bookStoreTypes';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
-import constants from 'src/utils/constants';
+import { navigationRoutes } from 'src/utils/constants';
 
 import Button from 'src/ui/components/Button';
 import StarRate from 'src/ui/components/Rating';
 
-import { addRate, getRate, getSelectBook } from 'src/api';
-import { addBookThunk, getCart } from 'src/ui/pages/BookStoreMain/redux/thunks';
+import { addRateBook, getRateBook } from 'src/api/apiRequests/rateBookApi';
+import { getCurrentBook } from 'src/api/apiRequests/bookApi';
 
 import StyledBook from './Book.styles';
+import { addBookThunk, getCartThunk } from '../../BookStoreMain/redux/thunks/cartThunks';
 
 const Book: React.FC = () => {
   const navigate = useNavigate();
@@ -33,14 +34,14 @@ const Book: React.FC = () => {
   useEffect(() => {
     (async () => {
       try {
-        const book = await getSelectBook(Number(bookId));
+        const book = await getCurrentBook(Number(bookId));
         setBook(book.data.book);
 
         if (user) {
-          dispatch(getCart(user.id));
+          dispatch(getCartThunk(user.id));
 
-          const rate = await getRate(user.id, Number(bookId));
-          setUserRate(rate.data.rate);
+          const rate = await getRateBook(user.id, Number(bookId));
+          setUserRate(rate.data !== null ? rate.data.rate : 0);
         }
       } catch (err) {
         const error = err as Error;
@@ -52,16 +53,16 @@ const Book: React.FC = () => {
 
   const handlerAddToCart = (bookId: number) => {
     if (!user) {
-      navigate(constants.routesLink.signIn);
+      navigate(navigationRoutes.signIn);
     }
     dispatch(addBookThunk({ userId: user?.id || 0, bookId }));
-    dispatch(getCart(user?.id || 0));
+    dispatch(getCartThunk(user?.id || 0));
   };
 
   const handlerAddRateBook = async (bookId: number, rate: number) => {
     try {
       if (user) {
-        await addRate({ userId: user?.id, bookId: Number(bookId), rate });
+        await addRateBook({ userId: user?.id, bookId: Number(bookId), rate });
       }
     } catch (err) {
       const error = err as Error;

@@ -1,14 +1,14 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-interface IProps {
+type PropType = {
   img: string;
   authorName: string;
   text: string;
   date: string;
-}
+};
 
-const ItemComment: React.FC<IProps> = ({ img, authorName, text, date }) => {
+const ItemComment: React.FC<PropType> = ({ img, authorName, text, date }) => {
   dayjs.extend(relativeTime);
   const commentDate = dayjs(date).fromNow();
 

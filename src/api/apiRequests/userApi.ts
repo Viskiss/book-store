@@ -1,4 +1,4 @@
-import type { UserType } from '../../types/userTypes/updateUser';
+import type { UserType } from '../../types/updateUserTypes';
 import api from '../api';
 
 const USER_PATH_PREFIX = '/user';

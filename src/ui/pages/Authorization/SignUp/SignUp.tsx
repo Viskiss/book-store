@@ -10,13 +10,12 @@ import Button from 'src/ui/components/Button';
 import { useAppDispatch } from 'src/redux/store';
 import { signUpThunk } from 'src/redux/userStore/thunks/authUser';
 
+import { navigationRoutes } from 'src/utils/constants';
 import { fieldsValidation } from 'src/utils/validationFields';
 import {
   handleApiValidationError,
   matchError,
 } from 'src/utils/handleApiValidationError';
-
-import constants from 'src/utils/constants';
 
 import mailIcon from 'src/ui/assets/images/icon/Mail.svg';
 import eyeIcon from 'src/ui/assets/images/icon/Hide.svg';
@@ -47,7 +46,7 @@ const SignUp: React.FC = () => {
         const { email, password } = values;
         await dispatch(signUpThunk({ email, password })).unwrap();
         if (success !== undefined) {
-          navigate(constants.routesLink.home);
+          navigate(navigationRoutes.home);
         }
       } catch (error) {
         if (matchError(error)) {

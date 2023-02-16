@@ -3,8 +3,8 @@ import { toast } from 'react-toastify';
 
 import booksImg from 'src/ui/assets/images/books.svg';
 
-import { deleteFavoriteBook, getFavoriteBooks } from 'src/api';
-import type { FavoriteBookType } from 'src/types';
+import { deleteFavoriteBook, getFavoriteBooks } from 'src/api/apiRequests/favoriteBooksApi';
+import type { FavoriteBookType } from 'src/types/bookStoreTypes';
 import TextBlock from 'src/ui/components/TextBlock';
 
 import ItemFavorite from './ItemFavorit';

@@ -2,24 +2,21 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
-import constants from 'src/utils/constants';
 
 import Button from 'src/ui/components/Button';
 import TextBlock from 'src/ui/components/TextBlock';
 
-import {
-  addCopyBook,
-  deleteBookInCart,
-  deleteCopyBook,
-} from 'src/ui/pages/BookStoreMain/redux/thunks';
-
 import booksImg from 'src/ui/assets/images/books.svg';
-
-import { getCart } from '../BookStoreMain/redux/thunks';
+import { navigationRoutes } from 'src/utils/constants';
 
 import ItemCart from './ItemCart';
 
 import StyledCart from './Cart.styles';
+import {
+  changeCopyBookThunk,
+  deleteBookInCartThunk,
+  getCartThunk,
+} from '../BookStoreMain/redux/thunks/cartThunks';
 
 const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -28,25 +25,11 @@ const Cart: React.FC = () => {
   const [total, setTotal] = useState(0);
 
   const cart = useAppSelector((store) => store.bookStore.cart);
-  const isAuth = useAppSelector((store) => store.userStore.isAuthenticated);
   const user = useAppSelector((store) => store.userStore.user);
 
-  const handleDeleteBook = (cartId: number) => {
-    dispatch(deleteBookInCart(cartId));
-  };
-
-  const handleAddCopyBook = (bookId: number) => {
-    dispatch(addCopyBook(bookId));
-  };
-
-  const handleDeleteCopyBook = (bookId: number) => {
-    dispatch(deleteCopyBook(bookId));
-  };
   useEffect(() => {
-    if (isAuth && !cart.length) {
-      dispatch(getCart(user?.id || 0));
-    }
-  }, [dispatch, isAuth, user?.id, cart.length]);
+    dispatch(getCartThunk(user?.id || 0));
+  }, [dispatch, user?.id]);
 
   useEffect(() => {
     const price = cart.reduce(
@@ -56,6 +39,14 @@ const Cart: React.FC = () => {
     setTotal(Number(price.toFixed(2)));
   }, [cart]);
 
+  const handleDeleteBook = (cartId: number) => {
+    dispatch(deleteBookInCartThunk(cartId));
+  };
+
+  const handleChangeCopyBook = (bookId: number, mark: number) => {
+    dispatch(changeCopyBookThunk({ bookId, mark }));
+  };
+
   return (
     <StyledCart>
       {cart.length ? (
@@ -63,9 +54,8 @@ const Cart: React.FC = () => {
           <div className="cart__books">
             {cart.map((cart) => (
               <ItemCart
-                handleAddCopyBook={handleAddCopyBook}
+                handleChangeCopyBook={handleChangeCopyBook}
                 handleDeleteBook={handleDeleteBook}
-                handleDeleteCopyBook={handleDeleteCopyBook}
                 cart={cart}
                 key={cart.id}
               />
@@ -76,7 +66,7 @@ const Cart: React.FC = () => {
               Total:<span className="cart__total"> {total}</span>
             </p>
             <Button
-              onClick={() => navigate(constants.routesLink.home)}
+              onClick={() => navigate(navigationRoutes.home)}
               className="cart-button"
             >
               Continue shopping

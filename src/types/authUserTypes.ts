@@ -1,4 +1,4 @@
-import type { UserType } from './updateUser';
+import type { UserType } from './updateUserTypes';
 
 export type UserCreateType = {
   email: UserType['email'];

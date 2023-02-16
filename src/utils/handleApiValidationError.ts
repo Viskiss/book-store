@@ -1,5 +1,6 @@
 import type { FormikErrors } from 'formik';
-import type { ErrorType } from 'src/types';
+
+import type { ErrorType } from 'src/types/updateUserTypes';
 
 export const handleApiValidationError = <E extends object>(
   apiErrors: Array<{ key: string; path: string; message: string }>,

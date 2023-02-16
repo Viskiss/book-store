@@ -1,35 +1,23 @@
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
-import type { CartType } from 'src/types';
+import type { CartType } from 'src/types/bookStoreTypes';
 
 import trashBox from 'src/ui/assets/images/icon/Delete.svg';
-
 import decrement from 'src/ui/assets/images/icon/decrement.svg';
 import increment from 'src/ui/assets/images/icon/increment.svg';
 
-interface IProps {
+type PropType = {
   cart: CartType;
   handleDeleteBook: (id: number) => void;
-  handleAddCopyBook: (bookId: number) => void;
-  handleDeleteCopyBook: (bookId: number) => void;
-}
+  handleChangeCopyBook: (bookId: number, mark: number) => void;
+};
 
-const ItemCart: React.FC<IProps> = ({
+const ItemCart: React.FC<PropType> = ({
   cart: { price, bookId, id, cover, title, author, quantityOfGoods },
-  handleAddCopyBook,
   handleDeleteBook,
-  handleDeleteCopyBook,
+  handleChangeCopyBook,
 }) => {
   const navigate = useNavigate();
-
-  const selectBook = (id: number) => {
-    try {
-      navigate(`/book/${id}`);
-    } catch (err) {
-      toast.error('Unexpected server error');
-    }
-  };
 
   return (
     <>
@@ -40,7 +28,7 @@ const ItemCart: React.FC<IProps> = ({
 
         <div>
           <h1
-            onClick={() => selectBook(bookId)}
+            onClick={() => navigate(`/book/${bookId}`)}
             className="item-cart__box-title"
           >
             {title}
@@ -49,14 +37,14 @@ const ItemCart: React.FC<IProps> = ({
           <div className="item-cart__box-filter">
             <div>
               <button
-                onClick={() => handleDeleteCopyBook(bookId)}
+                onClick={() => handleChangeCopyBook(bookId, 0)}
                 className="item-cart__box-button"
               >
                 <img className="box-button__dec" src={decrement} alt="" />
               </button>
               <span className="quantity">{quantityOfGoods}</span>
               <button
-                onClick={() => handleAddCopyBook(bookId)}
+                onClick={() => handleChangeCopyBook(bookId, 1)}
                 className="item-cart__box-button"
               >
                 <img className="box-button__inc" src={increment} alt="" />

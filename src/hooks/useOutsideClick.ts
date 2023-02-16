@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useOutsideDrop = (ref: any, setDropSelect: React.Dispatch<React.SetStateAction<boolean>>) => {
+export const useOutsideClick = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ref: any,
+  setDropSelect: React.Dispatch<React.SetStateAction<boolean>>,
+) => {
   useEffect(() => {
     function handleClickOutside(event: { target: unknown }) {
       if (ref.current && !ref.current.contains(event.target)) {
@@ -14,5 +17,3 @@ const useOutsideDrop = (ref: any, setDropSelect: React.Dispatch<React.SetStateAc
     };
   }, [ref, setDropSelect]);
 };
-
-export default useOutsideDrop;

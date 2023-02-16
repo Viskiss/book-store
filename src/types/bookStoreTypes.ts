@@ -1,4 +1,4 @@
-import type { UserType } from '../userTypes/updateUser';
+import type { UserType } from './updateUserTypes';
 
 export type BookType = {
   id: number;
@@ -30,6 +30,11 @@ export type FilterType = {
 export type AddBookType = {
   userId: UserType['id'];
   bookId: BookType['id'];
+};
+
+export type ChangeCopyBookType = {
+  bookId: number;
+  mark: number;
 };
 
 export type CartType = {

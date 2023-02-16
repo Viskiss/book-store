@@ -3,9 +3,8 @@ import type { AxiosError } from 'axios';
 
 import tokenHelper from 'src/utils/tokenHelper';
 
-import type { UserCreateType } from 'src/types';
-
-import { getMe, logInUser, signUpUser } from 'src/api';
+import type { UserCreateType } from 'src/types/authUserTypes';
+import { getCurrentUser, logInUser, signUpUser } from 'src/api/apiRequests/authUserApi';
 
 export const signUpThunk = createAsyncThunk(
   'user/createUser',
@@ -49,7 +48,7 @@ export const currentUserThunk = createAsyncThunk(
       if (!token) {
         return null;
       }
-      const user = await getMe();
+      const user = await getCurrentUser();
       return user.data;
     } catch {
       return null;

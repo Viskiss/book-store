@@ -1,6 +1,6 @@
 import type { AxiosRequestConfig } from 'axios';
 
-import type { GenreType, BookType, FilterType } from 'src/types';
+import type { GenreType, BookType, FilterType } from 'src/types/bookStoreTypes';
 
 import api from 'src/api/api';
 
@@ -12,25 +12,21 @@ type GetFilteredBooksType = {
   numberPages: number;
 };
 
-export const getAllBooks = () => {
-  return api.get<{ books: BookType[] }>(`${BOOK_PATH_PREFIX}/all`);
-};
-
 export const getRecommendedBooks = (userId: number) => {
   return api.get<{ books: BookType[] }>(
     `${BOOK_PATH_PREFIX}/recommend/${userId}`,
   );
 };
 
-export const getAllGernes = () => {
+export const getGernes = () => {
   return api.get<{ genres: GenreType[] }>(`${BOOK_PATH_PREFIX}/genres`);
 };
 
-export const getSelectBook = (bookId: number) => {
+export const getCurrentBook = (bookId: number) => {
   return api.get<{book: BookType}>(`${BOOK_PATH_PREFIX}/${bookId}`);
 };
 
-export const getFilterBooks = (filters: FilterType) => {
+export const getFilteredBooks = (filters: FilterType) => {
   return api.get<GetFilteredBooksType>(`${BOOK_PATH_PREFIX}/filter`, {
     params: { ...filters },
   } as AxiosRequestConfig);

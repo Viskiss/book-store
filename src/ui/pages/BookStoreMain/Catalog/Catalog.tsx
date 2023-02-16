@@ -1,48 +1,52 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import Lottie from 'lottie-react';
 import { toast } from 'react-toastify';
 
-import options from 'src/utils/lottieOptions';
-import loader from 'src/ui/assets/lottieFiles/loading.json';
-
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
-import constants from 'src/utils/constants';
+import { navigationRoutes } from 'src/utils/constants';
 
 import Filters from 'src/ui/pages/BookStoreMain/Catalog/components/Filters';
-import type { FavoriteBookType } from 'src/types';
-import { deleteFavoriteBook, getFavoriteBooks } from 'src/api';
+import type { FavoriteBookType, GenreType } from 'src/types/bookStoreTypes';
+
+import LottieLoading from 'src/ui/components/LottieLoading';
+import { getGernes } from 'src/api/apiRequests/bookApi';
+import {
+  deleteFavoriteBook,
+  getFavoriteBooks,
+} from 'src/api/apiRequests/favoriteBooksApi';
 import ItemBook from './components/ItemBook';
 
 import Pagination from './components/Pagintion/Pagination';
 
 import StyledCatalog from './Catalog.styles';
-import { addBookThunk, getFilterBooksThunk } from '../redux/thunks';
+import { getFilterBooksThunk } from '../redux/thunks/bookThunks';
+import { addBookThunk } from '../redux/thunks/cartThunks';
 
 const Catalog: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const [genres, setGenres] = useState<GenreType[]>([]);
+  const [favoriteBooks, setFavoriteBooks] = useState<FavoriteBookType[]>([]);
 
   const userId = useAppSelector((state) => state.userStore.user?.id);
   const books = useAppSelector((store) => store.bookStore.books);
-  const isAuth = useAppSelector((store) => store.userStore.isAuthenticated);
-
-  const [favoriteBooks, setFavoriteBooks] = useState<FavoriteBookType[]>([]);
-
-  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    if (isAuth) {
-      (async () => {
-        try {
+    (async () => {
+      try {
+        const genres = await getGernes();
+        setGenres(genres.data.genres);
+        if (userId) {
           const books = await getFavoriteBooks();
           setFavoriteBooks(books.data.books);
-        } catch (err) {
-          const error = err as Error;
-          toast.error(error.message);
         }
-      })();
-    }
+      } catch (err) {
+        const error = err as Error;
+        toast.error(error.message);
+      }
+    })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -73,32 +77,32 @@ const Catalog: React.FC = () => {
 
   const handlerAddToCartBook = (bookId: number) => {
     if (!userId) {
-      navigate(constants.routesLink.signIn);
+      navigate(navigationRoutes.signIn);
     } else {
       dispatch(addBookThunk({ userId, bookId }));
     }
   };
 
+  if (!genres.length && !books) {
+    return <LottieLoading />;
+  }
+
   return (
     <StyledCatalog>
-      <Filters />
+      <Filters genres={genres} />
       <div className="books-catalog">
-        {!books ? (
-          <Lottie style={options.loadingStyles} animationData={loader} />
-        ) : (
-          <div className="books-catalog__items">
-            {books.map((book) => (
-              <ItemBook
-                setFavoriteBooks={setFavoriteBooks}
-                setAddToCartBook={handlerAddToCartBook}
-                setDeleteBook={handlerDeleteFavoriteBook}
-                favoriteBooks={favoriteBooks}
-                books={book}
-                key={book.id}
-              />
-            ))}
-          </div>
-        )}
+        <div className="books-catalog__items">
+          {books.map((book) => (
+            <ItemBook
+              setFavoriteBooks={setFavoriteBooks}
+              setAddToCartBook={handlerAddToCartBook}
+              setDeleteBook={handlerDeleteFavoriteBook}
+              favoriteBooks={favoriteBooks}
+              books={book}
+              key={book.id}
+            />
+          ))}
+        </div>
       </div>
       <Pagination />
     </StyledCatalog>

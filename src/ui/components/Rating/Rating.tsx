@@ -2,20 +2,20 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating';
 
 import { useAppSelector } from 'src/redux/store';
-import constants from 'src/utils/constants';
+import { navigationRoutes } from 'src/utils/constants';
 
 import star from 'src/ui/assets/images/icon/Star.svg';
 import arrow from 'src/ui/assets/images/icon/arrow.svg';
 
 import StyledBook from './Rating.styles';
 
-interface IProps {
+type PropType = {
   bookRate: number;
   userRate: number;
   setRate: (bookId: number, rate: number) => void;
-}
+};
 
-const StarRate: React.FC<IProps> = ({ bookRate, userRate, setRate }) => {
+const StarRate: React.FC<PropType> = ({ bookRate, userRate, setRate }) => {
   const navigate = useNavigate();
 
   const { bookId } = useParams();
@@ -26,7 +26,7 @@ const StarRate: React.FC<IProps> = ({ bookRate, userRate, setRate }) => {
     if (user) {
       setRate(Number(bookId), rate);
     } else {
-      navigate(constants.routesLink.signIn);
+      navigate(navigationRoutes.signIn);
     }
   };
 

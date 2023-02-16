@@ -8,27 +8,26 @@ import Button from 'src/ui/components/Button';
 import like from 'src/ui/assets/images/icon/Heart.svg';
 import fillLike from 'src/ui/assets/images/icon/fillHeart.svg';
 
-import { addFavoriteBook } from 'src/api';
-import constants from 'src/utils/constants';
 import tokenHelper from 'src/utils/tokenHelper';
-
-import type { BookType, FavoriteBookType } from 'src/types';
+import { navigationRoutes } from 'src/utils/constants';
+import type { BookType, FavoriteBookType } from 'src/types/bookStoreTypes';
 import { useAppSelector } from 'src/redux/store';
+import { addFavoriteBook } from 'src/api/apiRequests/favoriteBooksApi';
 
 import star from 'src/ui/assets/images/icon/Star.svg';
 import emptyStar from 'src/ui/assets/images/icon/EmptyStar.svg';
 
 import StyledItemBook from './ItemBook.styles ';
 
-interface IProps {
+type PropType = {
   books: BookType;
   favoriteBooks: FavoriteBookType[];
   setDeleteBook: (bookId: number) => void;
   setAddToCartBook: (bookId: number) => void;
   setFavoriteBooks: Dispatch<SetStateAction<FavoriteBookType[]>>;
-}
+};
 
-const ItemBook: React.FC<IProps> = ({
+const ItemBook: React.FC<PropType> = ({
   books: { cover, title, author, date, rate, price, id },
   favoriteBooks,
   setDeleteBook,
@@ -49,7 +48,7 @@ const ItemBook: React.FC<IProps> = ({
 
   const handlerLikeBook = () => {
     if (!user) {
-      navigate(constants.routesLink.signIn);
+      navigate(navigationRoutes.signIn);
     } else {
       (async () => {
         try {

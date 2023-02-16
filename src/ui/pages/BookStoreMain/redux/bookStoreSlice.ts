@@ -1,15 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { BookType, CartType } from 'src/types';
+import type { BookType, CartType } from 'src/types/bookStoreTypes';
 
 import {
-  getCart,
-  deleteBookInCart,
-  addCopyBook,
+  getCartThunk,
   addBookThunk,
-  deleteCopyBook,
+  changeCopyBookThunk,
+} from './thunks/cartThunks';
+
+import {
   getFilterBooksThunk,
-} from './thunks';
+} from './thunks/bookThunks';
 
 const initialState = () => ({
   books: [] as BookType[],
@@ -23,23 +24,17 @@ const bookStoreSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getCart.fulfilled, (state, { payload }) => {
-      state.cart = payload.books;
+    builder.addCase(getCartThunk.fulfilled, (state, { payload }) => {
+      if (payload) {
+        state.cart = payload.books;
+      }
     });
 
-    builder.addCase(deleteBookInCart.fulfilled, (state, { payload }) => {
-      state.cart = payload.books;
-    });
-
-    builder.addCase(addCopyBook.fulfilled, (state, { payload }) => {
+    builder.addCase(changeCopyBookThunk.fulfilled, (state, { payload }) => {
       state.cart = payload.books;
     });
 
     builder.addCase(addBookThunk.fulfilled, (state, { payload }) => {
-      state.cart = payload.books;
-    });
-
-    builder.addCase(deleteCopyBook.fulfilled, (state, { payload }) => {
       state.cart = payload.books;
     });
 

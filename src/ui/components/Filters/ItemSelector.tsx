@@ -5,15 +5,21 @@ import { useSearchParams } from 'react-router-dom';
 import checked from 'src/ui/assets/images/icon/Checked.svg';
 import noChecked from 'src/ui/assets/images/icon/No-checked.svg';
 
-interface IProps {
+type PropsType = {
   name: string;
   title: string;
   id: number;
-  setState: (newFilter: string) => void;
-  filter: string[] | string;
-}
+  handlerChange: (newFilter: string) => void;
+  filter: string | string[] | undefined;
+};
 
-const ItemGenre: React.FC<IProps> = ({ name, id, filter, setState, title }) => {
+const ItemGenre: React.FC<PropsType> = ({
+  name,
+  id,
+  filter,
+  handlerChange,
+  title,
+}) => {
   const [searchParams] = useSearchParams();
 
   const [checkedImg, setCheckedImg] = useState(noChecked);
@@ -33,11 +39,13 @@ const ItemGenre: React.FC<IProps> = ({ name, id, filter, setState, title }) => {
 
   const handleChangeGenre = (name: string) => {
     setCheckedImg(checked);
-    const index = filter.indexOf(name);
-    if (index !== -1) {
-      setCheckedImg(noChecked);
+    if (filter) {
+      const index = filter.indexOf(name);
+      if (index !== -1) {
+        setCheckedImg(noChecked);
+      }
+      handlerChange(name);
     }
-    setState(name);
   };
 
   return (

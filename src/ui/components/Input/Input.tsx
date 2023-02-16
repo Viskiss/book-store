@@ -1,12 +1,11 @@
 import type { FormikTouched } from 'formik';
-import type { MouseEventHandler } from 'react';
 import React, { useState } from 'react';
 
 import view from 'src/ui/assets/images/icon/View.svg';
 
 import StyledInput from './Input.styles';
 
-interface IProps {
+type PropType = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   className?: string;
@@ -19,10 +18,9 @@ interface IProps {
   touched?: FormikTouched<unknown>;
   type?: string;
   disabled?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-}
+};
 
-const Input: React.FC<IProps> = (props: IProps) => {
+const Input: React.FC<PropType> = ({ ...props }) => {
   const [typeInput, setTypeInput] = useState(props.type);
   const [typeImg, setTypeImg] = useState(props.img);
 

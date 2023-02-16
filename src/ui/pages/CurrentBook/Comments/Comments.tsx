@@ -7,9 +7,9 @@ import io from 'socket.io-client';
 import { useAppSelector } from 'src/redux/store';
 
 import config from 'src/utils/config';
-import type { CommentType } from 'src/types';
+import type { CommentType } from 'src/types/bookStoreTypes';
 
-import { getComments } from 'src/api';
+import { getComments } from 'src/api/apiRequests/commentApi';
 
 import Button from 'src/ui/components/Button';
 import ItemComment from './itemComment';

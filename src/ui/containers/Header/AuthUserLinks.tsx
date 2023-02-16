@@ -3,20 +3,18 @@ import { useAppSelector } from 'src/redux/store';
 
 import Button from 'src/ui/components/Button';
 
-import constants from 'src/utils/constants';
+import { navigationRoutes } from 'src/utils/constants';
 
 import like from 'src/ui/assets/images/icon/Heart.svg';
 import cart from 'src/ui/assets/images/icon/Cart.svg';
 import profile from 'src/ui/assets/images/icon/UserIcon.svg';
 
 const AuthUserLinks: React.FC = () => {
-  const { routesLink } = constants;
-
   const booksCount = useAppSelector((store) => store.bookStore.cart.length);
 
   return (
     <div className="round-buttons">
-      <Link to={routesLink.cart}>
+      <Link to={navigationRoutes.cart}>
         <Button className="round-button round-button__count">
           {booksCount !== 0 ? (
             <span className="books-counter">{booksCount}</span>
@@ -27,13 +25,13 @@ const AuthUserLinks: React.FC = () => {
         </Button>
       </Link>
 
-      <Link to={routesLink.favorite}>
+      <Link to={navigationRoutes.favorite}>
         <Button className="round-button round-button__count">
           <img className="round-button__img" src={like} alt="Heart" />
         </Button>
       </Link>
 
-      <Link to={routesLink.profile}>
+      <Link to={navigationRoutes.profile}>
         <Button className="round-button">
           <img className="round-button__img" src={profile} alt="Profile" />
         </Button>

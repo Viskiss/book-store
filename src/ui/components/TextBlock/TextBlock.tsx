@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
-import Button from 'src/ui/components/Button';
+import { navigationRoutes } from 'src/utils/constants';
 
-import constants from 'src/utils/constants';
+import Button from 'src/ui/components/Button';
 
 import Styles from './TextBlock.styles';
 
-interface IProps {
+type PropType = {
   h1: string;
   p: string;
   img?: string;
@@ -15,37 +15,46 @@ interface IProps {
   link: string;
   title?: string;
   className?: string;
-}
+};
 
-const TextBlock: React.FC<IProps> = (props: IProps) => {
+const TextBlock: React.FC<PropType> = ({
+  h1,
+  link,
+  p,
+  className,
+  img2,
+  img3,
+  img,
+  title,
+}) => {
   return (
     <Styles>
       <div className="block-text_main block-text_auth">
-        <h1 className="title">{props.h1}</h1>
+        <h1 className="title">{h1}</h1>
         <div className="block_text auth-text">
-          <p className="text">{props.p}</p>
+          <p className="text">{p}</p>
         </div>
-        {props.className === 'auth' ? (
+        {className === 'auth' ? (
           <>
-            <Link to={constants.routesLink.signIn}>
+            <Link to={navigationRoutes.signIn}>
               <Button className="auth-button">Sign In</Button>
             </Link>
-            <Link to={constants.routesLink.signUp}>
+            <Link to={navigationRoutes.signUp}>
               <Button className="auth-button">Sign Up</Button>
             </Link>
           </>
         ) : (
-          <Link to={props.link}>
-            <Button>{props.title}</Button>
+          <Link to={link}>
+            <Button>{title}</Button>
           </Link>
         )}
       </div>
       <picture>
-        <source media="(max-width: 425px)" srcSet={props.img3} />
-        <source media="(max-width: 840px)" srcSet={props.img2} />
+        <source media="(max-width: 425px)" srcSet={img3} />
+        <source media="(max-width: 840px)" srcSet={img2} />
         <img
           className="block-text_img img-book-banner img-auth-banner"
-          src={props.img}
+          src={img}
           alt=""
         />
       </picture>

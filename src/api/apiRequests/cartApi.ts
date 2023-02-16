@@ -1,10 +1,10 @@
 import api from 'src/api/api';
 
-import type { CartType } from 'src/types';
+import type { CartType } from 'src/types/bookStoreTypes';
 
 const CART_PATH_PREFIX = '/cart';
 
-export const addBook = (userId: number, bookId: number) => {
+export const addBooktoCart = (userId: number, bookId: number) => {
   return api.post<{ books: CartType[] }>(`${CART_PATH_PREFIX}/add`, {
     userId,
     bookId,
@@ -17,18 +17,12 @@ export const getCartBooks = (userId: number) => {
   });
 };
 
-export const addCopy = (bookId: number) => {
-  return api.get<{ books: CartType[] }>(`${CART_PATH_PREFIX}/copy/${bookId}`);
-};
-
 export const deleteBook = (cartId: number) => {
   return api.delete<{ books: CartType[] }>(
     `${CART_PATH_PREFIX}/delete/${cartId}`,
   );
 };
 
-export const deleteCopy = (bookId: number) => {
-  return api.delete<{ books: CartType[] }>(
-    `${CART_PATH_PREFIX}/delete-copy/${bookId}`,
-  );
+export const changeCopyBook = (data: {bookId: number; mark: number}) => {
+  return api.patch<{ books: CartType[] }>(`${CART_PATH_PREFIX}/change-copy/${data.bookId}/${data.mark}`);
 };

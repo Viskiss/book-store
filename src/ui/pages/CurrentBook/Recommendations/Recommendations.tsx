@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { deleteFavoriteBook, getFavoriteBooks, getRecommendedBooks } from 'src/api';
+import { getRecommendedBooks } from 'src/api/apiRequests/bookApi';
+import { deleteFavoriteBook, getFavoriteBooks } from 'src/api/apiRequests/favoriteBooksApi';
+
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 
-import type { BookType, FavoriteBookType } from 'src/types';
-import constants from 'src/utils/constants';
+import type { BookType, FavoriteBookType } from 'src/types/bookStoreTypes';
 
 import ItemBook from 'src/ui/pages/BookStoreMain/Catalog/components/ItemBook';
-
-import { addBookThunk } from '../../BookStoreMain/redux/thunks';
+import { navigationRoutes } from 'src/utils/constants';
+import { addBookThunk } from '../../BookStoreMain/redux/thunks/cartThunks';
 
 import StyledRecBooks from './RecommendBooks.styles';
 
@@ -67,7 +68,7 @@ const RecommendBooks: React.FC = () => {
 
   const handlerAddToCartBook = (bookId: number) => {
     if (!userId) {
-      navigate(constants.routesLink.signIn);
+      navigate(navigationRoutes.signIn);
     } else {
       dispatch(addBookThunk({ userId, bookId }));
     }

@@ -1,16 +1,22 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 
-import type { AddBookType } from 'src/types';
+import {
+  addBooktoCart,
+  changeCopyBook,
+  deleteBook,
+  getCartBooks,
+} from 'src/api/apiRequests/cartApi';
 
-import { addBook, addCopy, deleteBook, deleteCopy, getCartBooks } from 'src/api';
+import type { AddBookType, ChangeCopyBookType } from 'src/types/bookStoreTypes';
+import tokenHelper from 'src/utils/tokenHelper';
 
 export const addBookThunk = createAsyncThunk(
   'cart/addBookInCart',
   async (data: AddBookType, { rejectWithValue }) => {
     const { userId, bookId } = data;
     try {
-      const cart = await addBook(userId, bookId);
+      const cart = await addBooktoCart(userId, bookId);
       return cart.data;
     } catch (err) {
       const error = err as AxiosError;
@@ -22,10 +28,14 @@ export const addBookThunk = createAsyncThunk(
   },
 );
 
-export const getCart = createAsyncThunk(
+export const getCartThunk = createAsyncThunk(
   'cart/cartBooks',
   async (userId: number, { rejectWithValue }) => {
     try {
+      const token = tokenHelper.token.get();
+      if (!token) {
+        return null;
+      }
       const cart = await getCartBooks(userId);
       return cart.data;
     } catch (err) {
@@ -38,43 +48,28 @@ export const getCart = createAsyncThunk(
   },
 );
 
-export const addCopyBook = createAsyncThunk(
-  'cart/copyBook',
-  async (bookId: number, { rejectWithValue }) => {
-    try {
-      const books = await addCopy(bookId);
-      return books.data;
-    } catch (err) {
-      const error = err as AxiosError;
-      if (!error.response) {
-        throw err;
-      }
-      return rejectWithValue(error.response.data);
-    }
-  },
-);
-
-export const deleteCopyBook = createAsyncThunk(
-  'cart/deleteCopyBook',
-  async (bookId: number, { rejectWithValue }) => {
-    try {
-      const books = await deleteCopy(bookId);
-      return books.data;
-    } catch (err) {
-      const error = err as AxiosError;
-      if (!error.response) {
-        throw err;
-      }
-      return rejectWithValue(error.response.data);
-    }
-  },
-);
-
-export const deleteBookInCart = createAsyncThunk(
+export const deleteBookInCartThunk = createAsyncThunk(
   'cart/deleteBook',
   async (cartId: number, { rejectWithValue }) => {
     try {
       const books = await deleteBook(cartId);
+      return books.data;
+    } catch (err) {
+      const error = err as AxiosError;
+      if (!error.response) {
+        throw err;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const changeCopyBookThunk = createAsyncThunk(
+  'cart/changeCopyBook',
+  async (data: ChangeCopyBookType, { rejectWithValue }) => {
+    const { bookId, mark } = data;
+    try {
+      const books = await changeCopyBook({ bookId, mark });
       return books.data;
     } catch (err) {
       const error = err as AxiosError;

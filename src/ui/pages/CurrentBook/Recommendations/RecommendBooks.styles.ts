@@ -9,10 +9,6 @@ export default styled.div`
     display: flex;
     gap: 20px;
     justify-content: center;
-
-    div {
-      margin-bottom: 0;
-    }
   }
 
   .recommendations__title {

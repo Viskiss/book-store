@@ -4,24 +4,22 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 import Button from 'src/ui/components/Button';
 
-import constants from 'src/utils/constants';
 import tokenHelper from 'src/utils/tokenHelper';
 
 import logo from 'src/ui/assets/images/logoH.svg';
 import loupe from 'src/ui/assets/images/icon/Search.svg';
 
-import { useDebounce } from 'src/hooks';
+import { navigationRoutes } from 'src/utils/constants';
+import { useDebounce } from 'src/hooks/useDebounce';
 import AuthUserLinks from './AuthUserLinks';
 
 import StyledHeader from './Header.styles';
-
-const { routesLink } = constants;
 
 const Header: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchString, setSearchString] = useState('');
 
-  const debouncedFilter = useDebounce(searchString, 1000);
+  const debouncedFilter = useDebounce(searchString, 500);
 
   const token = tokenHelper.token.get();
 
@@ -43,13 +41,13 @@ const Header: React.FC = () => {
     <div className="container">
       <StyledHeader>
         <div className="logo-box">
-          <Link className="logo__link" to={routesLink.home}>
+          <Link className="logo__link" to={navigationRoutes.home}>
             <img className="logo" src={logo} alt="" />
           </Link>
         </div>
 
         <div className="catalog-link-box">
-          <Link className="catalog-link" to={routesLink.home}>
+          <Link className="catalog-link" to={navigationRoutes.home}>
             Catalog
           </Link>
         </div>
@@ -68,10 +66,10 @@ const Header: React.FC = () => {
 
         {!token ? (
           <div className="round-buttons ">
-            <Link to={routesLink.signIn}>
+            <Link to={navigationRoutes.signIn}>
               <Button className="auth-button">Sign In</Button>
             </Link>
-            <Link to={routesLink.signUp}>
+            <Link to={navigationRoutes.signUp}>
               <Button className="auth-button">Sign Up</Button>
             </Link>
           </div>

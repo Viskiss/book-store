@@ -1,6 +1,6 @@
 import TextBlock from 'src/ui/components/TextBlock';
 
-import constants from 'src/utils/constants';
+import { navigationRoutes } from 'src/utils/constants';
 
 import books from 'src/ui/assets/images/booksFill.svg';
 import girl from 'src/ui/assets/images/girl.svg';
@@ -16,7 +16,7 @@ const BookBaner: React.FC = () => {
         p="Buy two books and get one for free"
         title="Choose a book"
         img={books}
-        link={constants.routesLink.home}
+        link={navigationRoutes.home}
       />
       <picture>
         <source media="(max-width:1024px)" srcSet={girl2} />

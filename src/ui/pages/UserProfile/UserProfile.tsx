@@ -20,9 +20,8 @@ import {
   handleApiValidationError,
   matchError,
 } from 'src/utils/handleApiValidationError';
+import { navigationRoutes } from 'src/utils/constants';
 import tokenHelper from 'src/utils/tokenHelper';
-
-import constants from 'src/utils/constants';
 
 import mail from 'src/ui/assets/images/icon/Mail.svg';
 import camera from 'src/ui/assets/images/icon/Camera.svg';
@@ -109,7 +108,7 @@ const UserProfile: React.FC = () => {
     if (user) {
       tokenHelper.token.remove();
       dispatch(userSliceActions.exitUser(1));
-      navigate(`${constants.routesLink.home}`);
+      navigate(`${navigationRoutes.home}`);
     }
   };
 

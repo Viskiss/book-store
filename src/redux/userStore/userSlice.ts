@@ -2,16 +2,18 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { setApiToken } from 'src/api/api';
 
-import type { UserType } from 'src/types';
-import tokenHelper from 'src/utils/tokenHelper';
+import type { UserType } from 'src/types/updateUserTypes';
 
 import {
-  changeUserThunk,
   currentUserThunk,
   logInUserThunk,
   signUpThunk,
+} from 'src/redux/userStore/thunks/authUser';
+
+import {
+  changeUserThunk,
   uploadAvatarUserThunk,
-} from 'src/redux/userStore/thunks';
+} from 'src/redux/userStore/thunks/updateUser';
 
 const initialState = () => ({
   user: null as UserType | null,

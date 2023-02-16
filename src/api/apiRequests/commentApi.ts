@@ -1,5 +1,5 @@
 import api from 'src/api/api';
-import type { CommentType } from 'src/types';
+import type { CommentType } from 'src/types/bookStoreTypes';
 
 const COMMENT_PATH_PREFIX = '/comment';
 
