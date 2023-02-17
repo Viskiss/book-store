@@ -37,7 +37,7 @@ const Pagination: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, setSearchParams]);
 
-  const previousPageClickHandler = () => {
+  const handlerClickFirstDot = () => {
     if (page === 1) {
       return;
     }
@@ -45,7 +45,7 @@ const Pagination: React.FC = () => {
     setSearchParams(searchParams);
   };
 
-  const nextPageClickHandler = () => {
+  const handlerClickNextDot = () => {
     searchParams.set('page', String(page + 1));
     setSearchParams(searchParams);
   };
@@ -54,14 +54,14 @@ const Pagination: React.FC = () => {
     <StyledPaginationBooks>
       <Button
         disabled={page === 1}
-        onClick={previousPageClickHandler}
+        onClick={handlerClickFirstDot}
         className="pagination-button"
       >
         <img className="previous-page__button page-button" src={leftArrow} />
       </Button>
       <div className="counter-block">
         <button
-          onClick={previousPageClickHandler}
+          onClick={handlerClickFirstDot}
           className={classNames({
             counter: true,
             'counter-selected': page === 1,
@@ -70,7 +70,7 @@ const Pagination: React.FC = () => {
         <button
           disabled={counter < 22}
           onClick={
-            page === maxPages ? previousPageClickHandler : nextPageClickHandler
+            page === maxPages ? handlerClickFirstDot : handlerClickNextDot
           }
           className={classNames({
             counter: true,
@@ -79,7 +79,7 @@ const Pagination: React.FC = () => {
         />
         <button
           disabled={page === maxPages && page === 1}
-          onClick={nextPageClickHandler}
+          onClick={handlerClickNextDot}
           className={classNames({
             counter: true,
             'counter-selected': page === maxPagesDot(),
@@ -88,7 +88,7 @@ const Pagination: React.FC = () => {
       </div>
       <Button
         disabled={page === maxPages}
-        onClick={nextPageClickHandler}
+        onClick={handlerClickNextDot}
         className="pagination-button"
       >
         <img className="next-page__button page-button" src={arrowRight} />

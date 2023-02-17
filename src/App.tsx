@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import Header from 'src/ui/containers/Header';
@@ -6,21 +6,21 @@ import Navigation from 'src/ui/containers/Navigation';
 import Footer from 'src/ui/containers/Footer';
 import LottieLoading from './ui/components/LottieLoading';
 
-import { useAppDispatch, useAppSelector } from './redux/store';
+import { useAppDispatch } from './redux/store';
 import { currentUserThunk } from './redux/userStore/thunks/authUser';
 
 const App: React.FC = () => {
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const dispatch = useAppDispatch();
 
-  const isAuthenticated = useAppSelector(
-    (state) => state.userStore.isAuthenticated,
-  );
-
   useEffect(() => {
-    dispatch(currentUserThunk());
-  }, [dispatch]);
+    (async () => {
+      await dispatch(currentUserThunk());
+      setIsAuthorized(true);
+    })();
+  }, [dispatch, setIsAuthorized]);
 
-  if (!isAuthenticated) {
+  if (!isAuthorized) {
     return <LottieLoading />;
   }
 

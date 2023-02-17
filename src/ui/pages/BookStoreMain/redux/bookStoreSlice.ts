@@ -4,12 +4,12 @@ import type { BookType, CartType } from 'src/types/bookStoreTypes';
 
 import {
   getCartThunk,
-  addBookThunk,
+  addBookToCartThunk,
   changeCopyBookThunk,
 } from './thunks/cartThunks';
 
 import {
-  getFilterBooksThunk,
+  getFilteredBooksThunk,
 } from './thunks/bookThunks';
 
 const initialState = () => ({
@@ -24,6 +24,12 @@ const bookStoreSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(getFilteredBooksThunk.fulfilled, (state, { payload }) => {
+      state.books = payload.books;
+      state.count = payload.counterBooks;
+      state.pages = payload.numberPages;
+    });
+
     builder.addCase(getCartThunk.fulfilled, (state, { payload }) => {
       if (payload) {
         state.cart = payload.books;
@@ -34,14 +40,8 @@ const bookStoreSlice = createSlice({
       state.cart = payload.books;
     });
 
-    builder.addCase(addBookThunk.fulfilled, (state, { payload }) => {
+    builder.addCase(addBookToCartThunk.fulfilled, (state, { payload }) => {
       state.cart = payload.books;
-    });
-
-    builder.addCase(getFilterBooksThunk.fulfilled, (state, { payload }) => {
-      state.books = payload.books;
-      state.count = payload.counterBooks;
-      state.pages = payload.numberPages;
     });
   },
 });

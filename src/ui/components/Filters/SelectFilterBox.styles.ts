@@ -2,16 +2,16 @@ import styled from 'styled-components';
 
 export default styled.div<{ view?: boolean; typeSelector?: boolean }>`
   position: relative;
-  background: ${(props) => props.theme.color.white};
+  background: ${(props) => props.theme.color.background.light};
   height: 48px;
-  border-radius: ${(props) => props.theme.border.default};
+  border-radius: ${(props) => props.theme.border.radius.main};
 
   .select-box {
     padding: 10px 35px 10px 15px;
     min-width: 146px;
     cursor: pointer;
-    font-size: ${(props) => props.theme.fontSize.fs18};
-    line-height: ${(props) => props.theme.lineHeight.lh28};
+    font-size: ${(props) => props.theme.font.size.m};
+    line-height: ${(props) => props.theme.font.lineHeight.sm};
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -31,10 +31,10 @@ export default styled.div<{ view?: boolean; typeSelector?: boolean }>`
     overflow: auto;
     position: absolute;
     z-index: 1001;
-    border-radius: ${(props) => props.theme.border.default};
-    background: ${(props) => props.theme.color.white};
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh28};
+    border-radius: ${(props) => props.theme.border.radius.main};
+    background: ${(props) => props.theme.color.background.light};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.sm};
     margin-top: 20px;
   }
 
@@ -45,27 +45,27 @@ export default styled.div<{ view?: boolean; typeSelector?: boolean }>`
     flex-direction: column;
     width: 413px;
     height: 151px;
-    border-radius: ${(props) => props.theme.border.default};
-    background: ${(props) => props.theme.color.white};
+    border-radius: ${(props) => props.theme.border.radius.main};
+    background: ${(props) => props.theme.color.background.light};
     margin-top: 20px;
   }
 
   .select-box__item {
     display: flex;
     align-items: center;
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh28};
-    color: ${(props) => props.theme.color.blue};
-    background: ${(props) => props.theme.color.white};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.sm};
+    color: ${(props) => props.theme.color.text.main};
+    background: ${(props) => props.theme.color.background.light};
   }
 
   .select-box__text {
     margin: ${(props) => (props.typeSelector ? '6px 0 6px 15px' : '0')};
-    color: ${(props) => props.theme.color.blue};
+    color: ${(props) => props.theme.color.text.main};
   }
 
   .select-box__text-disabled {
-    color: ${(props) => props.theme.color.grey};
+    color: ${(props) => props.theme.color.text.medium};
     margin: ${(props) => (props.typeSelector ? '6px 0 6px 15px' : '0')};
   }
 
@@ -92,10 +92,10 @@ export default styled.div<{ view?: boolean; typeSelector?: boolean }>`
     display: flex;
     padding: 0 10px;
     justify-content: space-between;
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh34};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.l};
     letter-spacing: 0.75px;
-    color: ${(props) => props.theme.color.blue};
+    color: ${(props) => props.theme.color.text.main};
   }
 
   .example-thumb {
@@ -103,7 +103,7 @@ export default styled.div<{ view?: boolean; typeSelector?: boolean }>`
     top: 0;
     height: 32px;
     width: 32px;
-    color: ${(props) => props.theme.color.white};
+    color: ${(props) => props.theme.color.text.medium};
     border-radius: 50%;
     cursor: grab;
     font-size: 0;
@@ -120,13 +120,13 @@ export default styled.div<{ view?: boolean; typeSelector?: boolean }>`
     border-radius: 40px;
   }
   .example-track-1 {
-    background: #bfcc94;
+    background: ${(props) => props.theme.color.info.light};
   }
   .example-track-0 {
-    background: #d6d8e7;
+    background: ${(props) => props.theme.border.color.light};
   }
   .example-track-2 {
-    background: #d6d8e7;
+    background: ${(props) => props.theme.border.color.light};
   }
 
   @media (max-width: 950px) {

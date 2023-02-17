@@ -1,79 +1,74 @@
-const theme2 = {
+export const theme = {
   color: {
     background: {
       page: 'white',
+      dark: '#0D1821',
+      light: '#F0F4EF',
     },
-  },
-  font: {
-    main: {
-      size: {
-        xs: '0.5rem',
-        sm: '0.8rem',
-        md: '15px',
-        lg: '1.2rem',
-        xl: '1.5rem',
-        xxl: '2rem',
-      },
-      weight: {
-        sm: '400',
-        md: '500',
-        lg: '600',
-        xl: '700',
-      },
+    error: {
+      main: '#ED2E7E',
     },
-  },
-};
-
-export const theme = {
-  color: {
-    dark: '#0D1821',
-    white: ' #F0F4EF',
-    blue: '#344966',
-    grey: '#B9BAC4',
-    green: '#BFCC94',
-    red: '#ED2E7E',
+    button: {
+      main: '#344966',
+      light: '#B9BAC3',
+    },
+    text: {
+      main: '#344966',
+      dark: '#0D1821',
+      medium: '#B9BAC3',
+      light: '#F0F4EF',
+    },
+    info: {
+      main: '#8D9F4F',
+      light: '#BFCC94',
+    },
   },
 
   border: {
-    default: '16px',
-    round: '100%',
-    buttonOpacity: '1px solid #0d1821',
-    errorInput: '2px solid #ED2E7E',
-    line: '1px solid #d6d8e7',
+    color: {
+      dark: '#0D1821',
+      light: '#d6d8e7',
+      error: '#ED2E7E',
+    },
+    radius: {
+      main: '16px',
+      round: '100%',
+    },
   },
 
-  fontSize: {
-    fs10: '10px',
-    fs12: '12px',
-    fs13: '13px',
-    fs14: '14px',
-    fs16: '16px',
-    fs18: '18px',
-    fs20: '20px',
-    fs24: '24px',
-    fs36: '36px',
-    fs32: '32px',
-    fs40: '40px',
-  },
-
-  lineHeight: {
-    lh18: '18px',
-    lh21: '21px',
-    lh24: '24px',
-    lh20: '20px',
-    lh28: '28px',
-    lh30: '30px',
-    lh34: '34px',
-    lh36: '36px',
-    lh48: '48px',
-    lh54: '54px',
-    lh60: '60px',
-  },
-
-  fontWeight: {
-    small: 400,
-    middle: 500,
-    middleH: 600,
-    height: 700,
+  font: {
+    size: {
+      xxxs: '10px',
+      xxs: '12px',
+      xs: '13px',
+      s: '14px',
+      sm: '16px',
+      m: '18px',
+      ml: '20px',
+      l: '24px',
+      xl: '36px',
+      xxl: '32px',
+      xxxl: '40px',
+    },
+    weight: {
+      s: 400,
+      m: 500,
+      l: 600,
+      xl: 700,
+    },
+    lineHeight: {
+      xxxxs: '15px',
+      xxxs: '18px',
+      xxs: '20px',
+      xs: '21px',
+      s: '24px',
+      sm: '28px',
+      m: '30px',
+      l: '34px',
+      ml: '36px',
+      xl: '48px',
+      xxl: '54px',
+      xxxl: '60px',
+    },
   },
 };

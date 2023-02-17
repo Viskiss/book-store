@@ -18,8 +18,8 @@ export default styled.section`
   }
 
   .item-favorite__box {
-    background: ${(props) => props.theme.color.white};
-    border-radius: ${(props) => props.theme.border.default};
+    background: ${(props) => props.theme.color.background.light};
+    border-radius: ${(props) => props.theme.border.radius.main};
     transition: 0.5s;
     height: fit-content;
     cursor: pointer;
@@ -39,14 +39,14 @@ export default styled.section`
     padding: 15px;
     width: 305px;
     height: 448px;
-    border-radius: ${(props) => props.theme.border.default};
+    border-radius: ${(props) => props.theme.border.radius.main};
   }
 
   .item-favorite__like {
     position: absolute;
     right: 0;
     padding: 10px 10px 6px 10px;
-    border-radius: ${(props) => props.theme.border.round};
+    border-radius: ${(props) => props.theme.border.radius.round};
   }
 
   .item-favorite__box-data {
@@ -93,8 +93,8 @@ export default styled.section`
     }
 
     .item-favorite__box-title {
-      font-size: ${(props) => props.theme.fontSize.fs18};
-      line-height: ${(props) => props.theme.lineHeight.lh20};
+      font-size: ${(props) => props.theme.font.size.m};
+      line-height: ${(props) => props.theme.font.lineHeight.xxs};
       white-space: break-spaces;
       overflow: hidden;
       text-overflow: ellipsis;

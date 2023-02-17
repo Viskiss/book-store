@@ -32,38 +32,38 @@ export default styled.div`
   }
 
   .title {
-    font-size: ${(props) => props.theme.fontSize.fs40};
-    line-height: ${(props) => props.theme.lineHeight.lh60};
-    color: ${(props) => props.theme.color.dark};
+    font-size: ${(props) => props.theme.font.size.xxxl};
+    line-height: ${(props) => props.theme.font.lineHeight.xxxl};
+    color: ${(props) => props.theme.color.text.dark};
     margin: 0;
   }
 
   .book-author {
-    font-size: ${(props) => props.theme.fontSize.fs24};
-    line-height: ${(props) => props.theme.lineHeight.lh36};
+    font-size: ${(props) => props.theme.font.size.l};
+    line-height: ${(props) => props.theme.font.lineHeight.ml};
     margin-top: 0;
   }
 
   .description {
-    font-weight: ${(props) => props.theme.fontWeight.middle};
-    line-height: ${(props) => props.theme.lineHeight.lh36};
-    font-size: ${(props) => props.theme.fontSize.fs24};
-    color: ${(props) => props.theme.color.dark};
+    font-weight: ${(props) => props.theme.font.weight.m};
+    line-height: ${(props) => props.theme.font.lineHeight.ml};
+    font-size: ${(props) => props.theme.font.size.l};
+    color: ${(props) => props.theme.color.text.dark};
     margin-top: 0;
     margin-bottom: 10px;
   }
 
   .text {
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh24};
-    color: ${(props) => props.theme.color.blue};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.xs};
+    color: ${(props) => props.theme.color.text.main};
     margin: 0 0 74px 0;
   }
 
   .disabled-button {
-    font-weight: ${(props) => props.theme.fontWeight.height};
-    font-size: ${(props) => props.theme.fontSize.fs20};
-    line-height: ${(props) => props.theme.lineHeight.lh30};
+    font-weight: ${(props) => props.theme.font.weight.xl};
+    font-size: ${(props) => props.theme.font.size.fs20};
+    line-height: ${(props) => props.theme.font.lineHeight.lh30};
     background: ${(props) => props.theme.color.grey};
     color: ${(props) => props.theme.color.white};
     cursor: default;
@@ -71,9 +71,9 @@ export default styled.div`
   }
 
   .simple-button {
-    font-weight: ${(props) => props.theme.fontWeight.height};
-    font-size: ${(props) => props.theme.fontSize.fs20};
-    line-height: ${(props) => props.theme.lineHeight.lh30};
+    font-weight: ${(props) => props.theme.font.weight.xl};
+    font-size: ${(props) => props.theme.font.size.ml};
+    line-height: ${(props) => props.theme.font.lineHeight.m};
   }
 
   .buttons-box {
@@ -84,9 +84,9 @@ export default styled.div`
   }
 
   .buttons-box__title {
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh24};
-    color: ${(props) => props.theme.color.dark};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.xs};
+    color: ${(props) => props.theme.color.text.dark};
     margin-top: 0;
   }
 
@@ -110,24 +110,24 @@ export default styled.div`
     }
 
     .title {
-      font-size: ${(props) => props.theme.fontSize.fs32};
-      line-height: ${(props) => props.theme.lineHeight.lh48};
+      font-size: ${(props) => props.theme.font.size.xl};
+      line-height: ${(props) => props.theme.font.lineHeight.xl};
     }
 
     .book-author {
-      font-size: ${(props) => props.theme.fontSize.fs20};
-      line-height: ${(props) => props.theme.lineHeight.lh30};
+      font-size: ${(props) => props.theme.font.size.ml};
+      line-height: ${(props) => props.theme.font.lineHeight.m};
     }
 
     .description {
-      line-height: ${(props) => props.theme.lineHeight.lh36};
-      font-size: ${(props) => props.theme.fontSize.fs16};
+      font-size: ${(props) => props.theme.font.size.sm};
+      line-height: ${(props) => props.theme.font.lineHeight.ml};
       margin-bottom: 22px;
     }
 
     .text {
-      font-size: ${(props) => props.theme.fontSize.fs14};
-      line-height: ${(props) => props.theme.lineHeight.lh21};
+      font-size: ${(props) => props.theme.font.size.s};
+      line-height: ${(props) => props.theme.font.lineHeight.xxs};
       margin: 0 0 50px 0;
     }
 
@@ -214,36 +214,36 @@ export default styled.div`
     }
 
     .title {
-      font-size: ${(props) => props.theme.fontSize.fs18};
-      line-height: ${(props) => props.theme.lineHeight.lh20};
+      font-size: ${(props) => props.theme.font.size.m};
+      line-height: ${(props) => props.theme.font.lineHeight.s};
     }
 
     .book-author {
-      font-size: ${(props) => props.theme.fontSize.fs12};
-      line-height: ${(props) => props.theme.lineHeight.lh18};
+      font-size: ${(props) => props.theme.font.size.xxs};
+      line-height: ${(props) => props.theme.font.lineHeight.xxxs};
     }
 
     .description {
-      line-height: ${(props) => props.theme.lineHeight.lh21};
-      font-size: ${(props) => props.theme.fontSize.fs14};
+      font-size: ${(props) => props.theme.font.size.s};
+      line-height: ${(props) => props.theme.font.lineHeight.xxs};
       margin-bottom: 15px;
     }
 
     .text {
-      font-size: ${(props) => props.theme.fontSize.fs12};
-      line-height: ${(props) => props.theme.lineHeight.lh18};
+      font-size: ${(props) => props.theme.font.size.xxs};
+      line-height: ${(props) => props.theme.font.lineHeight.xxxs};
       margin: 0 0 30px 0;
     }
 
     .disabled-button {
-      font-size: ${(props) => props.theme.fontSize.fs12};
-      line-height: ${(props) => props.theme.lineHeight.lh18};
+      font-size: ${(props) => props.theme.font.size.xxs};
+      line-height: ${(props) => props.theme.font.lineHeight.xxxs};
       width: 135px;
     }
 
     .simple-button {
-      font-size: ${(props) => props.theme.fontSize.fs12};
-      line-height: ${(props) => props.theme.lineHeight.lh18};
+      font-size: ${(props) => props.theme.font.size.xxs};
+      line-height: ${(props) => props.theme.font.lineHeight.xxxs};
       width: 135px;
     }
 

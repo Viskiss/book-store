@@ -5,6 +5,7 @@ import { navigationRoutes } from 'src/utils/constants';
 import { useAppSelector } from 'src/redux/store';
 
 import LottieLoading from 'src/ui/components/LottieLoading';
+
 import NavigationStyled from './Navigation.styles';
 
 const SignIn = lazy(() => import('src/ui/pages/Authorization/SignIn/SignIn'));

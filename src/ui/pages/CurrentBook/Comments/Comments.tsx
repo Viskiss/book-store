@@ -9,14 +9,19 @@ import { useAppSelector } from 'src/redux/store';
 import config from 'src/utils/config';
 import type { CommentType } from 'src/types/bookStoreTypes';
 
-import { getComments } from 'src/api/apiRequests/commentApi';
+import { getComments } from 'src/api/requests/commentApi';
+import tokenHelper from 'src/utils/tokenHelper';
 
 import Button from 'src/ui/components/Button';
 import ItemComment from './itemComment';
 
 import StyledComments from './Comments.styles';
 
-const socket = io(config.configSocket.apiBaseUrl);
+const token = tokenHelper.token.get();
+
+const socket = io(config.configSocket.apiBaseUrl, {
+  query: { token },
+});
 
 const Comments: React.FC = () => {
   const { bookId } = useParams();
@@ -52,7 +57,7 @@ const Comments: React.FC = () => {
     setComment(e.target.value);
   };
 
-  const handlerSubmitForm = (e: FormEvent<HTMLFormElement>) => {
+  const handlerSubmitForm = (e: FormEvent) => {
     e.preventDefault();
     if (comment.trim() && user) {
       socket.emit('addComment', {
@@ -88,11 +93,11 @@ const Comments: React.FC = () => {
 
       {user && (
         <form
-          onSubmit={(e) => handlerSubmitForm(e)}
+          onSubmit={handlerSubmitForm}
           className="comment-box__form"
         >
           <textarea
-            onChange={(e) => handlerChangeInput(e)}
+            onChange={handlerChangeInput}
             value={comment}
             className="comment-box__input"
             placeholder="Share a comment"

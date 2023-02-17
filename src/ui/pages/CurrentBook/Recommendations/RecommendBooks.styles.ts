@@ -12,10 +12,10 @@ export default styled.div`
   }
 
   .recommendations__title {
-    font-weight: ${(props) => props.theme.fontWeight.height};
-    font-size: ${(props) => props.theme.fontSize.fs40};
-    line-height: ${(props) => props.theme.lineHeight.lh60};
-    color: ${(props) => props.theme.color.dark};
+    font-weight: ${(props) => props.theme.font.weight.xl};
+    font-size: ${(props) => props.theme.font.size.xxxl};
+    line-height: ${(props) => props.theme.font.lineHeight.xxxl};
+    color: ${(props) => props.theme.color.text.dark};
   }
 
   @media (max-width: 930px) {
@@ -27,8 +27,8 @@ export default styled.div`
   @media (max-width: 930px) {
     margin-top: 50px;
     .recommendations__title {
-      font-size: ${(props) => props.theme.fontSize.fs32};
-      line-height: ${(props) => props.theme.lineHeight.lh48};
+      font-size: ${(props) => props.theme.font.size.xxl};
+      line-height: ${(props) => props.theme.font.lineHeight.xl};
     }
   }
 
@@ -36,8 +36,8 @@ export default styled.div`
     margin-bottom: -50px;
     margin-top: 30px;
     .recommendations__title {
-      font-size: ${(props) => props.theme.fontSize.fs18};
-      line-height: ${(props) => props.theme.lineHeight.lh27};
+      font-size: ${(props) => props.theme.font.size.m};
+      line-height: ${(props) => props.theme.font.lineHeight.sm};
     }
 
      .recommend-books__items :nth-last-child(4) {

@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import booksImg from 'src/ui/assets/images/books.svg';
 
-import { deleteFavoriteBook, getFavoriteBooks } from 'src/api/apiRequests/favoriteBooksApi';
+import { deleteFavoriteBook, getFavoriteBooks } from 'src/api/requests/favoriteBooksApi';
 import type { FavoriteBookType } from 'src/types/bookStoreTypes';
 import TextBlock from 'src/ui/components/TextBlock';
 

@@ -4,7 +4,7 @@ import type { CartType } from 'src/types/bookStoreTypes';
 
 const CART_PATH_PREFIX = '/cart';
 
-export const addBooktoCart = (userId: number, bookId: number) => {
+export const addBookToCart = (userId: number, bookId: number) => {
   return api.post<{ books: CartType[] }>(`${CART_PATH_PREFIX}/add`, {
     userId,
     bookId,

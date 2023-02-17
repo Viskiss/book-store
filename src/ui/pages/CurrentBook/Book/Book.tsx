@@ -10,11 +10,11 @@ import { navigationRoutes } from 'src/utils/constants';
 import Button from 'src/ui/components/Button';
 import StarRate from 'src/ui/components/Rating';
 
-import { addRateBook, getRateBook } from 'src/api/apiRequests/rateBookApi';
-import { getCurrentBook } from 'src/api/apiRequests/bookApi';
+import { addRateBook, getRateBook } from 'src/api/requests/rateBookApi';
+import { getCurrentBook } from 'src/api/requests/bookApi';
 
 import StyledBook from './Book.styles';
-import { addBookThunk, getCartThunk } from '../../BookStoreMain/redux/thunks/cartThunks';
+import { addBookToCartThunk, getCartThunk } from '../../BookStoreMain/redux/thunks/cartThunks';
 
 const Book: React.FC = () => {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ const Book: React.FC = () => {
     if (!user) {
       navigate(navigationRoutes.signIn);
     }
-    dispatch(addBookThunk({ userId: user?.id || 0, bookId }));
+    dispatch(addBookToCartThunk({ userId: user?.id || 0, bookId }));
     dispatch(getCartThunk(user?.id || 0));
   };
 

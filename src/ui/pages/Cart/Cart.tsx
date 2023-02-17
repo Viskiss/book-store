@@ -39,11 +39,11 @@ const Cart: React.FC = () => {
     setTotal(Number(price.toFixed(2)));
   }, [cart]);
 
-  const handleDeleteBook = (cartId: number) => {
+  const handlerDeleteBook = (cartId: number) => {
     dispatch(deleteBookInCartThunk(cartId));
   };
 
-  const handleChangeCopyBook = (bookId: number, mark: number) => {
+  const handlerChangeCopyBook = (bookId: number, mark: number) => {
     dispatch(changeCopyBookThunk({ bookId, mark }));
   };
 
@@ -54,8 +54,8 @@ const Cart: React.FC = () => {
           <div className="cart__books">
             {cart.map((cart) => (
               <ItemCart
-                handleChangeCopyBook={handleChangeCopyBook}
-                handleDeleteBook={handleDeleteBook}
+                handlerChangeCopyBook={handlerChangeCopyBook}
+                handlerDeleteBook={handlerDeleteBook}
                 cart={cart}
                 key={cart.id}
               />

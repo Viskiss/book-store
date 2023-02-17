@@ -22,24 +22,25 @@ export default styled.section`
   }
 
   .cart-button {
-    border: ${(props) => props.theme.border.buttonOpacity};
-    color: ${(props) => props.theme.color.dark};
+    border-radius: ${(props) => props.theme.border.radius.main};
+    border: 1px solid ${(props) => props.theme.border.color.dark};
+    color: ${(props) => props.theme.color.text.dark};
     background-color: inherit;
     margin-right: 20px;
   }
 
   .cart__total-title {
-    font-weight: ${(props) => props.theme.fontWeight.middle};
-    font-size: ${(props) => props.theme.fontSize.fs36};
-    line-height: ${(props) => props.theme.lineHeight.lh54};
-    color: ${(props) => props.theme.color.dark};
+    font-weight: ${(props) => props.theme.font.weight.m};
+    font-size: ${(props) => props.theme.font.size.xl};
+    line-height: ${(props) => props.theme.font.lineHeight.xxl};
+    color: ${(props) => props.theme.color.text.dark};
   }
 
   .cart__total {
-    color: ${(props) => props.theme.color.dark};
-    font-weight: ${(props) => props.theme.fontWeight.height};
-    font-size: ${(props) => props.theme.fontSize.fs36};
-    line-height: ${(props) => props.theme.lineHeight.lh54};
+    color: ${(props) => props.theme.color.text.dark};
+    font-weight: ${(props) => props.theme.font.weight.xl};
+    font-size: ${(props) => props.theme.font.size.xl};
+    line-height: ${(props) => props.theme.font.lineHeight.xxl};
   }
 
   .item-cart__box {
@@ -59,37 +60,37 @@ export default styled.section`
   }
 
   .item-cart__cover {
-    border-radius: ${(props) => props.theme.border.default};
+    border-radius: ${(props) => props.theme.border.radius.main};
     height: 100%;
     width: 100%;
   }
 
   .item-cart__box-title {
-    font-size: ${(props) => props.theme.fontSize.fs40};
-    font-weight: ${(props) => props.theme.fontWeight.height};
-    line-height: ${(props) => props.theme.lineHeight.lh60};
-    color: ${(props) => props.theme.color.dark};
+    font-size: ${(props) => props.theme.font.size.xxxl};
+    font-weight: ${(props) => props.theme.font.weight.xl};
+    line-height: ${(props) => props.theme.font.lineHeight.xxxl};
+    color: ${(props) => props.theme.color.text.dark};
     margin: 0;
     cursor: pointer;
   }
 
   .item-cart__box-author {
-    font-size: ${(props) => props.theme.fontSize.fs24};
-    font-weight: ${(props) => props.theme.fontWeight.middle};
-    line-height: ${(props) => props.theme.lineHeight.lh36};
-    color: ${(props) => props.theme.color.dark};
+    font-size: ${(props) => props.theme.font.size.l};
+    font-weight: ${(props) => props.theme.font.weight.m};
+    line-height: ${(props) => props.theme.font.lineHeight.ml};
+    color: ${(props) => props.theme.color.text.dark};
     margin: 0 0 50px 0;
   }
 
   .item-cart__box-price {
-    font-size: ${(props) => props.theme.fontSize.fs36};
-    line-height: ${(props) => props.theme.lineHeight.lh54};
-    color: ${(props) => props.theme.color.dark};
+    font-size: ${(props) => props.theme.font.size.xl};
+    line-height: ${(props) => props.theme.font.lineHeight.xxl};
+    color: ${(props) => props.theme.color.text.dark};
     margin: 0;
   }
 
   .item-cart__box-button {
-    border-radius: ${(props) => props.theme.border.round};
+    border-radius: ${(props) => props.theme.border.radius.round};
     background: ${(props) => props.theme.color.bannerBd};
     padding: 8px 10px;
     border: none;
@@ -115,7 +116,7 @@ export default styled.section`
   }
 
   .line:not(:last-child) {
-    border-bottom: ${(props) => props.theme.border.line};
+    border-bottom: ${(props) => props.theme.border.color.light};
   }
 
   @media (max-width: 834px) {
@@ -135,19 +136,19 @@ export default styled.section`
   }
 
   .item-cart__box-title {
-    font-size: ${(props) => props.theme.fontSize.fs32};
-    line-height: ${(props) => props.theme.lineHeight.lh48};
+    font-size: ${(props) => props.theme.font.size.xxl};
+    line-height: ${(props) => props.theme.font.lineHeight.xl};
     margin-top: 30px;
   }
 
   .item-cart__box-author {
-    font-size: ${(props) => props.theme.fontSize.fs20};
-    line-height: ${(props) => props.theme.lineHeight.lh30};
+    font-size: ${(props) => props.theme.font.size.ml};
+    line-height: ${(props) => props.theme.font.lineHeight.m};
   }
 
   .item-cart__box-price {
-    font-size: ${(props) => props.theme.fontSize.fs36};
-    line-height: ${(props) => props.theme.lineHeight.lh54};
+    font-size: ${(props) => props.theme.font.size.xl};
+    line-height: ${(props) => props.theme.font.lineHeight.xxl};
   }
   }
 
@@ -173,21 +174,21 @@ export default styled.section`
   }
 
   .item-cart__box-title {
-    font-size: ${(props) => props.theme.fontSize.fs18};
-    line-height: ${(props) => props.theme.lineHeight.lh20};
+    font-size: ${(props) => props.theme.font.size.m};
+    line-height: ${(props) => props.theme.font.lineHeight.s};
     margin-top: 0;
     margin-bottom: 10px;
   }
 
   .item-cart__box-author {
-    font-size: ${(props) => props.theme.fontSize.fs12};
-    line-height: ${(props) => props.theme.lineHeight.lh18};
+    font-size: ${(props) => props.theme.font.size.xxs};
+    line-height: ${(props) => props.theme.font.lineHeight.xxxs};
     margin-bottom: 27px;
   }
 
   .item-cart__box-price {
-    font-size: ${(props) => props.theme.fontSize.fs18};
-    line-height: ${(props) => props.theme.lineHeight.lh27};
+    font-size: ${(props) => props.theme.font.size.m};
+    line-height: ${(props) => props.theme.font.lineHeight.sm};
   }
 
   .item-cart__box-filter {

@@ -1,9 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 
-import { changePasword, updateUser, uploadAvatar } from 'src/api/apiRequests/userApi';
+import { changeUserPassword, updateUser, uploadUserAvatar } from 'src/api/requests/userApi';
 
-import type { ChangePasswordType, ChangeUserType } from 'src/types/updateUserTypes';
+import type { UserType } from 'src/types/userType';
+
+type ChangeUserType = Pick<UserType, 'email' | 'fullName' | 'id'>;
+
+export type ChangePasswordType = {
+  password: UserType['password'];
+  newPassword: string;
+  id: UserType['id'];
+};
 
 export const changeUserThunk = createAsyncThunk(
   'user/changeUser',
@@ -26,7 +34,7 @@ export const uploadAvatarUserThunk = createAsyncThunk(
   'user/avatarUser',
   async (userData: string, { rejectWithValue }) => {
     try {
-      const user = await uploadAvatar(userData);
+      const user = await uploadUserAvatar(userData);
       return user.data;
     } catch (err) {
       const error = err as AxiosError;
@@ -43,7 +51,7 @@ export const changePasswordThunk = createAsyncThunk(
   async (userData: ChangePasswordType, { rejectWithValue }) => {
     const { password, newPassword, id } = userData;
     try {
-      await changePasword(password, newPassword, id);
+      await changeUserPassword(password, newPassword, id);
     } catch (err) {
       const error = err as AxiosError;
       if (!error.response) {

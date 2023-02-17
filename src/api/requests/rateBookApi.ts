@@ -1,5 +1,14 @@
 import api from 'src/api/api';
-import type { RateBookType } from 'src/types/bookStoreTypes';
+
+import type { BookType } from 'src/types/bookStoreTypes';
+import type { UserType } from 'src/types/userType';
+
+export type RateBookType = {
+  id: number;
+  bookId: BookType['id'];
+  userId: UserType['id'];
+  rate: number;
+};
 
 const RATE_PATH_PREFIX = '/rating';
 

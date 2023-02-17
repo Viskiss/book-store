@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.footer`
-  background: ${(props) => props.theme.color.dark};
+  background: ${(props) => props.theme.color.background.dark};
   background-size: 100%;
   padding: 73px 80px;
   padding-left: 0 inherit;
@@ -21,7 +21,7 @@ export default styled.footer`
   .text {
     margin-bottom: 5px;
     margin-top: 0;
-    color: ${(props) => props.theme.color.white};
+    color: ${(props) => props.theme.color.text.light};
   }
 
   .footer__router-links {
@@ -33,9 +33,9 @@ export default styled.footer`
     text-decoration: none;
     margin-bottom: 10px;
     margin-top: 0;
-    font-size: ${(props) => props.theme.fontSize.fs20};
-    line-height: ${(props) => props.theme.lineHeight.lh30};
-    color: ${(props) => props.theme.color.white};
+    font-size: ${(props) => props.theme.font.size.ml};
+    line-height: ${(props) => props.theme.font.lineHeight.m};
+    color: ${(props) => props.theme.color.text.light};
   }
 
   .logo {
@@ -58,8 +58,8 @@ export default styled.footer`
 
   @media (max-width: 990px) {
     padding: 73px 15px 79px 15px;
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh24};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.xs};
 
     .footer_container {
       max-width: 803px;

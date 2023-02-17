@@ -13,9 +13,9 @@ export default styled.section`
   }
 
   .title-catalog {
-    font-size: ${(props) => props.theme.fontSize.fs40};
-    line-height: ${(props) => props.theme.lineHeight.lh60};
-    color: ${(props) => props.theme.color.dark};
+    font-size: ${(props) => props.theme.font.size.xxl};
+    line-height: ${(props) => props.theme.font.lineHeight.xxl};
+    color: ${(props) => props.theme.color.text.dark};
     margin: 0;
   }
 

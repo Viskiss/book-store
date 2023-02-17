@@ -11,7 +11,7 @@ import { changePasswordThunk } from 'src/redux/userStore/thunks/updateUser';
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { fieldsValidation } from 'src/utils/validationFields';
 import {
-  handleApiValidationError,
+  handlerApiValidationError,
   matchError,
 } from 'src/utils/handleApiValidationError';
 
@@ -26,14 +26,9 @@ const PasswordProfile: React.FC = () => {
 
   const disabledInput = true;
 
-  const changeDataHandler = (
-    type: string,
-    e: React.MouseEvent<HTMLElement>,
-  ) => {
+  const handlerChangeData = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    if (type === 'password') {
-      setChangePassword(true);
-    }
+    setChangePassword(true);
     if (changePassword === true) {
       setChangePassword(false);
     }
@@ -60,7 +55,7 @@ const PasswordProfile: React.FC = () => {
         }
       } catch (error) {
         if (matchError(error)) {
-          handleApiValidationError(error.error, formik.setErrors);
+          handlerApiValidationError(error.error, formik.setErrors);
           return;
         }
         toast.error('Unexpected server error');
@@ -80,7 +75,7 @@ const PasswordProfile: React.FC = () => {
           <h3 className="user-change-preview__title">Password</h3>
           <a
             className="user-change-preview__link"
-            onClick={(e) => changeDataHandler('password', e)}
+            onClick={handlerChangeData}
             href=""
           >
             Change password

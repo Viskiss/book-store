@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { setApiToken } from 'src/api/api';
 
-import type { UserType } from 'src/types/updateUserTypes';
+import type { UserType } from 'src/types/userType';
 
 import {
   currentUserThunk,
@@ -17,7 +17,6 @@ import {
 
 const initialState = () => ({
   user: null as UserType | null,
-  isAuthenticated: false,
 });
 
 const userSlice = createSlice({
@@ -34,16 +33,12 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(signUpThunk.fulfilled, (state, { payload }) => {
       state.user = payload.user;
-
       setApiToken(payload.token);
-      state.isAuthenticated = true;
     });
 
     builder.addCase(logInUserThunk.fulfilled, (state, { payload }) => {
       state.user = payload.user;
-
       setApiToken(payload.token);
-      state.isAuthenticated = true;
     });
 
     builder.addCase(changeUserThunk.fulfilled, (state, { payload }) => {
@@ -55,10 +50,7 @@ const userSlice = createSlice({
     });
 
     builder.addCase(currentUserThunk.fulfilled, (state, { payload }) => {
-      state.isAuthenticated = true;
-      if (payload) {
-        state.user = payload.user;
-      }
+      state.user = payload;
     });
   },
 });

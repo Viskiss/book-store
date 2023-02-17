@@ -8,14 +8,14 @@ import increment from 'src/ui/assets/images/icon/increment.svg';
 
 type PropType = {
   cart: CartType;
-  handleDeleteBook: (id: number) => void;
-  handleChangeCopyBook: (bookId: number, mark: number) => void;
+  handlerDeleteBook: (id: number) => void;
+  handlerChangeCopyBook: (bookId: number, mark: number) => void;
 };
 
 const ItemCart: React.FC<PropType> = ({
   cart: { price, bookId, id, cover, title, author, quantityOfGoods },
-  handleDeleteBook,
-  handleChangeCopyBook,
+  handlerDeleteBook,
+  handlerChangeCopyBook,
 }) => {
   const navigate = useNavigate();
 
@@ -37,14 +37,14 @@ const ItemCart: React.FC<PropType> = ({
           <div className="item-cart__box-filter">
             <div>
               <button
-                onClick={() => handleChangeCopyBook(bookId, 0)}
+                onClick={() => handlerChangeCopyBook(bookId, 0)}
                 className="item-cart__box-button"
               >
                 <img className="box-button__dec" src={decrement} alt="" />
               </button>
               <span className="quantity">{quantityOfGoods}</span>
               <button
-                onClick={() => handleChangeCopyBook(bookId, 1)}
+                onClick={() => handlerChangeCopyBook(bookId, 1)}
                 className="item-cart__box-button"
               >
                 <img className="box-button__inc" src={increment} alt="" />
@@ -52,7 +52,7 @@ const ItemCart: React.FC<PropType> = ({
             </div>
 
             <img
-              onClick={() => handleDeleteBook(id)}
+              onClick={() => handlerDeleteBook(id)}
               className="item-cart__box-trash"
               src={trashBox}
               alt=""

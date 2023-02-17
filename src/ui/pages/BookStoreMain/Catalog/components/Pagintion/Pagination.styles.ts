@@ -20,7 +20,7 @@ export default styled.div`
     height: 14px;
     width: 14px;
     border: 2px solid black;
-    border-radius: ${(props) => props.theme.border.round};
+    border-radius: ${(props) => props.theme.border.radius.round};
     cursor: pointer;
   
     &:disabled {

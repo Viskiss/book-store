@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export default styled.section`
-  background: ${(props) => props.theme.color.white};
+  background: ${(props) => props.theme.color.background.light};
   display: flex;
-  border-radius: ${(props) => props.theme.border.default};
+  border-radius: ${(props) => props.theme.border.radius.main};
   margin-top: 100px;
   width: 100%;
   height: 400px;

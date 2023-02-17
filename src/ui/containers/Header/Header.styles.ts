@@ -25,26 +25,26 @@ export default styled.header`
   .books-counter {
     position: absolute;
     z-index: 1000;
-    background: ${(props) => props.theme.color.green};
-    border-radius: ${(props) => props.theme.border.round};
+    background: ${(props) => props.theme.color.info.light};
+    border-radius: ${(props) => props.theme.border.radius.round};
     padding: 1px 5px;
-    font-weight: ${(props) => props.theme.fontWeight.height};
+    font-weight: ${(props) => props.theme.font.weight.xl};
     font-size: 10px;
-    color: ${(props) => props.theme.color.dark};
+    color: ${(props) => props.theme.color.text.dark};
     right: 2px;
     top: 0;
   }
 
   .catalog-link {
     text-decoration: none;
-    font-weight: ${(props) => props.theme.fontWeight.middle};
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh24};
-    color: ${(props) => props.theme.color.dark};
+    font-weight: ${(props) => props.theme.font.weight.m};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.xs};
+    color: ${(props) => props.theme.color.text.dark};
   }
 
   .catalog-link:hover {
-    color: ${(props) => props.theme.color.green};
+    color: ${(props) => props.theme.color.info.light};
   }
 
   .search {
@@ -53,22 +53,23 @@ export default styled.header`
     align-items: center;
     min-width: 630px;
     width: 100%;
-    margin-right: 80px;
+    margin-right: 10px;
   }
 
   .search-input {
     padding: 20px 64px;
-    background: ${(props) => props.theme.color.white};
-    border-radius: ${(props) => props.theme.border.default};
+    background: ${(props) => props.theme.color.background.light};
+    border-radius: ${(props) => props.theme.border.radius.main};
     border: none;
-    font-weight: ${(props) => props.theme.fontWeight.small};
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh24};
+    font-weight: ${(props) => props.theme.font.weight.s};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.xs};
     width: 100%;
+    max-width: 502px;
   }
 
   .search-input::placeholder {
-    color: #b9bac4;
+    color: ${(props) => props.theme.color.text.medium};
   }
 
   .search-input_button {
@@ -95,16 +96,10 @@ export default styled.header`
   }
 
   .auth-button {
-    padding: 10px 10px;
+    padding: 10px 40px;
   }
 
-  @media (max-width: 1300px) {
-    .search {
-      min-width: 450px;
-    }
-  }
-
-  @media (max-width: 1124px) {
+  @media (max-width: 1280px) {
     padding: 24px 15px 40px 15px;
     gap: 50px;
 
@@ -123,6 +118,7 @@ export default styled.header`
   }
 
   @media (max-width: 800px) {
+    justify-content: space-evenly;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
@@ -132,6 +128,9 @@ export default styled.header`
       max-width: unset;
       width: 100%;
       margin: 0;
+    }
+    .search-input {
+      padding: 20px 190px 20px 64px;
     }
 
     .round-buttons {
@@ -149,7 +148,7 @@ export default styled.header`
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 510px) {
     padding: 24px 15px 40px 15px;
 
     .round-button {
@@ -175,8 +174,8 @@ export default styled.header`
     }
 
     .catalog-link {
-      font-size: ${(props) => props.theme.fontSize.fs14};
-      line-height: ${(props) => props.theme.lineHeight.lh21};
+      font-size: ${(props) => props.theme.font.size.s};
+      line-height: ${(props) => props.theme.font.lineHeight.xxs};
       margin: 0;
     }
 
@@ -185,8 +184,8 @@ export default styled.header`
     }
 
     .search-input::placeholder {
-      font-size: ${(props) => props.theme.fontSize.fs12};
-      line-height: ${(props) => props.theme.lineHeight.lh28};
+      font-size: ${(props) => props.theme.font.size.xxs};
+      line-height: ${(props) => props.theme.font.lineHeight.sm};
     }
 
     .search-input {
@@ -199,7 +198,7 @@ export default styled.header`
 
     .books-counter {
       right: -3px;
-    top: -2px;
+      top: -2px;
     }
   }
 `;

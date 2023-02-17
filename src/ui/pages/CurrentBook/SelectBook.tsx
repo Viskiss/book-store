@@ -9,13 +9,13 @@ import RecommendBooks from './Recommendations/Recommendations';
 import StyledItemBook from './SelectBook.styles';
 
 const SelectBook: React.FC = () => {
-  const isAuth = useAppSelector((store) => store.userStore.isAuthenticated);
+  const user = useAppSelector((store) => store.userStore.user);
 
   return (
     <StyledItemBook>
       <Book />
       <Comments />
-      {!isAuth && <AuthBanner />}
+      {!user && <AuthBanner />}
       <RecommendBooks />
     </StyledItemBook>
   );

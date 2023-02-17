@@ -1,4 +1,4 @@
-import type { UserType } from './updateUserTypes';
+import type { UserType } from './userType';
 
 export type BookType = {
   id: number;
@@ -27,16 +27,6 @@ export type FilterType = {
   maxPrice?: number;
 };
 
-export type AddBookType = {
-  userId: UserType['id'];
-  bookId: BookType['id'];
-};
-
-export type ChangeCopyBookType = {
-  bookId: number;
-  mark: number;
-};
-
 export type CartType = {
   cover: string;
   bookId: number;
@@ -55,12 +45,6 @@ export type FavoriteBookType = {
   userId: UserType['id'];
 };
 
-export type CommentApiType = {
-  userId: number;
-  bookId: number;
-  text: string;
-};
-
 export type CommentType = {
   id: number;
   text: string;
@@ -68,22 +52,4 @@ export type CommentType = {
   userId: UserType['id'];
   createdTime: string;
   user: UserType;
-};
-
-export type RateBookType = {
-  id: number;
-  bookId: BookType['id'];
-  userId: UserType['id'];
-  rate: number;
-};
-
-export type AddRateApiType = {
-  userId: number;
-  bookId: number;
-  rate: number;
-};
-
-export type GetRateApiType = {
-  userId: number;
-  bookId: number;
 };

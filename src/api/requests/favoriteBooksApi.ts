@@ -5,7 +5,7 @@ import type { FavoriteBookType } from 'src/types/bookStoreTypes';
 const FAVORITE_PATH_PREFIX = '/favorite';
 
 export const getFavoriteBooks = () => {
-  return api.get<{ books: FavoriteBookType[] }>(`${FAVORITE_PATH_PREFIX}/books`);
+  return api.get<{ books: FavoriteBookType[] }>(`${FAVORITE_PATH_PREFIX}/favorite-books`);
 };
 
 export const addFavoriteBook = (bookId: number) => {

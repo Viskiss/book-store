@@ -12,7 +12,6 @@ import { getCartThunk } from './redux/thunks/cartThunks';
 const BookStoreMain: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const isAuth = useAppSelector((store) => store.userStore.isAuthenticated);
   const user = useAppSelector((store) => store.userStore.user);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ const BookStoreMain: React.FC = () => {
     <StyledBookStore>
       <BookBaner />
       <Catalog />
-      {!isAuth && <AuthBanner />}
+      {!user && <AuthBanner />}
     </StyledBookStore>
   );
 };

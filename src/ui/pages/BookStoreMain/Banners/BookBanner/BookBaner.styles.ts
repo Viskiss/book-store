@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export default styled.section`
-  background: ${(props) => props.theme.color.white};
-  color: ${(props) => props.theme.color.white};
+  background: ${(props) => props.theme.color.background.light};
+  color: ${(props) => props.theme.color.text.dark};
   display: flex;
   justify-content: space-between;
-  border-radius: ${(props) => props.theme.border.default};
+  border-radius: ${(props) => props.theme.border.radius.main};
   margin-bottom: 120px;
   max-height: 400px;
   width: 100%;
@@ -15,7 +15,7 @@ export default styled.section`
   }
 
   @media (max-width: 1024px) {
-    width: 804px;
+    /* width: 804px; */
     position: relative;
 
     .img_girl {
@@ -26,12 +26,7 @@ export default styled.section`
     }
   }
 
-  @media (max-width: 820px) {
-    width: 590px;
-    position: relative;
-  }
-
-  @media (max-width: 600px) {
+  @media (max-width: 650px) {
     max-width: 290px;
     max-height: 505px;
     flex-direction: column;

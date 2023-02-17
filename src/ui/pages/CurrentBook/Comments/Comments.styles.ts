@@ -14,8 +14,8 @@ export default styled.div`
     grid-template-columns: 0.1fr;
     grid-template-rows: auto;
     max-width: 690px;
-    background: ${(props) => props.theme.color.white};
-    border-radius: ${(props) => props.theme.border.default};
+    background: ${(props) => props.theme.color.background.light};
+    border-radius: ${(props) => props.theme.border.radius.main};
     padding: 25px;
   }
 
@@ -39,24 +39,24 @@ export default styled.div`
     min-height: 88px;
     background: #f0f4ef;
     border: none;
-    border-radius: ${(props) => props.theme.border.default};
+    border-radius: ${(props) => props.theme.border.radius.main};
     padding: 20px;
     resize: none;
     margin: 60px 0 30px 0;
   }
 
   .comments-box__title {
-    font-weight: ${(props) => props.theme.fontWeight.height};
-    font-size: ${(props) => props.theme.fontSize.fs40};
-    line-height: ${(props) => props.theme.lineHeight.lh60};
-    color: ${(props) => props.theme.color.dark};
+    font-weight: ${(props) => props.theme.font.weight.xl};
+    font-size: ${(props) => props.theme.font.size.xxxl};
+    line-height: ${(props) => props.theme.font.lineHeight.xxxl};
+    color: ${(props) => props.theme.color.text.dark};
   }
 
   .comment-box__input::placeholder {
-    font-weight: ${(props) => props.theme.fontWeight.small};
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh28};
-    color: ${(props) => props.theme.color.grey};
+    font-weight: ${(props) => props.theme.font.weight.s};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.sm};
+    color: ${(props) => props.theme.color.text.medium};
   }
 
   .comment-box__form {
@@ -66,41 +66,41 @@ export default styled.div`
 
   .comment-box__button {
     max-width: 276px;
-    font-size: ${(props) => props.theme.fontSize.fs20};
-    line-height: ${(props) => props.theme.lineHeight.lh30};
-    color: ${(props) => props.theme.color.white};
+    font-size: ${(props) => props.theme.font.size.ml};
+    line-height: ${(props) => props.theme.font.lineHeight.m};
+    color: ${(props) => props.theme.color.text.light};
   }
 
   .comment__user-photo {
     width: 60px;
     height: 60px;
     object-fit: cover;
-    border-radius: ${(props) => props.theme.border.round};
+    border-radius: ${(props) => props.theme.border.radius.round};
   }
 
   .comment__title {
     margin: 0;
-    font-weight: ${(props) => props.theme.fontWeight.middleH};
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh24};
+    font-weight: ${(props) => props.theme.font.weight.l};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.xs};
   }
 
   .comment__date {
     margin-top: 0;
     margin-bottom: 10px;
-    font-weight: ${(props) => props.theme.fontWeight.middle};
-    font-size: ${(props) => props.theme.fontSize.fs12};
-    line-height: ${(props) => props.theme.lineHeight.lh18};
-    color: ${(props) => props.theme.color.grey};
+    font-weight: ${(props) => props.theme.font.weight.m};
+    font-size: ${(props) => props.theme.font.size.xxs};
+    line-height: ${(props) => props.theme.font.lineHeight.xxxs};
+    color: ${(props) => props.theme.color.text.medium};
   }
 
   .comment__text {
     margin: 0;
-    font-weight: ${(props) => props.theme.fontWeight.middle};
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh24};
+    font-weight: ${(props) => props.theme.font.weight.m};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.xs};
     letter-spacing: 0.75px;
-    color: ${(props) => props.theme.color.blue};
+    color: ${(props) => props.theme.color.text.main};
   }
 
   @media (max-width: 930px) {
@@ -119,7 +119,7 @@ export default styled.div`
     }
 
     .comment__text {
-      line-height: ${(props) => props.theme.lineHeight.lh21};
+      line-height: ${(props) => props.theme.font.lineHeight.xxs};
     } 
   }
 
@@ -130,7 +130,7 @@ export default styled.div`
       width: 100%;
     }
     .comment__text {
-      line-height: ${(props) => props.theme.lineHeight.lh21};
+      line-height: ${(props) => props.theme.font.lineHeight.xxs};
     }
   }
 
@@ -167,24 +167,24 @@ export default styled.div`
 
     .comment__title {
       font-weight: 100;
-      font-size: ${(props) => props.theme.fontSize.fs14};
-      line-height: ${(props) => props.theme.lineHeight.lh21};
+      font-size: ${(props) => props.theme.font.size.s};
+      line-height: ${(props) => props.theme.font.lineHeight.xxs};
       letter-spacing: 0.75px;
     }
 
     .comment__date {
-      font-size: ${(props) => props.theme.fontSize.fs10};
-      line-height: ${(props) => props.theme.lineHeight.lh15};
+      font-size: ${(props) => props.theme.font.size.xxxs};
+      line-height: ${(props) => props.theme.font.lineHeight.xxxxs};
     }
 
     .comment__text {
-      font-size: ${(props) => props.theme.fontSize.fs12};
-      line-height: ${(props) => props.theme.lineHeight.lh18};
+      font-size: ${(props) => props.theme.font.size.xxs};
+      line-height: ${(props) => props.theme.font.lineHeight.xxxl};
     }
 
     .comments-box__title {
-      font-size: ${(props) => props.theme.fontSize.fs18};
-      line-height: ${(props) => props.theme.lineHeight.lh27};
+      font-size: ${(props) => props.theme.font.size.m};
+      line-height: ${(props) => props.theme.font.lineHeight.sm};
     }
 
     .comment-box__input {

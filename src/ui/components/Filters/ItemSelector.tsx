@@ -37,7 +37,7 @@ const ItemGenre: React.FC<PropsType> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleChangeGenre = (name: string) => {
+  const handlerChangeGenre = (name: string) => {
     setCheckedImg(checked);
     if (filter) {
       const index = filter.indexOf(name);
@@ -50,7 +50,7 @@ const ItemGenre: React.FC<PropsType> = ({
 
   return (
     <div
-      onClick={() => handleChangeGenre(name)}
+      onClick={() => handlerChangeGenre(name)}
       className="select-box__item"
       key={id}
     >

@@ -2,21 +2,33 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AxiosError } from 'axios';
 
 import {
-  addBooktoCart,
+  addBookToCart,
   changeCopyBook,
   deleteBook,
   getCartBooks,
-} from 'src/api/apiRequests/cartApi';
+} from 'src/api/requests/cartApi';
 
-import type { AddBookType, ChangeCopyBookType } from 'src/types/bookStoreTypes';
+import type { BookType } from 'src/types/bookStoreTypes';
+import type { UserType } from 'src/types/userType';
+
 import tokenHelper from 'src/utils/tokenHelper';
 
-export const addBookThunk = createAsyncThunk(
+export type ChangeCopyBookType = {
+  bookId: number;
+  mark: number;
+};
+
+export type AddBookType = {
+  userId: UserType['id'];
+  bookId: BookType['id'];
+};
+
+export const addBookToCartThunk = createAsyncThunk(
   'cart/addBookInCart',
   async (data: AddBookType, { rejectWithValue }) => {
     const { userId, bookId } = data;
     try {
-      const cart = await addBooktoCart(userId, bookId);
+      const cart = await addBookToCart(userId, bookId);
       return cart.data;
     } catch (err) {
       const error = err as AxiosError;

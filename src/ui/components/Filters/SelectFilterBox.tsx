@@ -39,10 +39,10 @@ const SelectFilterBox: React.FC<PropsType> = ({
 }) => {
   const [viewItems, setViewItems] = useState(false);
 
-  const wrapperRef = useRef(null);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
   useOutsideClick(wrapperRef, setViewItems);
 
-  const handleViewItems = () => {
+  const handlerViewItems = () => {
     if (viewItems) {
       setViewItems(false);
     }
@@ -53,7 +53,7 @@ const SelectFilterBox: React.FC<PropsType> = ({
 
   return (
     <StyledSelect view={viewItems} typeSelector={typeSelect} ref={wrapperRef}>
-      <div onClick={handleViewItems} className="select-box">
+      <div onClick={handlerViewItems} className="select-box">
         <img className="select-box__polygon" src={polygon} alt="" />
 
         <span className="select-box__title">{title}</span>
@@ -66,43 +66,45 @@ const SelectFilterBox: React.FC<PropsType> = ({
           title !== 'Price' ? 'select-box__items' : 'select-box__items-price'
         }
       >
-        {title !== 'Price' ? (
-          items && handlerChange &&
-          items.map((item) => (
-            <Item
-              title={title}
-              filter={filter}
-              handlerChange={handlerChange}
-              key={item.id}
-              name={item.name}
-              id={item.id}
-            />
-          ))
-        ) : (
-          <>
-            <ReactSlider
-              className="select-box__slider"
-              value={value}
-              min={minStartPrice}
-              max={maxStartPrice}
-              onChange={onChange}
-              onAfterChange={onAfterChange}
-              thumbClassName="example-thumb"
-              trackClassName="example-track"
-              renderThumb={(props, state) => (
-                <div {...props}>{state.valueNow}</div>
-              )}
-            />
-            <div className="price">
-              {value && (
-                <>
-                  <p>$ {value[0]}</p>
-                  <p>$ {value[1]}</p>
-                </>
-              )}
-            </div>
-          </>
-        )}
+        {title !== 'Price'
+          ? (
+            items &&
+            handlerChange &&
+            items.map((item) => (
+              <Item
+                title={title}
+                filter={filter}
+                handlerChange={handlerChange}
+                key={item.id}
+                name={item.name}
+                id={item.id}
+              />
+            ))
+          ) : (
+            <>
+              <ReactSlider
+                className="select-box__slider"
+                value={value}
+                min={minStartPrice}
+                max={maxStartPrice}
+                onChange={onChange}
+                onAfterChange={onAfterChange}
+                thumbClassName="example-thumb"
+                trackClassName="example-track"
+                renderThumb={(props, state) => (
+                  <div {...props}>{state.valueNow}</div>
+                )}
+              />
+              <div className="price">
+                {value && (
+                  <>
+                    <p>$ {value[0]}</p>
+                    <p>$ {value[1]}</p>
+                  </>
+                )}
+              </div>
+            </>
+          )}
       </div>
     </StyledSelect>
   );

@@ -26,9 +26,9 @@ export default styled.div`
   }
 
   .number {
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh24};
-    color: ${(props) => props.theme.color.grey};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.xs};
+    color: ${(props) => props.theme.color.text.medium};
   }
   .star-rate {
     margin-right: 14px;
@@ -36,9 +36,9 @@ export default styled.div`
   }
 
   .rate-this-book {
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh24};
-    color: ${(props) => props.theme.color.grey};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.xs};
+    color: ${(props) => props.theme.color.text.medium};
   }
 
   .arrow-box {
@@ -74,8 +74,8 @@ export default styled.div`
   @media (max-width: 575px) {
     min-width: 290px;
     .rate-this-book {
-      font-size: ${(props) => props.theme.fontSize.fs12};
-      line-height: ${(props) => props.theme.lineHeight.lh18};
+      font-size: ${(props) => props.theme.font.size.xxs};
+      line-height: ${(props) => props.theme.font.lineHeight.xxxs};
       margin-top: -10px;
       margin-bottom: 55px;
     }
@@ -89,8 +89,8 @@ export default styled.div`
     }
 
     .number {
-      font-size: ${(props) => props.theme.fontSize.fs13};
-      line-height: ${(props) => props.theme.lineHeight.lh20};
+      font-size: ${(props) => props.theme.font.size.fs13};
+      line-height: ${(props) => props.theme.font.lineHeight.s};
       color: ${(props) => props.theme.color.grey};
       margin-top: 9px;
     }

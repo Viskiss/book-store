@@ -11,7 +11,7 @@ import { useAppDispatch } from 'src/redux/store';
 import { logInUserThunk } from 'src/redux/userStore/thunks/authUser';
 import { fieldsValidation } from 'src/utils/validationFields';
 import {
-  handleApiValidationError,
+  handlerApiValidationError,
   matchError,
 } from 'src/utils/handleApiValidationError';
 
@@ -48,7 +48,7 @@ const SignIn: React.FC = () => {
         }
       } catch (error) {
         if (matchError(error)) {
-          handleApiValidationError(
+          handlerApiValidationError(
             error.error,
             formik.setErrors,
           );

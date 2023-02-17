@@ -6,12 +6,12 @@ export default styled.section`
 
   .form-input {
     padding: 20px 34px 20px 64px;
-    background: ${(props) => props.theme.color.white};
-    border-radius: ${(props) => props.theme.border.default};
+    background: ${(props) => props.theme.color.background.light};
+    border-radius: ${(props) => props.theme.border.radius.main};
     border: none;
-    font-weight: ${(props) => props.theme.fontWeight.small};
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh24};
+    font-weight: ${(props) => props.theme.font.weight.s};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.xs};
     position: relative;
   }
 
@@ -20,7 +20,7 @@ export default styled.section`
   }
 
   .form-input::placeholder {
-    color: ${(props) => props.theme.color.grey};
+    color: ${(props) => props.theme.color.text.medium};
   }
 
   .form-input_button {
@@ -33,20 +33,20 @@ export default styled.section`
 
   .label {
     width: fit-content;
-    color: ${(props) => props.theme.color.dark};
-    font-weight: ${(props) => props.theme.fontWeight.middle};
-    font-size: ${(props) => props.theme.fontSize.fs14};
-    line-height: ${(props) => props.theme.lineHeight.lh24};
+    color: ${(props) => props.theme.color.text.dark};
+    font-weight: ${(props) => props.theme.font.weight.m};
+    font-size: ${(props) => props.theme.font.size.s};
+    line-height: ${(props) => props.theme.font.lineHeight.xs};
     margin-bottom: 30px;
     margin-right: 0;
     padding-top: 10px;
   }
 
   .label-error {
-    color: ${(props) => props.theme.color.red};
-    font-weight: ${(props) => props.theme.fontWeight.height};
-    font-size: ${(props) => props.theme.fontSize.fs14};
-    line-height: ${(props) => props.theme.lineHeight.lh24};
+    color: ${(props) => props.theme.color.error.main};
+    font-weight: ${(props) => props.theme.font.weight.xl};
+    font-size: ${(props) => props.theme.font.size.s};
+    line-height: ${(props) => props.theme.font.lineHeight.xs};
     margin-bottom: 40px;
     padding-top: 10px;
   }

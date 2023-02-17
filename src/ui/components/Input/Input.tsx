@@ -32,7 +32,7 @@ const Input: React.FC<PropType> = ({ ...props }) => {
     fieldName = props.name;
   }
 
-  const changeTypeHandler = (
+  const handlerChangeType = (
     type: string,
     e: React.MouseEvent<HTMLElement>,
   ) => {
@@ -50,7 +50,7 @@ const Input: React.FC<PropType> = ({ ...props }) => {
   return (
     <StyledInput className="input-section">
       <button
-        onClick={(e) => changeTypeHandler('', e)}
+        onClick={(e) => handlerChangeType('', e)}
         type="button"
         className="form-input_button"
       >

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div<{ likedBook?: boolean; bestrate?: boolean }>`
+export default styled.div<{ likedBook?: boolean; best?: boolean }>`
   display: flex;
   flex-direction: column;
   width: calc((100% - (20px * 3)) / 4);
@@ -33,7 +33,7 @@ export default styled.div<{ likedBook?: boolean; bestrate?: boolean }>`
   }
 
   .cover {
-    border-radius: ${(props) => props.theme.border.default};
+    border-radius: ${(props) => props.theme.border.radius.main};
     cursor: pointer;
     width: 100%;
     height: auto;
@@ -51,7 +51,7 @@ export default styled.div<{ likedBook?: boolean; bestrate?: boolean }>`
   }
 
   .cover-book {
-    border-radius: ${(props) => props.theme.border.default};
+    border-radius: ${(props) => props.theme.border.radius.main};
     position: relative;
     display: flex;
     height: calc((305 / 100) * 21%);
@@ -61,15 +61,15 @@ export default styled.div<{ likedBook?: boolean; bestrate?: boolean }>`
 
   .book-title {
     text-decoration: none;
-    color: ${(props) => props.theme.color.blue};
-    font-size: ${(props) => props.theme.fontSize.fs20};
-    line-height: ${(props) => props.theme.lineHeight.lh30};
+    color: ${(props) => props.theme.color.text.main};
+    font-size: ${(props) => props.theme.font.size.ml};
+    line-height: ${(props) => props.theme.font.lineHeight.m};
   }
 
   .book-author {
-    font-size: ${(props) => props.theme.fontSize.fs20};
-    line-height: ${(props) => props.theme.lineHeight.lh30};
-    color: ${(props) => props.theme.color.grey};
+    font-size: ${(props) => props.theme.font.size.ml};
+    line-height: ${(props) => props.theme.font.lineHeight.m};
+    color: ${(props) => props.theme.color.text.medium};
     margin-top: 0;
   }
 
@@ -83,14 +83,14 @@ export default styled.div<{ likedBook?: boolean; bestrate?: boolean }>`
     position: absolute;
     bottom: 0;
     width: 100%;
-    font-size: ${(props) => props.theme.fontSize.fs20};
-    line-height: ${(props) => props.theme.lineHeight.lh28};
+    font-size: ${(props) => props.theme.font.size.ml};
+    line-height: ${(props) => props.theme.font.lineHeight.sm};
   }
 
   .catalog-button {
     width: 100%;
-    font-size: ${(props) => props.theme.fontSize.fs20};
-    line-height: ${(props) => props.theme.lineHeight.lh28};
+    font-size: ${(props) => props.theme.font.size.ml};
+    line-height: ${(props) => props.theme.font.lineHeight.sm};
   }
 
   .catalog-button__box {
@@ -100,30 +100,32 @@ export default styled.div<{ likedBook?: boolean; bestrate?: boolean }>`
   }
 
   .rate-number {
-    font-size: ${(props) => props.theme.fontSize.fs16};
-    line-height: ${(props) => props.theme.lineHeight.lh24};
-    color: ${(props) => props.theme.color.grey};
+    font-size: ${(props) => props.theme.font.size.sm};
+    line-height: ${(props) => props.theme.font.lineHeight.xs};
+    color: ${(props) => props.theme.color.text.medium};
     padding-top: 5px;
   }
 
   .cover-book__label {
     position: absolute;
-    background: ${(props) => (props.bestrate ? props.theme.color.blue : props.theme.color.green)};
+    background: ${(props) => (props.best
+    ? props.theme.color.button.main
+    : props.theme.color.info.light)};
     z-index: 1000;
     bottom: 0;
-    border-radius: ${(props) => props.theme.border.default};
-    line-height: ${(props) => props.theme.lineHeight.lh10};
+    border-radius: ${(props) => props.theme.border.radius.main};
+    line-height: ${(props) => props.theme.font.lineHeight.xxxs};
     padding: 10px 50px;
-    font-size: ${(props) => props.theme.fontSize.fs14};
+    font-size: ${(props) => props.theme.font.size.s};
     line-height: 10px;
     font-style: italic;
-    color: ${(props) => props.theme.color.white};
+    color: ${(props) => props.theme.color.text.light};
     margin: 20px;
   }
 
   @media (max-width: 1024px) {
     .catalog-button {
-      font-size: ${(props) => props.theme.fontSize.fs16};
+      font-size: ${(props) => props.theme.font.size.sm};
     }
   }
 
@@ -145,13 +147,13 @@ export default styled.div<{ likedBook?: boolean; bestrate?: boolean }>`
     }
 
     .book-title {
-      font-size: ${(props) => props.theme.fontSize.fs16};
-      line-height: ${(props) => props.theme.lineHeight.lh24};
+      font-size: ${(props) => props.theme.font.size.sm};
+      line-height: ${(props) => props.theme.font.lineHeight.xs};
     }
 
     .book-author {
-      font-size: ${(props) => props.theme.fontSize.fs16};
-      line-height: ${(props) => props.theme.lineHeight.lh24};
+      font-size: ${(props) => props.theme.font.size.sm};
+      line-height: ${(props) => props.theme.font.lineHeight.xs};
     }
   }
 
@@ -168,13 +170,13 @@ export default styled.div<{ likedBook?: boolean; bestrate?: boolean }>`
     }
 
     .book-title {
-      font-size: ${(props) => props.theme.fontSize.fs14};
-      line-height: ${(props) => props.theme.lineHeight.lh21};
+      font-size: ${(props) => props.theme.font.size.s};
+      line-height: ${(props) => props.theme.font.lineHeight.xxs};
     }
 
     .book-author {
-      font-size: ${(props) => props.theme.fontSize.fs14};
-      line-height: ${(props) => props.theme.lineHeight.lh21};
+      font-size: ${(props) => props.theme.font.size.s};
+      line-height: ${(props) => props.theme.font.lineHeight.xxs};
     }
   }
 
@@ -188,7 +190,7 @@ export default styled.div<{ likedBook?: boolean; bestrate?: boolean }>`
     }
 
     .rate-number {
-      font-size: ${(props) => props.theme.fontSize.fs14};
+      font-size: ${(props) => props.theme.font.size.s};
     }
 
     .rate-star {
@@ -196,8 +198,8 @@ export default styled.div<{ likedBook?: boolean; bestrate?: boolean }>`
     }
 
     .book-info {
-    margin-top: 15px;
-  }
+      margin-top: 15px;
+    }
 
     .cover-book__like {
       margin: 17px;
@@ -205,15 +207,15 @@ export default styled.div<{ likedBook?: boolean; bestrate?: boolean }>`
     }
 
     .catalog-button {
-      font-size: ${(props) => props.theme.fontSize.fs14};
+      font-size: ${(props) => props.theme.font.size.s};
       padding: 3px 21px;
     }
 
     .cover-book__label {
-      padding: ${(props) => (props.bestrate ? '10px 29px' : '10px 44px')};;
+      padding: ${(props) => (props.best ? '5px 29px' : '5px 42px')};
       margin: 0 10px 9px 10px;
-      font-size: ${(props) => props.theme.fontSize.fs10};
-      line-height: ${(props) => props.theme.lineHeight.lh10};
+      font-size: ${(props) => props.theme.font.size.xxxs};
+      line-height: ${(props) => props.theme.font.lineHeight.xxxs};
     }
   }
 `;

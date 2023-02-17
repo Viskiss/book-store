@@ -1,4 +1,4 @@
-import type { UserType } from '../../types/updateUserTypes';
+import type { UserType } from '../../types/userType';
 import api from '../api';
 
 const USER_PATH_PREFIX = '/user';
@@ -10,7 +10,7 @@ export const updateUser = (
   return api.patch<{ user: UserType }>(`${USER_PATH_PREFIX}/${userId}`, data);
 };
 
-export const changePasword = (
+export const changeUserPassword = (
   password: string,
   newPassword: string,
   id: number,
@@ -21,6 +21,6 @@ export const changePasword = (
   });
 };
 
-export const uploadAvatar = (avatar: string) => {
+export const uploadUserAvatar = (avatar: string) => {
   return api.post<{ user: UserType }>(`${USER_PATH_PREFIX}/upload`, { avatar });
 };

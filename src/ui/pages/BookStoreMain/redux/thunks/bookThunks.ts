@@ -3,9 +3,9 @@ import type { AxiosError } from 'axios';
 
 import type { FilterType } from 'src/types/bookStoreTypes';
 
-import { getFilteredBooks } from 'src/api/apiRequests/bookApi';
+import { getFilteredBooks } from 'src/api/requests/bookApi';
 
-export const getFilterBooksThunk = createAsyncThunk(
+export const getFilteredBooksThunk = createAsyncThunk(
   'book/getFilterBooks',
   async (filterData: FilterType, { rejectWithValue }) => {
     try {

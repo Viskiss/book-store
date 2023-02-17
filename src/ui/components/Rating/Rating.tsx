@@ -41,8 +41,8 @@ const StarRate: React.FC<PropType> = ({ bookRate, userRate, setRate }) => {
         <Rating
           fillColor="#BFCC94"
           onClick={handlerRate}
-          fillIcon={
-            (<svg
+          fillIcon={(
+            <svg
               className="fillStar"
               width="30"
               height="30"
@@ -59,8 +59,8 @@ const StarRate: React.FC<PropType> = ({ bookRate, userRate, setRate }) => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-             </svg>)
-          }
+            </svg>
+          )}
           emptyIcon={
             (<svg
               className="emptyStar"
@@ -78,7 +78,7 @@ const StarRate: React.FC<PropType> = ({ bookRate, userRate, setRate }) => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-             </svg>)
+            </svg>)
           }
           size={27}
           initialValue={user ? userRate : 0}

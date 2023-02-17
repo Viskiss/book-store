@@ -1,6 +1,6 @@
 import type { ChangeEvent } from 'react';
 import { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
 import Button from 'src/ui/components/Button';
 
@@ -16,6 +16,8 @@ import AuthUserLinks from './AuthUserLinks';
 import StyledHeader from './Header.styles';
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
+
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchString, setSearchString] = useState('');
 
@@ -33,7 +35,10 @@ const Header: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedFilter]);
 
-  const handleChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  const handlerChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!searchParams.get('page')) {
+      navigate(navigationRoutes.home);
+    }
     setSearchString(e.target.value);
   };
 
@@ -57,7 +62,7 @@ const Header: React.FC = () => {
             <img src={loupe} alt="" />
           </button>
           <input
-            onChange={(e) => handleChangeSearch(e)}
+            onChange={handlerChangeSearch}
             value={searchString}
             className="search-input"
             placeholder="Search"
@@ -65,7 +70,7 @@ const Header: React.FC = () => {
         </div>
 
         {!token ? (
-          <div className="round-buttons ">
+          <div className="round-buttons">
             <Link to={navigationRoutes.signIn}>
               <Button className="auth-button">Sign In</Button>
             </Link>

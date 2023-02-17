@@ -9,18 +9,18 @@ import Filters from 'src/ui/pages/BookStoreMain/Catalog/components/Filters';
 import type { FavoriteBookType, GenreType } from 'src/types/bookStoreTypes';
 
 import LottieLoading from 'src/ui/components/LottieLoading';
-import { getGernes } from 'src/api/apiRequests/bookApi';
+import { getGernes } from 'src/api/requests/bookApi';
 import {
   deleteFavoriteBook,
   getFavoriteBooks,
-} from 'src/api/apiRequests/favoriteBooksApi';
+} from 'src/api/requests/favoriteBooksApi';
 import ItemBook from './components/ItemBook';
 
 import Pagination from './components/Pagintion/Pagination';
 
 import StyledCatalog from './Catalog.styles';
-import { getFilterBooksThunk } from '../redux/thunks/bookThunks';
-import { addBookThunk } from '../redux/thunks/cartThunks';
+import { getFilteredBooksThunk } from '../redux/thunks/bookThunks';
+import { addBookToCartThunk } from '../redux/thunks/cartThunks';
 
 const Catalog: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -58,7 +58,7 @@ const Catalog: React.FC = () => {
     const minPrice = Number(searchParams.get('minPrice') || '7.39');
     const maxPrice = Number(searchParams.get('maxPrice') || '70.99');
     dispatch(
-      getFilterBooksThunk({ genre, select, search, page, maxPrice, minPrice }),
+      getFilteredBooksThunk({ genre, select, search, page, maxPrice, minPrice }),
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
@@ -79,7 +79,7 @@ const Catalog: React.FC = () => {
     if (!userId) {
       navigate(navigationRoutes.signIn);
     } else {
-      dispatch(addBookThunk({ userId, bookId }));
+      dispatch(addBookToCartThunk({ userId, bookId }));
     }
   };
 

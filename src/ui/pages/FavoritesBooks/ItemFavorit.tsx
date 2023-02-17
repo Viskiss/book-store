@@ -15,9 +15,8 @@ type PropType = {
 const ItemLike: React.FC<PropType> = ({ bookId, cover, title, author, setDeleteBook }) => {
   const navigate = useNavigate();
 
-  const selectBook = (e: React.MouseEvent<HTMLElement>, id: number) => {
-    e.preventDefault();
-    navigate(`/book/${id}`);
+  const selectBook = () => {
+    navigate(`/book/${bookId}`);
   };
 
   return (
@@ -25,7 +24,7 @@ const ItemLike: React.FC<PropType> = ({ bookId, cover, title, author, setDeleteB
       <div className="item-favorite__box">
 
         <div className="item-favorite__box-cover">
-          <img onClick={(e) => selectBook(e, bookId)} className="item-favorite__cover" src={cover} alt="" />
+          <img onClick={selectBook} className="item-favorite__cover" src={cover} alt="" />
           <Button
             onClick={() => setDeleteBook(bookId)}
             className="item-favorite__like"

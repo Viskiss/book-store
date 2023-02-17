@@ -15,18 +15,18 @@ export default styled.div`
   }
 
   .title {
-    font-weight: ${(props) => props.theme.fontWeight.height};
-    font-size: ${(props) => props.theme.fontSize.fs40};
-    line-height: ${(props) => props.theme.lineHeight.lh60};
+    font-weight: ${(props) => props.theme.font.weight.xl};
+    font-size: ${(props) => props.theme.font.size.xxxl};
+    line-height: ${(props) => props.theme.font.lineHeight.xxxl};
     color: ${(props) => props.theme.color.dark};
     margin-bottom: 10px;
     margin-top: 80px;
   }
 
   .text {
-    font-size: ${(props) => props.theme.fontSize.fs20};
-    line-height: ${(props) => props.theme.lineHeight.lh30};
-    color: ${(props) => props.theme.color.blue};
+    font-size: ${(props) => props.theme.font.size.ml};
+    line-height: ${(props) => props.theme.font.lineHeight.m};
+    color: ${(props) => props.theme.color.text.main};
     margin-bottom: 50px;
     margin-top: 0;
   }
@@ -43,14 +43,14 @@ export default styled.div`
     }
 
     .title {
-      font-size: ${(props) => props.theme.fontSize.fs32};
-      line-height: ${(props) => props.theme.lineHeight.lh48};
+      font-size: ${(props) => props.theme.font.size.xxl};
+      line-height: ${(props) => props.theme.font.lineHeight.xl};
       margin-bottom: 0;
     }
 
     .text {
-      font-size: ${(props) => props.theme.fontSize.fs16};
-      line-height: ${(props) => props.theme.lineHeight.lh24};
+      font-size: ${(props) => props.theme.font.size.sm};
+      line-height: ${(props) => props.theme.font.lineHeight.xs};
       margin-bottom: 40px;
     }
 
@@ -63,13 +63,13 @@ export default styled.div`
     .title {
       margin-top: 45px;
       margin-bottom: 10px;
-      font-size: ${(props) => props.theme.fontSize.fs24};
+      font-size: ${(props) => props.theme.font.size.l};
     }
   }
 
   @media (max-width: 820px) {
     .title {
-      font-size: ${(props) => props.theme.fontSize.fs18};
+      font-size: ${(props) => props.theme.font.size.m};
     }
     .block-text_img {
       width: 232px;

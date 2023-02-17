@@ -21,7 +21,7 @@ export default styled.section`
     width: 305px;
     height: 305px;
     object-fit: contain;
-    background-color: ${(props) => props.theme.color.white};
+    background-color: ${(props) => props.theme.color.background.light};
   }
 
   .img-profile {
@@ -37,7 +37,7 @@ export default styled.section`
     right: 0;
     margin: 20px;
     padding: 10px 10px;
-    border-radius: ${(props) => props.theme.border.round};
+    border-radius: ${(props) => props.theme.border.radius.round};
   }
 
   .exit-box {
@@ -48,10 +48,10 @@ export default styled.section`
     position: static;
     padding: 10px;
     border-radius: 10px;
-    background-color: ${(props) => props.theme.color.blue};
+    background-color: ${(props) => props.theme.color.button.main};
     border: none;
-    color: ${(props) => props.theme.color.white};
-    font-weight: ${(props) => props.theme.fontWeight.height};
+    color: ${(props) => props.theme.color.text.light};
+    font-weight: ${(props) => props.theme.font.weight.xl};
     cursor: pointer;
   }
 
@@ -89,9 +89,9 @@ export default styled.section`
   .data-box__label {
     z-index: 1000;
     position: absolute;
-    font-size: ${(props) => props.theme.fontSize.fs14};
-    line-height: ${(props) => props.theme.lineHeight.lh24};
-    color: ${(props) => props.theme.color.blue};
+    font-size: ${(props) => props.theme.font.size.s};
+    line-height: ${(props) => props.theme.font.lineHeight.xs};
+    color: ${(props) => props.theme.color.text.main};
     letter-spacing: 0.75px;
     left: 64px;
   }
@@ -101,21 +101,21 @@ export default styled.section`
   }
 
   .user-change-preview__title {
-    font-weight: ${(props) => props.theme.fontWeight.middle};
-    font-size: ${(props) => props.theme.fontSize.fs20};
-    line-height: ${(props) => props.theme.lineHeight.lh30};
+    font-weight: ${(props) => props.theme.font.weight.m};
+    font-size: ${(props) => props.theme.font.size.ml};
+    line-height: ${(props) => props.theme.font.lineHeight.m};
     margin-top: 0;
   }
 
   .user-change-preview__link {
-    color: ${(props) => props.theme.color.green};
-    font-weight: ${(props) => props.theme.fontWeight.middle};
-    font-size: ${(props) => props.theme.fontSize.fs14};
-    line-height: ${(props) => props.theme.lineHeight.lh21};
+    color: ${(props) => props.theme.color.info.main};
+    font-weight: ${(props) => props.theme.font.weight.m};
+    font-size: ${(props) => props.theme.font.size.s};
+    line-height: ${(props) => props.theme.font.lineHeight.xxs};
   }
 
   a:hover {
-    color: ${(props) => props.theme.color.blue};
+    color: ${(props) => props.theme.color.text.main};
     font-weight: bold;
   }
 

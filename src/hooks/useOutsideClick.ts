@@ -1,19 +1,18 @@
 import { useEffect } from 'react';
 
 export const useOutsideClick = (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ref: any,
+  ref: React.MutableRefObject<HTMLElement | null>,
   setDropSelect: React.Dispatch<React.SetStateAction<boolean>>,
 ) => {
   useEffect(() => {
-    function handleClickOutside(event: { target: unknown }) {
-      if (ref.current && !ref.current.contains(event.target)) {
+    function handlerClickOutside(event: { target: unknown }) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
         setDropSelect(false);
       }
     }
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handlerClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handlerClickOutside);
     };
   }, [ref, setDropSelect]);
 };

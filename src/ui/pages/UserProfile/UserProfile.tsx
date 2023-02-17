@@ -1,4 +1,3 @@
-import type { MouseEvent } from 'react';
 import { useState } from 'react';
 import classNames from 'classnames';
 import { useFormik } from 'formik';
@@ -17,7 +16,7 @@ import {
 } from 'src/redux/userStore/thunks/updateUser';
 import { fieldsValidation } from 'src/utils/validationFields';
 import {
-  handleApiValidationError,
+  handlerApiValidationError,
   matchError,
 } from 'src/utils/handleApiValidationError';
 import { navigationRoutes } from 'src/utils/constants';
@@ -40,20 +39,9 @@ const UserProfile: React.FC = () => {
 
   const user = useAppSelector((store) => store.userStore.user);
 
-  let userId = 0;
-
-  if (user) {
-    userId = user.id;
-  }
-
-  const changeDataHandler = (
-    type: string,
-    e: React.MouseEvent<HTMLElement>,
-  ) => {
+  const handlerChangeData = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    if (type === 'userData') {
-      setChangeUser(true);
-    }
+    setChangeUser(true);
     if (changeUser === true) {
       setChangeUser(false);
     }
@@ -64,6 +52,7 @@ const UserProfile: React.FC = () => {
     initialValues: {
       fullName: user?.fullName || '',
       email: user?.email || '',
+      id: user?.id || 0,
     },
     validationSchema: Yup.object({
       email: fieldsValidation.email,
@@ -71,13 +60,11 @@ const UserProfile: React.FC = () => {
     }),
     onSubmit: async (values) => {
       try {
-        const { fullName, email } = values;
-        await dispatch(
-          changeUserThunk({ fullName, email, id: userId }),
-        ).unwrap();
+        const { fullName, email, id } = values;
+        await dispatch(changeUserThunk({ fullName, email, id })).unwrap();
       } catch (error) {
         if (matchError(error)) {
-          handleApiValidationError(error.error, formik.setErrors);
+          handlerApiValidationError(error.error, formik.setErrors);
           return;
         }
         toast.error('Unexpected server error');
@@ -101,15 +88,10 @@ const UserProfile: React.FC = () => {
     }
   };
 
-  const exitUserHandler = (
-    e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
-  ) => {
-    e.preventDefault();
-    if (user) {
-      tokenHelper.token.remove();
-      dispatch(userSliceActions.exitUser(1));
-      navigate(`${navigationRoutes.home}`);
-    }
+  const handletUserExit = () => {
+    tokenHelper.token.remove();
+    dispatch(userSliceActions.exitUser(1));
+    navigate(navigationRoutes.home);
   };
 
   return (
@@ -126,7 +108,7 @@ const UserProfile: React.FC = () => {
             <input
               className="load-avatar__input"
               type="file"
-              onChange={(e) => uploadPhoto(e)}
+              onChange={uploadPhoto}
             />
           </div>
 
@@ -136,10 +118,7 @@ const UserProfile: React.FC = () => {
         </div>
 
         <div className="exit-box">
-          <button
-            className="exit-box__button"
-            onClick={(e) => exitUserHandler(e)}
-          >
+          <button className="exit-box__button" onClick={handletUserExit}>
             Exit
           </button>
         </div>
@@ -151,7 +130,7 @@ const UserProfile: React.FC = () => {
             <h3 className="user-change-preview__title">Personal information</h3>
             <a
               className="user-change-preview__link"
-              onClick={(e) => changeDataHandler('userData', e)}
+              onClick={handlerChangeData}
               href=""
             >
               Change information

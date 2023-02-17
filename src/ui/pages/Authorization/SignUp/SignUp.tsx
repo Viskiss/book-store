@@ -13,7 +13,7 @@ import { signUpThunk } from 'src/redux/userStore/thunks/authUser';
 import { navigationRoutes } from 'src/utils/constants';
 import { fieldsValidation } from 'src/utils/validationFields';
 import {
-  handleApiValidationError,
+  handlerApiValidationError,
   matchError,
 } from 'src/utils/handleApiValidationError';
 
@@ -50,7 +50,7 @@ const SignUp: React.FC = () => {
         }
       } catch (error) {
         if (matchError(error)) {
-          handleApiValidationError(error.error, formik.setErrors);
+          handlerApiValidationError(error.error, formik.setErrors);
           return;
         }
         toast.error('Unexpected server error');

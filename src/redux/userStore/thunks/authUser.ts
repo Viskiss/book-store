@@ -1,14 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import type { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 
+import type { UserType } from 'src/types/userType';
 import tokenHelper from 'src/utils/tokenHelper';
 
-import type { UserCreateType } from 'src/types/authUserTypes';
-import { getCurrentUser, logInUser, signUpUser } from 'src/api/apiRequests/authUserApi';
+import { getCurrentUser, logInUser, signUpUser } from 'src/api/requests/authUserApi';
+
+export type CreateUserType = {
+  email: UserType['email'];
+  password: UserType['password'];
+};
 
 export const signUpThunk = createAsyncThunk(
   'user/createUser',
-  async (userData: UserCreateType, { rejectWithValue }) => {
+  async (userData: CreateUserType, { rejectWithValue }) => {
     const { email, password } = userData;
     try {
       const user = await signUpUser({ email, password });
@@ -25,17 +30,17 @@ export const signUpThunk = createAsyncThunk(
 
 export const logInUserThunk = createAsyncThunk(
   'user/loginUser',
-  async (userData: UserCreateType, { rejectWithValue }) => {
+  async (userData: CreateUserType, { rejectWithValue }) => {
     const { email, password } = userData;
     try {
       const user = await logInUser(email, password);
       return user.data;
     } catch (err) {
-      const error = err as AxiosError;
-      if (!error.response) {
+      if (!(err instanceof AxiosError)) {
         throw err;
       }
-      return rejectWithValue(error.response.data);
+
+      return rejectWithValue(err.response?.data);
     }
   },
 );
@@ -43,15 +48,11 @@ export const logInUserThunk = createAsyncThunk(
 export const currentUserThunk = createAsyncThunk(
   'user/currentUser',
   async () => {
-    try {
-      const token = tokenHelper.token.get();
-      if (!token) {
-        return null;
-      }
-      const user = await getCurrentUser();
-      return user.data;
-    } catch {
+    const token = tokenHelper.token.get();
+    if (!token) {
       return null;
     }
+    const response = await getCurrentUser();
+    return response.data.user;
   },
 );

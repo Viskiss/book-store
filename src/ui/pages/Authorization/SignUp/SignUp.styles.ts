@@ -22,7 +22,7 @@ export default styled.section`
   }
 
   .title {
-    color: ${(props) => props.theme.color.dark};
+    color: ${(props) => props.theme.color.text.dark};
     margin-bottom: 60px;
     margin-top: 0;
   }
@@ -63,8 +63,8 @@ export default styled.section`
     button {
       margin-right: 246px;
       letter-spacing: 0.75px;
-      font-size: ${(props) => props.theme.fontSize.fs16};
-      line-height: ${(props) => props.theme.lineHeight.lh24};
+      font-size: ${(props) => props.theme.font.size.sm};
+      line-height: ${(props) => props.theme.font.lineHeight.xs};
     }
 
     input {

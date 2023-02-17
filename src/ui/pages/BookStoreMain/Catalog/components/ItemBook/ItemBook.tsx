@@ -12,7 +12,7 @@ import tokenHelper from 'src/utils/tokenHelper';
 import { navigationRoutes } from 'src/utils/constants';
 import type { BookType, FavoriteBookType } from 'src/types/bookStoreTypes';
 import { useAppSelector } from 'src/redux/store';
-import { addFavoriteBook } from 'src/api/apiRequests/favoriteBooksApi';
+import { addFavoriteBook } from 'src/api/requests/favoriteBooksApi';
 
 import star from 'src/ui/assets/images/icon/Star.svg';
 import emptyStar from 'src/ui/assets/images/icon/EmptyStar.svg';
@@ -68,17 +68,12 @@ const ItemBook: React.FC<PropType> = ({
     }
   };
 
-  const selectBook = (e: React.MouseEvent<HTMLElement>, id: number) => {
-    e.preventDefault();
-    try {
-      navigate(`/book/${id}`);
-    } catch (err) {
-      toast.error('Unexpected server error');
-    }
+  const selectBook = () => {
+    navigate(`/book/${id}`);
   };
 
   return (
-    <StyledItemBook bestrate={rate > 4} likedBook={!!selectBookFavorite}>
+    <StyledItemBook best={rate > 4} likedBook={!!selectBookFavorite}>
       <div className="cover-book">
         <Button onClick={handlerLikeBook} className="cover-book__like">
           <img
@@ -88,7 +83,7 @@ const ItemBook: React.FC<PropType> = ({
           />
         </Button>
         <img
-          onClick={(e) => selectBook(e, id)}
+          onClick={selectBook}
           className="cover"
           src={cover}
           alt=""
@@ -106,7 +101,6 @@ const ItemBook: React.FC<PropType> = ({
       <div className="book-info">
         <div className="book-info__title-box">
           <Link
-            onClick={(e) => selectBook(e, id)}
             className="book-title"
             to="/book"
           >
