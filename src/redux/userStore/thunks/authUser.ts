@@ -1,29 +1,25 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosError } from 'axios';
 
 import type { UserType } from 'src/types/userType';
 import tokenHelper from 'src/utils/tokenHelper';
 
-import { getCurrentUser, logInUser, signUpUser } from 'src/api/requests/authUserApi';
+import userApi from 'src/api/requests/authUserApi';
+import { AxiosError } from 'axios';
 
-export type CreateUserType = {
-  email: UserType['email'];
-  password: UserType['password'];
-};
+export type CreateUserType = Pick<UserType, 'email' | 'password'>;
 
 export const signUpThunk = createAsyncThunk(
   'user/createUser',
   async (userData: CreateUserType, { rejectWithValue }) => {
     const { email, password } = userData;
     try {
-      const user = await signUpUser({ email, password });
+      const user = await userApi.signUp({ email, password });
       return user.data;
     } catch (err) {
-      const error = err as AxiosError;
-      if (!error.response) {
+      if (!(err instanceof AxiosError)) {
         throw err;
       }
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(err.response?.data);
     }
   },
 );
@@ -33,13 +29,12 @@ export const logInUserThunk = createAsyncThunk(
   async (userData: CreateUserType, { rejectWithValue }) => {
     const { email, password } = userData;
     try {
-      const user = await logInUser(email, password);
+      const user = await userApi.signIn(email, password);
       return user.data;
     } catch (err) {
       if (!(err instanceof AxiosError)) {
         throw err;
       }
-
       return rejectWithValue(err.response?.data);
     }
   },
@@ -47,12 +42,19 @@ export const logInUserThunk = createAsyncThunk(
 
 export const currentUserThunk = createAsyncThunk(
   'user/currentUser',
-  async () => {
-    const token = tokenHelper.token.get();
-    if (!token) {
-      return null;
+  async (_, { rejectWithValue }) => {
+    try {
+      const token = tokenHelper.token.get();
+      if (!token) {
+        return null;
+      }
+      const response = await userApi.getCurrentUser();
+      return response.data.user;
+    } catch (err) {
+      if (!(err instanceof AxiosError)) {
+        throw err;
+      }
+      return rejectWithValue(err.response?.data);
     }
-    const response = await getCurrentUser();
-    return response.data.user;
   },
 );

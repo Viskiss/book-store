@@ -8,8 +8,9 @@ import map from 'src/ui/assets/images/map.png';
 import StyledFooter from './Footer.styles';
 
 const Footer: React.FC = () => {
+  const localTheme = localStorage.getItem('theme') === 'themeDark';
   return (
-    <StyledFooter>
+    <StyledFooter dark={localTheme}>
       <div className="footer_container">
         <div className="logo-box">
           <img className="logo" src={logo} alt="" />

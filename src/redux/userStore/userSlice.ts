@@ -14,9 +14,11 @@ import {
   changeUserThunk,
   uploadAvatarUserThunk,
 } from 'src/redux/userStore/thunks/updateUser';
+import { themeLight, themeDark } from 'src/ui/containers/theme';
 
 const initialState = () => ({
   user: null as UserType | null,
+  theme: localStorage.getItem('theme') === 'themeDark' ? themeDark : themeLight,
 });
 
 const userSlice = createSlice({
@@ -26,6 +28,15 @@ const userSlice = createSlice({
     exitUser: (state, { payload }) => {
       if (payload) {
         state.user = null;
+      }
+    },
+    changeTheme: (state, { payload }) => {
+      if (payload === 1) {
+        localStorage.setItem('theme', 'themeDark');
+        state.theme = themeDark;
+      } else {
+        localStorage.setItem('theme', 'themeLight');
+        state.theme = themeLight;
       }
     },
   },

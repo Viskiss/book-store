@@ -3,6 +3,12 @@ import type { CommentType } from 'src/types/bookStoreTypes';
 
 const COMMENT_PATH_PREFIX = '/comment';
 
-export const getComments = (bookId: number) => {
-  return api.get<CommentType[]>(`${COMMENT_PATH_PREFIX}/comments/${bookId}`);
+const commentApi = {
+  getComments: (bookId: number) => {
+    return api.get<CommentType[]>(`${COMMENT_PATH_PREFIX}/comments/${bookId}`);
+  },
+};
+
+export default {
+  getComments: commentApi.getComments,
 };

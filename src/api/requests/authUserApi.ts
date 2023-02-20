@@ -9,17 +9,25 @@ export type AuthUserType = {
 
 const AUTH_PATH_PREFIX = '/auth';
 
-export const logInUser = (email: string, password: string) => {
-  return api.post<AuthUserType>(`${AUTH_PATH_PREFIX}/sign-in`, {
-    email,
-    password,
-  });
+const authUser = {
+  signInUser: (email: string, password: string) => {
+    return api.post<AuthUserType>(`${AUTH_PATH_PREFIX}/sign-in`, {
+      email,
+      password,
+    });
+  },
+
+  signUpUser: (data: { email: string; password: string }) => {
+    return api.post<AuthUserType>(`${AUTH_PATH_PREFIX}/sign-up`, data);
+  },
+
+  getCurrentUser: () => {
+    return api.get<{ user: UserType }>(`${AUTH_PATH_PREFIX}/me`);
+  },
 };
 
-export const signUpUser = (data: { email: string; password: string }) => {
-  return api.post<AuthUserType>(`${AUTH_PATH_PREFIX}/sign-up`, data);
-};
-
-export const getCurrentUser = () => {
-  return api.get<{ user: UserType }>(`${AUTH_PATH_PREFIX}/me`);
+export default {
+  signIn: authUser.signInUser,
+  signUp: authUser.signUpUser,
+  getCurrentUser: authUser.getCurrentUser,
 };

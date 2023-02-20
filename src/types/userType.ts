@@ -5,5 +5,3 @@ export type UserType = {
   password: string;
   avatar: string;
 };
-
-export type ErrorType = Array<{ key: string; path: string; message: string }>;

@@ -40,16 +40,16 @@ export type CartType = {
 
 export type FavoriteBookType = {
   book: BookType;
-  bookId: BookType['id'];
+  bookId: number;
   id: number;
-  userId: UserType['id'];
+  userId: number;
 };
 
 export type CommentType = {
   id: number;
   text: string;
-  bookId: BookType['id'];
-  userId: UserType['id'];
+  bookId: number;
+  userId: number;
   createdTime: string;
   user: UserType;
 };

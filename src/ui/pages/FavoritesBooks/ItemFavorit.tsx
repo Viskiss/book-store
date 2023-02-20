@@ -12,7 +12,13 @@ type PropType = {
   setDeleteBook: (bookId: number) => void;
 };
 
-const ItemLike: React.FC<PropType> = ({ bookId, cover, title, author, setDeleteBook }) => {
+const ItemLike: React.FC<PropType> = ({
+  bookId,
+  cover,
+  title,
+  author,
+  setDeleteBook,
+}) => {
   const navigate = useNavigate();
 
   const selectBook = () => {
@@ -22,26 +28,29 @@ const ItemLike: React.FC<PropType> = ({ bookId, cover, title, author, setDeleteB
   return (
     <>
       <div className="item-favorite__box">
-
         <div className="item-favorite__box-cover">
-          <img onClick={selectBook} className="item-favorite__cover" src={cover} alt="" />
+          <img
+            onClick={selectBook}
+            className="item-favorite__cover"
+            src={cover}
+            alt=""
+          />
           <Button
             onClick={() => setDeleteBook(bookId)}
             className="item-favorite__like"
           >
-            <img className="item-favorite__like-img" src={fillLike} alt="Heart" />
+            <img
+              className="item-favorite__like-img"
+              src={fillLike}
+              alt="Heart"
+            />
           </Button>
         </div>
 
         <div className="item-favorite__box-data">
-          <h1
-            className="item-favorite__box-title"
-          >
-            {title}
-          </h1>
+          <h1 className="item-favorite__box-title">{title}</h1>
           <p className="item-favorite__box-author">{author}</p>
         </div>
-
       </div>
       <div className="line" />
     </>

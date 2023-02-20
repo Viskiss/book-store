@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 
-import AuthBanner from './Banners/AuthBanner/AuthBanner';
-import BookBaner from './Banners/BookBanner/BookBanner';
-import Catalog from './Catalog/Catalog';
+import AuthBanner from './components/AuthBanner/AuthBanner';
+import BookBaner from './components/BookBanner/BookBanner';
+import Catalog from './components/Catalog';
 
-import StyledBookStore from './BookStore.styles';
+import StyledBookStore from './BookStoreMain.styles';
 import { getCartThunk } from './redux/thunks/cartThunks';
 
 const BookStoreMain: React.FC = () => {

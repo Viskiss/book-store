@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
-import booksImg from 'src/ui/assets/images/books.svg';
-
-import { deleteFavoriteBook, getFavoriteBooks } from 'src/api/requests/favoriteBooksApi';
-import type { FavoriteBookType } from 'src/types/bookStoreTypes';
 import TextBlock from 'src/ui/components/TextBlock';
+
+import bookApi from 'src/api/requests/favoriteBooksApi';
+import type { FavoriteBookType } from 'src/types/bookStoreTypes';
+
+import booksImg from 'src/ui/assets/images/books.svg';
 
 import ItemFavorite from './ItemFavorit';
 
@@ -17,7 +18,7 @@ const FavoriteBooks: React.FC = () => {
   useEffect(() => {
     (async () => {
       try {
-        const books = await getFavoriteBooks();
+        const books = await bookApi.getFavoriteBooks();
         setFavoriteBooks(books.data.books);
       } catch (err) {
         const error = err as Error;
@@ -30,7 +31,7 @@ const FavoriteBooks: React.FC = () => {
   const handlerDeleteFavoriteBook = (bookId: number) => {
     (async () => {
       try {
-        const books = await deleteFavoriteBook(bookId);
+        const books = await bookApi.deleteFavoriteBook(bookId);
         setFavoriteBooks(books.data.books);
       } catch (err) {
         const error = err as Error;
@@ -41,7 +42,6 @@ const FavoriteBooks: React.FC = () => {
 
   return (
     <StyledFavoriteBooks>
-
       {favoriteBooks.length ? (
         <div className="favorite__books">
           {favoriteBooks.map((item) => (
@@ -54,11 +54,8 @@ const FavoriteBooks: React.FC = () => {
               key={item.id}
             />
           ))}
-
         </div>
-
       ) : (
-
         <div className="favorite-container">
           <img className="favorite-container__img" src={booksImg} alt="" />
           <TextBlock
@@ -71,7 +68,6 @@ const FavoriteBooks: React.FC = () => {
           />
         </div>
       )}
-
     </StyledFavoriteBooks>
   );
 };

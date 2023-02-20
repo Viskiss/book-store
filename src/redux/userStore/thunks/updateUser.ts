@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import type { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 
-import { changeUserPassword, updateUser, uploadUserAvatar } from 'src/api/requests/userApi';
+import userApi from 'src/api/requests/updateUserApi';
 
 import type { UserType } from 'src/types/userType';
 
@@ -10,7 +10,6 @@ type ChangeUserType = Pick<UserType, 'email' | 'fullName' | 'id'>;
 export type ChangePasswordType = {
   password: UserType['password'];
   newPassword: string;
-  id: UserType['id'];
 };
 
 export const changeUserThunk = createAsyncThunk(
@@ -18,14 +17,13 @@ export const changeUserThunk = createAsyncThunk(
   async (userData: ChangeUserType, { rejectWithValue }) => {
     const { email, fullName, id } = userData;
     try {
-      const user = await updateUser(id, { email, fullName });
+      const user = await userApi.updateUser(id, { email, fullName });
       return user.data;
     } catch (err) {
-      const error = err as AxiosError;
-      if (!error.response) {
+      if (!(err instanceof AxiosError)) {
         throw err;
       }
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(err.response?.data);
     }
   },
 );
@@ -34,14 +32,13 @@ export const uploadAvatarUserThunk = createAsyncThunk(
   'user/avatarUser',
   async (userData: string, { rejectWithValue }) => {
     try {
-      const user = await uploadUserAvatar(userData);
+      const user = await userApi.uploadUserAvatar(userData);
       return user.data;
     } catch (err) {
-      const error = err as AxiosError;
-      if (!error.response) {
+      if (!(err instanceof AxiosError)) {
         throw err;
       }
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(err.response?.data);
     }
   },
 );
@@ -49,15 +46,14 @@ export const uploadAvatarUserThunk = createAsyncThunk(
 export const changePasswordThunk = createAsyncThunk(
   'user/changePassword',
   async (userData: ChangePasswordType, { rejectWithValue }) => {
-    const { password, newPassword, id } = userData;
+    const { password, newPassword } = userData;
     try {
-      await changeUserPassword(password, newPassword, id);
+      await userApi.changeUserPassword(password, newPassword);
     } catch (err) {
-      const error = err as AxiosError;
-      if (!error.response) {
+      if (!(err instanceof AxiosError)) {
         throw err;
       }
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(err.response?.data);
     }
   },
 );

@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
-export default styled.header`
+export default styled.header<{ dark: boolean }>`
   display: flex;
-  justify-content: space-between;
-  gap: 43px;
-  padding: 24px 80px 40px 80px;
-  max-width: 1280px;
+  justify-content: center;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 43px;
+    padding: 24px 80px 40px 80px;
+    max-width: 1280px;
+  }
 
   .round-button__count {
     position: relative;
@@ -40,7 +45,7 @@ export default styled.header`
     font-weight: ${(props) => props.theme.font.weight.m};
     font-size: ${(props) => props.theme.font.size.sm};
     line-height: ${(props) => props.theme.font.lineHeight.xs};
-    color: ${(props) => props.theme.color.text.dark};
+    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.dark)};
   }
 
   .catalog-link:hover {
@@ -100,8 +105,10 @@ export default styled.header`
   }
 
   @media (max-width: 1280px) {
-    padding: 24px 15px 40px 15px;
-    gap: 50px;
+    .container {
+      padding: 24px 15px 40px 15px;
+      gap: 50px;
+    }
 
     .logo-box {
       margin: 0;
@@ -118,10 +125,12 @@ export default styled.header`
   }
 
   @media (max-width: 800px) {
-    justify-content: space-evenly;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
+    .container {
+      justify-content: space-evenly;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
 
     .search {
       order: 4;
@@ -149,7 +158,9 @@ export default styled.header`
   }
 
   @media (max-width: 510px) {
-    padding: 24px 15px 40px 15px;
+    .container {
+      padding: 24px 15px 40px 15px;
+    }
 
     .round-button {
       padding: 7px;

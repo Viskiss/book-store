@@ -7,6 +7,7 @@ import Button from 'src/ui/components/Button';
 import tokenHelper from 'src/utils/tokenHelper';
 
 import logo from 'src/ui/assets/images/logoH.svg';
+import logoWhite from 'src/ui/assets/images/logoF.svg';
 import loupe from 'src/ui/assets/images/icon/Search.svg';
 
 import { navigationRoutes } from 'src/utils/constants';
@@ -24,6 +25,8 @@ const Header: React.FC = () => {
   const debouncedFilter = useDebounce(searchString, 500);
 
   const token = tokenHelper.token.get();
+
+  const localTheme = localStorage.getItem('theme') === 'themeDark';
 
   useEffect(() => {
     if (debouncedFilter) {
@@ -43,11 +46,11 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className="container">
-      <StyledHeader>
+    <StyledHeader dark={localTheme}>
+      <div className="container">
         <div className="logo-box">
           <Link className="logo__link" to={navigationRoutes.home}>
-            <img className="logo" src={logo} alt="" />
+            <img className="logo" src={localTheme ? logoWhite : logo} alt="" />
           </Link>
         </div>
 
@@ -81,8 +84,8 @@ const Header: React.FC = () => {
         ) : (
           <AuthUserLinks />
         )}
-      </StyledHeader>
-    </div>
+      </div>
+    </StyledHeader>
   );
 };
 

@@ -12,22 +12,31 @@ type GetFilteredBooksType = {
   numberPages: number;
 };
 
-export const getRecommendedBooks = (userId: number) => {
-  return api.get<{ books: BookType[] }>(
-    `${BOOK_PATH_PREFIX}/recommend/${userId}`,
-  );
+const bookApi = {
+  getRecommendedBooks: (userId: number) => {
+    return api.get<{ books: BookType[] }>(
+      `${BOOK_PATH_PREFIX}/recommend/${userId}`,
+    );
+  },
+
+  getGernes: () => {
+    return api.get<{ genres: GenreType[] }>(`${BOOK_PATH_PREFIX}/genres`);
+  },
+
+  getCurrentBook: (bookId: number) => {
+    return api.get<{ book: BookType }>(`${BOOK_PATH_PREFIX}/${bookId}`);
+  },
+
+  getFilteredBooks: (filters: FilterType) => {
+    return api.get<GetFilteredBooksType>(`${BOOK_PATH_PREFIX}/filter`, {
+      params: { ...filters },
+    } as AxiosRequestConfig);
+  },
 };
 
-export const getGernes = () => {
-  return api.get<{ genres: GenreType[] }>(`${BOOK_PATH_PREFIX}/genres`);
-};
-
-export const getCurrentBook = (bookId: number) => {
-  return api.get<{book: BookType}>(`${BOOK_PATH_PREFIX}/${bookId}`);
-};
-
-export const getFilteredBooks = (filters: FilterType) => {
-  return api.get<GetFilteredBooksType>(`${BOOK_PATH_PREFIX}/filter`, {
-    params: { ...filters },
-  } as AxiosRequestConfig);
+export default {
+  getRecommendedBooks: bookApi.getRecommendedBooks,
+  getGenres: bookApi.getGernes,
+  getCurrentBook: bookApi.getCurrentBook,
+  getFilteredBooks: bookApi.getFilteredBooks,
 };

@@ -50,7 +50,7 @@ const PasswordProfile: React.FC = () => {
         const { password, newPassword } = values;
         if (user) {
           await dispatch(
-            changePasswordThunk({ password, id: user.id, newPassword }),
+            changePasswordThunk({ password, newPassword }),
           ).unwrap();
         }
       } catch (error) {

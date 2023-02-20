@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.footer`
+export default styled.footer<{ dark: boolean }>`
   background: ${(props) => props.theme.color.background.dark};
   background-size: 100%;
   padding: 73px 80px;
@@ -9,6 +9,8 @@ export default styled.footer`
   justify-content: center;
   margin-top: auto;
   margin-top: 150px;
+
+  border-top: ${(props) => (props.dark ? `2px solid ${props.theme.color.background.light}` : '')};
 
   .footer_container {
     max-width: 1280px;

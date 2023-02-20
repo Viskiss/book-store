@@ -8,8 +8,8 @@ import LottieLoading from 'src/ui/components/LottieLoading';
 
 import NavigationStyled from './Navigation.styles';
 
-const SignIn = lazy(() => import('src/ui/pages/Authorization/SignIn/SignIn'));
-const SignUp = lazy(() => import('src/ui/pages/Authorization/SignUp/SignUp'));
+const SignIn = lazy(() => import('src/ui/pages/authorization/SignIn/SignIn'));
+const SignUp = lazy(() => import('src/ui/pages/authorization/SignUp/SignUp'));
 
 const BookStoreMain = lazy(() => import('src/ui/pages/BookStoreMain'));
 const Cart = lazy(() => import('src/ui/pages/Cart'));

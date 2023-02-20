@@ -10,10 +10,12 @@ import Button from 'src/ui/components/Button';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { userSliceActions } from 'src/redux/userStore/userSlice';
+
 import {
   changeUserThunk,
   uploadAvatarUserThunk,
 } from 'src/redux/userStore/thunks/updateUser';
+
 import { fieldsValidation } from 'src/utils/validationFields';
 import {
   handlerApiValidationError,
@@ -25,8 +27,8 @@ import tokenHelper from 'src/utils/tokenHelper';
 import mail from 'src/ui/assets/images/icon/Mail.svg';
 import camera from 'src/ui/assets/images/icon/Camera.svg';
 import imgUser from 'src/ui/assets/images/icon/User.svg';
-
 import defaultPhoto from 'src/ui/assets/images/UserPhoto.svg';
+
 import PasswordProfile from './PasswordProfile';
 
 import StyledUserProfile from './UserProfile.styles';
