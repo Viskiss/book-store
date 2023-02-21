@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import classNames from 'classnames';
 
+import { localTheme } from 'src/utils/constants';
+
 import leftArrow from 'src/ui/assets/images/icon/leftArrow.svg';
 import arrowRight from 'src/ui/assets/images/icon/arrowRight.svg';
 
@@ -17,8 +19,6 @@ const Pagination: React.FC = () => {
   const counter = useAppSelector((state) => state.bookStore.count);
   const numberPage = useAppSelector((state) => state.bookStore.pages);
   const maxPages = Math.ceil(counter / numberPage);
-
-  const localTheme = localStorage.getItem('theme') === 'themeDark';
 
   const maxPagesDot = () => {
     const pages = Math.ceil(counter / numberPage);
@@ -53,7 +53,7 @@ const Pagination: React.FC = () => {
   };
 
   return (
-    <StyledPaginationBooks dark={localTheme}>
+    <StyledPaginationBooks dark={localTheme()}>
       <Button
         disabled={page === 1}
         onClick={handlerClickFirstDot}

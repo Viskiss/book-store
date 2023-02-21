@@ -9,7 +9,7 @@ export default styled.section`
     display: flex;
     gap: 60px 20px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .title-catalog {

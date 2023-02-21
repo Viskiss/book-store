@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { navigationRoutes } from 'src/utils/constants';
+import { localTheme, navigationRoutes } from 'src/utils/constants';
 
 import logo from 'src/ui/assets/images/logoF.svg';
 import map from 'src/ui/assets/images/map.png';
@@ -8,9 +8,8 @@ import map from 'src/ui/assets/images/map.png';
 import StyledFooter from './Footer.styles';
 
 const Footer: React.FC = () => {
-  const localTheme = localStorage.getItem('theme') === 'themeDark';
   return (
-    <StyledFooter dark={localTheme}>
+    <StyledFooter dark={localTheme()}>
       <div className="footer_container">
         <div className="logo-box">
           <img className="logo" src={logo} alt="" />

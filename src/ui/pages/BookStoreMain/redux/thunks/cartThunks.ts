@@ -23,8 +23,8 @@ export const addBookToCartThunk = createAsyncThunk(
   async (data: AddBookType, { rejectWithValue }) => {
     const { userId, bookId } = data;
     try {
-      const cart = await cartApi.addBookToCart(userId, bookId);
-      return cart.data;
+      const response = await cartApi.addBookToCart(userId, bookId);
+      return response.data;
     } catch (err) {
       if (!(err instanceof AxiosError)) {
         throw err;

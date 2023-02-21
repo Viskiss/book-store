@@ -127,6 +127,10 @@ export default styled.div<{ likedBook?: boolean; best?: boolean; dark : boolean 
     .catalog-button {
       font-size: ${(props) => props.theme.font.size.sm};
     }
+
+    .cover-book__label {
+    width: 80%
+  }
   }
 
   @media (max-width: 834px) {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.section`
+export default styled.section<{dark: boolean}>`
   position: relative;
   padding-right: 54px;
 
@@ -33,7 +33,7 @@ export default styled.section`
 
   .label {
     width: fit-content;
-    color: ${(props) => props.theme.color.text.dark};
+    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.dark)};
     font-weight: ${(props) => props.theme.font.weight.m};
     font-size: ${(props) => props.theme.font.size.s};
     line-height: ${(props) => props.theme.font.lineHeight.xs};

@@ -1,6 +1,8 @@
 import type { FormikTouched } from 'formik';
 import React, { useState } from 'react';
 
+import { localTheme } from 'src/utils/constants';
+
 import view from 'src/ui/assets/images/icon/View.svg';
 
 import StyledInput from './Input.styles';
@@ -48,7 +50,7 @@ const Input: React.FC<PropType> = ({ ...props }) => {
   };
 
   return (
-    <StyledInput className="input-section">
+    <StyledInput dark={localTheme()} className="input-section">
       <button
         onClick={(e) => handlerChangeType('', e)}
         type="button"

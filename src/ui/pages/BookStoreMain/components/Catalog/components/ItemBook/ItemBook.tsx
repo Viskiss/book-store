@@ -8,7 +8,7 @@ import Button from 'src/ui/components/Button';
 import like from 'src/ui/assets/images/icon/Heart.svg';
 import fillLike from 'src/ui/assets/images/icon/fillHeart.svg';
 
-import { navigationRoutes } from 'src/utils/constants';
+import { localTheme, navigationRoutes } from 'src/utils/constants';
 import type { BookType, FavoriteBookType } from 'src/types/bookStoreTypes';
 import { useAppSelector } from 'src/redux/store';
 import favoriteBooksApi from 'src/api/requests/favoriteBooksApi';
@@ -45,8 +45,6 @@ const ItemBook: React.FC<PropType> = ({
   const selectBookInCart = cart.find((book) => book.bookId === id);
   const selectBookFavorite = favoriteBooks.find((book) => book.book.id === id);
 
-  const localTheme = localStorage.getItem('theme') === 'themeDark';
-
   const handlerLikeBook = () => {
     if (!user) {
       navigate(navigationRoutes.signIn);
@@ -74,7 +72,7 @@ const ItemBook: React.FC<PropType> = ({
   };
 
   return (
-    <StyledItemBook dark={localTheme} best={rate > 4} likedBook={!!selectBookFavorite}>
+    <StyledItemBook dark={localTheme()} best={rate > 4} likedBook={!!selectBookFavorite}>
       <div className="cover-book">
         <Button onClick={handlerLikeBook} className="cover-book__like">
           <img

@@ -3,12 +3,15 @@ import styled from 'styled-components';
 export default styled.header<{ dark: boolean }>`
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
+
+  border-bottom: ${(props) => (props.dark ? `2px solid ${props.theme.color.background.light}` : '')};
 
   .container {
     display: flex;
     justify-content: space-between;
     gap: 43px;
-    padding: 24px 80px 40px 80px;
+    padding: 24px 80px 20px 80px;
     max-width: 1280px;
   }
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.section`
+export default styled.section<{dark: boolean}>`
   padding: 60px 0 150px 0;
   display: flex;
   justify-content: center;
@@ -22,7 +22,7 @@ export default styled.section`
   }
 
   .title {
-    color: ${(props) => props.theme.color.text.dark};
+    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.dark)};
     margin-bottom: 60px;
     margin-top: 0;
   }
@@ -34,6 +34,7 @@ export default styled.section`
   .men-pick {
     width: 100%;
     height: auto;
+    background: ${(props) => (props.dark ? 'radial-gradient(circle,rgba(250,250,250,1) 15%,rgba(13,24,33,0.9867749419953597) 65%)' : '')};
   }
 
   .simple-button {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div`
+export default styled.div<{ dark: boolean }>`
   display: grid;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: 0.1fr 0.1fr 1fr;
@@ -34,13 +34,14 @@ export default styled.div`
   .title {
     font-size: ${(props) => props.theme.font.size.xxxl};
     line-height: ${(props) => props.theme.font.lineHeight.xxxl};
-    color: ${(props) => props.theme.color.text.dark};
+    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.dark)};
     margin: 0;
   }
 
   .book-author {
     font-size: ${(props) => props.theme.font.size.l};
     line-height: ${(props) => props.theme.font.lineHeight.ml};
+    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.dark)};
     margin-top: 0;
   }
 
@@ -48,7 +49,7 @@ export default styled.div`
     font-weight: ${(props) => props.theme.font.weight.m};
     line-height: ${(props) => props.theme.font.lineHeight.ml};
     font-size: ${(props) => props.theme.font.size.l};
-    color: ${(props) => props.theme.color.text.dark};
+    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.dark)};
     margin-top: 0;
     margin-bottom: 10px;
   }
@@ -56,7 +57,7 @@ export default styled.div`
   .text {
     font-size: ${(props) => props.theme.font.size.sm};
     line-height: ${(props) => props.theme.font.lineHeight.xs};
-    color: ${(props) => props.theme.color.text.main};
+    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.main)};
     margin: 0 0 74px 0;
   }
 
@@ -170,15 +171,15 @@ export default styled.div`
     .book-cover__box {
       grid-area: 1 / 1 / 3 / 2;
     }
-  
+
     .book-info__data {
       grid-area: 1 / 2 / 2 / 3;
     }
-  
+
     .book-info__rate {
       grid-area: 2 / 2 / 3 / 3;
     }
-  
+
     .book-info__box {
       max-width: 290px;
       margin-top: -10px;

@@ -13,8 +13,8 @@ export const signUpThunk = createAsyncThunk(
   async (userData: CreateUserType, { rejectWithValue }) => {
     const { email, password } = userData;
     try {
-      const user = await userApi.signUp({ email, password });
-      return user.data;
+      const response = await userApi.signUp({ email, password });
+      return response.data;
     } catch (err) {
       if (!(err instanceof AxiosError)) {
         throw err;
@@ -29,8 +29,8 @@ export const logInUserThunk = createAsyncThunk(
   async (userData: CreateUserType, { rejectWithValue }) => {
     const { email, password } = userData;
     try {
-      const user = await userApi.signIn(email, password);
-      return user.data;
+      const response = await userApi.signIn(email, password);
+      return response.data;
     } catch (err) {
       if (!(err instanceof AxiosError)) {
         throw err;

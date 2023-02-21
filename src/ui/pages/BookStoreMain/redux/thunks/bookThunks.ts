@@ -9,8 +9,8 @@ export const getFilteredBooksThunk = createAsyncThunk(
   'book/getFilterBooks',
   async (filterData: FilterType, { rejectWithValue }) => {
     try {
-      const books = await bookApi.getFilteredBooks(filterData);
-      return books.data;
+      const response = await bookApi.getFilteredBooks(filterData);
+      return response.data;
     } catch (err) {
       if (!(err instanceof AxiosError)) {
         throw err;

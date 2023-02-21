@@ -17,8 +17,8 @@ export const changeUserThunk = createAsyncThunk(
   async (userData: ChangeUserType, { rejectWithValue }) => {
     const { email, fullName, id } = userData;
     try {
-      const user = await userApi.updateUser(id, { email, fullName });
-      return user.data;
+      const response = await userApi.updateUser(id, { email, fullName });
+      return response.data;
     } catch (err) {
       if (!(err instanceof AxiosError)) {
         throw err;
@@ -32,8 +32,8 @@ export const uploadAvatarUserThunk = createAsyncThunk(
   'user/avatarUser',
   async (userData: string, { rejectWithValue }) => {
     try {
-      const user = await userApi.uploadUserAvatar(userData);
-      return user.data;
+      const response = await userApi.uploadUserAvatar(userData);
+      return response.data;
     } catch (err) {
       if (!(err instanceof AxiosError)) {
         throw err;
