@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { useAppDispatch } from 'src/redux/store';
-import { userSliceActions } from 'src/redux/userStore/userSlice';
-
 import light from 'src/ui/assets/images/icon/light.svg';
 import dark from 'src/ui/assets/images/icon/dark.svg';
 
@@ -11,8 +8,6 @@ import StyledTheme from './ThemeSelect.styles';
 const ThemeSelect: React.FC = () => {
   const [theme, setTheme] = useState(light);
   const [theme2, setTheme2] = useState(dark);
-
-  const dispatch = useAppDispatch();
 
   const localTheme = localStorage.getItem('theme') === 'themeDark';
 
@@ -29,11 +24,11 @@ const ThemeSelect: React.FC = () => {
 
   const handletChangeTheme = () => {
     if (theme === light) {
-      dispatch(userSliceActions.changeTheme(1));
+      localStorage.setItem('theme', 'lightTheme');
       setTheme(dark);
       setTheme2(light);
     } else {
-      dispatch(userSliceActions.changeTheme(0));
+      localStorage.setItem('theme', 'darkTheme');
       setTheme(light);
       setTheme2(dark);
     }

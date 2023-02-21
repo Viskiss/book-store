@@ -4,6 +4,7 @@ import { useOutsideClick } from 'src/hooks/useOutsideClick';
 
 import arrow from 'src/ui/assets/images/icon/arrowRight.svg';
 import polygon from 'src/ui/assets/images/icon/Polygon.svg';
+import { localTheme } from 'src/utils/constants';
 
 import StyledSelect from './SelectFilterBox.styles';
 
@@ -19,16 +20,12 @@ const FilterBox: React.FC<PropsType> = ({ children, title }) => {
   useOutsideClick(wrapperRef, setViewItems);
 
   const handlerViewItems = () => {
-    if (viewItems) {
-      setViewItems(false);
-    }
-    if (!viewItems) {
-      setViewItems(true);
-    }
+    setViewItems(!viewItems);
   };
 
   return (
     <StyledSelect
+    dark={localTheme()}
       view={viewItems}
       typeSelector={title !== 'Genre'}
       ref={wrapperRef}

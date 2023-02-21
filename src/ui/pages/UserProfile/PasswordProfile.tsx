@@ -83,7 +83,7 @@ const PasswordProfile: React.FC = () => {
         </div>
         {!changePassword ? (
           <div className="data-box">
-            <label>Old password</label>
+            <label className="data-box__label">Your password</label>
 
             <Input
               disabled={disabledInput}
@@ -98,14 +98,14 @@ const PasswordProfile: React.FC = () => {
           <>
             <>
               <div className="data-box">
-                <label>Old password</label>
+                <label className="data-box__label-old-password">Old password</label>
 
                 <Input
                   img={eye}
                   className={stylesInputPassword}
                   type="password"
                   placeholder="***********"
-                  label="Old password"
+                  label=""
                   errors={
                     formik.touched.password ? formik.errors.password : undefined
                   }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.section`
+export default styled.section<{dark: boolean}>`
   display: flex;
   padding: 20px 330px 100px 0;
   justify-content: center;
@@ -96,6 +96,10 @@ export default styled.section`
     left: 64px;
   }
 
+  .data-box__label-old-password {
+    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.dark)};
+  }
+
   .form-user-data {
     margin-bottom: 20px;
   }
@@ -104,6 +108,7 @@ export default styled.section`
     font-weight: ${(props) => props.theme.font.weight.m};
     font-size: ${(props) => props.theme.font.size.ml};
     line-height: ${(props) => props.theme.font.lineHeight.m};
+    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.dark)};
     margin-top: 0;
   }
 

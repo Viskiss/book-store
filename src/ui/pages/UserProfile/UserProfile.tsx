@@ -21,7 +21,7 @@ import {
   handlerApiValidationError,
   matchError,
 } from 'src/utils/handleApiValidationError';
-import { navigationRoutes } from 'src/utils/constants';
+import { localTheme, navigationRoutes } from 'src/utils/constants';
 import tokenHelper from 'src/utils/tokenHelper';
 
 import mail from 'src/ui/assets/images/icon/Mail.svg';
@@ -97,7 +97,7 @@ const UserProfile: React.FC = () => {
   };
 
   return (
-    <StyledUserProfile>
+    <StyledUserProfile dark={localTheme()}>
       <div className="img-profile">
         <img
           className="user-photo"
@@ -161,7 +161,7 @@ const UserProfile: React.FC = () => {
           </div>
 
           <div className="data-box">
-            <label>Your email</label>
+            <label className="data-box__label">Your email</label>
 
             <Input
               className={classNames({

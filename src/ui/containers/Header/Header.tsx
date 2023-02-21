@@ -10,7 +10,7 @@ import logo from 'src/ui/assets/images/logoH.svg';
 import logoWhite from 'src/ui/assets/images/logoF.svg';
 import loupe from 'src/ui/assets/images/icon/Search.svg';
 
-import { localTheme, navigationRoutes } from 'src/utils/constants';
+import { navigationRoutes } from 'src/utils/constants';
 import { useDebounce } from 'src/hooks/useDebounce';
 import AuthUserLinks from './AuthUserLinks';
 

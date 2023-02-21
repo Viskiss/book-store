@@ -5,8 +5,6 @@ export default styled.header<{ dark: boolean }>`
   justify-content: center;
   margin-bottom: 20px;
 
-  border-bottom: ${(props) => (props.dark ? `2px solid ${props.theme.color.background.light}` : '')};
-
   .container {
     display: flex;
     justify-content: space-between;
@@ -48,7 +46,7 @@ export default styled.header<{ dark: boolean }>`
     font-weight: ${(props) => props.theme.font.weight.m};
     font-size: ${(props) => props.theme.font.size.sm};
     line-height: ${(props) => props.theme.font.lineHeight.xs};
-    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.dark)};
+    color: ${(props) => props.theme.color.text.dark};
   }
 
   .catalog-link:hover {
@@ -66,7 +64,7 @@ export default styled.header<{ dark: boolean }>`
 
   .search-input {
     padding: 20px 64px;
-    background: ${(props) => props.theme.color.background.light};
+    background: ${(props) => (props.dark ? '#1e2e3a' : props.theme.color.background.light)};
     border-radius: ${(props) => props.theme.border.radius.main};
     border: none;
     font-weight: ${(props) => props.theme.font.weight.s};

@@ -7,7 +7,3 @@ export const navigationRoutes = {
   currentBook: '/book/:bookId',
   favorite: '/favorite-book',
 };
-
-export const localTheme = () => {
-  return localStorage.getItem('theme') === 'themeDark';
-};

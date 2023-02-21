@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export default styled.div<{ view?: boolean; typeSelector?: boolean }>`
+export default styled.div<{ view?: boolean; typeSelector?: boolean; dark: boolean }>`
   position: relative;
-  background: ${(props) => props.theme.color.background.light};
+  background: ${(props) => (props.dark ? '#1e2e3a' : props.theme.color.background.light)};
   height: 48px;
   border-radius: ${(props) => props.theme.border.radius.main};
 
@@ -32,7 +32,7 @@ export default styled.div<{ view?: boolean; typeSelector?: boolean }>`
     position: absolute;
     z-index: 1001;
     border-radius: ${(props) => props.theme.border.radius.main};
-    background: ${(props) => props.theme.color.background.light};
+    background: ${(props) => (props.dark ? '#1e2e3a' : props.theme.color.background.light)};
     font-size: ${(props) => props.theme.font.size.sm};
     line-height: ${(props) => props.theme.font.lineHeight.sm};
     margin-top: 20px;
@@ -57,6 +57,10 @@ export default styled.div<{ view?: boolean; typeSelector?: boolean }>`
     line-height: ${(props) => props.theme.font.lineHeight.sm};
     color: ${(props) => props.theme.color.text.main};
     background: ${(props) => props.theme.color.background.light};
+  }
+
+  .select-box__title {
+    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.main)};
   }
 
   .select-box__text {
