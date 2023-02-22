@@ -9,6 +9,7 @@ export default styled.footer`
   justify-content: center;
   margin-top: auto;
   margin-top: 150px;
+  transition: 0.5s;
 
   .footer_container {
     max-width: 1280px;
@@ -36,6 +37,7 @@ export default styled.footer`
     font-size: ${(props) => props.theme.font.size.ml};
     line-height: ${(props) => props.theme.font.lineHeight.m};
     color: ${(props) => props.theme.color.text.light};
+    transition: 0.5s;
   }
 
   .logo {

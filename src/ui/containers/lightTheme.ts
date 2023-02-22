@@ -4,6 +4,7 @@ export const lightTheme = {
       page: 'white',
       dark: '#0D1821',
       light: '#F0F4EF',
+      fill: 'white',
     },
     error: {
       main: '#ED2E7E',

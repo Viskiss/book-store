@@ -9,7 +9,7 @@ import store from 'src/redux/store';
 import App from './App';
 
 import reportWebVitals from './reportWebVitals';
-import ThemeProvide from './ui/components/ThemeSelect/ThemeProvider';
+import ThemeProvide from './ui/components/ThemeSelect/ThemeProvide';
 import GlobalStyles from './ui/containers/GlobalStyles';
 
 const root = ReactDOM.createRoot(

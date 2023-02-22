@@ -103,16 +103,19 @@ export default styled.section`
 
   .quantity {
     margin: 15px;
+    color: ${(props) => props.theme.color.text.dark};
   }
 
   .item-cart__box-filter {
     display: flex;
     margin-bottom: 50px;
   }
-
+  
   .item-cart__box-trash {
     margin-left: 50px;
     cursor: pointer;
+    background: ${(props) => props.theme.color.background.fill};
+    border-radius: ${(props) => props.theme.border.radius.round};
   }
 
   .line:not(:last-child) {
@@ -204,12 +207,21 @@ export default styled.section`
   }
 
   @media (max-width: 430px) {
+    .cart__buttons-box {
+      margin-bottom: -50px;
+    }
+
     .cart-button {
       width: 100%;
+      margin-bottom: 20px;
     }
 
     .cart-button-checkout {
       width: 100%;
+    }
+
+    .item-cart__cover {
+      min-width: 135px;
     }
     
   }

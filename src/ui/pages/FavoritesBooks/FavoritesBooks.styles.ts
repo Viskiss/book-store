@@ -18,6 +18,7 @@ export default styled.section`
   }
 
   .item-favorite__box {
+    max-width: 335px;
     background: ${(props) => props.theme.color.background.light};
     border-radius: ${(props) => props.theme.border.radius.main};
     transition: 0.5s;
@@ -50,7 +51,10 @@ export default styled.section`
   }
 
   .item-favorite__box-data {
-    padding: 0 10px 0 10px;
+    margin: 0 10px 0 10px;
+    white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
   }
 
   @media (max-width: 800px) {
@@ -71,11 +75,6 @@ export default styled.section`
       max-width: 265px;
     }
 
-    .item-favorite__box-title {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
     .item-favorite__cover {
       padding: 10px;
       width: 255px;

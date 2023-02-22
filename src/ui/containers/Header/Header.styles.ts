@@ -47,6 +47,7 @@ export default styled.header`
     font-size: ${(props) => props.theme.font.size.sm};
     line-height: ${(props) => props.theme.font.lineHeight.xs};
     color: ${(props) => props.theme.color.text.dark};
+    transition: 0.5s;
   }
 
   .catalog-link:hover {
@@ -72,6 +73,7 @@ export default styled.header`
     line-height: ${(props) => props.theme.font.lineHeight.xs};
     width: 100%;
     max-width: 502px;
+    transition: 0.5s;
   }
 
   .search-input::placeholder {

@@ -26,8 +26,7 @@ const ItemLike: React.FC<PropType> = ({
   };
 
   return (
-    <>
-      <div className="item-favorite__box">
+    <div className="item-favorite__box">
         <div className="item-favorite__box-cover">
           <img
             onClick={selectBook}
@@ -51,9 +50,7 @@ const ItemLike: React.FC<PropType> = ({
           <h1 className="item-favorite__box-title">{title}</h1>
           <p className="item-favorite__box-author">{author}</p>
         </div>
-      </div>
-      <div className="line" />
-    </>
+    </div>
   );
 };
 

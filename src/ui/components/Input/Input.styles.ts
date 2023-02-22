@@ -13,6 +13,7 @@ export default styled.section`
     font-size: ${(props) => props.theme.font.size.sm};
     line-height: ${(props) => props.theme.font.lineHeight.xs};
     position: relative;
+    transition: 0.5s;
   }
 
   .error-input {

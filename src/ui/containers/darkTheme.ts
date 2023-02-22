@@ -10,6 +10,7 @@ export const darkTheme = _defaultsDeep({
       page: '#0D1821',
       dark: '#1e2e3a',
       light: '#1e2e3a',
+      fill: '#F0F4EF',
     },
     error: {
       main: '#ED2E7E',
@@ -32,8 +33,8 @@ export const darkTheme = _defaultsDeep({
 
   border: {
     color: {
-      dark: '#0D1821',
-      light: '#d6d8e7',
+      dark: '#d6d8e7',
+      light: '#0D1821',
       error: '#ED2E7E',
     },
   },
