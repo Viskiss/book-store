@@ -10,7 +10,7 @@ import Button from 'src/ui/components/Button';
 import { useAppDispatch } from 'src/redux/store';
 import { signUpThunk } from 'src/redux/userStore/thunks/authUser';
 
-import { localTheme, navigationRoutes } from 'src/utils/constants';
+import { navigationRoutes } from 'src/utils/constants';
 import { fieldsValidation } from 'src/utils/validationFields';
 import {
   handlerApiValidationError,
@@ -58,7 +58,7 @@ const SignUp: React.FC = () => {
   });
 
   return (
-    <StyledSignUp dark={localTheme()}>
+    <StyledSignUp>
       <div className="signup_container">
         <div>
           <form onSubmit={formik.handleSubmit} className="login-form">

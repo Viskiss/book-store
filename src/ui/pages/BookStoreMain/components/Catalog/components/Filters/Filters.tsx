@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ReactSlider from 'react-slider';
 
-import { localTheme } from 'src/utils/constants';
-
 import type { GenreType } from 'src/types/bookStoreTypes';
 
 import FilterBox from 'src/ui/components/Filter/SelectFilterBox';
@@ -93,7 +91,7 @@ const Filters: React.FC<PropsType> = ({ genres }) => {
   };
 
   return (
-    <StyledFilters dark={localTheme()}>
+    <StyledFilters>
       <h2 className="filters__title">Catalog</h2>
       <div className="filters__book-filter">
         <FilterBox title="Genre">

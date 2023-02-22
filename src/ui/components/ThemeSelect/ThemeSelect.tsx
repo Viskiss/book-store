@@ -1,44 +1,43 @@
 import { useEffect, useState } from 'react';
 
-import light from 'src/ui/assets/images/icon/light.svg';
-import dark from 'src/ui/assets/images/icon/dark.svg';
+import { useAppDispatch, useAppSelector } from 'src/redux/store';
+import { userSliceActions } from 'src/redux/userStore/userSlice';
+
+import dark from 'src/ui/assets/images/icon/light.svg';
+import light from 'src/ui/assets/images/icon/dark.svg';
 
 import StyledTheme from './ThemeSelect.styles';
 
 const ThemeSelect: React.FC = () => {
   const [theme, setTheme] = useState(light);
-  const [theme2, setTheme2] = useState(dark);
 
-  const localTheme = localStorage.getItem('theme') === 'themeDark';
+  const dispatch = useAppDispatch();
+
+  const localTheme = useAppSelector((state) => state.userStore.theme);
 
   useEffect(() => {
-    if (localTheme) {
+    if (localTheme === 'darkTheme') {
       setTheme(dark);
-      setTheme2(light);
     } else {
       setTheme(light);
-      setTheme2(dark);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handletChangeTheme = () => {
     if (theme === light) {
-      localStorage.setItem('theme', 'lightTheme');
+      dispatch(userSliceActions.changeTheme('darkTheme'));
       setTheme(dark);
-      setTheme2(light);
     } else {
-      localStorage.setItem('theme', 'darkTheme');
+      dispatch(userSliceActions.changeTheme('lightTheme'));
       setTheme(light);
-      setTheme2(dark);
     }
   };
   return (
     <StyledTheme light={theme === light} onClick={handletChangeTheme}>
       <div className="theme-container">
         <img className="theme-img" src={theme} alt="" />
-        <img className="theme-img-back" src={theme2} alt="" />
-        <p className="theme-text">{localTheme ? 'Dark' : 'Light'}</p>
+        <p className="theme-text">{theme === dark ? 'Dark' : 'Light'}</p>
       </div>
     </StyledTheme>
   );

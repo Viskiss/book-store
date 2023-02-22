@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div<{dark: boolean}>`
+export default styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
@@ -9,7 +9,7 @@ export default styled.div<{dark: boolean}>`
     font-size: ${(props) => props.theme.font.size.xxl};
     line-height: ${(props) => props.theme.font.lineHeight.xxxl};
     margin: 0;
-    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.dark)}
+    color: ${(props) => props.theme.color.text.dark}
   }
 
   .filters__book-filter {

@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import type { BookType } from 'src/types/bookStoreTypes';
 
 import { useAppDispatch, useAppSelector } from 'src/redux/store';
-import { localTheme, navigationRoutes } from 'src/utils/constants';
+import { navigationRoutes } from 'src/utils/constants';
 
 import Button from 'src/ui/components/Button';
 import StarRate from 'src/ui/components/Rating';
@@ -79,7 +79,7 @@ const Book: React.FC = () => {
   };
 
   return (
-    <StyledBook dark={localTheme()}>
+    <StyledBook>
       <div className="book-cover__box">
         <img className="book-cover" src={book.cover} alt="" />
       </div>

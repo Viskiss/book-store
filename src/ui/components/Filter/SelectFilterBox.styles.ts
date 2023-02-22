@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export default styled.div<{ view?: boolean; typeSelector?: boolean; dark: boolean }>`
+export default styled.div<{ view?: boolean; typeSelector?: boolean}>`
   position: relative;
-  background: ${(props) => (props.dark ? '#1e2e3a' : props.theme.color.background.light)};
+  background: ${(props) => props.theme.color.background.light};
   height: 48px;
   border-radius: ${(props) => props.theme.border.radius.main};
 
@@ -32,11 +32,21 @@ export default styled.div<{ view?: boolean; typeSelector?: boolean; dark: boolea
     position: absolute;
     z-index: 1001;
     border-radius: ${(props) => props.theme.border.radius.main};
-    background: ${(props) => (props.dark ? '#1e2e3a' : props.theme.color.background.light)};
+    background: ${(props) => props.theme.color.background.light};
     font-size: ${(props) => props.theme.font.size.sm};
     line-height: ${(props) => props.theme.font.lineHeight.sm};
     margin-top: 20px;
   }
+
+  .select-box__items::-webkit-scrollbar {
+  width: 10px;
+  background: ${(props) => props.theme.color.background.light};
+  border-radius: ${(props) => props.theme.border.radius.main};
+}
+
+.select-box__items::-webkit-scrollbar-thumb  {
+  background: ${(props) => props.theme.color.text.main};
+}
 
   .select-box__items-price {
     display: ${(props) => (props.view ? 'flex' : 'none')};
@@ -60,7 +70,7 @@ export default styled.div<{ view?: boolean; typeSelector?: boolean; dark: boolea
   }
 
   .select-box__title {
-    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.main)};
+    color: ${(props) => props.theme.color.text.main};
   }
 
   .select-box__text {

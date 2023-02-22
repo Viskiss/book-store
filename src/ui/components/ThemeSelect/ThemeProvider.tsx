@@ -1,3 +1,4 @@
+import { useAppSelector } from 'src/redux/store';
 import { darkTheme } from 'src/ui/containers/darkTheme';
 import { lightTheme } from 'src/ui/containers/lightTheme';
 import { ThemeProvider } from 'styled-components';
@@ -7,14 +8,15 @@ type PropsType = {
 };
 
 const ThemeProvide: React.FC<PropsType> = ({ children }) => {
-  const localCurrentTheme = localStorage.getItem('theme');
+  const localTheme = useAppSelector((state) => state.userStore.theme);
 
   const theme = () => {
-    if (localCurrentTheme === 'lightTheme') {
+    if (localTheme === 'lightTheme') {
       return lightTheme;
     }
     return darkTheme;
   };
+
   return <ThemeProvider theme={theme()}>{children}</ThemeProvider>;
 };
 

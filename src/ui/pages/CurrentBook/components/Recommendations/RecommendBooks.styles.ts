@@ -8,7 +8,9 @@ export default styled.div`
   .recommend-books__items {
     display: flex;
     gap: 20px;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .recommendations__title {
@@ -18,11 +20,6 @@ export default styled.div`
     color: ${(props) => props.theme.color.text.dark};
   }
 
-  @media (max-width: 930px) {
-    .recommend-books__items :nth-child(4) {
-      display: none;
-    }
-  }
 
   @media (max-width: 930px) {
     margin-top: 50px;
@@ -38,10 +35,6 @@ export default styled.div`
     .recommendations__title {
       font-size: ${(props) => props.theme.font.size.m};
       line-height: ${(props) => props.theme.font.lineHeight.sm};
-    }
-
-     .recommend-books__items :nth-last-child(4) {
-      display: none;
     }
   }
 `;

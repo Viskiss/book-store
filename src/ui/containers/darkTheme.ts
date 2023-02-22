@@ -8,21 +8,21 @@ export const darkTheme = _defaultsDeep({
   color: {
     background: {
       page: '#0D1821',
-      dark: '#0D1821',
-      light: '#F0F4EF',
+      dark: '#1e2e3a',
+      light: '#1e2e3a',
     },
     error: {
       main: '#ED2E7E',
     },
     button: {
       main: '#344966',
-      light: '#B9BAC3',
+      light: '#56565c',
     },
     text: {
-      main: '#344966',
+      main: '#8792a0ed',
       dark: '#F0F4EF',
       medium: '#B9BAC3',
-      light: '#0D1821',
+      light: '#B9BAC3',
     },
     info: {
       main: '#8D9F4F',

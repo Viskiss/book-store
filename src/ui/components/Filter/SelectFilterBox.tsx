@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
 
 import { useOutsideClick } from 'src/hooks/useOutsideClick';
+import { useAppSelector } from 'src/redux/store';
 
 import arrow from 'src/ui/assets/images/icon/arrowRight.svg';
 import polygon from 'src/ui/assets/images/icon/Polygon.svg';
-import { localTheme } from 'src/utils/constants';
+import polygonDark from 'src/ui/assets/images/icon/PolygonDark.svg';
 
 import StyledSelect from './SelectFilterBox.styles';
 
@@ -16,6 +17,8 @@ type PropsType = {
 const FilterBox: React.FC<PropsType> = ({ children, title }) => {
   const [viewItems, setViewItems] = useState(false);
 
+  const localTheme = useAppSelector((state) => state.userStore.theme);
+
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   useOutsideClick(wrapperRef, setViewItems);
 
@@ -25,13 +28,16 @@ const FilterBox: React.FC<PropsType> = ({ children, title }) => {
 
   return (
     <StyledSelect
-    dark={localTheme()}
       view={viewItems}
       typeSelector={title !== 'Genre'}
       ref={wrapperRef}
     >
       <div onClick={handlerViewItems} className="select-box">
-        <img className="select-box__polygon" src={polygon} alt="" />
+        <img
+          className="select-box__polygon"
+          src={localTheme === 'darkTheme' ? polygonDark : polygon}
+          alt=""
+        />
 
         <span className="select-box__title">{title}</span>
 

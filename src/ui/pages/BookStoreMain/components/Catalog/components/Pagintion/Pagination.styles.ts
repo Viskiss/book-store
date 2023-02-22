@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
-export default styled.div<{dark: boolean}>`
+export default styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${(props) => (props.dark ? 'radial-gradient(circle, rgba(250,250,250,1) 15%, rgba(13,24,33,0.9867749419953597) 50%)' : '')};
 
   .pagination-button {
     background-color: transparent;

@@ -15,7 +15,7 @@ import {
   handlerApiValidationError,
   matchError,
 } from 'src/utils/handleApiValidationError';
-import { localTheme, navigationRoutes } from 'src/utils/constants';
+import { navigationRoutes } from 'src/utils/constants';
 import tokenHelper from 'src/utils/tokenHelper';
 
 import mailIcon from 'src/ui/assets/images/icon/Mail.svg';
@@ -56,7 +56,7 @@ const SignIn: React.FC = () => {
   });
 
   return (
-    <StyledLogin dark={localTheme()}>
+    <StyledLogin>
       <div className="login_container">
         <div>
           <form onSubmit={formik.handleSubmit} className="login-form">

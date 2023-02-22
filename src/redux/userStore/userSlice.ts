@@ -17,6 +17,7 @@ import {
 
 const initialState = () => ({
   user: null as UserType | null,
+  theme: localStorage.getItem('theme') || 'lightTheme',
 });
 
 const userSlice = createSlice({
@@ -27,6 +28,10 @@ const userSlice = createSlice({
       if (payload) {
         state.user = null;
       }
+    },
+    changeTheme: (state, { payload }) => {
+      state.theme = payload;
+      localStorage.setItem('theme', payload);
     },
   },
 

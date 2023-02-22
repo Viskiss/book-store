@@ -114,13 +114,13 @@ export default styled.section`
 
     .castle-block__img-castle {
       width: 282px;
-      padding-top: 0;
+      padding-top: 75px;
       padding-left: 0;
     }
 
     .img-auth-banner {
       width: 246px;
-      top: -5px;
+      top: 0px;
       right: 10px;
     }
     .block-text_main {

@@ -2,8 +2,6 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { localTheme } from 'src/utils/constants';
-
 import leftArrow from 'src/ui/assets/images/icon/leftArrow.svg';
 import arrowRight from 'src/ui/assets/images/icon/arrowRight.svg';
 
@@ -53,7 +51,7 @@ const Pagination: React.FC = () => {
   };
 
   return (
-    <StyledPaginationBooks dark={localTheme()}>
+    <StyledPaginationBooks>
       <Button
         disabled={page === 1}
         onClick={handlerClickFirstDot}

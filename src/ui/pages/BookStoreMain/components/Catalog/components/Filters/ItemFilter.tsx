@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import { useEffect, useState } from 'react';
+import classNames from 'classnames';
 import { useSearchParams } from 'react-router-dom';
 
 import checked from 'src/ui/assets/images/icon/Checked.svg';

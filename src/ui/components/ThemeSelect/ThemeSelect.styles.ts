@@ -6,7 +6,7 @@ export default styled.div<{ light: boolean }>`
   right: 0;
   z-index: 1000;
   margin: 40px;
-  
+
   .theme-container {
     position: relative;
     display: flex;
@@ -18,22 +18,15 @@ export default styled.div<{ light: boolean }>`
 
   .theme-img {
     width: 100%;
-  }
-
-  .theme-img-back {
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 10px;
-    z-index: -1;
+    border: 3px solid ${(props) => props.theme.color.background.light};
+    border-radius: ${(props) => props.theme.border.radius.round};
   }
 
   .theme-text {
-    color: ${(props) => (props.light ? 'black' : 'white')};
+    color: ${(props) => (props.light ? 'white' : 'black')};
     font-size: ${(props) => props.theme.font.size.xs};
     font-weight: ${(props) => props.theme.font.weight.xl};
     position: absolute;
     z-index: 1000;
   }
-
 `;

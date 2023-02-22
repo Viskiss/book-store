@@ -76,7 +76,7 @@ export default styled.div`
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 650px) {
     .block-text_main {
       padding: 0 40px 0 20px;
     }

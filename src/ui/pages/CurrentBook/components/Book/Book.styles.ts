@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div<{ dark: boolean }>`
+export default styled.div`
   display: grid;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: 0.1fr 0.1fr 1fr;
@@ -34,14 +34,14 @@ export default styled.div<{ dark: boolean }>`
   .title {
     font-size: ${(props) => props.theme.font.size.xxxl};
     line-height: ${(props) => props.theme.font.lineHeight.xxxl};
-    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.dark)};
+    color: ${(props) => props.theme.color.text.dark};
     margin: 0;
   }
 
   .book-author {
     font-size: ${(props) => props.theme.font.size.l};
     line-height: ${(props) => props.theme.font.lineHeight.ml};
-    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.dark)};
+    color: ${(props) => props.theme.color.text.dark};
     margin-top: 0;
   }
 
@@ -49,7 +49,7 @@ export default styled.div<{ dark: boolean }>`
     font-weight: ${(props) => props.theme.font.weight.m};
     line-height: ${(props) => props.theme.font.lineHeight.ml};
     font-size: ${(props) => props.theme.font.size.l};
-    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.dark)};
+    color: ${(props) => props.theme.color.text.dark};
     margin-top: 0;
     margin-bottom: 10px;
   }
@@ -57,14 +57,14 @@ export default styled.div<{ dark: boolean }>`
   .text {
     font-size: ${(props) => props.theme.font.size.sm};
     line-height: ${(props) => props.theme.font.lineHeight.xs};
-    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.main)};
+    color: ${(props) => props.theme.color.text.main};
     margin: 0 0 74px 0;
   }
 
   .disabled-button {
     font-weight: ${(props) => props.theme.font.weight.xl};
-    font-size: ${(props) => props.theme.font.size.fs20};
-    line-height: ${(props) => props.theme.font.lineHeight.lh30};
+    font-size: ${(props) => props.theme.font.size.ml};
+    line-height: ${(props) => props.theme.font.lineHeight.m};
     background: ${(props) => props.theme.color.grey};
     color: ${(props) => props.theme.color.white};
     cursor: default;

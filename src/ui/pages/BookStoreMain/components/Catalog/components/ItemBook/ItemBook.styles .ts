@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div<{ likedBook?: boolean; best?: boolean; dark : boolean }>`
+export default styled.div<{ likedBook?: boolean; best?: boolean }>`
   display: flex;
   flex-direction: column;
   width: calc((100% - (20px * 3)) / 4);
@@ -61,7 +61,7 @@ export default styled.div<{ likedBook?: boolean; best?: boolean; dark : boolean 
 
   .book-title {
     text-decoration: none;
-    color: ${(props) => (props.dark ? props.theme.color.text.light : props.theme.color.text.dark)};
+    color: ${(props) => props.theme.color.text.dark};
     font-size: ${(props) => props.theme.font.size.ml};
     line-height: ${(props) => props.theme.font.lineHeight.m};
   }
@@ -127,10 +127,6 @@ export default styled.div<{ likedBook?: boolean; best?: boolean; dark : boolean 
     .catalog-button {
       font-size: ${(props) => props.theme.font.size.sm};
     }
-
-    .cover-book__label {
-    width: 80%
-  }
   }
 
   @media (max-width: 834px) {

@@ -2,16 +2,18 @@ import type { ChangeEvent } from 'react';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
+import { useAppSelector } from 'src/redux/store';
+import { useDebounce } from 'src/hooks/useDebounce';
+
 import Button from 'src/ui/components/Button';
 
+import { navigationRoutes } from 'src/utils/constants';
 import tokenHelper from 'src/utils/tokenHelper';
 
 import logo from 'src/ui/assets/images/logoH.svg';
 import logoWhite from 'src/ui/assets/images/logoF.svg';
 import loupe from 'src/ui/assets/images/icon/Search.svg';
 
-import { navigationRoutes } from 'src/utils/constants';
-import { useDebounce } from 'src/hooks/useDebounce';
 import AuthUserLinks from './AuthUserLinks';
 
 import StyledHeader from './Header.styles';
@@ -25,6 +27,8 @@ const Header: React.FC = () => {
   const debouncedFilter = useDebounce(searchString, 500);
 
   const token = tokenHelper.token.get();
+
+  const localTheme = useAppSelector((state) => state.userStore.theme);
 
   useEffect(() => {
     if (debouncedFilter) {
@@ -44,11 +48,11 @@ const Header: React.FC = () => {
   };
 
   return (
-    <StyledHeader dark={localTheme()}>
+    <StyledHeader>
       <div className="container">
         <div className="logo-box">
           <Link className="logo__link" to={navigationRoutes.home}>
-            <img className="logo" src={localTheme() ? logoWhite : logo} alt="" />
+            <img className="logo" src={localTheme === 'darkTheme' ? logoWhite : logo} alt="" />
           </Link>
         </div>
 

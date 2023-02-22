@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.header<{ dark: boolean }>`
+export default styled.header`
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
@@ -64,7 +64,7 @@ export default styled.header<{ dark: boolean }>`
 
   .search-input {
     padding: 20px 64px;
-    background: ${(props) => (props.dark ? '#1e2e3a' : props.theme.color.background.light)};
+    background: ${(props) => props.theme.color.background.light};
     border-radius: ${(props) => props.theme.border.radius.main};
     border: none;
     font-weight: ${(props) => props.theme.font.weight.s};
